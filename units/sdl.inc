@@ -9,3 +9,9 @@
 
 { Compiler defines }
 {$DEFINE SDL} // define "SDL" symbol
+{$DEFINE WANT_CWCHAR_T} // define C's wchar_t types
+
+{ SDL3 Compiler defines }
+{$IFDEF WINDOWS}
+  {$DEFINE SDL_PLATFORM_WINDOWS}  // used in SDL_thread.inc
+{$ENDIF}

@@ -79,13 +79,19 @@ const
 {$I SDL_log.inc}                          // 3.1.6-prev
 {$I SDL_version.inc}                      // 3.1.6-prev
 {$I SDL_revision.inc}                     // 3.1.6-prev
+{$I SDL_locale.inc}                       // 3.2.0
 {$I SDL_guid.inc}                         // 3.1.6-prev
+{$I SDL_hints.inc}                        // 3.2.0
+{$I SDL_misc.inc}                         // 3.2.0
 {$I SDL_stdinc.inc}                       // 3.1.6-prev (unfinished)
+{$I SDL_platform.inc}                     // 3.2.0
+{$I SDL_loadso.inc}                       // 3.2.0
 {$I SDL_rect.inc}                         // 3.1.6-prev
 {$I SDL_properties.inc}                   // 3.1.6-prev
 {$I SDL_pixels.inc}                       // 3.1.6-prev
 {$I SDL_blendmode.inc}                    // 3.1.6-prev
-{$I SDL_iostream.inc}                     // 3.1.6-prev (unfinished)
+{$I SDL_iostream.inc}                     // 3.2.0
+{$I SDL_asyncio.inc}                      // 3.2.0
 {$I SDL_surface.inc}                      // 3.1.6-prev
 {$I SDL_video.inc}                        // 3.1.6-prev
 {$I SDL_timer.inc}                        // 3.1.6-prev
@@ -98,16 +104,28 @@ const
 {$I SDL_mouse.inc}                        // 3.1.6-prev
 {$I SDL_keyboard.inc}                     // 3.1.6-prev
 {$I SDL_joystick.inc}                     // 3.1.6-prev
+{$I SDL_gamepad.inc}                      // 3.2.0
+{$I SDL_haptic.inc}                       // 3.2.0
 {$I SDL_pen.inc}                          // 3.1.6-prev
 {$I SDL_touch.inc}                        // 3.1.6-prev
 {$I SDL_camera.inc}                       // 3.1.6-prev
 {$I SDL_events.inc}                       // 3.1.6-prev
 {$I SDL_render.inc}                       // 3.1.6-prev
+{$I SDL_gpu.inc}                          // 3.2.0
 {$I SDL_clipboard.inc}                    // 3.2.0
 {$I SDL_cpuinfo.inc}                      // 3.2.0
 {$I SDL_dialog.inc}                       // 3.2.0
+{$I SDL_messagebox.inc}                   // 3.2.0
 {$I SDL_time.inc}                         // 3.2.0
 {$I SDL_filesystem.inc}                   // 3.2.0
+{$I SDL_atomic.inc}                       // 3.2.0
+{$I SDL_hidapi.inc}                       // 3.2.0
+{$I SDL_metal.inc}                        // 3.2.0
+{$I SDL_vulkan.inc}                       // 3.2.0
+{$I SDL_thread.inc}                       // 3.2.0
+{$I SDL_process.inc}                      // 3.2.0
+{$I SDL_storage.inc}                      // 3.2.0
+
 
 
 implementation
@@ -309,6 +327,28 @@ end;
 function SDL_WINDOWPOS_ISCENTERED(X: Integer): Boolean;
 begin
   Result := (X and $FFFF0000) = SDL_WINDOWPOS_CENTERED_MASK;
+end;
+
+{ Macros from SDL_atomic.h }
+function SDL_AtomicIncRef(a: PSDL_AtomicInt): cint;
+begin
+  SDL_AtomicIncRef:=SDL_AddAtomicInt(a,1);
+end;
+
+function SDL_AtomicDecRef(a: PSDL_AtomicInt): cbool;
+begin
+  SDL_AtomicDecRef:=(SDL_AddAtomicInt(a,-1)=1);
+end;
+
+{ Macros from SDL_thread.h }
+function SDL_CreateThread(fn: TSDL_ThreadFunction; name: PAnsiChar; data: Pointer): PSDL_Thread;
+begin
+  SDL_CreateThread:=SDL_CreateThreadRuntime(fn,name,data,TSDL_FunctionPointer(SDL_BeginThreadFunction),TSDL_FunctionPointer(SDL_EndThreadFunction));
+end;
+
+function SDL_CreateThreadWithProperties(props: TSDL_PropertiesID): PSDL_Thread;
+begin
+  SDL_CreateThreadWithProperties:=SDL_CreateThreadWithPropertiesRuntime(props,TSDL_FunctionPointer(SDL_BeginThreadFunction),TSDL_FunctionPointer(SDL_EndThreadFunction));
 end;
 
 end.
