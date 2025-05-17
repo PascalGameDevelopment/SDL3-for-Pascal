@@ -63,7 +63,7 @@ const
     {$IFDEF DARWIN}
       IMG_LibName = 'libSDL3_image.dylib';
       {$IFDEF FPC}
-        {$LINKLIB libSDL3}
+        {$LINKLIB libSDL3_image}
       {$ENDIF}
     {$ELSE}
       {$IFDEF FPC}
@@ -77,7 +77,7 @@ const
   {$IFDEF MACOS}
     IMG_LibName = 'SDL3_image';
     {$IFDEF FPC}
-      {$linklib libSDL3}
+      {$linklib libSDL3_image}
     {$ENDIF}
   {$ENDIF}
 
