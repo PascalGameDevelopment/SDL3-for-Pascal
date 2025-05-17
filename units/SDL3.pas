@@ -81,7 +81,7 @@ const
 {$I SDL_revision.inc}                     // 3.1.6-prev
 {$I SDL_locale.inc}                       // 3.2.0
 {$I SDL_guid.inc}                         // 3.1.6-prev
-{$I SDL_hints.inc}                        // 3.2.0
+{$I SDL_hints.inc}                        // 3.2.12
 {$I SDL_misc.inc}                         // 3.2.0
 {$I SDL_stdinc.inc}                       // 3.1.6-prev (unfinished)
 {$I SDL_platform.inc}                     // 3.2.0
