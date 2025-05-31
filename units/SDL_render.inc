@@ -186,7 +186,7 @@ function SDL_GetRenderDriver(index: cint): PAnsiChar; cdecl;
  * \sa SDL_CreateRenderer
  * \sa SDL_CreateWindow
   }
-function SDL_CreateWindowAndRenderer(title: PAnsiChar; width: cint; height: cint; window_flags: TSDL_WindowFlags; window: PPSDL_Window; renderer: PPSDL_Renderer): cbool; cdecl;
+function SDL_CreateWindowAndRenderer(title: PAnsiChar; width: cint; height: cint; window_flags: TSDL_WindowFlags; window: PPSDL_Window; renderer: PPSDL_Renderer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateWindowAndRenderer' {$ENDIF} {$ENDIF};
 
 {*
@@ -481,7 +481,7 @@ const
  *
  * \sa SDL_GetCurrentRenderOutputSize
   }
-function SDL_GetRenderOutputSize(renderer: PSDL_Renderer; w: pcint; h: pcint): cbool; cdecl;
+function SDL_GetRenderOutputSize(renderer: PSDL_Renderer; w: pcint; h: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderOutputSize' {$ENDIF} {$ENDIF};
 
 {*
@@ -504,7 +504,7 @@ function SDL_GetRenderOutputSize(renderer: PSDL_Renderer; w: pcint; h: pcint): c
  *
  * \sa SDL_GetRenderOutputSize
   }
-function SDL_GetCurrentRenderOutputSize(renderer: PSDL_Renderer; w: pcint; h: pcint): cbool; cdecl;
+function SDL_GetCurrentRenderOutputSize(renderer: PSDL_Renderer; w: pcint; h: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCurrentRenderOutputSize' {$ENDIF} {$ENDIF};
 
 {*
@@ -861,7 +861,7 @@ function SDL_GetRendererFromTexture(texture: PSDL_Texture): PSDL_Renderer; cdecl
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_GetTextureSize(texture: PSDL_Texture; w: pcfloat; h: pcfloat): cbool; cdecl;
+function SDL_GetTextureSize(texture: PSDL_Texture; w: pcfloat; h: pcfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureSize' {$ENDIF} {$ENDIF};
 
 {*
@@ -891,7 +891,7 @@ function SDL_GetTextureSize(texture: PSDL_Texture; w: pcfloat; h: pcfloat): cboo
  * \sa SDL_SetTextureAlphaMod
  * \sa SDL_SetTextureColorModFloat
   }
-function SDL_SetTextureColorMod(texture: PSDL_Texture; r: cuint8; g: cuint8; b: cuint8): cbool; cdecl;
+function SDL_SetTextureColorMod(texture: PSDL_Texture; r: cuint8; g: cuint8; b: cuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextureColorMod' {$ENDIF} {$ENDIF};
 
 {*
@@ -921,7 +921,7 @@ function SDL_SetTextureColorMod(texture: PSDL_Texture; r: cuint8; g: cuint8; b: 
  * \sa SDL_SetTextureAlphaModFloat
  * \sa SDL_SetTextureColorMod
   }
-function SDL_SetTextureColorModFloat(texture: PSDL_Texture; r: cfloat; g: cfloat; b: cfloat): cbool; cdecl;
+function SDL_SetTextureColorModFloat(texture: PSDL_Texture; r: cfloat; g: cfloat; b: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextureColorModFloat' {$ENDIF} {$ENDIF};
 
 {*
@@ -942,7 +942,7 @@ function SDL_SetTextureColorModFloat(texture: PSDL_Texture; r: cfloat; g: cfloat
  * \sa SDL_GetTextureColorModFloat
  * \sa SDL_SetTextureColorMod
   }
-function SDL_GetTextureColorMod(texture: PSDL_Texture; r: pcuint8; g: pcuint8; b: pcuint8): cbool; cdecl;
+function SDL_GetTextureColorMod(texture: PSDL_Texture; r: pcuint8; g: pcuint8; b: pcuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureColorMod' {$ENDIF} {$ENDIF};
 
 {*
@@ -963,7 +963,7 @@ function SDL_GetTextureColorMod(texture: PSDL_Texture; r: pcuint8; g: pcuint8; b
  * \sa SDL_GetTextureColorMod
  * \sa SDL_SetTextureColorModFloat
   }
-function SDL_GetTextureColorModFloat(texture: PSDL_Texture; r: pcfloat; g: pcfloat; b: pcfloat): cbool; cdecl;
+function SDL_GetTextureColorModFloat(texture: PSDL_Texture; r: pcfloat; g: pcfloat; b: pcfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureColorModFloat' {$ENDIF} {$ENDIF};
 
 {*
@@ -990,7 +990,7 @@ function SDL_GetTextureColorModFloat(texture: PSDL_Texture; r: pcfloat; g: pcflo
  * \sa SDL_SetTextureAlphaModFloat
  * \sa SDL_SetTextureColorMod
   }
-function SDL_SetTextureAlphaMod(texture: PSDL_Texture; alpha: cuint8): cbool; cdecl;
+function SDL_SetTextureAlphaMod(texture: PSDL_Texture; alpha: cuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextureAlphaMod' {$ENDIF} {$ENDIF};
 
 {*
@@ -1017,7 +1017,7 @@ function SDL_SetTextureAlphaMod(texture: PSDL_Texture; alpha: cuint8): cbool; cd
  * \sa SDL_SetTextureAlphaMod
  * \sa SDL_SetTextureColorModFloat
   }
-function SDL_SetTextureAlphaModFloat(texture: PSDL_Texture; alpha: cfloat): cbool; cdecl;
+function SDL_SetTextureAlphaModFloat(texture: PSDL_Texture; alpha: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextureAlphaModFloat' {$ENDIF} {$ENDIF};
 
 {*
@@ -1036,7 +1036,7 @@ function SDL_SetTextureAlphaModFloat(texture: PSDL_Texture; alpha: cfloat): cboo
  * \sa SDL_GetTextureColorMod
  * \sa SDL_SetTextureAlphaMod
   }
-function SDL_GetTextureAlphaMod(texture: PSDL_Texture; alpha: pcuint8): cbool; cdecl;
+function SDL_GetTextureAlphaMod(texture: PSDL_Texture; alpha: pcuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureAlphaMod' {$ENDIF} {$ENDIF};
 
 {*
@@ -1055,7 +1055,7 @@ function SDL_GetTextureAlphaMod(texture: PSDL_Texture; alpha: pcuint8): cbool; c
  * \sa SDL_GetTextureColorModFloat
  * \sa SDL_SetTextureAlphaModFloat
   }
-function SDL_GetTextureAlphaModFloat(texture: PSDL_Texture; alpha: pcfloat): cbool; cdecl;
+function SDL_GetTextureAlphaModFloat(texture: PSDL_Texture; alpha: pcfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureAlphaModFloat' {$ENDIF} {$ENDIF};
 
 {*
@@ -1075,7 +1075,7 @@ function SDL_GetTextureAlphaModFloat(texture: PSDL_Texture; alpha: pcfloat): cbo
  *
  * \sa SDL_GetTextureBlendMode
   }
-function SDL_SetTextureBlendMode(texture: PSDL_Texture; blendMode: TSDL_BlendMode): cbool; cdecl;
+function SDL_SetTextureBlendMode(texture: PSDL_Texture; blendMode: TSDL_BlendMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextureBlendMode' {$ENDIF} {$ENDIF};
 
 {*
@@ -1092,7 +1092,7 @@ function SDL_SetTextureBlendMode(texture: PSDL_Texture; blendMode: TSDL_BlendMod
  *
  * \sa SDL_SetTextureBlendMode
   }
-function SDL_GetTextureBlendMode(texture: PSDL_Texture; blendMode: PSDL_BlendMode): cbool; cdecl;
+function SDL_GetTextureBlendMode(texture: PSDL_Texture; blendMode: PSDL_BlendMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureBlendMode' {$ENDIF} {$ENDIF};
 
 {*
@@ -1113,7 +1113,7 @@ function SDL_GetTextureBlendMode(texture: PSDL_Texture; blendMode: PSDL_BlendMod
  *
  * \sa SDL_GetTextureScaleMode
   }
-function SDL_SetTextureScaleMode(texture: PSDL_Texture; scaleMode: TSDL_ScaleMode): cbool; cdecl;
+function SDL_SetTextureScaleMode(texture: PSDL_Texture; scaleMode: TSDL_ScaleMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextureScaleMode' {$ENDIF} {$ENDIF};
 
 {*
@@ -1130,7 +1130,7 @@ function SDL_SetTextureScaleMode(texture: PSDL_Texture; scaleMode: TSDL_ScaleMod
  *
  * \sa SDL_SetTextureScaleMode
   }
-function SDL_GetTextureScaleMode(texture: PSDL_Texture; scaleMode: PSDL_ScaleMode): cbool; cdecl;
+function SDL_GetTextureScaleMode(texture: PSDL_Texture; scaleMode: PSDL_ScaleMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextureScaleMode' {$ENDIF} {$ENDIF};
 
 {*
@@ -1165,7 +1165,7 @@ function SDL_GetTextureScaleMode(texture: PSDL_Texture; scaleMode: PSDL_ScaleMod
  * \sa SDL_UpdateNVTexture
  * \sa SDL_UpdateYUVTexture
   }
-function SDL_UpdateTexture(texture: PSDL_Texture; rect: PSDL_Rect; pixels: pointer; pitch: cint): cbool; cdecl;
+function SDL_UpdateTexture(texture: PSDL_Texture; rect: PSDL_Rect; pixels: pointer; pitch: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateTexture' {$ENDIF} {$ENDIF};
 
 {*
@@ -1201,7 +1201,7 @@ function SDL_UpdateTexture(texture: PSDL_Texture; rect: PSDL_Rect; pixels: point
 function SDL_UpdateYUVTexture(texture: PSDL_Texture; rect: PSDL_Rect;
            Yplane: pcuint8; Ypitch: cint;
            Uplane: pcuint8; Upitch: cint;
-           Vplane: pcuint8; Vpitch: cint): cbool; cdecl;
+           Vplane: pcuint8; Vpitch: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateYUVTexture' {$ENDIF} {$ENDIF};
 
 {*
@@ -1232,7 +1232,7 @@ function SDL_UpdateYUVTexture(texture: PSDL_Texture; rect: PSDL_Rect;
   }
 function SDL_UpdateNVTexture(texture: PSDL_Texture; rect: PSDL_Rect;
            Yplane: pcuint8; Ypitch: cint;
-           UVplane: pcuint8; UVpitch: cint): cbool; cdecl;
+           UVplane: pcuint8; UVpitch: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateNVTexture' {$ENDIF} {$ENDIF};
 
 {*
@@ -1265,7 +1265,7 @@ function SDL_UpdateNVTexture(texture: PSDL_Texture; rect: PSDL_Rect;
  * \sa SDL_LockTextureToSurface
  * \sa SDL_UnlockTexture
   }
-function SDL_LockTexture(texture: PSDL_Texture; rect: PSDL_Rect; pixels: PPointer; pitch: pcint): cbool; cdecl;
+function SDL_LockTexture(texture: PSDL_Texture; rect: PSDL_Rect; pixels: PPointer; pitch: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockTexture' {$ENDIF} {$ENDIF};
 
 {*
@@ -1302,7 +1302,7 @@ function SDL_LockTexture(texture: PSDL_Texture; rect: PSDL_Rect; pixels: PPointe
  * \sa SDL_LockTexture
  * \sa SDL_UnlockTexture
   }
-function SDL_LockTextureToSurface(texture: PSDL_Texture; rect: PSDL_Rect; surface: PPSDL_Surface): cbool; cdecl;
+function SDL_LockTextureToSurface(texture: PSDL_Texture; rect: PSDL_Rect; surface: PPSDL_Surface): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockTextureToSurface' {$ENDIF} {$ENDIF};
 
 {*
@@ -1347,7 +1347,7 @@ procedure SDL_UnlockTexture(texture: PSDL_Texture); cdecl;
  *
  * \sa SDL_GetRenderTarget
   }
-function SDL_SetRenderTarget(renderer: PSDL_Renderer; texture: PSDL_Texture): cbool; cdecl;
+function SDL_SetRenderTarget(renderer: PSDL_Renderer; texture: PSDL_Texture): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetRenderTarget' {$ENDIF} {$ENDIF};
 
 {*
@@ -1407,7 +1407,7 @@ function SDL_GetRenderTarget(renderer: PSDL_Renderer): PSDL_Texture; cdecl;
  * \sa SDL_GetRenderLogicalPresentation
  * \sa SDL_GetRenderLogicalPresentationRect
   }
-function SDL_SetRenderLogicalPresentation(renderer: PSDL_Renderer; w: cint; h: cint; mode: TSDL_RendererLogicalPresentation): cbool; cdecl;
+function SDL_SetRenderLogicalPresentation(renderer: PSDL_Renderer; w: cint; h: cint; mode: TSDL_RendererLogicalPresentation): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetRenderLogicalPresentation' {$ENDIF} {$ENDIF};
 
 {*
@@ -1429,7 +1429,7 @@ function SDL_SetRenderLogicalPresentation(renderer: PSDL_Renderer; w: cint; h: c
  *
  * \sa SDL_SetRenderLogicalPresentation
   }
-function SDL_GetRenderLogicalPresentation(renderer: PSDL_Renderer; w: pcint; h: pcint; mode: PSDL_RendererLogicalPresentation): cbool; cdecl;
+function SDL_GetRenderLogicalPresentation(renderer: PSDL_Renderer; w: pcint; h: pcint; mode: PSDL_RendererLogicalPresentation): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderLogicalPresentation' {$ENDIF} {$ENDIF};
 
 {*
@@ -1452,7 +1452,7 @@ function SDL_GetRenderLogicalPresentation(renderer: PSDL_Renderer; w: pcint; h: 
  *
  * \sa SDL_SetRenderLogicalPresentation
   }
-function SDL_GetRenderLogicalPresentationRect(renderer: PSDL_Renderer; rect: PSDL_FRect): cbool; cdecl;
+function SDL_GetRenderLogicalPresentationRect(renderer: PSDL_Renderer; rect: PSDL_FRect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderLogicalPresentationRect' {$ENDIF} {$ENDIF};
 
 {*
@@ -1480,7 +1480,7 @@ function SDL_GetRenderLogicalPresentationRect(renderer: PSDL_Renderer; rect: PSD
  * \sa SDL_SetRenderLogicalPresentation
  * \sa SDL_SetRenderScale
   }
-function SDL_RenderCoordinatesFromWindow(renderer: PSDL_Renderer; window_x: cfloat; window_y: cfloat; x: pcfloat; y: pcfloat): cbool; cdecl;
+function SDL_RenderCoordinatesFromWindow(renderer: PSDL_Renderer; window_x: cfloat; window_y: cfloat; x: pcfloat; y: pcfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderCoordinatesFromWindow' {$ENDIF} {$ENDIF};
 
 {*
@@ -1511,7 +1511,7 @@ function SDL_RenderCoordinatesFromWindow(renderer: PSDL_Renderer; window_x: cflo
  * \sa SDL_SetRenderScale
  * \sa SDL_SetRenderViewport
   }
-function SDL_RenderCoordinatesToWindow(renderer: PSDL_Renderer; x: cfloat; y: cfloat; window_x: pcfloat; window_y: pcfloat): cbool; cdecl;
+function SDL_RenderCoordinatesToWindow(renderer: PSDL_Renderer; x: cfloat; y: cfloat; window_x: pcfloat; window_y: pcfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderCoordinatesToWindow' {$ENDIF} {$ENDIF};
 
 {*
@@ -1540,7 +1540,7 @@ function SDL_RenderCoordinatesToWindow(renderer: PSDL_Renderer; x: cfloat; y: cf
  *
  * \sa SDL_RenderCoordinatesFromWindow
   }
-function SDL_ConvertEventToRenderCoordinates(renderer: PSDL_Renderer; event: PSDL_Event): cbool; cdecl;
+function SDL_ConvertEventToRenderCoordinates(renderer: PSDL_Renderer; event: PSDL_Event): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ConvertEventToRenderCoordinates' {$ENDIF} {$ENDIF};
 
 {*
@@ -1565,7 +1565,7 @@ function SDL_ConvertEventToRenderCoordinates(renderer: PSDL_Renderer; event: PSD
  * \sa SDL_GetRenderViewport
  * \sa SDL_RenderViewportSet
   }
-function SDL_SetRenderViewport(renderer: PSDL_Renderer; rect: PSDL_Rect): cbool; cdecl;
+function SDL_SetRenderViewport(renderer: PSDL_Renderer; rect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetRenderViewport' {$ENDIF} {$ENDIF};
 
 {*
@@ -1583,7 +1583,7 @@ function SDL_SetRenderViewport(renderer: PSDL_Renderer; rect: PSDL_Rect): cbool;
  * \sa SDL_RenderViewportSet
  * \sa SDL_SetRenderViewport
   }
-function SDL_GetRenderViewport(renderer: PSDL_Renderer; rect: PSDL_Rect): cbool; cdecl;
+function SDL_GetRenderViewport(renderer: PSDL_Renderer; rect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderViewport' {$ENDIF} {$ENDIF};
 
 {*
@@ -1604,7 +1604,7 @@ function SDL_GetRenderViewport(renderer: PSDL_Renderer; rect: PSDL_Rect): cbool;
  * \sa SDL_GetRenderViewport
  * \sa SDL_SetRenderViewport
   }
-function SDL_RenderViewportSet(renderer: PSDL_Renderer): cbool; cdecl;
+function SDL_RenderViewportSet(renderer: PSDL_Renderer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderViewportSet' {$ENDIF} {$ENDIF};
 
 {*
@@ -1627,7 +1627,7 @@ function SDL_RenderViewportSet(renderer: PSDL_Renderer): cbool; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_GetRenderSafeArea(renderer: PSDL_Renderer; rect: PSDL_Rect): cbool; cdecl;
+function SDL_GetRenderSafeArea(renderer: PSDL_Renderer; rect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderSafeArea' {$ENDIF} {$ENDIF};
 
 {*
@@ -1646,7 +1646,7 @@ function SDL_GetRenderSafeArea(renderer: PSDL_Renderer; rect: PSDL_Rect): cbool;
  * \sa SDL_GetRenderClipRect
  * \sa SDL_RenderClipEnabled
   }
-function SDL_SetRenderClipRect(renderer: PSDL_Renderer; rect: PSDL_Rect): cbool; cdecl;
+function SDL_SetRenderClipRect(renderer: PSDL_Renderer; rect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetRenderClipRect' {$ENDIF} {$ENDIF};
 
 {*
@@ -1665,7 +1665,7 @@ function SDL_SetRenderClipRect(renderer: PSDL_Renderer; rect: PSDL_Rect): cbool;
  * \sa SDL_RenderClipEnabled
  * \sa SDL_SetRenderClipRect
   }
-function SDL_GetRenderClipRect(renderer: PSDL_Renderer; rect: PSDL_Rect): cbool; cdecl;
+function SDL_GetRenderClipRect(renderer: PSDL_Renderer; rect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderClipRect' {$ENDIF} {$ENDIF};
 
 {*
@@ -1682,7 +1682,7 @@ function SDL_GetRenderClipRect(renderer: PSDL_Renderer; rect: PSDL_Rect): cbool;
  * \sa SDL_GetRenderClipRect
  * \sa SDL_SetRenderClipRect
   }
-function SDL_RenderClipEnabled(renderer: PSDL_Renderer): cbool; cdecl;
+function SDL_RenderClipEnabled(renderer: PSDL_Renderer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderClipEnabled' {$ENDIF} {$ENDIF};
 
 {*
@@ -1708,7 +1708,7 @@ function SDL_RenderClipEnabled(renderer: PSDL_Renderer): cbool; cdecl;
  *
  * \sa SDL_GetRenderScale
   }
-function SDL_SetRenderScale(renderer: PSDL_Renderer; scaleX: cfloat; scaleY: cfloat): cbool; cdecl;
+function SDL_SetRenderScale(renderer: PSDL_Renderer; scaleX: cfloat; scaleY: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetRenderScale' {$ENDIF} {$ENDIF};
 
 {*
@@ -1726,7 +1726,7 @@ function SDL_SetRenderScale(renderer: PSDL_Renderer; scaleX: cfloat; scaleY: cfl
  *
  * \sa SDL_SetRenderScale
   }
-function SDL_GetRenderScale(renderer: PSDL_Renderer; scaleX: pcfloat; scaleY: pcfloat): cbool; cdecl;
+function SDL_GetRenderScale(renderer: PSDL_Renderer; scaleX: pcfloat; scaleY: pcfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderScale' {$ENDIF} {$ENDIF};
 
 {*
@@ -1752,7 +1752,7 @@ function SDL_GetRenderScale(renderer: PSDL_Renderer; scaleX: pcfloat; scaleY: pc
  * \sa SDL_GetRenderDrawColor
  * \sa SDL_SetRenderDrawColorFloat
   }
-function SDL_SetRenderDrawColor(renderer: PSDL_Renderer; r: cuint8; g: cuint8; b: cuint8; a: cuint8): cbool; cdecl;
+function SDL_SetRenderDrawColor(renderer: PSDL_Renderer; r: cuint8; g: cuint8; b: cuint8; a: cuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetRenderDrawColor' {$ENDIF} {$ENDIF};
 
 {*
@@ -1778,7 +1778,7 @@ function SDL_SetRenderDrawColor(renderer: PSDL_Renderer; r: cuint8; g: cuint8; b
  * \sa SDL_GetRenderDrawColorFloat
  * \sa SDL_SetRenderDrawColor
   }
-function SDL_SetRenderDrawColorFloat(renderer: PSDL_Renderer; r: cfloat; g: cfloat; b: cfloat; a: cfloat): cbool; cdecl;
+function SDL_SetRenderDrawColorFloat(renderer: PSDL_Renderer; r: cfloat; g: cfloat; b: cfloat; a: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetRenderDrawColorFloat' {$ENDIF} {$ENDIF};
 
 {*
@@ -1803,7 +1803,7 @@ function SDL_SetRenderDrawColorFloat(renderer: PSDL_Renderer; r: cfloat; g: cflo
  * \sa SDL_GetRenderDrawColorFloat
  * \sa SDL_SetRenderDrawColor
   }
-function SDL_GetRenderDrawColor(renderer: PSDL_Renderer; r: pcuint8; g: pcuint8; b: pcuint8; a: pcuint8): cbool; cdecl;
+function SDL_GetRenderDrawColor(renderer: PSDL_Renderer; r: pcuint8; g: pcuint8; b: pcuint8; a: pcuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderDrawColor' {$ENDIF} {$ENDIF};
 
 {*
@@ -1828,7 +1828,7 @@ function SDL_GetRenderDrawColor(renderer: PSDL_Renderer; r: pcuint8; g: pcuint8;
  * \sa SDL_SetRenderDrawColorFloat
  * \sa SDL_GetRenderDrawColor
   }
-function SDL_GetRenderDrawColorFloat(renderer: PSDL_Renderer; r: pcfloat; g: pcfloat; b: pcfloat; a: pcfloat): cbool; cdecl;
+function SDL_GetRenderDrawColorFloat(renderer: PSDL_Renderer; r: pcfloat; g: pcfloat; b: pcfloat; a: pcfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderDrawColorFloat' {$ENDIF} {$ENDIF};
 
 {*
@@ -1853,7 +1853,7 @@ function SDL_GetRenderDrawColorFloat(renderer: PSDL_Renderer; r: pcfloat; g: pcf
  *
  * \sa SDL_GetRenderColorScale
   }
-function SDL_SetRenderColorScale(renderer: PSDL_Renderer; scale: cfloat): cbool; cdecl;
+function SDL_SetRenderColorScale(renderer: PSDL_Renderer; scale: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetRenderColorScale' {$ENDIF} {$ENDIF};
 
 {*
@@ -1870,7 +1870,7 @@ function SDL_SetRenderColorScale(renderer: PSDL_Renderer; scale: cfloat): cbool;
  *
  * \sa SDL_SetRenderColorScale
   }
-function SDL_GetRenderColorScale(renderer: PSDL_Renderer; scale: pcfloat): cbool; cdecl;
+function SDL_GetRenderColorScale(renderer: PSDL_Renderer; scale: pcfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderColorScale' {$ENDIF} {$ENDIF};
 
 {*
@@ -1889,7 +1889,7 @@ function SDL_GetRenderColorScale(renderer: PSDL_Renderer; scale: pcfloat): cbool
  *
  * \sa SDL_GetRenderDrawBlendMode
   }
-function SDL_SetRenderDrawBlendMode(renderer: PSDL_Renderer; blendMode: TSDL_BlendMode): cbool; cdecl;
+function SDL_SetRenderDrawBlendMode(renderer: PSDL_Renderer; blendMode: TSDL_BlendMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetRenderDrawBlendMode' {$ENDIF} {$ENDIF};
 
 {*
@@ -1906,7 +1906,7 @@ function SDL_SetRenderDrawBlendMode(renderer: PSDL_Renderer; blendMode: TSDL_Ble
  *
  * \sa SDL_SetRenderDrawBlendMode
   }
-function SDL_GetRenderDrawBlendMode(renderer: PSDL_Renderer; blendMode: PSDL_BlendMode): cbool; cdecl;
+function SDL_GetRenderDrawBlendMode(renderer: PSDL_Renderer; blendMode: PSDL_BlendMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderDrawBlendMode' {$ENDIF} {$ENDIF};
 
 {*
@@ -1927,7 +1927,7 @@ function SDL_GetRenderDrawBlendMode(renderer: PSDL_Renderer; blendMode: PSDL_Ble
  *
  * \sa SDL_SetRenderDrawColor
   }
-function SDL_RenderClear(renderer: PSDL_Renderer): cbool; cdecl;
+function SDL_RenderClear(renderer: PSDL_Renderer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderClear' {$ENDIF} {$ENDIF};
 
 {*
@@ -1945,7 +1945,7 @@ function SDL_RenderClear(renderer: PSDL_Renderer): cbool; cdecl;
  *
  * \sa SDL_RenderPoints
   }
-function SDL_RenderPoint(renderer: PSDL_Renderer; x: cfloat; y: cfloat): cbool; cdecl;
+function SDL_RenderPoint(renderer: PSDL_Renderer; x: cfloat; y: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderPoint' {$ENDIF} {$ENDIF};
 
 {*
@@ -1963,7 +1963,7 @@ function SDL_RenderPoint(renderer: PSDL_Renderer; x: cfloat; y: cfloat): cbool; 
  *
  * \sa SDL_RenderPoint
   }
-function SDL_RenderPoints(renderer: PSDL_Renderer; points: PSDL_FPoint; count: cint): cbool; cdecl;
+function SDL_RenderPoints(renderer: PSDL_Renderer; points: PSDL_FPoint; count: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderPoints' {$ENDIF} {$ENDIF};
 
 {*
@@ -1983,7 +1983,7 @@ function SDL_RenderPoints(renderer: PSDL_Renderer; points: PSDL_FPoint; count: c
  *
  * \sa SDL_RenderLines
   }
-function SDL_RenderLine(renderer: PSDL_Renderer; x1: cfloat; y1: cfloat; x2: cfloat; y2: cfloat): cbool; cdecl;
+function SDL_RenderLine(renderer: PSDL_Renderer; x1: cfloat; y1: cfloat; x2: cfloat; y2: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderLine' {$ENDIF} {$ENDIF};
 
 {*
@@ -2002,7 +2002,7 @@ function SDL_RenderLine(renderer: PSDL_Renderer; x1: cfloat; y1: cfloat; x2: cfl
  *
  * \sa SDL_RenderLine
   }
-function SDL_RenderLines(renderer: PSDL_Renderer; points: PSDL_FPoint; count: cint): cbool; cdecl;
+function SDL_RenderLines(renderer: PSDL_Renderer; points: PSDL_FPoint; count: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderLines' {$ENDIF} {$ENDIF};
 
 {*
@@ -2020,7 +2020,7 @@ function SDL_RenderLines(renderer: PSDL_Renderer; points: PSDL_FPoint; count: ci
  *
  * \sa SDL_RenderRects
   }
-function SDL_RenderRect(renderer: PSDL_Renderer; rect: PSDL_FRect): cbool; cdecl;
+function SDL_RenderRect(renderer: PSDL_Renderer; rect: PSDL_FRect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderRect' {$ENDIF} {$ENDIF};
 
 {*
@@ -2039,7 +2039,7 @@ function SDL_RenderRect(renderer: PSDL_Renderer; rect: PSDL_FRect): cbool; cdecl
  *
  * \sa SDL_RenderRect
   }
-function SDL_RenderRects(renderer: PSDL_Renderer; rects: PSDL_FRect; count: cint): cbool; cdecl;
+function SDL_RenderRects(renderer: PSDL_Renderer; rects: PSDL_FRect; count: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderRects' {$ENDIF} {$ENDIF};
 
 {*
@@ -2059,7 +2059,7 @@ function SDL_RenderRects(renderer: PSDL_Renderer; rects: PSDL_FRect; count: cint
  * \sa SDL_RenderFillRects
   }
 
-function SDL_RenderFillRect(renderer: PSDL_Renderer; rect: PSDL_FRect): cbool; cdecl;
+function SDL_RenderFillRect(renderer: PSDL_Renderer; rect: PSDL_FRect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderFillRect' {$ENDIF} {$ENDIF};
 
 {*
@@ -2078,7 +2078,7 @@ function SDL_RenderFillRect(renderer: PSDL_Renderer; rect: PSDL_FRect): cbool; c
  *
  * \sa SDL_RenderFillRect
   }
-function SDL_RenderFillRects(renderer: PSDL_Renderer; rects: PSDL_FRect; count: cint): cbool; cdecl;
+function SDL_RenderFillRects(renderer: PSDL_Renderer; rects: PSDL_FRect; count: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderFillRects' {$ENDIF} {$ENDIF};
 
 {*
@@ -2101,7 +2101,7 @@ function SDL_RenderFillRects(renderer: PSDL_Renderer; rects: PSDL_FRect; count: 
  * \sa SDL_RenderTextureRotated
  * \sa SDL_RenderTextureTiled
   }
-function SDL_RenderTexture(renderer: PSDL_Renderer; texture: PSDL_Texture; srcrect: PSDL_FRect; dstrect: PSDL_FRect): cbool; cdecl;
+function SDL_RenderTexture(renderer: PSDL_Renderer; texture: PSDL_Texture; srcrect: PSDL_FRect; dstrect: PSDL_FRect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderTexture' {$ENDIF} {$ENDIF};
 
 {*
@@ -2133,7 +2133,7 @@ function SDL_RenderTexture(renderer: PSDL_Renderer; texture: PSDL_Texture; srcre
 function SDL_RenderTextureRotated(renderer: PSDL_Renderer; texture: PSDL_Texture;
            srcrect: PSDL_FRect; dstrect: PSDL_FRect;
            angle: cdouble; center: PSDL_FPoint;
-           flip: TSDL_FlipMode): cbool; cdecl;
+           flip: TSDL_FlipMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderTextureRotated' {$ENDIF} {$ENDIF};
 
 {*
@@ -2161,7 +2161,7 @@ function SDL_RenderTextureRotated(renderer: PSDL_Renderer; texture: PSDL_Texture
  *
  * \sa SDL_RenderTexture
   }
-function SDL_RenderTextureTiled(renderer: PSDL_Renderer; texture: PSDL_Texture; srcrect: PSDL_FRect; scale: cfloat; dstrect: PSDL_FRect): cbool; cdecl;
+function SDL_RenderTextureTiled(renderer: PSDL_Renderer; texture: PSDL_Texture; srcrect: PSDL_FRect; scale: cfloat; dstrect: PSDL_FRect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderTextureTiled' {$ENDIF} {$ENDIF};
 
 {*
@@ -2196,7 +2196,7 @@ function SDL_RenderTextureTiled(renderer: PSDL_Renderer; texture: PSDL_Texture; 
  *
  * \sa SDL_RenderTexture
   }
-function SDL_RenderTexture9Grid(renderer: PSDL_Renderer; texture: PSDL_Texture; srcrect: PSDL_FRect; left_width: cfloat; right_width: cfloat; top_height: cfloat; bottom_height: cfloat; scale: cfloat; dstrect: PSDL_FRect): cbool; cdecl;
+function SDL_RenderTexture9Grid(renderer: PSDL_Renderer; texture: PSDL_Texture; srcrect: PSDL_FRect; left_width: cfloat; right_width: cfloat; top_height: cfloat; bottom_height: cfloat; scale: cfloat; dstrect: PSDL_FRect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderTexture9Grid' {$ENDIF} {$ENDIF};
 
 {*
@@ -2221,7 +2221,7 @@ function SDL_RenderTexture9Grid(renderer: PSDL_Renderer; texture: PSDL_Texture; 
  *
  * \sa SDL_RenderGeometryRaw
   }
-function SDL_RenderGeometry(renderer: PSDL_Renderer; texture: PSDL_Texture; vertices: PSDL_Vertex; num_vertices: cint; indices: pcint; num_indices: cint): cbool; cdecl;
+function SDL_RenderGeometry(renderer: PSDL_Renderer; texture: PSDL_Texture; vertices: PSDL_Vertex; num_vertices: cint; indices: pcint; num_indices: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGeometry' {$ENDIF} {$ENDIF};
 
 {*
@@ -2256,7 +2256,7 @@ function SDL_RenderGeometryRaw(renderer: PSDL_Renderer; texture: PSDL_Texture;
            color: PSDL_FColor; color_stride: cint;
            uv: pcfloat; uv_stride: cint;
            num_vertices: cint;
-           indices: pointer; num_indices: cint; size_indices: cint): cbool; cdecl;
+           indices: pointer; num_indices: cint; size_indices: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderGeometryRaw' {$ENDIF} {$ENDIF};
 
 {*
@@ -2329,7 +2329,7 @@ function SDL_RenderReadPixels(renderer: PSDL_Renderer; rect: PSDL_Rect): PSDL_Su
  * \sa SDL_SetRenderDrawBlendMode
  * \sa SDL_SetRenderDrawColor
   }
-function SDL_RenderPresent(renderer: PSDL_Renderer): cbool; cdecl;
+function SDL_RenderPresent(renderer: PSDL_Renderer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderPresent' {$ENDIF} {$ENDIF};
 
 {*
@@ -2398,7 +2398,7 @@ procedure SDL_DestroyRenderer(renderer: PSDL_Renderer); cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_FlushRenderer(renderer: PSDL_Renderer): cbool; cdecl;
+function SDL_FlushRenderer(renderer: PSDL_Renderer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FlushRenderer' {$ENDIF} {$ENDIF};
 
 {*
@@ -2472,7 +2472,7 @@ function SDL_GetRenderMetalCommandEncoder(renderer: PSDL_Renderer): Pointer; cde
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_AddVulkanRenderSemaphores(renderer: PSDL_Renderer; wait_stage_mask: cuint32; wait_semaphore: cint64; signal_semaphore: cint64): cbool; cdecl;
+function SDL_AddVulkanRenderSemaphores(renderer: PSDL_Renderer; wait_stage_mask: cuint32; wait_semaphore: cint64; signal_semaphore: cint64): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AddVulkanRenderSemaphores' {$ENDIF} {$ENDIF};
 
 {*
@@ -2498,7 +2498,7 @@ function SDL_AddVulkanRenderSemaphores(renderer: PSDL_Renderer; wait_stage_mask:
  *
  * \sa SDL_GetRenderVSync
   }
-function SDL_SetRenderVSync(renderer: PSDL_Renderer; vsync: cint): cbool; cdecl;
+function SDL_SetRenderVSync(renderer: PSDL_Renderer; vsync: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetRenderVSync' {$ENDIF} {$ENDIF};
 
 const
@@ -2520,7 +2520,7 @@ const
  *
  * \sa SDL_SetRenderVSync
   }
-function SDL_GetRenderVSync(renderer: PSDL_Renderer; vsync: pcint): cbool; cdecl;
+function SDL_GetRenderVSync(renderer: PSDL_Renderer; vsync: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRenderVSync' {$ENDIF} {$ENDIF};
 
 {*
@@ -2574,6 +2574,6 @@ const
  *
  * \sa SDL_DEBUG_TEXT_FONT_CHARACTER_SIZE
   }
-function SDL_RenderDebugText(renderer: PSDL_Renderer; x: cfloat; y: cfloat; str: PAnsiChar): cbool; cdecl;
+function SDL_RenderDebugText(renderer: PSDL_Renderer; x: cfloat; y: cfloat; str: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenderDebugText' {$ENDIF} {$ENDIF};
 

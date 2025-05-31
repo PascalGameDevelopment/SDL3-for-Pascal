@@ -137,7 +137,7 @@ type
  * \sa SDL_ShowSaveFileDialog
  * \sa SDL_ShowOpenFolderDialog
   }
-procedure SDL_ShowOpenFileDialog(callback: TSDL_DialogFileCallback; userdata: Pointer; window: PSDL_Window; filters: PSDL_DialogFileFilter; nfilters: cint; default_location: PAnsiChar; allow_many: cbool); cdecl;
+procedure SDL_ShowOpenFileDialog(callback: TSDL_DialogFileCallback; userdata: Pointer; window: PSDL_Window; filters: PSDL_DialogFileFilter; nfilters: cint; default_location: PAnsiChar; allow_many: Boolean); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowOpenFileDialog' {$ENDIF} {$ENDIF};
 
 {*
@@ -233,7 +233,7 @@ procedure SDL_ShowSaveFileDialog(callback: TSDL_DialogFileCallback; userdata: Po
 * \sa SDL_ShowSaveFileDialog
 * \sa SDL_ShowFileDialogWithProperties
   }
-procedure SDL_ShowOpenFolderDialog(callback: TSDL_DialogFileCallback; userdata: Pointer; window: PSDL_Window; default_location: PAnsiChar; allow_many: cbool); cdecl;
+procedure SDL_ShowOpenFolderDialog(callback: TSDL_DialogFileCallback; userdata: Pointer; window: PSDL_Window; default_location: PAnsiChar; allow_many: Boolean); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowOpenFolderDialog' {$ENDIF} {$ENDIF};
 
 {*

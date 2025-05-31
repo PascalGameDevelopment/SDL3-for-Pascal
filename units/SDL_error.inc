@@ -59,9 +59,9 @@
  * \sa SDL_GetError
  * \sa SDL_SetErrorV
   }
-function SDL_SetError(fmt: PAnsiChar; Args: array of const): cbool; cdecl; overload;
+function SDL_SetError(fmt: PAnsiChar; Args: array of const): Boolean; cdecl; overload;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetError' {$ENDIF} {$ENDIF};
-function SDL_SetError(fmt: PAnsiChar): cbool; cdecl; overload;
+function SDL_SetError(fmt: PAnsiChar): Boolean; cdecl; overload;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetError' {$ENDIF} {$ENDIF};
 
 {*
@@ -82,7 +82,7 @@ function SDL_SetError(fmt: PAnsiChar): cbool; cdecl; overload;
  * \sa SDL_SetError
   }
 { #todo : SDL3-for-Pascal: How to handle va_list? }
-//function SDL_SetErrorV(fmt: PAnsiChar; ap: va_list): cbool; cdecl;
+//function SDL_SetErrorV(fmt: PAnsiChar; ap: va_list): Boolean; cdecl;
 //  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetErrorV' {$ENDIF} {$ENDIF};
 
 {*
@@ -96,7 +96,7 @@ function SDL_SetError(fmt: PAnsiChar): cbool; cdecl; overload;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_OutOfMemory: cbool; cdecl;
+function SDL_OutOfMemory: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_OutOfMemory' {$ENDIF} {$ENDIF};
 
 {*
@@ -149,6 +149,6 @@ function SDL_GetError: PAnsiChar; cdecl;
  * \sa SDL_GetError
  * \sa SDL_SetError
   }
-function SDL_ClearError: cbool; cdecl;
+function SDL_ClearError: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearError' {$ENDIF} {$ENDIF};
 

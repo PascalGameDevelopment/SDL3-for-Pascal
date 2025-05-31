@@ -547,7 +547,7 @@ function SDL_GetAudioDeviceName(devid: TSDL_AudioDeviceID): PAnsiChar; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_GetAudioDeviceFormat(devid: TSDL_AudioDeviceID; spec: PSDL_AudioSpec; sample_frames: pcint): cbool; cdecl;
+function SDL_GetAudioDeviceFormat(devid: TSDL_AudioDeviceID; spec: PSDL_AudioSpec; sample_frames: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAudioDeviceFormat' {$ENDIF} {$ENDIF};
 
 {*
@@ -680,7 +680,7 @@ function SDL_OpenAudioDevice(devid: TSDL_AudioDeviceID; spec: PSDL_AudioSpec): T
  * \sa SDL_ResumeAudioDevice
  * \sa SDL_AudioDevicePaused
   }
-function SDL_PauseAudioDevice(dev: TSDL_AudioDeviceID): cbool; cdecl;
+function SDL_PauseAudioDevice(dev: TSDL_AudioDeviceID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PauseAudioDevice' {$ENDIF} {$ENDIF};
 
 {*
@@ -709,7 +709,7 @@ function SDL_PauseAudioDevice(dev: TSDL_AudioDeviceID): cbool; cdecl;
  * \sa SDL_AudioDevicePaused
  * \sa SDL_PauseAudioDevice
   }
-function SDL_ResumeAudioDevice(dev: TSDL_AudioDeviceID): cbool; cdecl;
+function SDL_ResumeAudioDevice(dev: TSDL_AudioDeviceID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ResumeAudioDevice' {$ENDIF} {$ENDIF};
 
 {*
@@ -732,7 +732,7 @@ function SDL_ResumeAudioDevice(dev: TSDL_AudioDeviceID): cbool; cdecl;
  * \sa SDL_PauseAudioDevice
  * \sa SDL_ResumeAudioDevice
   }
-function SDL_AudioDevicePaused(dev: TSDL_AudioDeviceID): cbool; cdecl;
+function SDL_AudioDevicePaused(dev: TSDL_AudioDeviceID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AudioDevicePaused' {$ENDIF} {$ENDIF};
 
 {*
@@ -792,7 +792,7 @@ function SDL_GetAudioDeviceGain(devid: TSDL_AudioDeviceID): cfloat; cdecl;
  *
  * \sa SDL_GetAudioDeviceGain
   }
-function SDL_SetAudioDeviceGain(devid: TSDL_AudioDeviceID; gain: cfloat): cbool; cdecl;
+function SDL_SetAudioDeviceGain(devid: TSDL_AudioDeviceID; gain: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetAudioDeviceGain' {$ENDIF} {$ENDIF};
 
 {*
@@ -852,7 +852,7 @@ procedure SDL_CloseAudioDevice(devid: TSDL_AudioDeviceID); cdecl;
  * \sa SDL_UnbindAudioStream
  * \sa SDL_GetAudioStreamDevice
   }
-function SDL_BindAudioStreams(devid: TSDL_AudioDeviceID; streams: PPSDL_AudioStream; num_streams: cint): cbool; cdecl;
+function SDL_BindAudioStreams(devid: TSDL_AudioDeviceID; streams: PPSDL_AudioStream; num_streams: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_BindAudioStreams' {$ENDIF} {$ENDIF};
 
 {*
@@ -874,7 +874,7 @@ function SDL_BindAudioStreams(devid: TSDL_AudioDeviceID; streams: PPSDL_AudioStr
  * \sa SDL_UnbindAudioStream
  * \sa SDL_GetAudioStreamDevice
   }
-function SDL_BindAudioStream(devid: TSDL_AudioDeviceID; stream: PSDL_AudioStream): cbool; cdecl;
+function SDL_BindAudioStream(devid: TSDL_AudioDeviceID; stream: PSDL_AudioStream): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_BindAudioStream' {$ENDIF} {$ENDIF};
 
 {*
@@ -989,7 +989,7 @@ function SDL_GetAudioStreamProperties(stream: PSDL_AudioStream): TSDL_Properties
  *
  * \sa SDL_SetAudioStreamFormat
   }
-function SDL_GetAudioStreamFormat(stream: PSDL_AudioStream; src_spec: PSDL_AudioSpec; dst_spec: PSDL_AudioSpec): cbool; cdecl;
+function SDL_GetAudioStreamFormat(stream: PSDL_AudioStream; src_spec: PSDL_AudioSpec; dst_spec: PSDL_AudioSpec): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAudioStreamFormat' {$ENDIF} {$ENDIF};
 
 {*
@@ -1021,7 +1021,7 @@ function SDL_GetAudioStreamFormat(stream: PSDL_AudioStream; src_spec: PSDL_Audio
  * \sa SDL_GetAudioStreamFormat
  * \sa SDL_SetAudioStreamFrequencyRatio
   }
-function SDL_SetAudioStreamFormat(stream: PSDL_AudioStream; src_spec: PSDL_AudioSpec; dst_spec: PSDL_AudioSpec): cbool; cdecl;
+function SDL_SetAudioStreamFormat(stream: PSDL_AudioStream; src_spec: PSDL_AudioSpec; dst_spec: PSDL_AudioSpec): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetAudioStreamFormat' {$ENDIF} {$ENDIF};
 
 {*
@@ -1067,7 +1067,7 @@ function SDL_GetAudioStreamFrequencyRatio(stream: PSDL_AudioStream): cfloat; cde
  * \sa SDL_GetAudioStreamFrequencyRatio
  * \sa SDL_SetAudioStreamFormat
   }
-function SDL_SetAudioStreamFrequencyRatio(stream: PSDL_AudioStream; ratio: cfloat): cbool; cdecl;
+function SDL_SetAudioStreamFrequencyRatio(stream: PSDL_AudioStream; ratio: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetAudioStreamFrequencyRatio' {$ENDIF} {$ENDIF};
 
 {*
@@ -1115,7 +1115,7 @@ function SDL_GetAudioStreamGain(stream: PSDL_AudioStream): cfloat; cdecl;
  *
  * \sa SDL_GetAudioStreamGain
   }
-function SDL_SetAudioStreamGain(stream: PSDL_AudioStream; gain: cfloat): cbool; cdecl;
+function SDL_SetAudioStreamGain(stream: PSDL_AudioStream; gain: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetAudioStreamGain' {$ENDIF} {$ENDIF};
 
 {*
@@ -1217,7 +1217,7 @@ function SDL_GetAudioStreamOutputChannelMap(stream: PSDL_AudioStream; count: pci
  *
  * \sa SDL_SetAudioStreamInputChannelMap
   }
-function SDL_SetAudioStreamInputChannelMap(stream: PSDL_AudioStream; chmap: pcint; count: cint): cbool; cdecl;
+function SDL_SetAudioStreamInputChannelMap(stream: PSDL_AudioStream; chmap: pcint; count: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetAudioStreamInputChannelMap' {$ENDIF} {$ENDIF};
 
 {*
@@ -1266,7 +1266,7 @@ function SDL_SetAudioStreamInputChannelMap(stream: PSDL_AudioStream; chmap: pcin
  * \sa SDL_SetAudioStreamInputChannelMap
   }
 
-function SDL_SetAudioStreamOutputChannelMap(stream: PSDL_AudioStream; chmap: pcint; count: cint): cbool; cdecl;
+function SDL_SetAudioStreamOutputChannelMap(stream: PSDL_AudioStream; chmap: pcint; count: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetAudioStreamOutputChannelMap' {$ENDIF} {$ENDIF};
 
 {*
@@ -1297,7 +1297,7 @@ function SDL_SetAudioStreamOutputChannelMap(stream: PSDL_AudioStream; chmap: pci
  * \sa SDL_GetAudioStreamData
  * \sa SDL_GetAudioStreamQueued
   }
-function SDL_PutAudioStreamData(stream: PSDL_AudioStream; buf: Pointer; len: cint): cbool; cdecl;
+function SDL_PutAudioStreamData(stream: PSDL_AudioStream; buf: Pointer; len: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PutAudioStreamData' {$ENDIF} {$ENDIF};
 
 {*
@@ -1415,7 +1415,7 @@ function SDL_GetAudioStreamQueued(stream: PSDL_AudioStream): cint; cdecl;
  *
  * \sa SDL_PutAudioStreamData
   }
-function SDL_FlushAudioStream(stream: PSDL_AudioStream): cbool; cdecl;
+function SDL_FlushAudioStream(stream: PSDL_AudioStream): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FlushAudioStream' {$ENDIF} {$ENDIF};
 
 {*
@@ -1437,7 +1437,7 @@ function SDL_FlushAudioStream(stream: PSDL_AudioStream): cbool; cdecl;
  * \sa SDL_GetAudioStreamQueued
  * \sa SDL_PutAudioStreamData
   }
-function SDL_ClearAudioStream(stream: PSDL_AudioStream): cbool; cdecl;
+function SDL_ClearAudioStream(stream: PSDL_AudioStream): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearAudioStream' {$ENDIF} {$ENDIF};
 
 {*
@@ -1462,7 +1462,7 @@ function SDL_ClearAudioStream(stream: PSDL_AudioStream): cbool; cdecl;
  *
  * \sa SDL_ResumeAudioStreamDevice
   }
-function SDL_PauseAudioStreamDevice(stream: PSDL_AudioStream): cbool; cdecl;
+function SDL_PauseAudioStreamDevice(stream: PSDL_AudioStream): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PauseAudioStreamDevice' {$ENDIF} {$ENDIF};
 
 {*
@@ -1483,7 +1483,7 @@ function SDL_PauseAudioStreamDevice(stream: PSDL_AudioStream): cbool; cdecl;
  *
  * \sa SDL_PauseAudioStreamDevice
   }
-function SDL_ResumeAudioStreamDevice(stream: PSDL_AudioStream): cbool; cdecl;
+function SDL_ResumeAudioStreamDevice(stream: PSDL_AudioStream): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ResumeAudioStreamDevice' {$ENDIF} {$ENDIF};
 
 {*
@@ -1512,7 +1512,7 @@ function SDL_ResumeAudioStreamDevice(stream: PSDL_AudioStream): cbool; cdecl;
  *
  * \sa SDL_UnlockAudioStream
   }
-function SDL_LockAudioStream(stream: PSDL_AudioStream): cbool; cdecl;
+function SDL_LockAudioStream(stream: PSDL_AudioStream): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockAudioStream' {$ENDIF} {$ENDIF};
 
 {*
@@ -1531,7 +1531,7 @@ function SDL_LockAudioStream(stream: PSDL_AudioStream): cbool; cdecl;
  *
  * \sa SDL_LockAudioStream
   }
-function SDL_UnlockAudioStream(stream: PSDL_AudioStream): cbool; cdecl;
+function SDL_UnlockAudioStream(stream: PSDL_AudioStream): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UnlockAudioStream' {$ENDIF} {$ENDIF};
 
 {*
@@ -1621,7 +1621,7 @@ type
  *
  * \sa SDL_SetAudioStreamPutCallback
   }
-function SDL_SetAudioStreamGetCallback(stream: PSDL_AudioStream; callback: TSDL_AudioStreamCallback; userdata: Pointer): cbool; cdecl;
+function SDL_SetAudioStreamGetCallback(stream: PSDL_AudioStream; callback: TSDL_AudioStreamCallback; userdata: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetAudioStreamGetCallback' {$ENDIF} {$ENDIF};
 
 {*
@@ -1671,7 +1671,7 @@ function SDL_SetAudioStreamGetCallback(stream: PSDL_AudioStream; callback: TSDL_
  *
  * \sa SDL_SetAudioStreamGetCallback
   }
-function SDL_SetAudioStreamPutCallback(stream: PSDL_AudioStream; callback: TSDL_AudioStreamCallback; userdata: Pointer): cbool; cdecl;
+function SDL_SetAudioStreamPutCallback(stream: PSDL_AudioStream; callback: TSDL_AudioStreamCallback; userdata: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetAudioStreamPutCallback' {$ENDIF} {$ENDIF};
 
 {*
@@ -1849,7 +1849,7 @@ type
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_SetAudioPostmixCallback(devid: TSDL_AudioDeviceID; callback: TSDL_AudioPostmixCallback; userdata: Pointer): cbool; cdecl;
+function SDL_SetAudioPostmixCallback(devid: TSDL_AudioDeviceID; callback: TSDL_AudioPostmixCallback; userdata: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetAudioPostmixCallback' {$ENDIF} {$ENDIF};
 
 {*
@@ -1930,7 +1930,7 @@ function SDL_SetAudioPostmixCallback(devid: TSDL_AudioDeviceID; callback: TSDL_A
  * \sa SDL_free
  * \sa SDL_LoadWAV
   }
-function SDL_LoadWAV_IO(src: PSDL_IOStream; closeio: cbool; spec: PSDL_AudioSpec; audio_buf: ppcuint8; audio_len: pcuint32): cbool; cdecl;
+function SDL_LoadWAV_IO(src: PSDL_IOStream; closeio: Boolean; spec: PSDL_AudioSpec; audio_buf: ppcuint8; audio_len: pcuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LoadWAV_IO' {$ENDIF} {$ENDIF};
 
 {*
@@ -1967,7 +1967,7 @@ function SDL_LoadWAV_IO(src: PSDL_IOStream; closeio: cbool; spec: PSDL_AudioSpec
  * \sa SDL_free
  * \sa SDL_LoadWAV_IO
   }
-function SDL_LoadWAV(path: PAnsiChar; spec: PSDL_AudioSpec; audio_buf: ppcuint8; audio_len: pcuint32): cbool; cdecl;
+function SDL_LoadWAV(path: PAnsiChar; spec: PSDL_AudioSpec; audio_buf: ppcuint8; audio_len: pcuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LoadWAV' {$ENDIF} {$ENDIF};
 
 {*
@@ -2004,7 +2004,7 @@ function SDL_LoadWAV(path: PAnsiChar; spec: PSDL_AudioSpec; audio_buf: ppcuint8;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_MixAudio(dst: pcuint8; src: pcuint8; format: TSDL_AudioFormat; len: cuint32; volume: cfloat): cbool; cdecl;
+function SDL_MixAudio(dst: pcuint8; src: pcuint8; format: TSDL_AudioFormat; len: cuint32; volume: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MixAudio' {$ENDIF} {$ENDIF};
 
 {*
@@ -2035,7 +2035,7 @@ function SDL_MixAudio(dst: pcuint8; src: pcuint8; format: TSDL_AudioFormat; len:
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_ConvertAudioSamples(src_spec: PSDL_AudioSpec; src_data: pcuint8; src_len: cint; dst_spec: PSDL_AudioSpec; dst_data: ppcuint8; dst_len: pcint): cbool; cdecl;
+function SDL_ConvertAudioSamples(src_spec: PSDL_AudioSpec; src_data: pcuint8; src_len: cint; dst_spec: PSDL_AudioSpec; dst_data: ppcuint8; dst_len: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ConvertAudioSamples' {$ENDIF} {$ENDIF};
 
 {*

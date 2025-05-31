@@ -74,7 +74,7 @@ type
  * \sa SDL_LockSpinlock
  * \sa SDL_UnlockSpinlock
   }
-function SDL_TryLockSpinlock(lock: PSDL_SpinLock): cbool; cdecl;
+function SDL_TryLockSpinlock(lock: PSDL_SpinLock): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TryLockSpinlock' {$ENDIF} {$ENDIF};
 
 {*
@@ -314,7 +314,7 @@ type
  * \sa SDL_GetAtomicInt
  * \sa SDL_SetAtomicInt
   }
-function SDL_CompareAndSwapAtomicInt(a: PSDL_AtomicInt; oldval: cint; newval: cint): cbool; cdecl;
+function SDL_CompareAndSwapAtomicInt(a: PSDL_AtomicInt; oldval: cint; newval: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CompareAndSwapAtomicInt' {$ENDIF} {$ENDIF};
 
 {*
@@ -409,7 +409,7 @@ function SDL_AtomicIncRef(a: PSDL_AtomicInt): cint;
  *
  * \sa SDL_AtomicIncRef
   }
-function SDL_AtomicDecRef(a: PSDL_AtomicInt): cbool;
+function SDL_AtomicDecRef(a: PSDL_AtomicInt): Boolean;
 
 {*
  * A type representing an atomic unsigned 32-bit value.
@@ -462,7 +462,7 @@ type
  * \sa SDL_GetAtomicU32
  * \sa SDL_SetAtomicU32
   }
-function SDL_CompareAndSwapAtomicU32(a: PSDL_AtomicU32; oldval: cuint32; newval: cuint32): cbool; cdecl;
+function SDL_CompareAndSwapAtomicU32(a: PSDL_AtomicU32; oldval: cuint32; newval: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CompareAndSwapAtomicU32' {$ENDIF} {$ENDIF};
 
 {*
@@ -523,7 +523,7 @@ function SDL_GetAtomicU32(a: PSDL_AtomicU32): cuint32; cdecl;
  * \sa SDL_GetAtomicPointer
  * \sa SDL_SetAtomicPointer
   }
-function SDL_CompareAndSwapAtomicPointer(a: PPointer; oldval: Pointer; newval: Pointer): cbool; cdecl;
+function SDL_CompareAndSwapAtomicPointer(a: PPointer; oldval: Pointer; newval: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CompareAndSwapAtomicPointer' {$ENDIF} {$ENDIF};
 
 {*

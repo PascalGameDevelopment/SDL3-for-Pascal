@@ -378,7 +378,7 @@ function SDL_GetCameraProperties(camera: PSDL_Camera): TSDL_PropertiesID; cdecl;
  *
  * \sa SDL_OpenCamera
   }
-function SDL_GetCameraFormat(camera: PSDL_Camera; spec: PSDL_CameraSpec): cbool; cdecl;
+function SDL_GetCameraFormat(camera: PSDL_Camera; spec: PSDL_CameraSpec): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCameraFormat' {$ENDIF} {$ENDIF};
 
 {*

@@ -174,7 +174,7 @@ type
  *
  * \sa TTF_Quit
   }
-function TTF_Init: cbool; cdecl;
+function TTF_Init: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_Init' {$ENDIF} {$ENDIF};
 
 {*
@@ -225,7 +225,7 @@ function TTF_OpenFont(file_: PAnsiChar; ptsize: cfloat): PTTF_Font; cdecl;
  *
  * \sa TTF_CloseFont
   }
-function TTF_OpenFontIO(src: PSDL_IOStream; closeio: cbool; ptsize: cfloat): PTTF_Font; cdecl;
+function TTF_OpenFontIO(src: PSDL_IOStream; closeio: Boolean; ptsize: cfloat): PTTF_Font; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_OpenFontIO' {$ENDIF} {$ENDIF};
 
 {*
@@ -378,7 +378,7 @@ function TTF_GetFontGeneration(font: PTTF_Font): cuint32; cdecl;
  * \sa TTF_ClearFallbackFonts
  * \sa TTF_RemoveFallbackFont
   }
-function TTF_AddFallbackFont(font: PTTF_Font; fallback: PTTF_Font): cbool; cdecl;
+function TTF_AddFallbackFont(font: PTTF_Font; fallback: PTTF_Font): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_AddFallbackFont' {$ENDIF} {$ENDIF};
 
 {*
@@ -436,7 +436,7 @@ procedure TTF_ClearFallbackFonts(font: PTTF_Font); cdecl;
  *
  * \sa TTF_GetFontSize
   }
-function TTF_SetFontSize(font: PTTF_Font; ptsize: cfloat): cbool; cdecl;
+function TTF_SetFontSize(font: PTTF_Font; ptsize: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSize' {$ENDIF} {$ENDIF};
 
 {*
@@ -460,7 +460,7 @@ function TTF_SetFontSize(font: PTTF_Font; ptsize: cfloat): cbool; cdecl;
  * \sa TTF_GetFontSize
  * \sa TTF_GetFontSizeDPI
   }
-function TTF_SetFontSizeDPI(font: PTTF_Font; ptsize: cfloat; hdpi: cint; vdpi: cint): cbool; cdecl;
+function TTF_SetFontSizeDPI(font: PTTF_Font; ptsize: cfloat; hdpi: cint; vdpi: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSizeDPI' {$ENDIF} {$ENDIF};
 
 {*
@@ -497,7 +497,7 @@ function TTF_GetFontSize(font: PTTF_Font): cfloat; cdecl;
  *
  * \sa TTF_SetFontSizeDPI
   }
-function TTF_GetFontDPI(font: PTTF_Font; hdpi: pcint; vdpi: pcint): cbool; cdecl;
+function TTF_GetFontDPI(font: PTTF_Font; hdpi: pcint; vdpi: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontDPI' {$ENDIF} {$ENDIF};
 
 {*
@@ -596,7 +596,7 @@ function TTF_GetFontStyle(font: PTTF_Font): TTTF_FontStyleFlags; cdecl;
  *
  * \sa TTF_GetFontOutline
   }
-function TTF_SetFontOutline(font: PTTF_Font; outline: cint): cbool; cdecl;
+function TTF_SetFontOutline(font: PTTF_Font; outline: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontOutline' {$ENDIF} {$ENDIF};
 
 {*
@@ -720,7 +720,7 @@ function TTF_GetFontHinting(font: PTTF_Font): TTTF_HintingFlags; cdecl;
  *
  * \sa TTF_GetFontSDF
   }
-function TTF_SetFontSDF(font: PTTF_Font; enabled: cbool): cbool; cdecl;
+function TTF_SetFontSDF(font: PTTF_Font; enabled: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontSDF' {$ENDIF} {$ENDIF};
 
 {*
@@ -736,7 +736,7 @@ function TTF_SetFontSDF(font: PTTF_Font; enabled: cbool): cbool; cdecl;
  *
  * \sa TTF_SetFontSDF
   }
-function TTF_GetFontSDF(font: PTTF_Font): cbool; cdecl;
+function TTF_GetFontSDF(font: PTTF_Font): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontSDF' {$ENDIF} {$ENDIF};
 
 {*
@@ -885,7 +885,7 @@ function TTF_GetFontLineSkip(font: PTTF_Font): cint; cdecl;
  *
  * \sa TTF_GetFontKerning
   }
-procedure TTF_SetFontKerning(font: PTTF_Font; enabled: cbool); cdecl;
+procedure TTF_SetFontKerning(font: PTTF_Font; enabled: Boolean); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontKerning' {$ENDIF} {$ENDIF};
 
 {*
@@ -900,7 +900,7 @@ procedure TTF_SetFontKerning(font: PTTF_Font; enabled: cbool); cdecl;
  *
  * \sa TTF_SetFontKerning
   }
-function TTF_GetFontKerning(font: PTTF_Font): cbool; cdecl;
+function TTF_GetFontKerning(font: PTTF_Font): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontKerning' {$ENDIF} {$ENDIF};
 
 {*
@@ -919,7 +919,7 @@ function TTF_GetFontKerning(font: PTTF_Font): cbool; cdecl;
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_FontIsFixedWidth(font: PTTF_Font): cbool; cdecl;
+function TTF_FontIsFixedWidth(font: PTTF_Font): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontIsFixedWidth' {$ENDIF} {$ENDIF};
 
 {*
@@ -937,7 +937,7 @@ function TTF_FontIsFixedWidth(font: PTTF_Font): cbool; cdecl;
  *
  * \sa TTF_SetFontSDF
   }
-function TTF_FontIsScalable(font: PTTF_Font): cbool; cdecl;
+function TTF_FontIsScalable(font: PTTF_Font): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontIsScalable' {$ENDIF} {$ENDIF};
 
 {*
@@ -1018,7 +1018,7 @@ const
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_SetFontDirection(font: PTTF_Font; direction: TTTF_Direction): cbool; cdecl;
+function TTF_SetFontDirection(font: PTTF_Font; direction: TTTF_Direction): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontDirection' {$ENDIF} {$ENDIF};
 
 {*
@@ -1054,7 +1054,7 @@ function TTF_GetFontDirection(font: PTTF_Font): TTTF_Direction; cdecl;
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_SetFontScript(font: PTTF_Font; script: cuint32): cbool; cdecl;
+function TTF_SetFontScript(font: PTTF_Font; script: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontScript' {$ENDIF} {$ENDIF};
 
 {*
@@ -1101,7 +1101,7 @@ function TTF_GetGlyphScript(ch: cuint32): cuint32; cdecl;
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_SetFontLanguage(font: PTTF_Font; language_bcp47: PAnsiChar): cbool; cdecl;
+function TTF_SetFontLanguage(font: PTTF_Font; language_bcp47: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontLanguage' {$ENDIF} {$ENDIF};
 
 {*
@@ -1116,7 +1116,7 @@ function TTF_SetFontLanguage(font: PTTF_Font; language_bcp47: PAnsiChar): cbool;
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_FontHasGlyph(font: PTTF_Font; ch: cuint32): cbool; cdecl;
+function TTF_FontHasGlyph(font: PTTF_Font; ch: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_FontHasGlyph' {$ENDIF} {$ENDIF};
 
 {*
@@ -1202,7 +1202,7 @@ function TTF_GetGlyphImageForIndex(font: PTTF_Font; glyph_index: cuint32; image_
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_GetGlyphMetrics(font: PTTF_Font; ch: cuint32; minx: pcint; maxx: pcint; miny: pcint; maxy: pcint; advance: pcint): cbool; cdecl;
+function TTF_GetGlyphMetrics(font: PTTF_Font; ch: cuint32; minx: pcint; maxx: pcint; miny: pcint; maxy: pcint; advance: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetGlyphMetrics' {$ENDIF} {$ENDIF};
 
 {*
@@ -1219,7 +1219,7 @@ function TTF_GetGlyphMetrics(font: PTTF_Font; ch: cuint32; minx: pcint; maxx: pc
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_GetGlyphKerning(font: PTTF_Font; previous_ch: cuint32; ch: cuint32; kerning: pcint): cbool; cdecl;
+function TTF_GetGlyphKerning(font: PTTF_Font; previous_ch: cuint32; ch: cuint32; kerning: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetGlyphKerning' {$ENDIF} {$ENDIF};
 
 {*
@@ -1242,7 +1242,7 @@ function TTF_GetGlyphKerning(font: PTTF_Font; previous_ch: cuint32; ch: cuint32;
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_GetStringSize(font: PTTF_Font; text: PAnsiChar; length: csize_t; w: pcint; h: pcint): cbool; cdecl;
+function TTF_GetStringSize(font: PTTF_Font; text: PAnsiChar; length: csize_t; w: pcint; h: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetStringSize' {$ENDIF} {$ENDIF};
 
 {*
@@ -1271,7 +1271,7 @@ function TTF_GetStringSize(font: PTTF_Font; text: PAnsiChar; length: csize_t; w:
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_GetStringSizeWrapped(font: PTTF_Font; text: PAnsiChar; length: csize_t; wrap_width: cint; w: pcint; h: pcint): cbool; cdecl;
+function TTF_GetStringSizeWrapped(font: PTTF_Font; text: PAnsiChar; length: csize_t; wrap_width: cint; w: pcint; h: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetStringSizeWrapped' {$ENDIF} {$ENDIF};
 
 {*
@@ -1300,7 +1300,7 @@ function TTF_GetStringSizeWrapped(font: PTTF_Font; text: PAnsiChar; length: csiz
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_MeasureString(font: PTTF_Font; text: PAnsiChar; length: csize_t; max_width: cint; measured_width: pcint; measured_length: pcsize_t): cbool; cdecl;
+function TTF_MeasureString(font: PTTF_Font; text: PAnsiChar; length: csize_t; max_width: cint; measured_width: pcint; measured_length: pcsize_t): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_MeasureString' {$ENDIF} {$ENDIF};
 
 {*
@@ -1818,7 +1818,7 @@ function TTF_CreateSurfaceTextEngine: PTTF_TextEngine; cdecl;
  * \sa TTF_CreateSurfaceTextEngine
  * \sa TTF_CreateText
  }
-function TTF_DrawSurfaceText(text: PTTF_Text; x: cint; y: cint; surface: PSDL_Surface): cbool; cdecl;
+function TTF_DrawSurfaceText(text: PTTF_Text; x: cint; y: cint; surface: PSDL_Surface): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_DrawSurfaceText' {$ENDIF} {$ENDIF};
 
 {*
@@ -1909,7 +1909,7 @@ const
  * \sa TTF_CreateRendererTextEngine
  * \sa TTF_CreateText
   }
-function TTF_DrawRendererText(text: PTTF_Text; x: cfloat; y: cfloat): cbool; cdecl;
+function TTF_DrawRendererText(text: PTTF_Text; x: cfloat; y: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_DrawRendererText' {$ENDIF} {$ENDIF};
 
 {*
@@ -2154,7 +2154,7 @@ function TTF_GetTextProperties(text: PTTF_Text): TSDL_PropertiesID; cdecl;
  *
  * \sa TTF_GetTextEngine
   }
-function TTF_SetTextEngine(text: PTTF_Text; engine: PTTF_TextEngine): cbool; cdecl;
+function TTF_SetTextEngine(text: PTTF_Text; engine: PTTF_TextEngine): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetTextEngine' {$ENDIF} {$ENDIF};
 
 {*
@@ -2195,7 +2195,7 @@ function TTF_GetTextEngine(text: PTTF_Text): PTTF_TextEngine; cdecl;
  *
  * \sa TTF_GetTextFont
   }
-function TTF_SetTextFont(text: PTTF_Text; font: PTTF_Font): cbool; cdecl;
+function TTF_SetTextFont(text: PTTF_Text; font: PTTF_Font): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetTextFont' {$ENDIF} {$ENDIF};
 
 {*
@@ -2231,7 +2231,7 @@ function TTF_GetTextFont(text: PTTF_Text): PTTF_Font; cdecl;
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_SetTextDirection(text: PTTF_Text; direction: TTTF_Direction): cbool; cdecl;
+function TTF_SetTextDirection(text: PTTF_Text; direction: TTTF_Direction): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetTextDirection' {$ENDIF} {$ENDIF};
 
 {*
@@ -2265,7 +2265,7 @@ function TTF_GetTextDirection(text: PTTF_Text): TTTF_Direction; cdecl;
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_SetTextScript(text: PTTF_Text; script: cuint32): cbool; cdecl;
+function TTF_SetTextScript(text: PTTF_Text; script: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetTextScript' {$ENDIF} {$ENDIF};
 
 {*
@@ -2305,7 +2305,7 @@ function TTF_GetTextScript(text: PTTF_Text): cuint32; cdecl;
  * \sa TTF_GetTextColor
  * \sa TTF_SetTextColorFloat
   }
-function TTF_SetTextColor(text: PTTF_Text; r: cuint8; g: cuint8; b: cuint8; a: cuint8): cbool; cdecl;
+function TTF_SetTextColor(text: PTTF_Text; r: cuint8; g: cuint8; b: cuint8; a: cuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetTextColor' {$ENDIF} {$ENDIF};
 
 {*
@@ -2329,7 +2329,7 @@ function TTF_SetTextColor(text: PTTF_Text; r: cuint8; g: cuint8; b: cuint8; a: c
  * \sa TTF_GetTextColorFloat
  * \sa TTF_SetTextColor
   }
-function TTF_SetTextColorFloat(text: PTTF_Text; r: cfloat; g: cfloat; b: cfloat; a: cfloat): cbool; cdecl;
+function TTF_SetTextColorFloat(text: PTTF_Text; r: cfloat; g: cfloat; b: cfloat; a: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetTextColorFloat' {$ENDIF} {$ENDIF};
 
 {*
@@ -2355,7 +2355,7 @@ function TTF_SetTextColorFloat(text: PTTF_Text; r: cfloat; g: cfloat; b: cfloat;
  * \sa TTF_GetTextColorFloat
  * \sa TTF_SetTextColor
   }
-function TTF_GetTextColor(text: PTTF_Text; r: pcuint8; g: pcuint8; b: pcuint8; a: pcuint8): cbool; cdecl;
+function TTF_GetTextColor(text: PTTF_Text; r: pcuint8; g: pcuint8; b: pcuint8; a: pcuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetTextColor' {$ENDIF} {$ENDIF};
 
 {*
@@ -2381,7 +2381,7 @@ function TTF_GetTextColor(text: PTTF_Text; r: pcuint8; g: pcuint8; b: pcuint8; a
  * \sa TTF_GetTextColor
  * \sa TTF_SetTextColorFloat
   }
-function TTF_GetTextColorFloat(text: PTTF_Text; r: pcfloat; g: pcfloat; b: pcfloat; a: pcfloat): cbool; cdecl;
+function TTF_GetTextColorFloat(text: PTTF_Text; r: pcfloat; g: pcfloat; b: pcfloat; a: pcfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetTextColorFloat' {$ENDIF} {$ENDIF};
 
 {*
@@ -2403,7 +2403,7 @@ function TTF_GetTextColorFloat(text: PTTF_Text; r: pcfloat; g: pcfloat; b: pcflo
  *
  * \sa TTF_GetTextPosition
   }
-function TTF_SetTextPosition(text: PTTF_Text; x: cint; y: cint): cbool; cdecl;
+function TTF_SetTextPosition(text: PTTF_Text; x: cint; y: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetTextPosition' {$ENDIF} {$ENDIF};
 
 {*
@@ -2422,7 +2422,7 @@ function TTF_SetTextPosition(text: PTTF_Text; x: cint; y: cint): cbool; cdecl;
  *
  * \sa TTF_SetTextPosition
   }
-function TTF_GetTextPosition(text: PTTF_Text; x: pcint; y: pcint): cbool; cdecl;
+function TTF_GetTextPosition(text: PTTF_Text; x: pcint; y: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetTextPosition' {$ENDIF} {$ENDIF};
 
 {*
@@ -2443,7 +2443,7 @@ function TTF_GetTextPosition(text: PTTF_Text; x: pcint; y: pcint): cbool; cdecl;
  *
  * \sa TTF_GetTextWrapWidth
   }
-function TTF_SetTextWrapWidth(text: PTTF_Text; wrap_width: cint): cbool; cdecl;
+function TTF_SetTextWrapWidth(text: PTTF_Text; wrap_width: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetTextWrapWidth' {$ENDIF} {$ENDIF};
 
 {*
@@ -2462,7 +2462,7 @@ function TTF_SetTextWrapWidth(text: PTTF_Text; wrap_width: cint): cbool; cdecl;
  *
  * \sa TTF_SetTextWrapWidth
   }
-function TTF_GetTextWrapWidth(text: PTTF_Text; wrap_width: pcint): cbool; cdecl;
+function TTF_GetTextWrapWidth(text: PTTF_Text; wrap_width: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetTextWrapWidth' {$ENDIF} {$ENDIF};
 
 {*
@@ -2488,7 +2488,7 @@ function TTF_GetTextWrapWidth(text: PTTF_Text; wrap_width: pcint): cbool; cdecl;
  *
  * \sa TTF_TextWrapWhitespaceVisible
   }
-function TTF_SetTextWrapWhitespaceVisible(text: PTTF_Text; visible: cbool): cbool; cdecl;
+function TTF_SetTextWrapWhitespaceVisible(text: PTTF_Text; visible: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetTextWrapWhitespaceVisible' {$ENDIF} {$ENDIF};
 
 {*
@@ -2505,7 +2505,7 @@ function TTF_SetTextWrapWhitespaceVisible(text: PTTF_Text; visible: cbool): cboo
  *
  * \sa TTF_SetTextWrapWhitespaceVisible
   }
-function TTF_TextWrapWhitespaceVisible(text: PTTF_Text): cbool; cdecl;
+function TTF_TextWrapWhitespaceVisible(text: PTTF_Text): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_TextWrapWhitespaceVisible' {$ENDIF} {$ENDIF};
 
 {*
@@ -2529,7 +2529,7 @@ function TTF_TextWrapWhitespaceVisible(text: PTTF_Text): cbool; cdecl;
  * \sa TTF_DeleteTextString
  * \sa TTF_InsertTextString
   }
-function TTF_SetTextString(text: PTTF_Text; _string: PAnsiChar; length: csize_t): cbool; cdecl;
+function TTF_SetTextString(text: PTTF_Text; _string: PAnsiChar; length: csize_t): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetTextString' {$ENDIF} {$ENDIF};
 
 {*
@@ -2557,7 +2557,7 @@ function TTF_SetTextString(text: PTTF_Text; _string: PAnsiChar; length: csize_t)
  * \sa TTF_DeleteTextString
  * \sa TTF_SetTextString
   }
-function TTF_InsertTextString(text: PTTF_Text; offset: cint; _string: PAnsiChar; length: csize_t): cbool; cdecl;
+function TTF_InsertTextString(text: PTTF_Text; offset: cint; _string: PAnsiChar; length: csize_t): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_InsertTextString' {$ENDIF} {$ENDIF};
 
 {*
@@ -2581,7 +2581,7 @@ function TTF_InsertTextString(text: PTTF_Text; offset: cint; _string: PAnsiChar;
  * \sa TTF_InsertTextString
  * \sa TTF_SetTextString
   }
-function TTF_AppendTextString(text: PTTF_Text; _string: PAnsiChar; length: csize_t): cbool; cdecl;
+function TTF_AppendTextString(text: PTTF_Text; _string: PAnsiChar; length: csize_t): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_AppendTextString' {$ENDIF} {$ENDIF};
 
 {*
@@ -2608,7 +2608,7 @@ function TTF_AppendTextString(text: PTTF_Text; _string: PAnsiChar; length: csize
  * \sa TTF_InsertTextString
  * \sa TTF_SetTextString
   }
-function TTF_DeleteTextString(text: PTTF_Text; offset: cint; length: cint): cbool; cdecl;
+function TTF_DeleteTextString(text: PTTF_Text; offset: cint; length: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_DeleteTextString' {$ENDIF} {$ENDIF};
 
 {*
@@ -2630,7 +2630,7 @@ function TTF_DeleteTextString(text: PTTF_Text; offset: cint; length: cint): cboo
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_GetTextSize(text: PTTF_Text; w: pcint; h: pcint): cbool; cdecl;
+function TTF_GetTextSize(text: PTTF_Text; w: pcint; h: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetTextSize' {$ENDIF} {$ENDIF};
 
 {*
@@ -2696,7 +2696,7 @@ type
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_GetTextSubString(text: PTTF_Text; offset: cint; substring: PTTF_SubString): cbool; cdecl;
+function TTF_GetTextSubString(text: PTTF_Text; offset: cint; substring: PTTF_SubString): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetTextSubString' {$ENDIF} {$ENDIF};
 
 {*
@@ -2720,7 +2720,7 @@ function TTF_GetTextSubString(text: PTTF_Text; offset: cint; substring: PTTF_Sub
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_GetTextSubStringForLine(text: PTTF_Text; line: cint; substring: PTTF_SubString): cbool; cdecl;
+function TTF_GetTextSubStringForLine(text: PTTF_Text; line: cint; substring: PTTF_SubString): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetTextSubStringForLine' {$ENDIF} {$ENDIF};
 
 {*
@@ -2765,7 +2765,7 @@ function TTF_GetTextSubStringsForRange(text: PTTF_Text; offset: cint; length: ci
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_GetTextSubStringForPoint(text: PTTF_Text; x: cint; y: cint; substring: PTTF_SubString): cbool; cdecl;
+function TTF_GetTextSubStringForPoint(text: PTTF_Text; x: cint; y: cint; substring: PTTF_SubString): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetTextSubStringForPoint' {$ENDIF} {$ENDIF};
 
 {*
@@ -2784,7 +2784,7 @@ function TTF_GetTextSubStringForPoint(text: PTTF_Text; x: cint; y: cint; substri
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_GetPreviousTextSubString(text: PTTF_Text; substring: PTTF_SubString; previous: PTTF_SubString): cbool; cdecl;
+function TTF_GetPreviousTextSubString(text: PTTF_Text; substring: PTTF_SubString; previous: PTTF_SubString): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetPreviousTextSubString' {$ENDIF} {$ENDIF};
 
 {*
@@ -2804,7 +2804,7 @@ function TTF_GetPreviousTextSubString(text: PTTF_Text; substring: PTTF_SubString
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_GetNextTextSubString(text: PTTF_Text; substring: PTTF_SubString; next: PTTF_SubString): cbool; cdecl;
+function TTF_GetNextTextSubString(text: PTTF_Text; substring: PTTF_SubString; next: PTTF_SubString): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetNextTextSubString' {$ENDIF} {$ENDIF};
 
 {*
@@ -2823,7 +2823,7 @@ function TTF_GetNextTextSubString(text: PTTF_Text; substring: PTTF_SubString; ne
  *
  * \since This function is available since SDL_ttf 3.0.0.
   }
-function TTF_UpdateText(text: PTTF_Text): cbool; cdecl;
+function TTF_UpdateText(text: PTTF_Text): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_UpdateText' {$ENDIF} {$ENDIF};
 
 {*

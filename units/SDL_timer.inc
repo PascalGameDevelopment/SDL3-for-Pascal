@@ -286,6 +286,6 @@ function SDL_AddTimerNS(interval: cuint64; callback: TSDL_NSTimerCallback; userd
  *
  * \sa SDL_AddTimer
   }
-function SDL_RemoveTimer(id: TSDL_TimerID): cbool; cdecl;
+function SDL_RemoveTimer(id: TSDL_TimerID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RemoveTimer' {$ENDIF} {$ENDIF};
 

@@ -435,7 +435,7 @@ function SDL_GetThreadID(thread: PSDL_Thread): TSDL_ThreadID; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_SetCurrentThreadPriority(priority: TSDL_ThreadPriority): cbool; cdecl;
+function SDL_SetCurrentThreadPriority(priority: TSDL_ThreadPriority): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetCurrentThreadPriority' {$ENDIF} {$ENDIF};
 
 {*
@@ -581,7 +581,7 @@ type
  *
  * \sa SDL_GetTLS
   }
-function SDL_SetTLS(id: PSDL_TLSID; value: Pointer; destructor_: TSDL_TLSDestructorCallback): cbool; cdecl;
+function SDL_SetTLS(id: PSDL_TLSID; value: Pointer; destructor_: TSDL_TLSDestructorCallback): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTLS' {$ENDIF} {$ENDIF};
 
 {*

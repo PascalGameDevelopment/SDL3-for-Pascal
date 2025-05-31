@@ -161,7 +161,7 @@ const
  *
  * \sa SDL_GetJoysticks
   }
-function SDL_HasJoystick: cbool; cdecl;
+function SDL_HasJoystick: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasJoystick' {$ENDIF} {$ENDIF};
 
 {*
@@ -433,11 +433,11 @@ type
       userdata: Pointer;                                                        {*< User data Pointer passed to callbacks  }
       Update: procedure (userdata: Pointer); cdecl;                             {*< Called when the joystick state should be updated  }
       SetPlayerIndex: procedure (userdata: Pointer; player_index: cint); cdecl; {*< Called when the player index is set  }
-      Rumble: function (userdata: Pointer; low_frequency_rumble: cuint16; high_frequency_rumble: cuint16): cbool; cdecl; {*< Implements SDL_RumbleJoystick()  }
-      RumbleTriggers: function (userdata: Pointer; left_rumble: cuint16; right_rumble: cuint16): cbool; cdecl;           {*< Implements SDL_RumbleJoystickTriggers()  }
-      SetLED: function (userdata: Pointer; red: cuint8; green: cuint8; blue: cuint8): cbool; cdecl;                      {*< Implements SDL_SetJoystickLED()  }
-      SendEffect: function (userdata: Pointer; data: Pointer; size: cint): cbool; cdecl; {*< Implements SDL_SendJoystickEffect()  }
-      SetSensorsEnabled: function (userdata: Pointer; enabled: cbool): cbool; cdecl;     {*< Implements SDL_SetGamepadSensorEnabled()  }
+      Rumble: function (userdata: Pointer; low_frequency_rumble: cuint16; high_frequency_rumble: cuint16): Boolean; cdecl; {*< Implements SDL_RumbleJoystick()  }
+      RumbleTriggers: function (userdata: Pointer; left_rumble: cuint16; right_rumble: cuint16): Boolean; cdecl;           {*< Implements SDL_RumbleJoystickTriggers()  }
+      SetLED: function (userdata: Pointer; red: cuint8; green: cuint8; blue: cuint8): Boolean; cdecl;                      {*< Implements SDL_SetJoystickLED()  }
+      SendEffect: function (userdata: Pointer; data: Pointer; size: cint): Boolean; cdecl;                                 {*< Implements SDL_SendJoystickEffect()  }
+      SetSensorsEnabled: function (userdata: Pointer; enabled: Boolean): Boolean; cdecl;                                   {*< Implements SDL_SetGamepadSensorEnabled()  }
       Cleanup: procedure (userdata: Pointer); cdecl;                                     {*< Cleans up the userdata when the joystick is detached  }
     end;
 
@@ -476,7 +476,7 @@ function SDL_AttachVirtualJoystick(desc: PSDL_VirtualJoystickDesc): TSDL_Joystic
  *
  * \sa SDL_AttachVirtualJoystick
   }
-function SDL_DetachVirtualJoystick(instance_id: TSDL_JoystickID): cbool; cdecl;
+function SDL_DetachVirtualJoystick(instance_id: TSDL_JoystickID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DetachVirtualJoystick' {$ENDIF} {$ENDIF};
 
 {*
@@ -487,7 +487,7 @@ function SDL_DetachVirtualJoystick(instance_id: TSDL_JoystickID): cbool; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_IsJoystickVirtual(instance_id: TSDL_JoystickID): cbool; cdecl;
+function SDL_IsJoystickVirtual(instance_id: TSDL_JoystickID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsJoystickVirtual' {$ENDIF} {$ENDIF};
 
 {*
@@ -511,7 +511,7 @@ function SDL_IsJoystickVirtual(instance_id: TSDL_JoystickID): cbool; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_SetJoystickVirtualAxis(joystick: PSDL_Joystick; axis: cint; value: cint16): cbool; cdecl;
+function SDL_SetJoystickVirtualAxis(joystick: PSDL_Joystick; axis: cint; value: cint16): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetJoystickVirtualAxis' {$ENDIF} {$ENDIF};
 
 {*
@@ -532,7 +532,7 @@ function SDL_SetJoystickVirtualAxis(joystick: PSDL_Joystick; axis: cint; value: 
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_SetJoystickVirtualBall(joystick: PSDL_Joystick; ball: cint; xrel: cint16; yrel: cint16): cbool; cdecl;
+function SDL_SetJoystickVirtualBall(joystick: PSDL_Joystick; ball: cint; xrel: cint16; yrel: cint16): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetJoystickVirtualBall' {$ENDIF} {$ENDIF};
 
 {*
@@ -552,7 +552,7 @@ function SDL_SetJoystickVirtualBall(joystick: PSDL_Joystick; ball: cint; xrel: c
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_SetJoystickVirtualButton(joystick: PSDL_Joystick; button: cint; down: cbool): cbool; cdecl;
+function SDL_SetJoystickVirtualButton(joystick: PSDL_Joystick; button: cint; down: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetJoystickVirtualButton' {$ENDIF} {$ENDIF};
 
 {*
@@ -572,7 +572,7 @@ function SDL_SetJoystickVirtualButton(joystick: PSDL_Joystick; button: cint; dow
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_SetJoystickVirtualHat(joystick: PSDL_Joystick; hat: cint; value: cuint8): cbool; cdecl;
+function SDL_SetJoystickVirtualHat(joystick: PSDL_Joystick; hat: cint; value: cuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetJoystickVirtualHat' {$ENDIF} {$ENDIF};
 
 {*
@@ -599,8 +599,8 @@ function SDL_SetJoystickVirtualHat(joystick: PSDL_Joystick; hat: cint; value: cu
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_SetJoystickVirtualTouchpad(joystick: PSDL_Joystick; touchpad: cint; finger: cint; down: cbool; x: cfloat;
-           y: cfloat; pressure: cfloat): cbool; cdecl;
+function SDL_SetJoystickVirtualTouchpad(joystick: PSDL_Joystick; touchpad: cint; finger: cint; down: Boolean; x: cfloat;
+           y: cfloat; pressure: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetJoystickVirtualTouchpad' {$ENDIF} {$ENDIF};
 
 {*
@@ -623,7 +623,7 @@ function SDL_SetJoystickVirtualTouchpad(joystick: PSDL_Joystick; touchpad: cint;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_SendJoystickVirtualSensorData(joystick: PSDL_Joystick; type_: TSDL_SensorType; sensor_timestamp: cuint64; data: pcfloat; num_values: cint): cbool; cdecl;
+function SDL_SendJoystickVirtualSensorData(joystick: PSDL_Joystick; type_: TSDL_SensorType; sensor_timestamp: cuint64; data: pcfloat; num_values: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SendJoystickVirtualSensorData' {$ENDIF} {$ENDIF};
 
 {*
@@ -715,7 +715,7 @@ function SDL_GetJoystickPlayerIndex(joystick: PSDL_Joystick): cint; cdecl;
  *
  * \sa SDL_GetJoystickPlayerIndex
   }
-function SDL_SetJoystickPlayerIndex(joystick: PSDL_Joystick; player_index: cint): cbool; cdecl;
+function SDL_SetJoystickPlayerIndex(joystick: PSDL_Joystick; player_index: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetJoystickPlayerIndex' {$ENDIF} {$ENDIF};
 
 {*
@@ -851,7 +851,7 @@ procedure SDL_GetJoystickGUIDInfo(guid: TSDL_GUID; vendor: pcuint16; product: pc
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_JoystickConnected(joystick: PSDL_Joystick): cbool; cdecl;
+function SDL_JoystickConnected(joystick: PSDL_Joystick): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickConnected' {$ENDIF} {$ENDIF};
 
 {*
@@ -957,7 +957,7 @@ function SDL_GetNumJoystickButtons(joystick: PSDL_Joystick): cint; cdecl;
  * \sa SDL_JoystickEventsEnabled
  * \sa SDL_UpdateJoysticks
   }
-procedure SDL_SetJoystickEventsEnabled(enabled: cbool); cdecl;
+procedure SDL_SetJoystickEventsEnabled(enabled: Boolean); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetJoystickEventsEnabled' {$ENDIF} {$ENDIF};
 
 {*
@@ -973,7 +973,7 @@ procedure SDL_SetJoystickEventsEnabled(enabled: cbool); cdecl;
  *
  * \sa SDL_SetJoystickEventsEnabled
   }
-function SDL_JoystickEventsEnabled: cbool; cdecl;
+function SDL_JoystickEventsEnabled: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_JoystickEventsEnabled' {$ENDIF} {$ENDIF};
 
 {*
@@ -1026,7 +1026,7 @@ function SDL_GetJoystickAxis(joystick: PSDL_Joystick; axis: cint): cint16; cdecl
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_GetJoystickAxisInitialState(joystick: PSDL_Joystick; axis: cint; state: pcint16): cbool; cdecl;
+function SDL_GetJoystickAxisInitialState(joystick: PSDL_Joystick; axis: cint; state: pcint16): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetJoystickAxisInitialState' {$ENDIF} {$ENDIF};
 
 {*
@@ -1048,7 +1048,7 @@ function SDL_GetJoystickAxisInitialState(joystick: PSDL_Joystick; axis: cint; st
  *
  * \sa SDL_GetNumJoystickBalls
   }
-function SDL_GetJoystickBall(joystick: PSDL_Joystick; ball: cint; dx: pcint; dy: pcint): cbool; cdecl;
+function SDL_GetJoystickBall(joystick: PSDL_Joystick; ball: cint; dx: pcint; dy: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetJoystickBall' {$ENDIF} {$ENDIF};
 
 {*
@@ -1090,7 +1090,7 @@ const
  *
  * \sa SDL_GetNumJoystickButtons
   }
-function SDL_GetJoystickButton(joystick: PSDL_Joystick; button: cint): cbool; cdecl;
+function SDL_GetJoystickButton(joystick: PSDL_Joystick; button: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetJoystickButton' {$ENDIF} {$ENDIF};
 
 {*
@@ -1112,7 +1112,7 @@ function SDL_GetJoystickButton(joystick: PSDL_Joystick; button: cint): cbool; cd
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_RumbleJoystick(joystick: PSDL_Joystick; low_frequency_rumble: cuint16; high_frequency_rumble: cuint16; duration_ms: cuint32): cbool; cdecl;
+function SDL_RumbleJoystick(joystick: PSDL_Joystick; low_frequency_rumble: cuint16; high_frequency_rumble: cuint16; duration_ms: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RumbleJoystick' {$ENDIF} {$ENDIF};
 
 {*
@@ -1142,7 +1142,7 @@ function SDL_RumbleJoystick(joystick: PSDL_Joystick; low_frequency_rumble: cuint
  *
  * \sa SDL_RumbleJoystick
   }
-function SDL_RumbleJoystickTriggers(joystick: PSDL_Joystick; left_rumble: cuint16; right_rumble: cuint16; duration_ms: cuint32): cbool; cdecl;
+function SDL_RumbleJoystickTriggers(joystick: PSDL_Joystick; left_rumble: cuint16; right_rumble: cuint16; duration_ms: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RumbleJoystickTriggers' {$ENDIF} {$ENDIF};
 
 {*
@@ -1163,7 +1163,7 @@ function SDL_RumbleJoystickTriggers(joystick: PSDL_Joystick; left_rumble: cuint1
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_SetJoystickLED(joystick: PSDL_Joystick; red: cuint8; green: cuint8; blue: cuint8): cbool; cdecl;
+function SDL_SetJoystickLED(joystick: PSDL_Joystick; red: cuint8; green: cuint8; blue: cuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetJoystickLED' {$ENDIF} {$ENDIF};
 
 {*
@@ -1177,7 +1177,7 @@ function SDL_SetJoystickLED(joystick: PSDL_Joystick; red: cuint8; green: cuint8;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_SendJoystickEffect(joystick: PSDL_Joystick; data: Pointer; size: cint): cbool; cdecl;
+function SDL_SendJoystickEffect(joystick: PSDL_Joystick; data: Pointer; size: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SendJoystickEffect' {$ENDIF} {$ENDIF};
 
 {*

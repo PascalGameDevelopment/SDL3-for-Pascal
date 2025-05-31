@@ -138,7 +138,7 @@ type
       font: PTTF_Font;             {*< The font used by this text, read-only.  }
       color: TSDL_FColor;          {*< The color of the text, read-only.  }
 
-      needs_layout_update: cbool;  {*< True if the layout needs to be updated  }
+      needs_layout_update: Boolean;{*< True if the layout needs to be updated  }
       layout: PTTF_TextLayout;     {*< Cached layout information, read-only.  }
       x: cint;                     {*< The x offset of the upper left corner of this text, in pixels, read-only.  }
       y: cint;                     {*< The y offset of the upper left corner of this text, in pixels, read-only.  }
@@ -151,7 +151,7 @@ type
 
       props: TSDL_PropertiesID;    {*< Custom properties associated with this text, read-only. This field is created as-needed using TTF_GetTextProperties() and the properties may be then set and read normally  }
 
-      needs_engine_update: cbool;  {*< True if the engine text needs to be updated  }
+      needs_engine_update: Boolean;{*< True if the engine text needs to be updated  }
       engine: PTTF_TextEngine;     {*< The engine used to render this text, read-only.  }
       engine_text: Pointer;        {*< The implementation-specific representation of this text  }
     end;
@@ -181,7 +181,7 @@ type
        * \param userdata the userdata Pointer in this interface.
        * \param text the text object being created.
       }
-      CreateText: function(userdata: Pointer; text: PTTF_Text): cbool; cdecl;
+      CreateText: function(userdata: Pointer; text: PTTF_Text): Boolean; cdecl;
 
       {*
        * Destroy a text representation.

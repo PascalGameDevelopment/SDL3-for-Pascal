@@ -514,6 +514,6 @@ function SDL_hid_get_report_descriptor(dev: PSDL_hid_device; buf: pcuchar; buf_s
  *
  * \since This function is available since SDL 3.2.0.
   }
-procedure SDL_hid_ble_scan(active: cbool); cdecl;
+procedure SDL_hid_ble_scan(active: Boolean); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_hid_ble_scan' {$ENDIF} {$ENDIF};
 

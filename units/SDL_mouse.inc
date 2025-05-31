@@ -130,7 +130,7 @@ const
  *
  * \sa SDL_GetMice
   }
-function SDL_HasMouse: cbool; cdecl;
+function SDL_HasMouse: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasMouse' {$ENDIF} {$ENDIF};
 
 {*
@@ -297,7 +297,7 @@ procedure SDL_WarpMouseInWindow(window: PSDL_Window; x: cfloat; y: cfloat); cdec
  *
  * \sa SDL_WarpMouseInWindow
   }
-function SDL_WarpMouseGlobal(x: cfloat; y: cfloat): cbool; cdecl;
+function SDL_WarpMouseGlobal(x: cfloat; y: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WarpMouseGlobal' {$ENDIF} {$ENDIF};
 
 {*
@@ -319,7 +319,7 @@ function SDL_WarpMouseGlobal(x: cfloat; y: cfloat): cbool; cdecl;
  *
  * \sa SDL_GetWindowRelativeMouseMode
   }
-function SDL_SetWindowRelativeMouseMode(window: PSDL_Window; enabled: cbool): cbool; cdecl;
+function SDL_SetWindowRelativeMouseMode(window: PSDL_Window; enabled: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowRelativeMouseMode' {$ENDIF} {$ENDIF};
 
 {*
@@ -332,7 +332,7 @@ function SDL_SetWindowRelativeMouseMode(window: PSDL_Window; enabled: cbool): cb
  *
  * \sa SDL_SetWindowRelativeMouseMode
   }
-function SDL_GetWindowRelativeMouseMode(window: PSDL_Window): cbool; cdecl;
+function SDL_GetWindowRelativeMouseMode(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowRelativeMouseMode' {$ENDIF} {$ENDIF};
 
 {*
@@ -379,7 +379,7 @@ function SDL_GetWindowRelativeMouseMode(window: PSDL_Window): cbool; cdecl;
  *
  * \sa SDL_GetGlobalMouseState
   }
-function SDL_CaptureMouse(enabled: cbool): cbool; cdecl;
+function SDL_CaptureMouse(enabled: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CaptureMouse' {$ENDIF} {$ENDIF};
 
 {*
@@ -486,7 +486,7 @@ function SDL_CreateSystemCursor(id: TSDL_SystemCursor): PSDL_Cursor; cdecl;
  *
  * \sa SDL_GetCursor
   }
-function SDL_SetCursor(cursor: PSDL_Cursor): cbool; cdecl;
+function SDL_SetCursor(cursor: PSDL_Cursor): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetCursor' {$ENDIF} {$ENDIF};
 
 {*
@@ -546,7 +546,7 @@ procedure SDL_DestroyCursor(cursor: PSDL_Cursor); cdecl;
  * \sa SDL_CursorVisible
  * \sa SDL_HideCursor
   }
-function SDL_ShowCursor: cbool; cdecl;
+function SDL_ShowCursor: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowCursor' {$ENDIF} {$ENDIF};
 
 {*
@@ -560,7 +560,7 @@ function SDL_ShowCursor: cbool; cdecl;
  * \sa SDL_CursorVisible
  * \sa SDL_ShowCursor
   }
-function SDL_HideCursor: cbool; cdecl;
+function SDL_HideCursor: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HideCursor' {$ENDIF} {$ENDIF};
 
 {*
@@ -574,5 +574,5 @@ function SDL_HideCursor: cbool; cdecl;
  * \sa SDL_HideCursor
  * \sa SDL_ShowCursor
   }
-function SDL_CursorVisible: cbool; cdecl;
+function SDL_CursorVisible: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CursorVisible' {$ENDIF} {$ENDIF};

@@ -170,7 +170,7 @@ function IMG_Version: cint; cdecl;
  * \sa IMG_Load_IO
  * \sa SDL_DestroySurface
   }
-function IMG_LoadTyped_IO(src: PSDL_IOStream; closeio: cbool; type_: PAnsiChar): PSDL_Surface; cdecl;
+function IMG_LoadTyped_IO(src: PSDL_IOStream; closeio: Boolean; type_: PAnsiChar): PSDL_Surface; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_LoadTyped_IO' {$ENDIF} {$ENDIF};
 
 {*
@@ -271,7 +271,7 @@ function IMG_Load(file_: PAnsiChar): PSDL_Surface; cdecl;
  * \sa IMG_LoadTyped_IO
  * \sa SDL_DestroySurface
   }
-function IMG_Load_IO(src: PSDL_IOStream; closeio: cbool): PSDL_Surface; cdecl;
+function IMG_Load_IO(src: PSDL_IOStream; closeio: Boolean): PSDL_Surface; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_Load_IO' {$ENDIF} {$ENDIF};
 
 {*
@@ -355,7 +355,7 @@ function IMG_LoadTexture(renderer: PSDL_Renderer; file_: PAnsiChar): PSDL_Textur
  * \sa IMG_LoadTextureTyped_IO
  * \sa SDL_DestroyTexture
   }
-function IMG_LoadTexture_IO(renderer: PSDL_Renderer; src: PSDL_IOStream; closeio: cbool): PSDL_Texture; cdecl;
+function IMG_LoadTexture_IO(renderer: PSDL_Renderer; src: PSDL_IOStream; closeio: Boolean): PSDL_Texture; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_LoadTexture_IO' {$ENDIF} {$ENDIF};
 
 {*
@@ -411,7 +411,7 @@ function IMG_LoadTexture_IO(renderer: PSDL_Renderer; src: PSDL_IOStream; closeio
  * \sa IMG_LoadTexture_IO
  * \sa SDL_DestroyTexture
   }
-function IMG_LoadTextureTyped_IO(renderer: PSDL_Renderer; src: PSDL_IOStream; closeio: cbool; type_: PAnsiChar): PSDL_Texture; cdecl;
+function IMG_LoadTextureTyped_IO(renderer: PSDL_Renderer; src: PSDL_IOStream; closeio: Boolean; type_: PAnsiChar): PSDL_Texture; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_LoadTextureTyped_IO' {$ENDIF} {$ENDIF};
 
 {*
@@ -456,7 +456,7 @@ function IMG_LoadTextureTyped_IO(renderer: PSDL_Renderer; src: PSDL_IOStream; cl
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isAVIF(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isAVIF(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isAVIF' {$ENDIF} {$ENDIF};
 
 {*
@@ -500,7 +500,7 @@ function IMG_isAVIF(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isICO(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isICO(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isICO' {$ENDIF} {$ENDIF};
 
 {*
@@ -544,7 +544,7 @@ function IMG_isICO(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isCUR(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isCUR(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isCUR' {$ENDIF} {$ENDIF};
 
 {*
@@ -588,7 +588,7 @@ function IMG_isCUR(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isBMP(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isBMP(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isBMP' {$ENDIF} {$ENDIF};
 
 {*
@@ -632,7 +632,7 @@ function IMG_isBMP(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isGIF(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isGIF(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isGIF' {$ENDIF} {$ENDIF};
 
 {*
@@ -676,7 +676,7 @@ function IMG_isGIF(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isJPG(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isJPG(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isJPG' {$ENDIF} {$ENDIF};
 
 {*
@@ -720,7 +720,7 @@ function IMG_isJPG(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isJXL(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isJXL(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isJXL' {$ENDIF} {$ENDIF};
 
 {*
@@ -764,7 +764,7 @@ function IMG_isJXL(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isLBM(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isLBM(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isLBM' {$ENDIF} {$ENDIF};
 
 {*
@@ -808,7 +808,7 @@ function IMG_isLBM(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isPCX(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isPCX(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isPCX' {$ENDIF} {$ENDIF};
 
 {*
@@ -852,7 +852,7 @@ function IMG_isPCX(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isPNG(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isPNG(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isPNG' {$ENDIF} {$ENDIF};
 
 {*
@@ -896,7 +896,7 @@ function IMG_isPNG(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isPNM(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isPNM(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isPNM' {$ENDIF} {$ENDIF};
 
 {*
@@ -940,7 +940,7 @@ function IMG_isPNM(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isSVG(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isSVG(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isSVG' {$ENDIF} {$ENDIF};
 
 {*
@@ -984,7 +984,7 @@ function IMG_isSVG(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isQOI(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isQOI(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isQOI' {$ENDIF} {$ENDIF};
 
 {*
@@ -1028,7 +1028,7 @@ function IMG_isQOI(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isTIF(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isTIF(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isTIF' {$ENDIF} {$ENDIF};
 
 {*
@@ -1072,7 +1072,7 @@ function IMG_isTIF(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isXCF(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isXCF(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isXCF' {$ENDIF} {$ENDIF};
 
 {*
@@ -1116,7 +1116,7 @@ function IMG_isXCF(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXV
  * \sa IMG_isWEBP
   }
-function IMG_isXPM(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isXPM(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isXPM' {$ENDIF} {$ENDIF};
 
 {*
@@ -1160,7 +1160,7 @@ function IMG_isXPM(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXPM
  * \sa IMG_isWEBP
   }
-function IMG_isXV(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isXV(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isXV' {$ENDIF} {$ENDIF};
 
 {*
@@ -1204,7 +1204,7 @@ function IMG_isXV(src: PSDL_IOStream): cbool; cdecl;
  * \sa IMG_isXPM
  * \sa IMG_isXV
   }
-function IMG_isWEBP(src: PSDL_IOStream): cbool; cdecl;
+function IMG_isWEBP(src: PSDL_IOStream): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_isWEBP' {$ENDIF} {$ENDIF};
 
 {*
@@ -1950,7 +1950,7 @@ function IMG_ReadXPMFromArrayToRGB888(xpm: PPAnsiChar): PSDL_Surface; cdecl;
  *
  * \sa IMG_SaveAVIF_IO
   }
-function IMG_SaveAVIF(surface: PSDL_Surface; file_: PAnsiChar; quality: cint): cbool; cdecl;
+function IMG_SaveAVIF(surface: PSDL_Surface; file_: PAnsiChar; quality: cint): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_SaveAVIF' {$ENDIF} {$ENDIF};
 
 {*
@@ -1974,7 +1974,7 @@ function IMG_SaveAVIF(surface: PSDL_Surface; file_: PAnsiChar; quality: cint): c
  *
  * \sa IMG_SaveAVIF
   }
-function IMG_SaveAVIF_IO(surface: PSDL_Surface; dst: PSDL_IOStream; closeio: cbool; quality: cint): cbool; cdecl;
+function IMG_SaveAVIF_IO(surface: PSDL_Surface; dst: PSDL_IOStream; closeio: Boolean; quality: cint): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_SaveAVIF_IO' {$ENDIF} {$ENDIF};
 
 {*
@@ -1991,7 +1991,7 @@ function IMG_SaveAVIF_IO(surface: PSDL_Surface; dst: PSDL_IOStream; closeio: cbo
  *
  * \sa IMG_SavePNG_IO
   }
-function IMG_SavePNG(surface: PSDL_Surface; file_: PAnsiChar): cbool; cdecl;
+function IMG_SavePNG(surface: PSDL_Surface; file_: PAnsiChar): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_SavePNG' {$ENDIF} {$ENDIF};
 
 {*
@@ -2013,7 +2013,7 @@ function IMG_SavePNG(surface: PSDL_Surface; file_: PAnsiChar): cbool; cdecl;
  *
  * \sa IMG_SavePNG
   }
-function IMG_SavePNG_IO(surface: PSDL_Surface; dst: PSDL_IOStream; closeio: cbool): cbool; cdecl;
+function IMG_SavePNG_IO(surface: PSDL_Surface; dst: PSDL_IOStream; closeio: Boolean): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_SavePNG_IO' {$ENDIF} {$ENDIF};
 
 {*
@@ -2032,7 +2032,7 @@ function IMG_SavePNG_IO(surface: PSDL_Surface; dst: PSDL_IOStream; closeio: cboo
  *
  * \sa IMG_SaveJPG_IO
   }
-function IMG_SaveJPG(surface: PSDL_Surface; file_: PAnsiChar; quality: cint): cbool; cdecl;
+function IMG_SaveJPG(surface: PSDL_Surface; file_: PAnsiChar; quality: cint): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_SaveJPG' {$ENDIF} {$ENDIF};
 
 {*
@@ -2056,7 +2056,7 @@ function IMG_SaveJPG(surface: PSDL_Surface; file_: PAnsiChar; quality: cint): cb
  *
  * \sa IMG_SaveJPG
   }
-function IMG_SaveJPG_IO(surface: PSDL_Surface; dst: PSDL_IOStream; closeio: cbool; quality: cint): cbool; cdecl;
+function IMG_SaveJPG_IO(surface: PSDL_Surface; dst: PSDL_IOStream; closeio: Boolean; quality: cint): Boolean; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_SaveJPG_IO' {$ENDIF} {$ENDIF};
 
 {*
@@ -2110,7 +2110,7 @@ function IMG_LoadAnimation(file_: PAnsiChar): PIMG_Animation; cdecl;
  *
  * \sa IMG_FreeAnimation
   }
-function IMG_LoadAnimation_IO(src: PSDL_IOStream; closeio: cbool): PIMG_Animation; cdecl;
+function IMG_LoadAnimation_IO(src: PSDL_IOStream; closeio: Boolean): PIMG_Animation; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_LoadAnimation_IO' {$ENDIF} {$ENDIF};
 
 {*
@@ -2141,7 +2141,7 @@ function IMG_LoadAnimation_IO(src: PSDL_IOStream; closeio: cbool): PIMG_Animatio
  * \sa IMG_LoadAnimation_IO
  * \sa IMG_FreeAnimation
   }
-function IMG_LoadAnimationTyped_IO(src: PSDL_IOStream; closeio: cbool; type_: PAnsiChar): PIMG_Animation; cdecl;
+function IMG_LoadAnimationTyped_IO(src: PSDL_IOStream; closeio: Boolean; type_: PAnsiChar): PIMG_Animation; cdecl;
   external IMG_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_IMG_LoadAnimationTyped_IO' {$ENDIF} {$ENDIF};
 
 {*

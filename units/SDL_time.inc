@@ -88,7 +88,7 @@ const
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_GetDateTimeLocalePreferences(dateFormat: PSDL_DateFormat; timeFormat: PSDL_TimeFormat): cbool; cdecl;
+function SDL_GetDateTimeLocalePreferences(dateFormat: PSDL_DateFormat; timeFormat: PSDL_TimeFormat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetDateTimeLocalePreferences' {$ENDIF} {$ENDIF};
 
 {*
@@ -101,7 +101,7 @@ function SDL_GetDateTimeLocalePreferences(dateFormat: PSDL_DateFormat; timeForma
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_GetCurrentTime(ticks: PSDL_Time): cbool; cdecl;
+function SDL_GetCurrentTime(ticks: PSDL_Time): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetCurrentTime' {$ENDIF} {$ENDIF};
 
 {*
@@ -118,7 +118,7 @@ function SDL_GetCurrentTime(ticks: PSDL_Time): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_TimeToDateTime(ticks: TSDL_Time; dt: PSDL_DateTime; localTime: cbool): cbool; cdecl;
+function SDL_TimeToDateTime(ticks: TSDL_Time; dt: PSDL_DateTime; localTime: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TimeToDateTime' {$ENDIF} {$ENDIF};
 
 {*
@@ -134,7 +134,7 @@ function SDL_TimeToDateTime(ticks: TSDL_Time; dt: PSDL_DateTime; localTime: cboo
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_DateTimeToTime(dt: PSDL_DateTime; ticks: PSDL_Time): cbool; cdecl;
+function SDL_DateTimeToTime(dt: PSDL_DateTime; ticks: PSDL_Time): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DateTimeToTime' {$ENDIF} {$ENDIF};
 
 {*

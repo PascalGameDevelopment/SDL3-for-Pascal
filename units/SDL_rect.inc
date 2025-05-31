@@ -125,7 +125,7 @@ procedure SDL_RectToFRect(const rect: PSDL_Rect; frect: PSDL_FRect); inline;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_PointInRect(const p: PSDL_Point; const r: PSDL_Rect): cbool; inline;
+function SDL_PointInRect(const p: PSDL_Point; const r: PSDL_Rect): Boolean; inline;
 
 {*
  * Determine whether a rectangle has no area.
@@ -145,7 +145,7 @@ function SDL_PointInRect(const p: PSDL_Point; const r: PSDL_Rect): cbool; inline
  *
  * \since This function is available since SDL 3.1.3.
   }
-function  SDL_RectEmpty(const r: PSDL_Rect): cbool; inline;
+function SDL_RectEmpty(const r: PSDL_Rect): Boolean; inline;
 
 {*
  * Determine whether two rectangles are equal.
@@ -166,7 +166,7 @@ function  SDL_RectEmpty(const r: PSDL_Rect): cbool; inline;
  *
  * \since This function is available since SDL 3.1.3.
   }
- function SDL_RectsEqual(const a: PSDL_Rect; const b: PSDL_Rect): cbool; inline;
+ function SDL_RectsEqual(const a: PSDL_Rect; const b: PSDL_Rect): Boolean; inline;
 
 {*
  * Determine whether two rectangles intersect.
@@ -183,7 +183,7 @@ function  SDL_RectEmpty(const r: PSDL_Rect): cbool; inline;
  *
  * \sa SDL_GetRectIntersection
   }
-function SDL_HasRectIntersection(A: PSDL_Rect; B: PSDL_Rect): cbool; cdecl;
+function SDL_HasRectIntersection(A: PSDL_Rect; B: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasRectIntersection' {$ENDIF} {$ENDIF};
 
 {*
@@ -201,7 +201,7 @@ function SDL_HasRectIntersection(A: PSDL_Rect; B: PSDL_Rect): cbool; cdecl;
  *
  * \sa SDL_HasRectIntersection
   }
-function SDL_GetRectIntersection(A: PSDL_Rect; B: PSDL_Rect; result: PSDL_Rect): cbool; cdecl;
+function SDL_GetRectIntersection(A: PSDL_Rect; B: PSDL_Rect; result: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRectIntersection' {$ENDIF} {$ENDIF};
 
 {*
@@ -216,7 +216,7 @@ function SDL_GetRectIntersection(A: PSDL_Rect; B: PSDL_Rect; result: PSDL_Rect):
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_GetRectUnion(A: PSDL_Rect; B: PSDL_Rect; result: PSDL_Rect): cbool; cdecl;
+function SDL_GetRectUnion(A: PSDL_Rect; B: PSDL_Rect; result: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRectUnion' {$ENDIF} {$ENDIF};
 
 {*
@@ -236,7 +236,7 @@ function SDL_GetRectUnion(A: PSDL_Rect; B: PSDL_Rect; result: PSDL_Rect): cbool;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_GetRectEnclosingPoints(points: PSDL_Point; count: cint; clip: PSDL_Rect; result: PSDL_Rect): cbool; cdecl;
+function SDL_GetRectEnclosingPoints(points: PSDL_Point; count: cint; clip: PSDL_Rect; result: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRectEnclosingPoints' {$ENDIF} {$ENDIF};
 
 {*
@@ -257,7 +257,7 @@ function SDL_GetRectEnclosingPoints(points: PSDL_Point; count: cint; clip: PSDL_
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_GetRectAndLineIntersection(rect: PSDL_Rect; X1: pcint; Y1: pcint; X2: pcint; Y2: pcint): cbool; cdecl;
+function SDL_GetRectAndLineIntersection(rect: PSDL_Rect; X1: pcint; Y1: pcint; X2: pcint; Y2: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRectAndLineIntersection' {$ENDIF} {$ENDIF};
 
 { SDL_FRect versions...  }
@@ -283,7 +283,7 @@ function SDL_GetRectAndLineIntersection(rect: PSDL_Rect; X1: pcint; Y1: pcint; X
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_PointInRectFloat(const p: PSDL_FPoint; const r: PSDL_FRect): cbool; inline;
+function SDL_PointInRectFloat(const p: PSDL_FPoint; const r: PSDL_FRect): Boolean; inline;
 
 {*
  * Determine whether a floating point rectangle can contain any point.
@@ -303,7 +303,7 @@ function SDL_PointInRectFloat(const p: PSDL_FPoint; const r: PSDL_FRect): cbool;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_RectEmptyFloat(const r: PSDL_FRect): cbool; inline;
+function SDL_RectEmptyFloat(const r: PSDL_FRect): Boolean; inline;
 
 {*
  * Determine whether two floating point rectangles are equal, within some
@@ -330,7 +330,7 @@ function SDL_RectEmptyFloat(const r: PSDL_FRect): cbool; inline;
  *
  * \sa SDL_RectsEqualFloat
   }
-function SDL_RectsEqualEpsilon(const a: PSDL_Frect; const b: PSDL_FRect; const epsilon: cfloat): cbool; inline;
+function SDL_RectsEqualEpsilon(const a: PSDL_Frect; const b: PSDL_FRect; const epsilon: cfloat): Boolean; inline;
 
 {*
  * Determine whether two floating point rectangles are equal, within a default
@@ -357,7 +357,7 @@ function SDL_RectsEqualEpsilon(const a: PSDL_Frect; const b: PSDL_FRect; const e
  *
  * \sa SDL_RectsEqualEpsilon
   }
-function SDL_RectsEqualFloat(const a: PSDL_FRect; b: PSDL_FRect): cbool; inline;
+function SDL_RectsEqualFloat(const a: PSDL_FRect; b: PSDL_FRect): Boolean; inline;
 
 {*
  * Determine whether two rectangles intersect with float precision.
@@ -372,7 +372,7 @@ function SDL_RectsEqualFloat(const a: PSDL_FRect; b: PSDL_FRect): cbool; inline;
  *
  * \sa SDL_GetRectIntersection
   }
-function SDL_HasRectIntersectionFloat(A: PSDL_FRect; B: PSDL_FRect): cbool; cdecl;
+function SDL_HasRectIntersectionFloat(A: PSDL_FRect; B: PSDL_FRect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasRectIntersectionFloat' {$ENDIF} {$ENDIF};
 
 {*
@@ -390,7 +390,7 @@ function SDL_HasRectIntersectionFloat(A: PSDL_FRect; B: PSDL_FRect): cbool; cdec
  *
  * \sa SDL_HasRectIntersectionFloat
   }
-function SDL_GetRectIntersectionFloat(A: PSDL_FRect; B: PSDL_FRect; result: PSDL_FRect): cbool; cdecl;
+function SDL_GetRectIntersectionFloat(A: PSDL_FRect; B: PSDL_FRect; result: PSDL_FRect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRectIntersectionFloat' {$ENDIF} {$ENDIF};
 
 {*
@@ -405,7 +405,7 @@ function SDL_GetRectIntersectionFloat(A: PSDL_FRect; B: PSDL_FRect; result: PSDL
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_GetRectUnionFloat(A: PSDL_FRect; B: PSDL_FRect; result: PSDL_FRect): cbool; cdecl;
+function SDL_GetRectUnionFloat(A: PSDL_FRect; B: PSDL_FRect; result: PSDL_FRect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRectUnionFloat' {$ENDIF} {$ENDIF};
 
 {*
@@ -426,7 +426,7 @@ function SDL_GetRectUnionFloat(A: PSDL_FRect; B: PSDL_FRect; result: PSDL_FRect)
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_GetRectEnclosingPointsFloat(points: PSDL_FPoint; count: cint; clip: PSDL_FRect; result: PSDL_FRect): cbool; cdecl;
+function SDL_GetRectEnclosingPointsFloat(points: PSDL_FPoint; count: cint; clip: PSDL_FRect; result: PSDL_FRect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRectEnclosingPointsFloat' {$ENDIF} {$ENDIF};
 
 {*
@@ -448,7 +448,7 @@ function SDL_GetRectEnclosingPointsFloat(points: PSDL_FPoint; count: cint; clip:
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_GetRectAndLineIntersectionFloat(rect: PSDL_FRect; X1: pcfloat; Y1: pcfloat; X2: pcfloat; Y2: pcfloat): cbool; cdecl;
+function SDL_GetRectAndLineIntersectionFloat(rect: PSDL_FRect; X1: pcfloat; Y1: pcfloat; X2: pcfloat; Y2: pcfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetRectAndLineIntersectionFloat' {$ENDIF} {$ENDIF};
 
 

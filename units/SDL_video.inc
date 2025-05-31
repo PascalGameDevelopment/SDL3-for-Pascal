@@ -583,7 +583,7 @@ function SDL_GetDisplayName(displayID: TSDL_DisplayID): PAnsiChar; cdecl;
  * \sa SDL_GetDisplayUsableBounds
  * \sa SDL_GetDisplays
   }
-function SDL_GetDisplayBounds(displayID: TSDL_DisplayID; rect: PSDL_Rect): cbool; cdecl;
+function SDL_GetDisplayBounds(displayID: TSDL_DisplayID; rect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetDisplayBounds' {$ENDIF} {$ENDIF};
 
 {*
@@ -608,7 +608,7 @@ function SDL_GetDisplayBounds(displayID: TSDL_DisplayID; rect: PSDL_Rect): cbool
  * \sa SDL_GetDisplayBounds
  * \sa SDL_GetDisplays
   }
-function SDL_GetDisplayUsableBounds(displayID: TSDL_DisplayID; rect: PSDL_Rect): cbool; cdecl;
+function SDL_GetDisplayUsableBounds(displayID: TSDL_DisplayID; rect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetDisplayUsableBounds' {$ENDIF} {$ENDIF};
 
 {*
@@ -712,7 +712,7 @@ function SDL_GetFullscreenDisplayModes(displayID: TSDL_DisplayID; count: pcint):
  * \sa SDL_GetDisplays
  * \sa SDL_GetFullscreenDisplayModes
   }
-function SDL_GetClosestFullscreenDisplayMode(displayID: TSDL_DisplayID; w: cint; h: cint; refresh_rate: cfloat; include_high_density_modes: cbool; mode: PSDL_DisplayMode): cbool; cdecl;
+function SDL_GetClosestFullscreenDisplayMode(displayID: TSDL_DisplayID; w: cint; h: cint; refresh_rate: cfloat; include_high_density_modes: Boolean; mode: PSDL_DisplayMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetClosestFullscreenDisplayMode' {$ENDIF} {$ENDIF};
 
 {*
@@ -874,7 +874,7 @@ function SDL_GetWindowDisplayScale(window: PSDL_Window): cfloat; cdecl;
  * \sa SDL_SetWindowFullscreen
  * \sa SDL_SyncWindow
   }
-function SDL_SetWindowFullscreenMode(window: PSDL_Window; mode: PSDL_DisplayMode): cbool; cdecl;
+function SDL_SetWindowFullscreenMode(window: PSDL_Window; mode: PSDL_DisplayMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowFullscreenMode' {$ENDIF} {$ENDIF};
 
 {*
@@ -1471,7 +1471,7 @@ function SDL_GetWindowFlags(window: PSDL_Window): TSDL_WindowFlags; cdecl;
  *
  * \sa SDL_GetWindowTitle
   }
-function SDL_SetWindowTitle(window: PSDL_Window; title: PAnsiChar): cbool; cdecl;
+function SDL_SetWindowTitle(window: PSDL_Window; title: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowTitle' {$ENDIF} {$ENDIF};
 
 {*
@@ -1508,7 +1508,7 @@ function SDL_GetWindowTitle(window: PSDL_Window): PAnsiChar; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_SetWindowIcon(window: PSDL_Window; icon: PSDL_Surface): cbool; cdecl;
+function SDL_SetWindowIcon(window: PSDL_Window; icon: PSDL_Surface): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowIcon' {$ENDIF} {$ENDIF};
 
 {*
@@ -1549,7 +1549,7 @@ function SDL_SetWindowIcon(window: PSDL_Window; icon: PSDL_Surface): cbool; cdec
  * \sa SDL_GetWindowPosition
  * \sa SDL_SyncWindow
   }
-function SDL_SetWindowPosition(window: PSDL_Window; x: cint; y: cint): cbool; cdecl;
+function SDL_SetWindowPosition(window: PSDL_Window; x: cint; y: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowPosition' {$ENDIF} {$ENDIF};
 
 {*
@@ -1573,7 +1573,7 @@ function SDL_SetWindowPosition(window: PSDL_Window; x: cint; y: cint): cbool; cd
  *
  * \sa SDL_SetWindowPosition
   }
-function SDL_GetWindowPosition(window: PSDL_Window; x: pcint; y: pcint): cbool; cdecl;
+function SDL_GetWindowPosition(window: PSDL_Window; x: pcint; y: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowPosition' {$ENDIF} {$ENDIF};
 
 {*
@@ -1610,7 +1610,7 @@ function SDL_GetWindowPosition(window: PSDL_Window; x: pcint; y: pcint): cbool; 
  * \sa SDL_SetWindowFullscreenMode
  * \sa SDL_SyncWindow
   }
-function SDL_SetWindowSize(window: PSDL_Window; w: cint; h: cint): cbool; cdecl;
+function SDL_SetWindowSize(window: PSDL_Window; w: cint; h: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowSize' {$ENDIF} {$ENDIF};
 
 {*
@@ -1632,7 +1632,7 @@ function SDL_SetWindowSize(window: PSDL_Window; w: cint; h: cint): cbool; cdecl;
  * \sa SDL_GetWindowSizeInPixels
  * \sa SDL_SetWindowSize
   }
-function SDL_GetWindowSize(window: PSDL_Window; w: pcint; h: pcint): cbool; cdecl;
+function SDL_GetWindowSize(window: PSDL_Window; w: pcint; h: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowSize' {$ENDIF} {$ENDIF};
 
 {*
@@ -1653,7 +1653,7 @@ function SDL_GetWindowSize(window: PSDL_Window; w: pcint; h: pcint): cbool; cdec
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_GetWindowSafeArea(window: PSDL_Window; rect: PSDL_Rect): cbool; cdecl;
+function SDL_GetWindowSafeArea(window: PSDL_Window; rect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowSafeArea' {$ENDIF} {$ENDIF};
 
 {*
@@ -1693,7 +1693,7 @@ function SDL_GetWindowSafeArea(window: PSDL_Window; rect: PSDL_Rect): cbool; cde
  * \sa SDL_GetWindowAspectRatio
  * \sa SDL_SyncWindow
   }
-function SDL_SetWindowAspectRatio(window: PSDL_Window; min_aspect: cfloat; max_aspect: cfloat): cbool; cdecl;
+function SDL_SetWindowAspectRatio(window: PSDL_Window; min_aspect: cfloat; max_aspect: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowAspectRatio' {$ENDIF} {$ENDIF};
 
 {*
@@ -1711,7 +1711,7 @@ function SDL_SetWindowAspectRatio(window: PSDL_Window; min_aspect: cfloat; max_a
  *
  * \sa SDL_SetWindowAspectRatio
   }
-function SDL_GetWindowAspectRatio(window: PSDL_Window; min_aspect: pcfloat; max_aspect: pcfloat): cbool; cdecl;
+function SDL_GetWindowAspectRatio(window: PSDL_Window; min_aspect: pcfloat; max_aspect: pcfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowAspectRatio' {$ENDIF} {$ENDIF};
 
 {*
@@ -1747,7 +1747,7 @@ function SDL_GetWindowAspectRatio(window: PSDL_Window; min_aspect: pcfloat; max_
  *
  * \sa SDL_GetWindowSize
   }
-function SDL_GetWindowBordersSize(window: PSDL_Window; top: pcint; left: pcint; bottom: pcint; right: pcint): cbool; cdecl;
+function SDL_GetWindowBordersSize(window: PSDL_Window; top: pcint; left: pcint; bottom: pcint; right: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowBordersSize' {$ENDIF} {$ENDIF};
 
 {*
@@ -1766,7 +1766,7 @@ function SDL_GetWindowBordersSize(window: PSDL_Window; top: pcint; left: pcint; 
  * \sa SDL_CreateWindow
  * \sa SDL_GetWindowSize
   }
-function SDL_GetWindowSizeInPixels(window: PSDL_Window; w: pcint; h: pcint): cbool; cdecl;
+function SDL_GetWindowSizeInPixels(window: PSDL_Window; w: pcint; h: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowSizeInPixels' {$ENDIF} {$ENDIF};
 
 {*
@@ -1783,7 +1783,7 @@ function SDL_GetWindowSizeInPixels(window: PSDL_Window; w: pcint; h: pcint): cbo
  * \sa SDL_GetWindowMinimumSize
  * \sa SDL_SetWindowMaximumSize
   }
-function SDL_SetWindowMinimumSize(window: PSDL_Window; min_w: cint; min_h: cint): cbool; cdecl;
+function SDL_SetWindowMinimumSize(window: PSDL_Window; min_w: cint; min_h: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowMinimumSize' {$ENDIF} {$ENDIF};
 
 {*
@@ -1802,7 +1802,7 @@ function SDL_SetWindowMinimumSize(window: PSDL_Window; min_w: cint; min_h: cint)
  * \sa SDL_GetWindowMaximumSize
  * \sa SDL_SetWindowMinimumSize
   }
-function SDL_GetWindowMinimumSize(window: PSDL_Window; w: pcint; h: pcint): cbool; cdecl;
+function SDL_GetWindowMinimumSize(window: PSDL_Window; w: pcint; h: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowMinimumSize' {$ENDIF} {$ENDIF};
 
 {*
@@ -1819,7 +1819,7 @@ function SDL_GetWindowMinimumSize(window: PSDL_Window; w: pcint; h: pcint): cboo
  * \sa SDL_GetWindowMaximumSize
  * \sa SDL_SetWindowMinimumSize
   }
-function SDL_SetWindowMaximumSize(window: PSDL_Window; max_w: cint; max_h: cint): cbool; cdecl;
+function SDL_SetWindowMaximumSize(window: PSDL_Window; max_w: cint; max_h: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowMaximumSize' {$ENDIF} {$ENDIF};
 
 {*
@@ -1838,7 +1838,7 @@ function SDL_SetWindowMaximumSize(window: PSDL_Window; max_w: cint; max_h: cint)
  * \sa SDL_GetWindowMinimumSize
  * \sa SDL_SetWindowMaximumSize
   }
-function SDL_GetWindowMaximumSize(window: PSDL_Window; w: pcint; h: pcint): cbool; cdecl;
+function SDL_GetWindowMaximumSize(window: PSDL_Window; w: pcint; h: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowMaximumSize' {$ENDIF} {$ENDIF};
 
 {*
@@ -1859,7 +1859,7 @@ function SDL_GetWindowMaximumSize(window: PSDL_Window; w: pcint; h: pcint): cboo
  *
  * \sa SDL_GetWindowFlags
   }
-function SDL_SetWindowBordered(window: PSDL_Window; bordered: cbool): cbool; cdecl;
+function SDL_SetWindowBordered(window: PSDL_Window; bordered: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowBordered' {$ENDIF} {$ENDIF};
 
 {*
@@ -1880,7 +1880,7 @@ function SDL_SetWindowBordered(window: PSDL_Window; bordered: cbool): cbool; cde
  *
  * \sa SDL_GetWindowFlags
   }
-function SDL_SetWindowResizable(window: PSDL_Window; resizable: cbool): cbool; cdecl;
+function SDL_SetWindowResizable(window: PSDL_Window; resizable: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowResizable' {$ENDIF} {$ENDIF};
 
 {*
@@ -1898,7 +1898,7 @@ function SDL_SetWindowResizable(window: PSDL_Window; resizable: cbool): cbool; c
  *
  * \sa SDL_GetWindowFlags
   }
-function SDL_SetWindowAlwaysOnTop(window: PSDL_Window; on_top: cbool): cbool; cdecl;
+function SDL_SetWindowAlwaysOnTop(window: PSDL_Window; on_top: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowAlwaysOnTop' {$ENDIF} {$ENDIF};
 
 {*
@@ -1913,7 +1913,7 @@ function SDL_SetWindowAlwaysOnTop(window: PSDL_Window; on_top: cbool): cbool; cd
  * \sa SDL_HideWindow
  * \sa SDL_RaiseWindow
   }
-function SDL_ShowWindow(window: PSDL_Window): cbool; cdecl;
+function SDL_ShowWindow(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowWindow' {$ENDIF} {$ENDIF};
 
 {*
@@ -1927,7 +1927,7 @@ function SDL_ShowWindow(window: PSDL_Window): cbool; cdecl;
  *
  * \sa SDL_ShowWindow
   }
-function SDL_HideWindow(window: PSDL_Window): cbool; cdecl;
+function SDL_HideWindow(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HideWindow' {$ENDIF} {$ENDIF};
 
 {*
@@ -1946,7 +1946,7 @@ function SDL_HideWindow(window: PSDL_Window): cbool; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_RaiseWindow(window: PSDL_Window): cbool; cdecl;
+function SDL_RaiseWindow(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RaiseWindow' {$ENDIF} {$ENDIF};
 
 {*
@@ -1979,7 +1979,7 @@ function SDL_RaiseWindow(window: PSDL_Window): cbool; cdecl;
  * \sa SDL_RestoreWindow
  * \sa SDL_SyncWindow
   }
-function SDL_MaximizeWindow(window: PSDL_Window): cbool; cdecl;
+function SDL_MaximizeWindow(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MaximizeWindow' {$ENDIF} {$ENDIF};
 
 {*
@@ -2004,7 +2004,7 @@ function SDL_MaximizeWindow(window: PSDL_Window): cbool; cdecl;
  * \sa SDL_RestoreWindow
  * \sa SDL_SyncWindow
   }
-function SDL_MinimizeWindow(window: PSDL_Window): cbool; cdecl;
+function SDL_MinimizeWindow(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MinimizeWindow' {$ENDIF} {$ENDIF};
 
 {*
@@ -2030,7 +2030,7 @@ function SDL_MinimizeWindow(window: PSDL_Window): cbool; cdecl;
  * \sa SDL_MinimizeWindow
  * \sa SDL_SyncWindow
   }
-function SDL_RestoreWindow(window: PSDL_Window): cbool; cdecl;
+function SDL_RestoreWindow(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RestoreWindow' {$ENDIF} {$ENDIF};
 
 {*
@@ -2060,7 +2060,7 @@ function SDL_RestoreWindow(window: PSDL_Window): cbool; cdecl;
  * \sa SDL_SetWindowFullscreenMode
  * \sa SDL_SyncWindow
   }
-function SDL_SetWindowFullscreen(window: PSDL_Window; fullscreen: cbool): cbool; cdecl;
+function SDL_SetWindowFullscreen(window: PSDL_Window; fullscreen: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowFullscreen' {$ENDIF} {$ENDIF};
 
 {*
@@ -2090,7 +2090,7 @@ function SDL_SetWindowFullscreen(window: PSDL_Window; fullscreen: cbool): cbool;
  * \sa SDL_RestoreWindow
  * \sa SDL_HINT_VIDEO_SYNC_WINDOW_OPERATIONS
   }
-function SDL_SyncWindow(window: PSDL_Window): cbool; cdecl;
+function SDL_SyncWindow(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SyncWindow' {$ENDIF} {$ENDIF};
 
 {*
@@ -2104,7 +2104,7 @@ function SDL_SyncWindow(window: PSDL_Window): cbool; cdecl;
  *
  * \sa SDL_GetWindowSurface
   }
-function SDL_WindowHasSurface(window: PSDL_Window): cbool; cdecl;
+function SDL_WindowHasSurface(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WindowHasSurface' {$ENDIF} {$ENDIF};
 
 {*
@@ -2157,7 +2157,7 @@ function SDL_GetWindowSurface(window: PSDL_Window): PSDL_Surface; cdecl;
  *
  * \sa SDL_GetWindowSurfaceVSync
   }
-function SDL_SetWindowSurfaceVSync(window: PSDL_Window; vsync: cint): cbool; cdecl;
+function SDL_SetWindowSurfaceVSync(window: PSDL_Window; vsync: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowSurfaceVSync' {$ENDIF} {$ENDIF};
 
   const
@@ -2177,7 +2177,7 @@ function SDL_SetWindowSurfaceVSync(window: PSDL_Window; vsync: cint): cbool; cde
  *
  * \sa SDL_SetWindowSurfaceVSync
   }
-function SDL_GetWindowSurfaceVSync(window: PSDL_Window; vsync: pcint): cbool; cdecl;
+function SDL_GetWindowSurfaceVSync(window: PSDL_Window; vsync: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowSurfaceVSync' {$ENDIF} {$ENDIF};
 
 {*
@@ -2197,7 +2197,7 @@ function SDL_GetWindowSurfaceVSync(window: PSDL_Window; vsync: pcint): cbool; cd
  * \sa SDL_GetWindowSurface
  * \sa SDL_UpdateWindowSurfaceRects
   }
-function SDL_UpdateWindowSurface(window: PSDL_Window): cbool; cdecl;
+function SDL_UpdateWindowSurface(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateWindowSurface' {$ENDIF} {$ENDIF};
 
 {*
@@ -2225,7 +2225,7 @@ function SDL_UpdateWindowSurface(window: PSDL_Window): cbool; cdecl;
  * \sa SDL_GetWindowSurface
  * \sa SDL_UpdateWindowSurface
   }
-function SDL_UpdateWindowSurfaceRects(window: PSDL_Window; rects: PSDL_Rect; numrects: cint): cbool; cdecl;
+function SDL_UpdateWindowSurfaceRects(window: PSDL_Window; rects: PSDL_Rect; numrects: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateWindowSurfaceRects' {$ENDIF} {$ENDIF};
 
 {*
@@ -2240,7 +2240,7 @@ function SDL_UpdateWindowSurfaceRects(window: PSDL_Window; rects: PSDL_Rect; num
  * \sa SDL_GetWindowSurface
  * \sa SDL_WindowHasSurface
   }
-function SDL_DestroyWindowSurface(window: PSDL_Window): cbool; cdecl;
+function SDL_DestroyWindowSurface(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DestroyWindowSurface' {$ENDIF} {$ENDIF};
 
 {*
@@ -2272,7 +2272,7 @@ function SDL_DestroyWindowSurface(window: PSDL_Window): cbool; cdecl;
  * \sa SDL_GetWindowKeyboardGrab
  * \sa SDL_SetWindowMouseGrab
   }
-function SDL_SetWindowKeyboardGrab(window: PSDL_Window; grabbed: cbool): cbool; cdecl;
+function SDL_SetWindowKeyboardGrab(window: PSDL_Window; grabbed: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowKeyboardGrab' {$ENDIF} {$ENDIF};
 
 {*
@@ -2290,7 +2290,7 @@ function SDL_SetWindowKeyboardGrab(window: PSDL_Window; grabbed: cbool): cbool; 
  * \sa SDL_GetWindowMouseGrab
  * \sa SDL_SetWindowKeyboardGrab
   }
-function SDL_SetWindowMouseGrab(window: PSDL_Window; grabbed: cbool): cbool; cdecl;
+function SDL_SetWindowMouseGrab(window: PSDL_Window; grabbed: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowMouseGrab' {$ENDIF} {$ENDIF};
 
 {*
@@ -2303,7 +2303,7 @@ function SDL_SetWindowMouseGrab(window: PSDL_Window; grabbed: cbool): cbool; cde
  *
  * \sa SDL_SetWindowKeyboardGrab
   }
-function SDL_GetWindowKeyboardGrab(window: PSDL_Window): cbool; cdecl;
+function SDL_GetWindowKeyboardGrab(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowKeyboardGrab' {$ENDIF} {$ENDIF};
 
 {*
@@ -2316,7 +2316,7 @@ function SDL_GetWindowKeyboardGrab(window: PSDL_Window): cbool; cdecl;
  *
  * \sa SDL_SetWindowKeyboardGrab
   }
-function SDL_GetWindowMouseGrab(window: PSDL_Window): cbool; cdecl;
+function SDL_GetWindowMouseGrab(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowMouseGrab' {$ENDIF} {$ENDIF};
 
 {*
@@ -2349,7 +2349,7 @@ function SDL_GetGrabbedWindow: PSDL_Window; cdecl;
  * \sa SDL_GetWindowMouseRect
  * \sa SDL_SetWindowMouseGrab
   }
-function SDL_SetWindowMouseRect(window: PSDL_Window; rect: PSDL_Rect): cbool; cdecl;
+function SDL_SetWindowMouseRect(window: PSDL_Window; rect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowMouseRect' {$ENDIF} {$ENDIF};
 
 {*
@@ -2383,7 +2383,7 @@ function SDL_GetWindowMouseRect(window: PSDL_Window): PSDL_Rect; cdecl;
  *
  * \sa SDL_GetWindowOpacity
   }
-function SDL_SetWindowOpacity(window: PSDL_Window; opacity: cfloat): cbool; cdecl;
+function SDL_SetWindowOpacity(window: PSDL_Window; opacity: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowOpacity' {$ENDIF} {$ENDIF};
 
 {*
@@ -2433,7 +2433,7 @@ function SDL_GetWindowOpacity(window: PSDL_Window): cfloat; cdecl;
  *
  * \sa SDL_SetWindowModal
   }
-function SDL_SetWindowParent(window: PSDL_Window; parent: PSDL_Window): cbool; cdecl;
+function SDL_SetWindowParent(window: PSDL_Window; parent: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowParent' {$ENDIF} {$ENDIF};
 
 {*
@@ -2451,7 +2451,7 @@ function SDL_SetWindowParent(window: PSDL_Window; parent: PSDL_Window): cbool; c
  *
  * \sa SDL_SetWindowParent
   }
-function SDL_SetWindowModal(window: PSDL_Window; modal: cbool): cbool; cdecl;
+function SDL_SetWindowModal(window: PSDL_Window; modal: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowModal' {$ENDIF} {$ENDIF};
 
 {*
@@ -2464,7 +2464,7 @@ function SDL_SetWindowModal(window: PSDL_Window; modal: cbool): cbool; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_SetWindowFocusable(window: PSDL_Window; focusable: cbool): cbool; cdecl;
+function SDL_SetWindowFocusable(window: PSDL_Window; focusable: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowFocusable' {$ENDIF} {$ENDIF};
 
 {*
@@ -2488,7 +2488,7 @@ function SDL_SetWindowFocusable(window: PSDL_Window; focusable: cbool): cbool; c
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_ShowWindowSystemMenu(window: PSDL_Window; x: cint; y: cint): cbool; cdecl;
+function SDL_ShowWindowSystemMenu(window: PSDL_Window; x: cint; y: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowWindowSystemMenu' {$ENDIF} {$ENDIF};
 
 {*
@@ -2567,7 +2567,7 @@ type
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_SetWindowHitTest(window: PSDL_Window; callback: TSDL_HitTest; callback_data: Pointer): cbool; cdecl;
+function SDL_SetWindowHitTest(window: PSDL_Window; callback: TSDL_HitTest; callback_data: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowHitTest' {$ENDIF} {$ENDIF};
 
 {*
@@ -2594,7 +2594,7 @@ function SDL_SetWindowHitTest(window: PSDL_Window; callback: TSDL_HitTest; callb
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_SetWindowShape(window: PSDL_Window; shape: PSDL_Surface): cbool; cdecl;
+function SDL_SetWindowShape(window: PSDL_Window; shape: PSDL_Surface): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetWindowShape' {$ENDIF} {$ENDIF};
 
 {*
@@ -2607,7 +2607,7 @@ function SDL_SetWindowShape(window: PSDL_Window; shape: PSDL_Surface): cbool; cd
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_FlashWindow(window: PSDL_Window; operation: TSDL_FlashOperation): cbool; cdecl;
+function SDL_FlashWindow(window: PSDL_Window; operation: TSDL_FlashOperation): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FlashWindow' {$ENDIF} {$ENDIF};
 
 {*
@@ -2641,7 +2641,7 @@ procedure SDL_DestroyWindow(window: PSDL_Window); cdecl;
  * \sa SDL_DisableScreenSaver
  * \sa SDL_EnableScreenSaver
   }
-function SDL_ScreenSaverEnabled: cbool; cdecl;
+function SDL_ScreenSaverEnabled: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ScreenSaverEnabled' {$ENDIF} {$ENDIF};
 
 {*
@@ -2655,7 +2655,7 @@ function SDL_ScreenSaverEnabled: cbool; cdecl;
  * \sa SDL_DisableScreenSaver
  * \sa SDL_ScreenSaverEnabled
   }
-function SDL_EnableScreenSaver: cbool; cdecl;
+function SDL_EnableScreenSaver: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EnableScreenSaver' {$ENDIF} {$ENDIF};
 
 {*
@@ -2675,7 +2675,7 @@ function SDL_EnableScreenSaver: cbool; cdecl;
  * \sa SDL_EnableScreenSaver
  * \sa SDL_ScreenSaverEnabled
   }
-function SDL_DisableScreenSaver: cbool; cdecl;
+function SDL_DisableScreenSaver: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DisableScreenSaver' {$ENDIF} {$ENDIF};
 
 {*
@@ -2702,7 +2702,7 @@ function SDL_DisableScreenSaver: cbool; cdecl;
  * \sa SDL_GL_GetProcAddress
  * \sa SDL_GL_UnloadLibrary
   }
-function SDL_GL_LoadLibrary(path: PAnsiChar): cbool; cdecl;
+function SDL_GL_LoadLibrary(path: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_LoadLibrary' {$ENDIF} {$ENDIF};
 
 {*
@@ -2806,7 +2806,7 @@ procedure SDL_GL_UnloadLibrary; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_GL_ExtensionSupported(extension: PAnsiChar): cbool; cdecl;
+function SDL_GL_ExtensionSupported(extension: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_ExtensionSupported' {$ENDIF} {$ENDIF};
 
 {*
@@ -2839,7 +2839,7 @@ procedure SDL_GL_ResetAttributes; cdecl;
  * \sa SDL_GL_GetAttribute
  * \sa SDL_GL_ResetAttributes
   }
-function SDL_GL_SetAttribute(attr: TSDL_GLAttr; value: cint): cbool; cdecl;
+function SDL_GL_SetAttribute(attr: TSDL_GLAttr; value: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_SetAttribute' {$ENDIF} {$ENDIF};
 
 {*
@@ -2856,7 +2856,7 @@ function SDL_GL_SetAttribute(attr: TSDL_GLAttr; value: cint): cbool; cdecl;
  * \sa SDL_GL_ResetAttributes
  * \sa SDL_GL_SetAttribute
   }
-function SDL_GL_GetAttribute(attr: TSDL_GLAttr; value: pcint): cbool; cdecl;
+function SDL_GL_GetAttribute(attr: TSDL_GLAttr; value: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_GetAttribute' {$ENDIF} {$ENDIF};
 
 {*
@@ -2896,7 +2896,7 @@ function SDL_GL_CreateContext(window: PSDL_Window): TSDL_GLContext; cdecl;
  *
  * \sa SDL_GL_CreateContext
   }
-function SDL_GL_MakeCurrent(window: PSDL_Window; context: TSDL_GLContext): cbool; cdecl;
+function SDL_GL_MakeCurrent(window: PSDL_Window; context: TSDL_GLContext): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_MakeCurrent' {$ENDIF} {$ENDIF};
 
 {*
@@ -3005,7 +3005,7 @@ procedure SDL_EGL_SetAttributeCallbacks(platformAttribCallback: TSDL_EGLAttribAr
  *
  * \sa SDL_GL_GetSwapInterval
   }
-function SDL_GL_SetSwapInterval(interval: cint): cbool; cdecl;
+function SDL_GL_SetSwapInterval(interval: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_SetSwapInterval' {$ENDIF} {$ENDIF};
 
 {*
@@ -3025,7 +3025,7 @@ function SDL_GL_SetSwapInterval(interval: cint): cbool; cdecl;
  *
  * \sa SDL_GL_SetSwapInterval
   }
-function SDL_GL_GetSwapInterval(interval: pcint): cbool; cdecl;
+function SDL_GL_GetSwapInterval(interval: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_GetSwapInterval' {$ENDIF} {$ENDIF};
 
 {*
@@ -3044,7 +3044,7 @@ function SDL_GL_GetSwapInterval(interval: pcint): cbool; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_GL_SwapWindow(window: PSDL_Window): cbool; cdecl;
+function SDL_GL_SwapWindow(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_SwapWindow' {$ENDIF} {$ENDIF};
 
 {*
@@ -3058,5 +3058,5 @@ function SDL_GL_SwapWindow(window: PSDL_Window): cbool; cdecl;
  *
  * \sa SDL_GL_CreateContext
   }
-function SDL_GL_DestroyContext(context: TSDL_GLContext): cbool; cdecl;
+function SDL_GL_DestroyContext(context: TSDL_GLContext): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GL_DestroyContext' {$ENDIF} {$ENDIF};

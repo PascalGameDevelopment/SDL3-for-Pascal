@@ -248,17 +248,17 @@ type
   PSDL_StorageInterface = ^TSDL_StorageInterface;
   TSDL_StorageInterface = record
       version: cuint32;                                                                                             { The version of this interface  }
-      close: function(userdata: Pointer): cbool; cdecl;                                                             { Called when the storage is closed  }
-      ready: function(userdata: Pointer): cbool; cdecl;                                                             { Optional, returns whether the storage is currently ready for access  }
+      close: function(userdata: Pointer): Boolean; cdecl;                                                             { Called when the storage is closed  }
+      ready: function(userdata: Pointer): Boolean; cdecl;                                                             { Optional, returns whether the storage is currently ready for access  }
       enumerate: function(userdata: Pointer; path: PAnsiChar; callback: TSDL_EnumerateDirectoryCallback;            { Enumerate a directory, optional for write-only storage  }
-                          callback_userdata: Pointer): cbool; cdecl;
-      info: function(userdata: Pointer; path: PAnsiChar; info: PSDL_PathInfo): cbool; cdecl;                        { Get path information, optional for write-only storage  }
-      read_file: function(userdata: Pointer; path: PAnsiChar; destination: Pointer; length: cuint64): cbool; cdecl; { Read a file from storage, optional for write-only storage  }
-      write_file: function(userdata: Pointer; path: PAnsiChar; source: Pointer; length: cuint64): cbool; cdecl;     { Write a file to storage, optional for read-only storage  }
-      mkdir: function(userdata: Pointer; path: PAnsiChar): cbool; cdecl;                                            { Create a directory, optional for read-only storage  }
-      remove: function(userdata: Pointer; path: PAnsiChar): cbool; cdecl;                                           { Remove a file or empty directory, optional for read-only storage  }
-      rename: function(userdata: Pointer; oldpath: PAnsiChar; newpath: PAnsiChar): cbool; cdecl;                    { Rename a path, optional for read-only storage  }
-      copy: function(userdata: Pointer; oldpath: PAnsiChar; newpath: PAnsiChar): cbool; cdecl;                      { Copy a file, optional for read-only storage  }
+                          callback_userdata: Pointer): Boolean; cdecl;
+      info: function(userdata: Pointer; path: PAnsiChar; info: PSDL_PathInfo): Boolean; cdecl;                        { Get path information, optional for write-only storage  }
+      read_file: function(userdata: Pointer; path: PAnsiChar; destination: Pointer; length: cuint64): Boolean; cdecl; { Read a file from storage, optional for write-only storage  }
+      write_file: function(userdata: Pointer; path: PAnsiChar; source: Pointer; length: cuint64): Boolean; cdecl;     { Write a file to storage, optional for read-only storage  }
+      mkdir: function(userdata: Pointer; path: PAnsiChar): Boolean; cdecl;                                            { Create a directory, optional for read-only storage  }
+      remove: function(userdata: Pointer; path: PAnsiChar): Boolean; cdecl;                                           { Remove a file or empty directory, optional for read-only storage  }
+      rename: function(userdata: Pointer; oldpath: PAnsiChar; newpath: PAnsiChar): Boolean; cdecl;                    { Rename a path, optional for read-only storage  }
+      copy: function(userdata: Pointer; oldpath: PAnsiChar; newpath: PAnsiChar): Boolean; cdecl;                      { Copy a file, optional for read-only storage  }
       space_remaining: function(userdata: Pointer): cuint64; cdecl;                                                 { Get the space remaining, optional for read-only storage  }
     end;
 
@@ -404,7 +404,7 @@ function SDL_OpenStorage(iface: PSDL_StorageInterface; userdata: Pointer): PSDL_
  * \sa SDL_OpenTitleStorage
  * \sa SDL_OpenUserStorage
   }
-function SDL_CloseStorage(storage: PSDL_Storage): cbool; cdecl;
+function SDL_CloseStorage(storage: PSDL_Storage): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CloseStorage' {$ENDIF} {$ENDIF};
 
 {*
@@ -419,7 +419,7 @@ function SDL_CloseStorage(storage: PSDL_Storage): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_StorageReady(storage: PSDL_Storage): cbool; cdecl;
+function SDL_StorageReady(storage: PSDL_Storage): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_StorageReady' {$ENDIF} {$ENDIF};
 
 {*
@@ -436,7 +436,7 @@ function SDL_StorageReady(storage: PSDL_Storage): cbool; cdecl;
  * \sa SDL_ReadStorageFile
  * \sa SDL_StorageReady
   }
-function SDL_GetStorageFileSize(storage: PSDL_Storage; path: PAnsiChar; length: pcuint64): cbool; cdecl;
+function SDL_GetStorageFileSize(storage: PSDL_Storage; path: PAnsiChar; length: pcuint64): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetStorageFileSize' {$ENDIF} {$ENDIF};
 
 {*
@@ -460,7 +460,7 @@ function SDL_GetStorageFileSize(storage: PSDL_Storage; path: PAnsiChar; length: 
  * \sa SDL_StorageReady
  * \sa SDL_WriteStorageFile
   }
-function SDL_ReadStorageFile(storage: PSDL_Storage; path: PAnsiChar; destination: Pointer; length: cuint64): cbool; cdecl;
+function SDL_ReadStorageFile(storage: PSDL_Storage; path: PAnsiChar; destination: Pointer; length: cuint64): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadStorageFile' {$ENDIF} {$ENDIF};
 
 {*
@@ -479,7 +479,7 @@ function SDL_ReadStorageFile(storage: PSDL_Storage; path: PAnsiChar; destination
  * \sa SDL_ReadStorageFile
  * \sa SDL_StorageReady
   }
-function SDL_WriteStorageFile(storage: PSDL_Storage; path: PAnsiChar; source: Pointer; length: cuint64): cbool; cdecl;
+function SDL_WriteStorageFile(storage: PSDL_Storage; path: PAnsiChar; source: Pointer; length: cuint64): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteStorageFile' {$ENDIF} {$ENDIF};
 
 {*
@@ -494,7 +494,7 @@ function SDL_WriteStorageFile(storage: PSDL_Storage; path: PAnsiChar; source: Po
  *
  * \sa SDL_StorageReady
   }
-function SDL_CreateStorageDirectory(storage: PSDL_Storage; path: PAnsiChar): cbool; cdecl;
+function SDL_CreateStorageDirectory(storage: PSDL_Storage; path: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateStorageDirectory' {$ENDIF} {$ENDIF};
 
 {*
@@ -524,7 +524,7 @@ function SDL_CreateStorageDirectory(storage: PSDL_Storage; path: PAnsiChar): cbo
  *
  * \sa SDL_StorageReady
   }
-function SDL_EnumerateStorageDirectory(storage: PSDL_Storage; path: PAnsiChar; callback: TSDL_EnumerateDirectoryCallback; userdata: Pointer): cbool; cdecl;
+function SDL_EnumerateStorageDirectory(storage: PSDL_Storage; path: PAnsiChar; callback: TSDL_EnumerateDirectoryCallback; userdata: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EnumerateStorageDirectory' {$ENDIF} {$ENDIF};
 
 {*
@@ -539,7 +539,7 @@ function SDL_EnumerateStorageDirectory(storage: PSDL_Storage; path: PAnsiChar; c
  *
  * \sa SDL_StorageReady
   }
-function SDL_RemoveStoragePath(storage: PSDL_Storage; path: PAnsiChar): cbool; cdecl;
+function SDL_RemoveStoragePath(storage: PSDL_Storage; path: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RemoveStoragePath' {$ENDIF} {$ENDIF};
 
 {*
@@ -555,7 +555,7 @@ function SDL_RemoveStoragePath(storage: PSDL_Storage; path: PAnsiChar): cbool; c
  *
  * \sa SDL_StorageReady
   }
-function SDL_RenameStoragePath(storage: PSDL_Storage; oldpath: PAnsiChar; newpath: PAnsiChar): cbool; cdecl;
+function SDL_RenameStoragePath(storage: PSDL_Storage; oldpath: PAnsiChar; newpath: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenameStoragePath' {$ENDIF} {$ENDIF};
 
 {*
@@ -571,7 +571,7 @@ function SDL_RenameStoragePath(storage: PSDL_Storage; oldpath: PAnsiChar; newpat
  *
  * \sa SDL_StorageReady
   }
-function SDL_CopyStorageFile(storage: PSDL_Storage; oldpath: PAnsiChar; newpath: PAnsiChar): cbool; cdecl;
+function SDL_CopyStorageFile(storage: PSDL_Storage; oldpath: PAnsiChar; newpath: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CopyStorageFile' {$ENDIF} {$ENDIF};
 
 {*
@@ -588,7 +588,7 @@ function SDL_CopyStorageFile(storage: PSDL_Storage; oldpath: PAnsiChar; newpath:
  *
  * \sa SDL_StorageReady
   }
-function SDL_GetStoragePathInfo(storage: PSDL_Storage; path: PAnsiChar; info: PSDL_PathInfo): cbool; cdecl;
+function SDL_GetStoragePathInfo(storage: PSDL_Storage; path: PAnsiChar; info: PSDL_PathInfo): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetStoragePathInfo' {$ENDIF} {$ENDIF};
 
 {*

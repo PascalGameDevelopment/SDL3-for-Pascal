@@ -267,7 +267,7 @@ function SDL_GetSensorID(sensor: PSDL_Sensor): TSDL_SensorID; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_GetSensorData(sensor: PSDL_Sensor; data: pcfloat; num_values: cint): cbool; cdecl;
+function SDL_GetSensorData(sensor: PSDL_Sensor; data: pcfloat; num_values: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSensorData' {$ENDIF} {$ENDIF};
 
 {*

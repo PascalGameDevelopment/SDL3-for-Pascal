@@ -76,7 +76,7 @@
  * \sa SDL_GetClipboardText
  * \sa SDL_HasClipboardText
   }
-function SDL_SetClipboardText(text: PAnsiChar): cbool; cdecl;
+function SDL_SetClipboardText(text: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetClipboardText' {$ENDIF} {$ENDIF};
 
 {*
@@ -111,7 +111,7 @@ function SDL_GetClipboardText: PAnsiChar; cdecl;
  * \sa SDL_GetClipboardText
  * \sa SDL_SetClipboardText
   }
-function SDL_HasClipboardText: cbool; cdecl;
+function SDL_HasClipboardText: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasClipboardText' {$ENDIF} {$ENDIF};
 
 {*
@@ -128,7 +128,7 @@ function SDL_HasClipboardText: cbool; cdecl;
  * \sa SDL_GetPrimarySelectionText
  * \sa SDL_HasPrimarySelectionText
   }
-function SDL_SetPrimarySelectionText(text: PAnsiChar): cbool; cdecl;
+function SDL_SetPrimarySelectionText(text: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetPrimarySelectionText' {$ENDIF} {$ENDIF};
 
 {*
@@ -164,7 +164,7 @@ function SDL_GetPrimarySelectionText: PAnsiChar; cdecl;
  * \sa SDL_GetPrimarySelectionText
  * \sa SDL_SetPrimarySelectionText
   }
-function SDL_HasPrimarySelectionText: cbool; cdecl;
+function SDL_HasPrimarySelectionText: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasPrimarySelectionText' {$ENDIF} {$ENDIF};
 
 {*
@@ -235,7 +235,7 @@ type
  * \sa SDL_GetClipboardData
  * \sa SDL_HasClipboardData
   }
-function SDL_SetClipboardData(callback: TSDL_ClipboardDataCallback; cleanup: TSDL_ClipboardCleanupCallback; userdata: Pointer; mime_types: PPAnsiChar; num_mime_types: csize_t): cbool; cdecl;
+function SDL_SetClipboardData(callback: TSDL_ClipboardDataCallback; cleanup: TSDL_ClipboardCleanupCallback; userdata: Pointer; mime_types: PPAnsiChar; num_mime_types: csize_t): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetClipboardData' {$ENDIF} {$ENDIF};
 
 {*
@@ -250,7 +250,7 @@ function SDL_SetClipboardData(callback: TSDL_ClipboardDataCallback; cleanup: TSD
  *
  * \sa SDL_SetClipboardData
   }
-function SDL_ClearClipboardData: cbool; cdecl;
+function SDL_ClearClipboardData: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearClipboardData' {$ENDIF} {$ENDIF};
 
 {*
@@ -289,7 +289,7 @@ function SDL_GetClipboardData(mime_type: PAnsiChar; size: pcsize_t): Pointer; cd
  * \sa SDL_SetClipboardData
  * \sa SDL_GetClipboardData
   }
-function SDL_HasClipboardData(mime_type: PAnsiChar): cbool; cdecl;
+function SDL_HasClipboardData(mime_type: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasClipboardData' {$ENDIF} {$ENDIF};
 
 {*

@@ -193,7 +193,7 @@ procedure SDL_ResetLogPriorities; cdecl;
  * \sa SDL_SetLogPriorities
  * \sa SDL_SetLogPriority
   }
-function SDL_SetLogPriorityPrefix(priority: TSDL_LogPriority; prefix: PAnsiChar): cbool; cdecl;
+function SDL_SetLogPriorityPrefix(priority: TSDL_LogPriority; prefix: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetLogPriorityPrefix' {$ENDIF} {$ENDIF};
 
 {*

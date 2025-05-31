@@ -26,7 +26,7 @@
  *   integer types.
  * - SDL_SetFloatProperty and SDL_GetFloatProperty operate on floating point
  *   types.
- * - SDL_SecbooleanProperty and SDL_GecbooleanProperty operate on boolean
+ * - SDL_SetBooleanProperty and SDL_GetBooleanProperty operate on boolean
  *   types.
  *
  * Properties can be removed from a group by using SDL_ClearProperty.
@@ -104,7 +104,7 @@ function SDL_CreateProperties: TSDL_PropertiesID; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_CopyProperties(src: TSDL_PropertiesID; dst: TSDL_PropertiesID): cbool; cdecl;
+function SDL_CopyProperties(src: TSDL_PropertiesID; dst: TSDL_PropertiesID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CopyProperties' {$ENDIF} {$ENDIF};
 
 {*
@@ -129,7 +129,7 @@ function SDL_CopyProperties(src: TSDL_PropertiesID; dst: TSDL_PropertiesID): cbo
  *
  * \sa SDL_UnlockProperties
   }
-function SDL_LockProperties(props: TSDL_PropertiesID): cbool; cdecl;
+function SDL_LockProperties(props: TSDL_PropertiesID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockProperties' {$ENDIF} {$ENDIF};
 
 {*
@@ -179,7 +179,7 @@ type
  * reason.
  *
  * For simply setting basic data types, like numbers, bools, or strings, use
- * SDL_SetNumberProperty, SDL_SecbooleanProperty, or SDL_SetStringProperty
+ * SDL_SetNumberProperty, SDL_SetBooleanProperty, or SDL_SetStringProperty
  * instead, as those functions will handle cleanup on your behalf. This
  * function is only for more complex, custom data.
  *
@@ -200,7 +200,7 @@ type
  * \sa SDL_SetPointerProperty
  * \sa SDL_CleanupPropertyCallback
   }
-function SDL_SetPointerPropertyWithCleanup(props: TSDL_PropertiesID; name: PAnsiChar; value: Pointer; cleanup: TSDL_CleanupPropertyCallback; userdata: Pointer): cbool; cdecl;
+function SDL_SetPointerPropertyWithCleanup(props: TSDL_PropertiesID; name: PAnsiChar; value: Pointer; cleanup: TSDL_CleanupPropertyCallback; userdata: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetPointerPropertyWithCleanup' {$ENDIF} {$ENDIF};
 
 {*
@@ -218,13 +218,13 @@ function SDL_SetPointerPropertyWithCleanup(props: TSDL_PropertiesID; name: PAnsi
  *
  * \sa SDL_GetPointerProperty
  * \sa SDL_HasProperty
- * \sa SDL_SecbooleanProperty
+ * \sa SDL_SetBooleanProperty
  * \sa SDL_SetFloatProperty
  * \sa SDL_SetNumberProperty
  * \sa SDL_SetPointerPropertyWithCleanup
  * \sa SDL_SetStringProperty
   }
-function SDL_SetPointerProperty(props: TSDL_PropertiesID; name: PAnsiChar; value: Pointer): cbool; cdecl;
+function SDL_SetPointerProperty(props: TSDL_PropertiesID; name: PAnsiChar; value: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetPointerProperty' {$ENDIF} {$ENDIF};
 
 {*
@@ -245,7 +245,7 @@ function SDL_SetPointerProperty(props: TSDL_PropertiesID; name: PAnsiChar; value
  *
  * \sa SDL_GetStringProperty
   }
-function SDL_SetStringProperty(props: TSDL_PropertiesID; name: PAnsiChar; value: PAnsiChar): cbool; cdecl;
+function SDL_SetStringProperty(props: TSDL_PropertiesID; name: PAnsiChar; value: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetStringProperty' {$ENDIF} {$ENDIF};
 
 {*
@@ -263,7 +263,7 @@ function SDL_SetStringProperty(props: TSDL_PropertiesID; name: PAnsiChar; value:
  *
  * \sa SDL_GetNumberProperty
   }
-function SDL_SetNumberProperty(props: TSDL_PropertiesID; name: PAnsiChar; value: cint64): cbool; cdecl;
+function SDL_SetNumberProperty(props: TSDL_PropertiesID; name: PAnsiChar; value: cint64): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetNumberProperty' {$ENDIF} {$ENDIF};
 
 {*
@@ -281,7 +281,7 @@ function SDL_SetNumberProperty(props: TSDL_PropertiesID; name: PAnsiChar; value:
  *
  * \sa SDL_GetFloatProperty
   }
-function SDL_SetFloatProperty(props: TSDL_PropertiesID; name: PAnsiChar; value: cfloat): cbool; cdecl;
+function SDL_SetFloatProperty(props: TSDL_PropertiesID; name: PAnsiChar; value: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetFloatProperty' {$ENDIF} {$ENDIF};
 
 {*
@@ -297,10 +297,10 @@ function SDL_SetFloatProperty(props: TSDL_PropertiesID; name: PAnsiChar; value: 
  *
  * \since This function is available since SDL 3.1.3.
  *
- * \sa SDL_GecbooleanProperty
+ * \sa SDL_GetBooleanProperty
   }
-function SDL_SecbooleanProperty(props: TSDL_PropertiesID; name: PAnsiChar; value: cbool): cbool; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SecbooleanProperty' {$ENDIF} {$ENDIF};
+function SDL_SetBooleanProperty(props: TSDL_PropertiesID; name: PAnsiChar; value: Boolean): Boolean; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetBooleanProperty' {$ENDIF} {$ENDIF};
 
 {*
  * Return whether a property exists in a group of properties.
@@ -315,7 +315,7 @@ function SDL_SecbooleanProperty(props: TSDL_PropertiesID; name: PAnsiChar; value
  *
  * \sa SDL_GetPropertyType
   }
-function SDL_HasProperty(props: TSDL_PropertiesID; name: PAnsiChar): cbool; cdecl;
+function SDL_HasProperty(props: TSDL_PropertiesID; name: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasProperty' {$ENDIF} {$ENDIF};
 
 {*
@@ -358,7 +358,7 @@ function SDL_GetPropertyType(props: TSDL_PropertiesID; name: PAnsiChar): TSDL_Pr
  *
  * \since This function is available since SDL 3.1.3.
  *
- * \sa SDL_GecbooleanProperty
+ * \sa SDL_GetBooleanProperty
  * \sa SDL_GetFloatProperty
  * \sa SDL_GetNumberProperty
  * \sa SDL_GetPropertyType
@@ -460,7 +460,7 @@ function SDL_GetFloatProperty(props: TSDL_PropertiesID; name: PAnsiChar; default
  * \sa SDL_HasProperty
  * \sa SDL_SetBooleanProperty
   }
-function SDL_GetBooleanProperty(props: TSDL_PropertiesID; name: PAnsiChar; default_value: cbool): cbool; cdecl;
+function SDL_GetBooleanProperty(props: TSDL_PropertiesID; name: PAnsiChar; default_value: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetBooleanProperty' {$ENDIF} {$ENDIF};
 
 {*
@@ -475,7 +475,7 @@ function SDL_GetBooleanProperty(props: TSDL_PropertiesID; name: PAnsiChar; defau
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_ClearProperty(props: TSDL_PropertiesID; name: PAnsiChar): cbool; cdecl;
+function SDL_ClearProperty(props: TSDL_PropertiesID; name: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearProperty' {$ENDIF} {$ENDIF};
 
 {*
@@ -514,7 +514,7 @@ type
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_EnumerateProperties(props: TSDL_PropertiesID; callback: TSDL_EnumeratePropertiesCallback; userdata: Pointer): cbool; cdecl;
+function SDL_EnumerateProperties(props: TSDL_PropertiesID; callback: TSDL_EnumeratePropertiesCallback; userdata: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EnumerateProperties' {$ENDIF} {$ENDIF};
 
 {*

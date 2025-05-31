@@ -24,11 +24,6 @@
 type
   DWord = LongWord;
 
-  ppcbool = ^pcbool;
-  pcbool = ^cbool;
-  cbool = LongBool;
-  {$EXTERNALSYM cbool}
-
   ppcint8 = ^pcint8;
   pcint8 = ^cint8;
   cint8 = ShortInt;

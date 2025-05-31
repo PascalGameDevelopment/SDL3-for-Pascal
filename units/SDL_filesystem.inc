@@ -270,7 +270,7 @@ const
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_CreateDirectory(path: PAnsiChar): cbool; cdecl;
+function SDL_CreateDirectory(path: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateDirectory' {$ENDIF} {$ENDIF};
 
 {*
@@ -337,7 +337,7 @@ type
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_EnumerateDirectory(path: PAnsiChar; callback: TSDL_EnumerateDirectoryCallback; userdata: Pointer): cbool; cdecl;
+function SDL_EnumerateDirectory(path: PAnsiChar; callback: TSDL_EnumerateDirectoryCallback; userdata: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EnumerateDirectory' {$ENDIF} {$ENDIF};
 
 {*
@@ -352,7 +352,7 @@ function SDL_EnumerateDirectory(path: PAnsiChar; callback: TSDL_EnumerateDirecto
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_RemovePath(path: PAnsiChar): cbool; cdecl;
+function SDL_RemovePath(path: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RemovePath' {$ENDIF} {$ENDIF};
 
 {*
@@ -376,7 +376,7 @@ function SDL_RemovePath(path: PAnsiChar): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_RenamePath(oldpath: PAnsiChar; newpath: PAnsiChar): cbool; cdecl;
+function SDL_RenamePath(oldpath: PAnsiChar; newpath: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RenamePath' {$ENDIF} {$ENDIF};
 
 {*
@@ -417,7 +417,7 @@ function SDL_RenamePath(oldpath: PAnsiChar; newpath: PAnsiChar): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_CopyFile(oldpath: PAnsiChar; newpath: PAnsiChar): cbool; cdecl;
+function SDL_CopyFile(oldpath: PAnsiChar; newpath: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CopyFile' {$ENDIF} {$ENDIF};
 
 {*
@@ -431,7 +431,7 @@ function SDL_CopyFile(oldpath: PAnsiChar; newpath: PAnsiChar): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_GetPathInfo(path: PAnsiChar; info: PSDL_PathInfo): cbool; cdecl;
+function SDL_GetPathInfo(path: PAnsiChar; info: PSDL_PathInfo): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetPathInfo' {$ENDIF} {$ENDIF};
 
 {*

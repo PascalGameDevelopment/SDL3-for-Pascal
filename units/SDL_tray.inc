@@ -355,7 +355,7 @@ function SDL_GetTrayEntryLabel(entry: PSDL_TrayEntry): PAnsiChar; cdecl;
  * \sa SDL_InsertTrayEntryAt
  * \sa SDL_GetTrayEntryChecked
  *}
-procedure SDL_SetTrayEntryChecked(entry: PSDL_TrayEntry; checked: cbool); cdecl;
+procedure SDL_SetTrayEntryChecked(entry: PSDL_TrayEntry; checked: Boolean); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTrayEntryChecked' {$ENDIF} {$ENDIF};
 
 {**
@@ -375,7 +375,7 @@ procedure SDL_SetTrayEntryChecked(entry: PSDL_TrayEntry; checked: cbool); cdecl;
  * \sa SDL_InsertTrayEntryAt
  * \sa SDL_SetTrayEntryChecked
  *}
-function SDL_GetTrayEntryChecked(entry: PSDL_TrayEntry): cbool; cdecl;
+function SDL_GetTrayEntryChecked(entry: PSDL_TrayEntry): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTrayEntryChecked' {$ENDIF} {$ENDIF};
 
 {**
@@ -393,7 +393,7 @@ function SDL_GetTrayEntryChecked(entry: PSDL_TrayEntry): cbool; cdecl;
  * \sa SDL_InsertTrayEntryAt
  * \sa SDL_GetTrayEntryEnabled
  *}
-procedure SDL_SetTrayEntryEnabled(entry: PSDL_TrayEntry; enabled: cbool); cdecl;
+procedure SDL_SetTrayEntryEnabled(entry: PSDL_TrayEntry; enabled: Boolean); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTrayEntryEnabled' {$ENDIF} {$ENDIF};
 
 {**
@@ -411,7 +411,7 @@ procedure SDL_SetTrayEntryEnabled(entry: PSDL_TrayEntry; enabled: cbool); cdecl;
  * \sa SDL_InsertTrayEntryAt
  * \sa SDL_SetTrayEntryEnabled
  *}
-function SDL_GetTrayEntryEnabled(entry: PSDL_TrayEntry): cbool; cdecl;
+function SDL_GetTrayEntryEnabled(entry: PSDL_TrayEntry): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTrayEntryEnabled' {$ENDIF} {$ENDIF};
 
 {**

@@ -42,6 +42,6 @@
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_OpenURL(url: PAnsiChar): cbool; cdecl;
+function SDL_OpenURL(url: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_OpenURL' {$ENDIF} {$ENDIF};
 

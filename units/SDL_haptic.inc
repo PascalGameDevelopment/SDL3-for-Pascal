@@ -1036,7 +1036,7 @@ function SDL_GetHapticName(haptic: PSDL_Haptic): PAnsiChar; cdecl;
  *
  * \sa SDL_OpenHapticFromMouse
   }
-function SDL_IsMouseHaptic: cbool; cdecl;
+function SDL_IsMouseHaptic: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsMouseHaptic' {$ENDIF} {$ENDIF};
 
 {*
@@ -1063,7 +1063,7 @@ function SDL_OpenHapticFromMouse: PSDL_Haptic; cdecl;
  *
  * \sa SDL_OpenHapticFromJoystick
   }
-function SDL_IsJoystickHaptic(joystick: PSDL_Joystick): cbool; cdecl;
+function SDL_IsJoystickHaptic(joystick: PSDL_Joystick): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsJoystickHaptic' {$ENDIF} {$ENDIF};
 
 {*
@@ -1179,7 +1179,7 @@ function SDL_GetNumHapticAxes(haptic: PSDL_Haptic): cint; cdecl;
  * \sa SDL_CreateHapticEffect
  * \sa SDL_GetHapticFeatures
   }
-function SDL_HapticEffectSupported(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): cbool; cdecl;
+function SDL_HapticEffectSupported(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticEffectSupported' {$ENDIF} {$ENDIF};
 
 {*
@@ -1220,7 +1220,7 @@ function SDL_CreateHapticEffect(haptic: PSDL_Haptic; effect: PSDL_HapticEffect):
  * \sa SDL_CreateHapticEffect
  * \sa SDL_RunHapticEffect
   }
-function SDL_UpdateHapticEffect(haptic: PSDL_Haptic; effect: cint; data: PSDL_HapticEffect): cbool; cdecl;
+function SDL_UpdateHapticEffect(haptic: PSDL_Haptic; effect: cint; data: PSDL_HapticEffect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateHapticEffect' {$ENDIF} {$ENDIF};
 
 {*
@@ -1245,7 +1245,7 @@ function SDL_UpdateHapticEffect(haptic: PSDL_Haptic; effect: cint; data: PSDL_Ha
  * \sa SDL_StopHapticEffect
  * \sa SDL_StopHapticEffects
   }
-function SDL_RunHapticEffect(haptic: PSDL_Haptic; effect: cint; iterations: cuint32): cbool; cdecl;
+function SDL_RunHapticEffect(haptic: PSDL_Haptic; effect: cint; iterations: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RunHapticEffect' {$ENDIF} {$ENDIF};
 
 {*
@@ -1261,7 +1261,7 @@ function SDL_RunHapticEffect(haptic: PSDL_Haptic; effect: cint; iterations: cuin
  * \sa SDL_RunHapticEffect
  * \sa SDL_StopHapticEffects
   }
-function SDL_StopHapticEffect(haptic: PSDL_Haptic; effect: cint): cbool; cdecl;
+function SDL_StopHapticEffect(haptic: PSDL_Haptic; effect: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_StopHapticEffect' {$ENDIF} {$ENDIF};
 
 {*
@@ -1294,7 +1294,7 @@ procedure SDL_DestroyHapticEffect(haptic: PSDL_Haptic; effect: cint); cdecl;
  *
  * \sa SDL_GetHapticFeatures
   }
-function SDL_GetHapticEffectStatus(haptic: PSDL_Haptic; effect: cint): cbool; cdecl;
+function SDL_GetHapticEffectStatus(haptic: PSDL_Haptic; effect: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetHapticEffectStatus' {$ENDIF} {$ENDIF};
 
 {*
@@ -1317,7 +1317,7 @@ function SDL_GetHapticEffectStatus(haptic: PSDL_Haptic; effect: cint): cbool; cd
  *
  * \sa SDL_GetHapticFeatures
   }
-function SDL_SetHapticGain(haptic: PSDL_Haptic; gain: cint): cbool; cdecl;
+function SDL_SetHapticGain(haptic: PSDL_Haptic; gain: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetHapticGain' {$ENDIF} {$ENDIF};
 
 {*
@@ -1337,7 +1337,7 @@ function SDL_SetHapticGain(haptic: PSDL_Haptic; gain: cint): cbool; cdecl;
  *
  * \sa SDL_GetHapticFeatures
   }
-function SDL_SetHapticAutocenter(haptic: PSDL_Haptic; autocenter: cint): cbool; cdecl;
+function SDL_SetHapticAutocenter(haptic: PSDL_Haptic; autocenter: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetHapticAutocenter' {$ENDIF} {$ENDIF};
 
 {*
@@ -1357,7 +1357,7 @@ function SDL_SetHapticAutocenter(haptic: PSDL_Haptic; autocenter: cint): cbool; 
  *
  * \sa SDL_ResumeHaptic
   }
-function SDL_PauseHaptic(haptic: PSDL_Haptic): cbool; cdecl;
+function SDL_PauseHaptic(haptic: PSDL_Haptic): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PauseHaptic' {$ENDIF} {$ENDIF};
 
 {*
@@ -1373,7 +1373,7 @@ function SDL_PauseHaptic(haptic: PSDL_Haptic): cbool; cdecl;
  *
  * \sa SDL_PauseHaptic
   }
-function SDL_ResumeHaptic(haptic: PSDL_Haptic): cbool; cdecl;
+function SDL_ResumeHaptic(haptic: PSDL_Haptic): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ResumeHaptic' {$ENDIF} {$ENDIF};
 
 {*
@@ -1388,7 +1388,7 @@ function SDL_ResumeHaptic(haptic: PSDL_Haptic): cbool; cdecl;
  * \sa SDL_RunHapticEffect
  * \sa SDL_StopHapticEffects
   }
-function SDL_StopHapticEffects(haptic: PSDL_Haptic): cbool; cdecl;
+function SDL_StopHapticEffects(haptic: PSDL_Haptic): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_StopHapticEffects' {$ENDIF} {$ENDIF};
 
 {*
@@ -1401,7 +1401,7 @@ function SDL_StopHapticEffects(haptic: PSDL_Haptic): cbool; cdecl;
  *
  * \sa SDL_InitHapticRumble
   }
-function SDL_HapticRumbleSupported(haptic: PSDL_Haptic): cbool; cdecl;
+function SDL_HapticRumbleSupported(haptic: PSDL_Haptic): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HapticRumbleSupported' {$ENDIF} {$ENDIF};
 
 {*
@@ -1417,7 +1417,7 @@ function SDL_HapticRumbleSupported(haptic: PSDL_Haptic): cbool; cdecl;
  * \sa SDL_StopHapticRumble
  * \sa SDL_HapticRumbleSupported
   }
-function SDL_InitHapticRumble(haptic: PSDL_Haptic): cbool; cdecl;
+function SDL_InitHapticRumble(haptic: PSDL_Haptic): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_InitHapticRumble' {$ENDIF} {$ENDIF};
 
 {*
@@ -1434,7 +1434,7 @@ function SDL_InitHapticRumble(haptic: PSDL_Haptic): cbool; cdecl;
  * \sa SDL_InitHapticRumble
  * \sa SDL_StopHapticRumble
   }
-function SDL_PlayHapticRumble(haptic: PSDL_Haptic; strength: cfloat; length: cuint32): cbool; cdecl;
+function SDL_PlayHapticRumble(haptic: PSDL_Haptic; strength: cfloat; length: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PlayHapticRumble' {$ENDIF} {$ENDIF};
 
 {*
@@ -1448,6 +1448,6 @@ function SDL_PlayHapticRumble(haptic: PSDL_Haptic; strength: cfloat; length: cui
  *
  * \sa SDL_PlayHapticRumble
   }
-function SDL_StopHapticRumble(haptic: PSDL_Haptic): cbool; cdecl;
+function SDL_StopHapticRumble(haptic: PSDL_Haptic): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_StopHapticRumble' {$ENDIF} {$ENDIF};
 

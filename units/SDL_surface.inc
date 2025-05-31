@@ -234,7 +234,7 @@ const
  * \sa SDL_GetSurfaceColorspace
   }
 
-function SDL_SetSurfaceColorspace(surface: PSDL_Surface; colorspace: TSDL_Colorspace): cbool; cdecl;
+function SDL_SetSurfaceColorspace(surface: PSDL_Surface; colorspace: TSDL_Colorspace): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetSurfaceColorspace' {$ENDIF} {$ENDIF};
 
 {*
@@ -299,7 +299,7 @@ function SDL_CreateSurfacePalette(surface: PSDL_Surface): PSDL_Palette; cdecl;
  * \sa SDL_CreatePalette
  * \sa SDL_GetSurfacePalette
   }
-function SDL_SetSurfacePalette(surface: PSDL_Surface; palette: PSDL_Palette): cbool; cdecl;
+function SDL_SetSurfacePalette(surface: PSDL_Surface; palette: PSDL_Palette): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetSurfacePalette' {$ENDIF} {$ENDIF};
 
 {*
@@ -339,7 +339,7 @@ function SDL_GetSurfacePalette(surface: PSDL_Surface): PSDL_Palette; cdecl;
  * \sa SDL_GetSurfaceImages
  * \sa SDL_SurfaceHasAlternateImages
   }
-function SDL_AddSurfaceAlternateImage(surface: PSDL_Surface; image: PSDL_Surface): cbool; cdecl;
+function SDL_AddSurfaceAlternateImage(surface: PSDL_Surface; image: PSDL_Surface): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AddSurfaceAlternateImage' {$ENDIF} {$ENDIF};
 
 {*
@@ -354,7 +354,7 @@ function SDL_AddSurfaceAlternateImage(surface: PSDL_Surface; image: PSDL_Surface
  * \sa SDL_RemoveSurfaceAlternateImages
  * \sa SDL_GetSurfaceImages
   }
-function SDL_SurfaceHasAlternateImages(surface: PSDL_Surface): cbool; cdecl;
+function SDL_SurfaceHasAlternateImages(surface: PSDL_Surface): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SurfaceHasAlternateImages' {$ENDIF} {$ENDIF};
 
 {*
@@ -421,7 +421,7 @@ procedure SDL_RemoveSurfaceAlternateImages(surface: PSDL_Surface); cdecl;
  * \sa SDL_MUSTLOCK
  * \sa SDL_UnlockSurface
   }
-function SDL_LockSurface(surface: PSDL_Surface): cbool; cdecl;
+function SDL_LockSurface(surface: PSDL_Surface): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LockSurface' {$ENDIF} {$ENDIF};
 
 {*
@@ -454,7 +454,7 @@ procedure SDL_UnlockSurface(surface: PSDL_Surface); cdecl;
  * \sa SDL_LoadBMP
  * \sa SDL_SaveBMP_IO
   }
-function SDL_LoadBMP_IO(src: PSDL_IOStream; closeio: cbool): PSDL_Surface; cdecl;
+function SDL_LoadBMP_IO(src: PSDL_IOStream; closeio: Boolean): PSDL_Surface; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LoadBMP_IO' {$ENDIF} {$ENDIF};
 
 {*
@@ -498,7 +498,7 @@ function SDL_LoadBMP(file_: PAnsiChar): PSDL_Surface; cdecl;
  * \sa SDL_LoadBMP_IO
  * \sa SDL_SaveBMP
   }
-function SDL_SaveBMP_IO(surface: PSDL_Surface; dst: PSDL_IOStream; closeio: cbool): cbool; cdecl;
+function SDL_SaveBMP_IO(surface: PSDL_Surface; dst: PSDL_IOStream; closeio: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SaveBMP_IO' {$ENDIF} {$ENDIF};
 
 {*
@@ -521,7 +521,7 @@ function SDL_SaveBMP_IO(surface: PSDL_Surface; dst: PSDL_IOStream; closeio: cboo
  * \sa SDL_SaveBMP_IO
   }
 
-function SDL_SaveBMP(surface: PSDL_Surface; file_: PAnsiChar): cbool; cdecl;
+function SDL_SaveBMP(surface: PSDL_Surface; file_: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SaveBMP' {$ENDIF} {$ENDIF};
 
 {*
@@ -541,7 +541,7 @@ function SDL_SaveBMP(surface: PSDL_Surface; file_: PAnsiChar): cbool; cdecl;
  * \sa SDL_LockSurface
  * \sa SDL_UnlockSurface
   }
-function SDL_SetSurfaceRLE(surface: PSDL_Surface; enabled: cbool): cbool; cdecl;
+function SDL_SetSurfaceRLE(surface: PSDL_Surface; enabled: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetSurfaceRLE' {$ENDIF} {$ENDIF};
 
 {*
@@ -556,7 +556,7 @@ function SDL_SetSurfaceRLE(surface: PSDL_Surface; enabled: cbool): cbool; cdecl;
  *
  * \sa SDL_SetSurfaceRLE
   }
-function SDL_SurfaceHasRLE(surface: PSDL_Surface): cbool; cdecl;
+function SDL_SurfaceHasRLE(surface: PSDL_Surface): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SurfaceHasRLE' {$ENDIF} {$ENDIF};
 
 {*
@@ -581,7 +581,7 @@ function SDL_SurfaceHasRLE(surface: PSDL_Surface): cbool; cdecl;
  * \sa SDL_SetSurfaceRLE
  * \sa SDL_SurfaceHasColorKey
   }
-function SDL_SetSurfaceColorKey(surface: PSDL_Surface; enabled: cbool; key: cuint32): cbool; cdecl;
+function SDL_SetSurfaceColorKey(surface: PSDL_Surface; enabled: Boolean; key: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetSurfaceColorKey' {$ENDIF} {$ENDIF};
 
 {*
@@ -597,7 +597,7 @@ function SDL_SetSurfaceColorKey(surface: PSDL_Surface; enabled: cbool; key: cuin
  * \sa SDL_SetSurfaceColorKey
  * \sa SDL_GetSurfaceColorKey
   }
-function SDL_SurfaceHasColorKey(surface: PSDL_Surface): cbool; cdecl;
+function SDL_SurfaceHasColorKey(surface: PSDL_Surface): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SurfaceHasColorKey' {$ENDIF} {$ENDIF};
 
 {*
@@ -618,7 +618,7 @@ function SDL_SurfaceHasColorKey(surface: PSDL_Surface): cbool; cdecl;
  * \sa SDL_SetSurfaceColorKey
  * \sa SDL_SurfaceHasColorKey
   }
-function SDL_GetSurfaceColorKey(surface: PSDL_Surface; key: pcuint32): cbool; cdecl;
+function SDL_GetSurfaceColorKey(surface: PSDL_Surface; key: pcuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSurfaceColorKey' {$ENDIF} {$ENDIF};
 
 {*
@@ -642,7 +642,7 @@ function SDL_GetSurfaceColorKey(surface: PSDL_Surface; key: pcuint32): cbool; cd
  * \sa SDL_GetSurfaceColorMod
  * \sa SDL_SetSurfaceAlphaMod
   }
-function SDL_SetSurfaceColorMod(surface: PSDL_Surface; r: cuint8; g: cuint8; b: cuint8): cbool; cdecl;
+function SDL_SetSurfaceColorMod(surface: PSDL_Surface; r: cuint8; g: cuint8; b: cuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetSurfaceColorMod' {$ENDIF} {$ENDIF};
 
 {*
@@ -660,7 +660,7 @@ function SDL_SetSurfaceColorMod(surface: PSDL_Surface; r: cuint8; g: cuint8; b: 
  * \sa SDL_GetSurfaceAlphaMod
  * \sa SDL_SetSurfaceColorMod
   }
-function SDL_GetSurfaceColorMod(surface: PSDL_Surface; r: pcuint8; g: pcuint8; b: pcuint8): cbool; cdecl;
+function SDL_GetSurfaceColorMod(surface: PSDL_Surface; r: pcuint8; g: pcuint8; b: pcuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSurfaceColorMod' {$ENDIF} {$ENDIF};
 
 {*
@@ -681,7 +681,7 @@ function SDL_GetSurfaceColorMod(surface: PSDL_Surface; r: pcuint8; g: pcuint8; b
  * \sa SDL_GetSurfaceAlphaMod
  * \sa SDL_SetSurfaceColorMod
   }
-function SDL_SetSurfaceAlphaMod(surface: PSDL_Surface; alpha: cuint8): cbool; cdecl;
+function SDL_SetSurfaceAlphaMod(surface: PSDL_Surface; alpha: cuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetSurfaceAlphaMod' {$ENDIF} {$ENDIF};
 
 {*
@@ -697,7 +697,7 @@ function SDL_SetSurfaceAlphaMod(surface: PSDL_Surface; alpha: cuint8): cbool; cd
  * \sa SDL_GetSurfaceColorMod
  * \sa SDL_SetSurfaceAlphaMod
   }
-function SDL_GetSurfaceAlphaMod(surface: PSDL_Surface; alpha: pcuint8): cbool; cdecl;
+function SDL_GetSurfaceAlphaMod(surface: PSDL_Surface; alpha: pcuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSurfaceAlphaMod' {$ENDIF} {$ENDIF};
 
 {*
@@ -716,7 +716,7 @@ function SDL_GetSurfaceAlphaMod(surface: PSDL_Surface; alpha: pcuint8): cbool; c
  *
  * \sa SDL_GetSurfaceBlendMode
   }
-function SDL_SetSurfaceBlendMode(surface: PSDL_Surface; blendMode: TSDL_BlendMode): cbool; cdecl;
+function SDL_SetSurfaceBlendMode(surface: PSDL_Surface; blendMode: TSDL_BlendMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetSurfaceBlendMode' {$ENDIF} {$ENDIF};
 
 {*
@@ -731,7 +731,7 @@ function SDL_SetSurfaceBlendMode(surface: PSDL_Surface; blendMode: TSDL_BlendMod
  *
  * \sa SDL_SetSurfaceBlendMode
   }
-function SDL_GetSurfaceBlendMode(surface: PSDL_Surface; blendMode: PSDL_BlendMode): cbool; cdecl;
+function SDL_GetSurfaceBlendMode(surface: PSDL_Surface; blendMode: PSDL_BlendMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSurfaceBlendMode' {$ENDIF} {$ENDIF};
 
 {*
@@ -753,7 +753,7 @@ function SDL_GetSurfaceBlendMode(surface: PSDL_Surface; blendMode: PSDL_BlendMod
  *
  * \sa SDL_GetSurfaceClipRect
   }
-function SDL_SetSurfaceClipRect(surface: PSDL_Surface; rect: PSDL_Rect): cbool; cdecl;
+function SDL_SetSurfaceClipRect(surface: PSDL_Surface; rect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetSurfaceClipRect' {$ENDIF} {$ENDIF};
 
 {*
@@ -773,7 +773,7 @@ function SDL_SetSurfaceClipRect(surface: PSDL_Surface; rect: PSDL_Rect): cbool; 
  *
  * \sa SDL_SetSurfaceClipRect
   }
-function SDL_GetSurfaceClipRect(surface: PSDL_Surface; rect: PSDL_Rect): cbool; cdecl;
+function SDL_GetSurfaceClipRect(surface: PSDL_Surface; rect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSurfaceClipRect' {$ENDIF} {$ENDIF};
 
 {*
@@ -786,7 +786,7 @@ function SDL_GetSurfaceClipRect(surface: PSDL_Surface; rect: PSDL_Rect): cbool; 
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_FlipSurface(surface: PSDL_Surface; flip: TSDL_FlipMode): cbool; cdecl;
+function SDL_FlipSurface(surface: PSDL_Surface; flip: TSDL_FlipMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FlipSurface' {$ENDIF} {$ENDIF};
 
 {*
@@ -901,7 +901,7 @@ function SDL_ConvertSurfaceAndColorspace(surface: PSDL_Surface; format: TSDL_Pix
  *
  * \sa SDL_ConvertPixelsAndColorspace
   }
-function SDL_ConvertPixels(width: cint; height: cint; src_format: TSDL_PixelFormat; src: Pointer; src_pitch: cint; dst_format: TSDL_PixelFormat; dst: Pointer; dst_pitch: cint): cbool; cdecl;
+function SDL_ConvertPixels(width: cint; height: cint; src_format: TSDL_PixelFormat; src: Pointer; src_pitch: cint; dst_format: TSDL_PixelFormat; dst: Pointer; dst_pitch: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ConvertPixels' {$ENDIF} {$ENDIF};
 
 {*
@@ -931,7 +931,7 @@ function SDL_ConvertPixels(width: cint; height: cint; src_format: TSDL_PixelForm
  *
  * \sa SDL_ConvertPixels
   }
-function SDL_ConvertPixelsAndColorspace(width: cint; height: cint; src_format: TSDL_PixelFormat; src_colorspace: TSDL_Colorspace; src_properties: TSDL_PropertiesID; src: Pointer; src_pitch: cint; dst_format: TSDL_PixelFormat; dst_colorspace: TSDL_Colorspace; dst_properties: TSDL_PropertiesID; dst: Pointer; dst_pitch: cint): cbool; cdecl;
+function SDL_ConvertPixelsAndColorspace(width: cint; height: cint; src_format: TSDL_PixelFormat; src_colorspace: TSDL_Colorspace; src_properties: TSDL_PropertiesID; src: Pointer; src_pitch: cint; dst_format: TSDL_PixelFormat; dst_colorspace: TSDL_Colorspace; dst_properties: TSDL_PropertiesID; dst: Pointer; dst_pitch: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ConvertPixelsAndColorspace' {$ENDIF} {$ENDIF};
 
 {*
@@ -954,7 +954,7 @@ function SDL_ConvertPixelsAndColorspace(width: cint; height: cint; src_format: T
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_PremultiplyAlpha(width: cint; height: cint; src_format: TSDL_PixelFormat; src: Pointer; src_pitch: cint; dst_format: TSDL_PixelFormat; dst: Pointer; dst_pitch: cint; linear: cbool): cbool; cdecl;
+function SDL_PremultiplyAlpha(width: cint; height: cint; src_format: TSDL_PixelFormat; src: Pointer; src_pitch: cint; dst_format: TSDL_PixelFormat; dst: Pointer; dst_pitch: cint; linear: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PremultiplyAlpha' {$ENDIF} {$ENDIF};
 
 {*
@@ -970,7 +970,7 @@ function SDL_PremultiplyAlpha(width: cint; height: cint; src_format: TSDL_PixelF
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_PremultiplySurfaceAlpha(surface: PSDL_Surface; linear: cbool): cbool; cdecl;
+function SDL_PremultiplySurfaceAlpha(surface: PSDL_Surface; linear: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PremultiplySurfaceAlpha' {$ENDIF} {$ENDIF};
 
 {*
@@ -991,7 +991,7 @@ function SDL_PremultiplySurfaceAlpha(surface: PSDL_Surface; linear: cbool): cboo
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_ClearSurface(surface: PSDL_Surface; r: cfloat; g: cfloat; b: cfloat; a: cfloat): cbool; cdecl;
+function SDL_ClearSurface(surface: PSDL_Surface; r: cfloat; g: cfloat; b: cfloat; a: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearSurface' {$ENDIF} {$ENDIF};
 
 {*
@@ -1017,7 +1017,7 @@ function SDL_ClearSurface(surface: PSDL_Surface; r: cfloat; g: cfloat; b: cfloat
  *
  * \sa SDL_FillSurfaceRects
   }
-function SDL_FillSurfaceRect(dst: PSDL_Surface; rect: PSDL_Rect; color: cuint32): cbool; cdecl;
+function SDL_FillSurfaceRect(dst: PSDL_Surface; rect: PSDL_Rect; color: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FillSurfaceRect' {$ENDIF} {$ENDIF};
 
 {*
@@ -1043,7 +1043,7 @@ function SDL_FillSurfaceRect(dst: PSDL_Surface; rect: PSDL_Rect; color: cuint32)
  *
  * \sa SDL_FillSurfaceRect
   }
-function SDL_FillSurfaceRects(dst: PSDL_Surface; rects: PSDL_Rect; count: cint; color: cuint32): cbool; cdecl;
+function SDL_FillSurfaceRects(dst: PSDL_Surface; rects: PSDL_Rect; count: cint; color: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FillSurfaceRects' {$ENDIF} {$ENDIF};
 
 {*
@@ -1119,7 +1119,7 @@ function SDL_FillSurfaceRects(dst: PSDL_Surface; rects: PSDL_Rect; count: cint; 
  *
  * \sa SDL_BlitSurfaceScaled
   }
-function SDL_BlitSurface(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cbool; cdecl;
+function SDL_BlitSurface(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_BlitSurface' {$ENDIF} {$ENDIF};
 
 {*
@@ -1145,7 +1145,7 @@ function SDL_BlitSurface(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surfac
  *
  * \sa SDL_BlitSurface
   }
-function SDL_BlitSurfaceUnchecked(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cbool; cdecl;
+function SDL_BlitSurfaceUnchecked(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_BlitSurfaceUnchecked' {$ENDIF} {$ENDIF};
 
 {*
@@ -1171,7 +1171,7 @@ function SDL_BlitSurfaceUnchecked(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PS
  *
  * \sa SDL_BlitSurface
   }
-function SDL_BlitSurfaceScaled(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect; scaleMode: TSDL_ScaleMode): cbool; cdecl;
+function SDL_BlitSurfaceScaled(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect; scaleMode: TSDL_ScaleMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_BlitSurfaceScaled' {$ENDIF} {$ENDIF};
 
 {*
@@ -1198,7 +1198,7 @@ function SDL_BlitSurfaceScaled(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_
  *
  * \sa SDL_BlitSurfaceScaled
   }
-function SDL_BlitSurfaceUncheckedScaled(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect; scaleMode: TSDL_ScaleMode): cbool; cdecl;
+function SDL_BlitSurfaceUncheckedScaled(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect; scaleMode: TSDL_ScaleMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_BlitSurfaceUncheckedScaled' {$ENDIF} {$ENDIF};
 
 {*
@@ -1225,7 +1225,7 @@ function SDL_BlitSurfaceUncheckedScaled(src: PSDL_Surface; srcrect: PSDL_Rect; d
  *
  * \sa SDL_BlitSurface
   }
-function SDL_BlitSurfaceTiled(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): cbool; cdecl;
+function SDL_BlitSurfaceTiled(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_Surface; dstrect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_BlitSurfaceTiled' {$ENDIF} {$ENDIF};
 
 {*
@@ -1256,7 +1256,7 @@ function SDL_BlitSurfaceTiled(src: PSDL_Surface; srcrect: PSDL_Rect; dst: PSDL_S
  *
  * \sa SDL_BlitSurface
   }
-function SDL_BlitSurfaceTiledWithScale(src: PSDL_Surface; srcrect: PSDL_Rect; scale: cfloat; scaleMode: TSDL_ScaleMode; dst: PSDL_Surface; dstrect: PSDL_Rect): cbool; cdecl;
+function SDL_BlitSurfaceTiledWithScale(src: PSDL_Surface; srcrect: PSDL_Rect; scale: cfloat; scaleMode: TSDL_ScaleMode; dst: PSDL_Surface; dstrect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_BlitSurfaceTiledWithScale' {$ENDIF} {$ENDIF};
 
 {*
@@ -1294,7 +1294,7 @@ function SDL_BlitSurfaceTiledWithScale(src: PSDL_Surface; srcrect: PSDL_Rect; sc
  *
  * \sa SDL_BlitSurface
   }
-function SDL_BlitSurface9Grid(src: PSDL_Surface; srcrect: PSDL_Rect; left_width: cint; right_width: cint; top_height: cint; bottom_height: cint; scale: cfloat; scaleMode: TSDL_ScaleMode; dst: PSDL_Surface; dstrect: PSDL_Rect): cbool; cdecl;
+function SDL_BlitSurface9Grid(src: PSDL_Surface; srcrect: PSDL_Rect; left_width: cint; right_width: cint; top_height: cint; bottom_height: cint; scale: cfloat; scaleMode: TSDL_ScaleMode; dst: PSDL_Surface; dstrect: PSDL_Rect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_BlitSurface9Grid' {$ENDIF} {$ENDIF};
 
 {*
@@ -1385,7 +1385,7 @@ function SDL_MapSurfaceRGBA(surface: PSDL_Surface; r: cuint8; g: cuint8; b: cuin
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_ReadSurfacePixel(surface: PSDL_Surface; x: cint; y: cint; r: pcuint8; g: pcuint8; b: pcuint8; a: pcuint8): cbool; cdecl;
+function SDL_ReadSurfacePixel(surface: PSDL_Surface; x: cint; y: cint; r: pcuint8; g: pcuint8; b: pcuint8; a: pcuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadSurfacePixel' {$ENDIF} {$ENDIF};
 
 {*
@@ -1410,7 +1410,7 @@ function SDL_ReadSurfacePixel(surface: PSDL_Surface; x: cint; y: cint; r: pcuint
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_ReadSurfacePixelFloat(surface: PSDL_Surface; x: cint; y: cint; r: pcfloat; g: pcfloat; b: pcfloat; a: pcfloat): cbool; cdecl;
+function SDL_ReadSurfacePixelFloat(surface: PSDL_Surface; x: cint; y: cint; r: pcfloat; g: pcfloat; b: pcfloat; a: pcfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadSurfacePixelFloat' {$ENDIF} {$ENDIF};
 
 {*
@@ -1434,7 +1434,7 @@ function SDL_ReadSurfacePixelFloat(surface: PSDL_Surface; x: cint; y: cint; r: p
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_WriteSurfacePixel(surface: PSDL_Surface; x: cint; y: cint; r: cuint8; g: cuint8; b: cuint8; a: cuint8): cbool; cdecl;
+function SDL_WriteSurfacePixel(surface: PSDL_Surface; x: cint; y: cint; r: cuint8; g: cuint8; b: cuint8; a: cuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteSurfacePixel' {$ENDIF} {$ENDIF};
 
 {*
@@ -1455,6 +1455,6 @@ function SDL_WriteSurfacePixel(surface: PSDL_Surface; x: cint; y: cint; r: cuint
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_WriteSurfacePixelFloat(surface: PSDL_Surface; x: cint; y: cint; r: cfloat; g: cfloat; b: cfloat; a: cfloat): cbool; cdecl;
+function SDL_WriteSurfacePixelFloat(surface: PSDL_Surface; x: cint; y: cint; r: cfloat; g: cfloat; b: cfloat; a: cfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteSurfacePixelFloat' {$ENDIF} {$ENDIF};
 

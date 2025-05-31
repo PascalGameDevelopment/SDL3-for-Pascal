@@ -1584,8 +1584,8 @@ type
       compare_op: TSDL_GPUCompareOp;               {*< The comparison operator to apply to fetched data before filtering.  }
       min_lod: cfloat;                             {*< Clamps the minimum of the computed LOD value.  }
       max_lod: cfloat;                             {*< Clamps the maximum of the computed LOD value.  }
-      enable_anisotropy: cbool;                    {*< true to enable anisotropic filtering.  }
-      enable_compare: cbool;                       {*< true to enable comparison against a reference value during lookups.  }
+      enable_anisotropy: Boolean;                  {*< true to enable anisotropic filtering.  }
+      enable_compare: Boolean;                     {*< true to enable comparison against a reference value during lookups.  }
       padding1: cuint8;
       padding2: cuint8;
 
@@ -1696,8 +1696,8 @@ type
       dst_alpha_blendfactor: TSDL_GPUBlendFactor;    {*< The value to be multiplied by the destination alpha.  }
       alpha_blend_op: TSDL_GPUBlendOp;               {*< The blend operation for the alpha component.  }
       color_write_mask: TSDL_GPUColorComponentFlags; {*< A bitmask specifying which of the RGBA components are enabled for writing. Writes to all channels if enable_color_write_mask is false.  }
-      enable_blend: cbool;                           {*< Whether blending is enabled for the color target.  }
-      enable_color_write_mask: cbool;                {*< Whether the color write mask is enabled.  }
+      enable_blend: Boolean;                         {*< Whether blending is enabled for the color target.  }
+      enable_color_write_mask: Boolean;              {*< Whether the color write mask is enabled.  }
       padding1: cuint8;
       padding2: cuint8;
     end;
@@ -1820,8 +1820,8 @@ type
       depth_bias_constant_factor: cfloat;  {*< A scalar factor controlling the depth value added to each fragment.  }
       depth_bias_clamp: cfloat;            {*< The maximum depth bias of a fragment.  }
       depth_bias_slope_factor: cfloat;     {*< A scalar factor applied to a fragment's slope in depth calculations.  }
-      enable_depth_bias: cbool;            {*< true to bias fragment depth values.  }
-      enable_depth_clip: cbool;            {*< true to enable depth clip, false to enable depth clamp.  }
+      enable_depth_bias: Boolean;          {*< true to bias fragment depth values.  }
+      enable_depth_clip: Boolean;          {*< true to enable depth clip, false to enable depth clamp.  }
       padding1: cuint8;
       padding2: cuint8;
     end;
@@ -1840,7 +1840,7 @@ type
   TSDL_GPUMultisampleState = record
       sample_count: TSDL_GPUSampleCount; {*< The number of samples to be used in rasterization.  }
       sample_mask: cuint32;              {*< Determines which samples get updated in the render targets. Treated as 0xFFFFFFFF if enable_mask is false.  }
-      enable_mask: cbool;                {*< Enables sample masking.  }
+      enable_mask: Boolean;              {*< Enables sample masking.  }
       padding1: cuint8;
       padding2: cuint8;
       padding3: cuint8;
@@ -1863,9 +1863,9 @@ type
       front_stencil_state: TSDL_GPUStencilOpState;  {*< The stencil op state for front-facing triangles.  }
       compare_mask: cuint8;                         {*< Selects the bits of the stencil values participating in the stencil test.  }
       write_mask: cuint8;                           {*< Selects the bits of the stencil values updated by the stencil test.  }
-      enable_depth_test: cbool;                     {*< true enables the depth test.  }
-      enable_depth_write: cbool;                    {*< true enables depth writes. Depth writes are always disabled when enable_depth_test is false.  }
-      enable_stencil_test: cbool;                   {*< true enables the stencil test.  }
+      enable_depth_test: Boolean;                   {*< true enables the depth test.  }
+      enable_depth_write: Boolean;                  {*< true enables depth writes. Depth writes are always disabled when enable_depth_test is false.  }
+      enable_stencil_test: Boolean;                 {*< true enables the stencil test.  }
       padding1: cuint8;
       padding2: cuint8;
       padding3: cuint8;
@@ -1902,7 +1902,7 @@ type
       color_target_descriptions: PSDL_GPUColorTargetDescription; {*< A Pointer to an array of color target descriptions.  }
       num_color_targets: cuint32;                                {*< The number of color target descriptions in the above array.  }
       depth_stencil_format: TSDL_GPUTextureFormat;               {*< The pixel format of the depth-stencil target. Ignored if has_depth_stencil_target is false.  }
-      has_depth_stencil_target: cbool;                           {*< true specifies that the pipeline uses a depth-stencil target.  }
+      has_depth_stencil_target: Boolean;                         {*< true specifies that the pipeline uses a depth-stencil target.  }
       padding1: cuint8;
       padding2: cuint8;
       padding3: cuint8;
@@ -2013,8 +2013,8 @@ type
       resolve_texture: PSDL_GPUTexture;  {*< The texture that will receive the results of a multisample resolve operation. Ignored if a RESOLVE* store_op is not used.  }
       resolve_mip_level: cuint32;        {*< The mip level of the resolve texture to use for the resolve operation. Ignored if a RESOLVE* store_op is not used.  }
       resolve_layer: cuint32;            {*< The layer index of the resolve texture to use for the resolve operation. Ignored if a RESOLVE* store_op is not used.  }
-      cycle: cbool;                      {*< true cycles the texture if the texture is bound and load_op is not LOAD  }
-      cycle_resolve_texture: cbool;      {*< true cycles the resolve texture if the resolve texture is bound. Ignored if a RESOLVE* store_op is not used.  }
+      cycle: Boolean;                    {*< true cycles the texture if the texture is bound and load_op is not LOAD  }
+      cycle_resolve_texture: Boolean;    {*< true cycles the resolve texture if the resolve texture is bound. Ignored if a RESOLVE* store_op is not used.  }
       padding1: cuint8;
       padding2: cuint8;
     end;
@@ -2073,7 +2073,7 @@ type
       store_op: TSDL_GPUStoreOp;          {*< What is done with the depth results of the render pass.  }
       stencil_load_op: TSDL_GPULoadOp;    {*< What is done with the stencil contents at the beginning of the render pass.  }
       stencil_store_op: TSDL_GPUStoreOp;  {*< What is done with the stencil results of the render pass.  }
-      cycle: cbool;                       {*< true cycles the texture if the texture is bound and any load ops are not LOAD  }
+      cycle: Boolean;                     {*< true cycles the texture if the texture is bound and any load ops are not LOAD  }
       clear_stencil: cuint8;              {*< The value to clear the stencil component to at the beginning of the render pass. Ignored if SDL_GPU_LOADOP_CLEAR is not used.  }
       padding1: cuint8;
       padding2: cuint8;
@@ -2096,7 +2096,7 @@ type
       clear_color: TSDL_FColor;         {*< The color to clear the destination region to before the blit. Ignored if load_op is not SDL_GPU_LOADOP_CLEAR.  }
       flip_mode: TSDL_FlipMode;         {*< The flip mode for the source region.  }
       filter: TSDL_GPUFilter;           {*< The filter mode used when blitting.  }
-      cycle: cbool;                     {*< true cycles the destination texture if it is already bound.  }
+      cycle: Boolean;                   {*< true cycles the destination texture if it is already bound.  }
       padding1: cuint8;
       padding2: cuint8;
       padding3: cuint8;
@@ -2149,7 +2149,7 @@ type
   PSDL_GPUStorageBufferReadWriteBinding = ^TSDL_GPUStorageBufferReadWriteBinding;
   TSDL_GPUStorageBufferReadWriteBinding = record
       buffer: PSDL_GPUBuffer;  {*< The buffer to bind. Must have been created with SDL_GPU_BUFFERUSAGE_COMPUTE_STORAGE_WRITE.  }
-      cycle: cbool;            {*< true cycles the buffer if it is already bound.  }
+      cycle: Boolean;          {*< true cycles the buffer if it is already bound.  }
       padding1: cuint8;
       padding2: cuint8;
       padding3: cuint8;
@@ -2170,7 +2170,7 @@ type
       texture: PSDL_GPUTexture; {*< The texture to bind. Must have been created with SDL_GPU_TEXTUREUSAGE_COMPUTE_STORAGE_WRITE or SDL_GPU_TEXTUREUSAGE_COMPUTE_STORAGE_SIMULTANEOUS_READ_WRITE.  }
       mip_level: cuint32;       {*< The mip level index to bind.  }
       layer: cuint32;           {*< The layer index to bind.  }
-      cycle: cbool;             {*< true cycles the texture if it is already bound.  }
+      cycle: Boolean;           {*< true cycles the texture if it is already bound.  }
       padding1: cuint8;
       padding2: cuint8;
       padding3: cuint8;
@@ -2193,7 +2193,7 @@ type
  *
  * \sa SDL_CreateGPUDevice
   }
-function SDL_GPUSupportsShaderFormats(format_flags: TSDL_GPUShaderFormat; name: PAnsiChar): cbool; cdecl;
+function SDL_GPUSupportsShaderFormats(format_flags: TSDL_GPUShaderFormat; name: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GPUSupportsShaderFormats' {$ENDIF} {$ENDIF};
 
 {*
@@ -2206,7 +2206,7 @@ function SDL_GPUSupportsShaderFormats(format_flags: TSDL_GPUShaderFormat; name: 
  *
  * \sa SDL_CreateGPUDeviceWithProperties
   }
-function SDL_GPUSupportsProperties(props: TSDL_PropertiesID): cbool; cdecl;
+function SDL_GPUSupportsProperties(props: TSDL_PropertiesID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GPUSupportsProperties' {$ENDIF} {$ENDIF};
 
 {*
@@ -2227,7 +2227,7 @@ function SDL_GPUSupportsProperties(props: TSDL_PropertiesID): cbool; cdecl;
  * \sa SDL_DestroyGPUDevice
  * \sa SDL_GPUSupportsShaderFormats
   }
-function SDL_CreateGPUDevice(format_flags: TSDL_GPUShaderFormat; debug_mode: cbool; name: PAnsiChar): PSDL_GPUDevice; cdecl;
+function SDL_CreateGPUDevice(format_flags: TSDL_GPUShaderFormat; debug_mode: Boolean; name: PAnsiChar): PSDL_GPUDevice; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateGPUDevice' {$ENDIF} {$ENDIF};
 
 {*
@@ -3439,7 +3439,7 @@ procedure SDL_EndGPUComputePass(compute_pass: PSDL_GPUComputePass); cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_MapGPUTransferBuffer(device: PSDL_GPUDevice; transfer_buffer: PSDL_GPUTransferBuffer; cycle: cbool): Pointer; cdecl;
+function SDL_MapGPUTransferBuffer(device: PSDL_GPUDevice; transfer_buffer: PSDL_GPUTransferBuffer; cycle: Boolean): Pointer; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_MapGPUTransferBuffer' {$ENDIF} {$ENDIF};
 
 {*
@@ -3487,7 +3487,7 @@ function SDL_BeginGPUCopyPass(command_buffer: PSDL_GPUCommandBuffer): PSDL_GPUCo
  *
  * \since This function is available since SDL 3.2.0.
   }
-procedure SDL_UploadToGPUTexture(copy_pass: PSDL_GPUCopyPass; source: PSDL_GPUTextureTransferInfo; destination: PSDL_GPUTextureRegion; cycle: cbool); cdecl;
+procedure SDL_UploadToGPUTexture(copy_pass: PSDL_GPUCopyPass; source: PSDL_GPUTextureTransferInfo; destination: PSDL_GPUTextureRegion; cycle: Boolean); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UploadToGPUTexture' {$ENDIF} {$ENDIF};
 
 {*
@@ -3504,7 +3504,7 @@ procedure SDL_UploadToGPUTexture(copy_pass: PSDL_GPUCopyPass; source: PSDL_GPUTe
  *
  * \since This function is available since SDL 3.2.0.
   }
-procedure SDL_UploadToGPUBuffer(copy_pass: PSDL_GPUCopyPass; source: PSDL_GPUTransferBufferLocation; destination: PSDL_GPUBufferRegion; cycle: cbool); cdecl;
+procedure SDL_UploadToGPUBuffer(copy_pass: PSDL_GPUCopyPass; source: PSDL_GPUTransferBufferLocation; destination: PSDL_GPUBufferRegion; cycle: Boolean); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UploadToGPUBuffer' {$ENDIF} {$ENDIF};
 
 {*
@@ -3524,7 +3524,7 @@ procedure SDL_UploadToGPUBuffer(copy_pass: PSDL_GPUCopyPass; source: PSDL_GPUTra
  *
  * \since This function is available since SDL 3.2.0.
   }
-procedure SDL_CopyGPUTextureToTexture(copy_pass: PSDL_GPUCopyPass; source: PSDL_GPUTextureLocation; destination: PSDL_GPUTextureLocation; w: cuint32; h: cuint32; d: cuint32; cycle: cbool); cdecl;
+procedure SDL_CopyGPUTextureToTexture(copy_pass: PSDL_GPUCopyPass; source: PSDL_GPUTextureLocation; destination: PSDL_GPUTextureLocation; w: cuint32; h: cuint32; d: cuint32; cycle: Boolean); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CopyGPUTextureToTexture' {$ENDIF} {$ENDIF};
 
 {*
@@ -3542,7 +3542,7 @@ procedure SDL_CopyGPUTextureToTexture(copy_pass: PSDL_GPUCopyPass; source: PSDL_
  *
  * \since This function is available since SDL 3.2.0.
   }
-procedure SDL_CopyGPUBufferToBuffer(copy_pass: PSDL_GPUCopyPass; source: PSDL_GPUBufferLocation; destination: PSDL_GPUBufferLocation; size: cuint32; cycle: cbool); cdecl;
+procedure SDL_CopyGPUBufferToBuffer(copy_pass: PSDL_GPUCopyPass; source: PSDL_GPUBufferLocation; destination: PSDL_GPUBufferLocation; size: cuint32; cycle: Boolean); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CopyGPUBufferToBuffer' {$ENDIF} {$ENDIF};
 
 {*
@@ -3629,7 +3629,7 @@ procedure SDL_BlitGPUTexture(command_buffer: PSDL_GPUCommandBuffer; info: PSDL_G
  *
  * \sa SDL_ClaimWindowForGPUDevice
   }
-function SDL_WindowSupportsGPUSwapchainComposition(device: PSDL_GPUDevice; window: PSDL_Window; swapchain_composition: TSDL_GPUSwapchainComposition): cbool; cdecl;
+function SDL_WindowSupportsGPUSwapchainComposition(device: PSDL_GPUDevice; window: PSDL_Window; swapchain_composition: TSDL_GPUSwapchainComposition): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WindowSupportsGPUSwapchainComposition' {$ENDIF} {$ENDIF};
 
 {*
@@ -3646,7 +3646,7 @@ function SDL_WindowSupportsGPUSwapchainComposition(device: PSDL_GPUDevice; windo
  *
  * \sa SDL_ClaimWindowForGPUDevice
   }
-function SDL_WindowSupportsGPUPresentMode(device: PSDL_GPUDevice; window: PSDL_Window; present_mode: TSDL_GPUPresentMode): cbool; cdecl;
+function SDL_WindowSupportsGPUPresentMode(device: PSDL_GPUDevice; window: PSDL_Window; present_mode: TSDL_GPUPresentMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WindowSupportsGPUPresentMode' {$ENDIF} {$ENDIF};
 
 {*
@@ -3676,7 +3676,7 @@ function SDL_WindowSupportsGPUPresentMode(device: PSDL_GPUDevice; window: PSDL_W
  * \sa SDL_WindowSupportsGPUPresentMode
  * \sa SDL_WindowSupportsGPUSwapchainComposition
   }
-function SDL_ClaimWindowForGPUDevice(device: PSDL_GPUDevice; window: PSDL_Window): cbool; cdecl;
+function SDL_ClaimWindowForGPUDevice(device: PSDL_GPUDevice; window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClaimWindowForGPUDevice' {$ENDIF} {$ENDIF};
 
 {*
@@ -3715,7 +3715,7 @@ procedure SDL_ReleaseWindowFromGPUDevice(device: PSDL_GPUDevice; window: PSDL_Wi
  * \sa SDL_WindowSupportsGPUPresentMode
  * \sa SDL_WindowSupportsGPUSwapchainComposition
   }
-function SDL_SetGPUSwapchainParameters(device: PSDL_GPUDevice; window: PSDL_Window; swapchain_composition: TSDL_GPUSwapchainComposition; present_mode: TSDL_GPUPresentMode): cbool; cdecl;
+function SDL_SetGPUSwapchainParameters(device: PSDL_GPUDevice; window: PSDL_Window; swapchain_composition: TSDL_GPUSwapchainComposition; present_mode: TSDL_GPUPresentMode): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetGPUSwapchainParameters' {$ENDIF} {$ENDIF};
 
 {*
@@ -3743,7 +3743,7 @@ function SDL_SetGPUSwapchainParameters(device: PSDL_GPUDevice; window: PSDL_Wind
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_SetGPUAllowedFramesInFlight(device: PSDL_GPUDevice; allowed_frames_in_flight: cuint32): cbool; cdecl;
+function SDL_SetGPUAllowedFramesInFlight(device: PSDL_GPUDevice; allowed_frames_in_flight: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetGPUAllowedFramesInFlight' {$ENDIF} {$ENDIF};
 
 {*
@@ -3806,7 +3806,7 @@ function SDL_GetGPUSwapchainTextureFormat(device: PSDL_GPUDevice; window: PSDL_W
  * \sa SDL_WaitAndAcquireGPUSwapchainTexture
  * \sa SDL_SetGPUAllowedFramesInFlight
   }
-function SDL_AcquireGPUSwapchainTexture(command_buffer: PSDL_GPUCommandBuffer; window: PSDL_Window; swapchain_texture: PPSDL_GPUTexture; swapchain_texture_width: pcuint32; swapchain_texture_height: pcuint32): cbool; cdecl;
+function SDL_AcquireGPUSwapchainTexture(command_buffer: PSDL_GPUCommandBuffer; window: PSDL_Window; swapchain_texture: PPSDL_GPUTexture; swapchain_texture_width: pcuint32; swapchain_texture_height: pcuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AcquireGPUSwapchainTexture' {$ENDIF} {$ENDIF};
 
 {*
@@ -3826,7 +3826,7 @@ function SDL_AcquireGPUSwapchainTexture(command_buffer: PSDL_GPUCommandBuffer; w
  * \sa SDL_WaitAndAcquireGPUSwapchainTexture
  * \sa SDL_SetGPUAllowedFramesInFlight
   }
-function SDL_WaitForGPUSwapchain(device: PSDL_GPUDevice; window: PSDL_Window): cbool; cdecl;
+function SDL_WaitForGPUSwapchain(device: PSDL_GPUDevice; window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitForGPUSwapchain' {$ENDIF} {$ENDIF};
 
 {*
@@ -3867,7 +3867,7 @@ function SDL_WaitForGPUSwapchain(device: PSDL_GPUDevice; window: PSDL_Window): c
  * \sa SDL_SubmitGPUCommandBuffer
  * \sa SDL_SubmitGPUCommandBufferAndAcquireFence
   }
-function SDL_WaitAndAcquireGPUSwapchainTexture(command_buffer: PSDL_GPUCommandBuffer; window: PSDL_Window; swapchain_texture: PPSDL_GPUTexture; swapchain_texture_width: pcuint32; swapchain_texture_height: pcuint32): cbool; cdecl;
+function SDL_WaitAndAcquireGPUSwapchainTexture(command_buffer: PSDL_GPUCommandBuffer; window: PSDL_Window; swapchain_texture: PPSDL_GPUTexture; swapchain_texture_width: pcuint32; swapchain_texture_height: pcuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitAndAcquireGPUSwapchainTexture' {$ENDIF} {$ENDIF};
 
 {*
@@ -3891,7 +3891,7 @@ function SDL_WaitAndAcquireGPUSwapchainTexture(command_buffer: PSDL_GPUCommandBu
  * \sa SDL_AcquireGPUSwapchainTexture
  * \sa SDL_SubmitGPUCommandBufferAndAcquireFence
   }
-function SDL_SubmitGPUCommandBuffer(command_buffer: PSDL_GPUCommandBuffer): cbool; cdecl;
+function SDL_SubmitGPUCommandBuffer(command_buffer: PSDL_GPUCommandBuffer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SubmitGPUCommandBuffer' {$ENDIF} {$ENDIF};
 
 {*
@@ -3943,7 +3943,7 @@ function SDL_SubmitGPUCommandBufferAndAcquireFence(command_buffer: PSDL_GPUComma
  * \sa SDL_AcquireGPUCommandBuffer
  * \sa SDL_AcquireGPUSwapchainTexture
   }
-function SDL_CancelGPUCommandBuffer(command_buffer: PSDL_GPUCommandBuffer): cbool; cdecl;
+function SDL_CancelGPUCommandBuffer(command_buffer: PSDL_GPUCommandBuffer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CancelGPUCommandBuffer' {$ENDIF} {$ENDIF};
 
 {*
@@ -3957,7 +3957,7 @@ function SDL_CancelGPUCommandBuffer(command_buffer: PSDL_GPUCommandBuffer): cboo
  *
  * \sa SDL_WaitForGPUFences
   }
-function SDL_WaitForGPUIdle(device: PSDL_GPUDevice): cbool; cdecl;
+function SDL_WaitForGPUIdle(device: PSDL_GPUDevice): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitForGPUIdle' {$ENDIF} {$ENDIF};
 
 {*
@@ -3976,7 +3976,7 @@ function SDL_WaitForGPUIdle(device: PSDL_GPUDevice): cbool; cdecl;
  * \sa SDL_SubmitGPUCommandBufferAndAcquireFence
  * \sa SDL_WaitForGPUIdle
   }
-function SDL_WaitForGPUFences(device: PSDL_GPUDevice; wait_all: cbool; fences: PPSDL_GPUFence; num_fences: cuint32): cbool; cdecl;
+function SDL_WaitForGPUFences(device: PSDL_GPUDevice; wait_all: Boolean; fences: PPSDL_GPUFence; num_fences: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitForGPUFences' {$ENDIF} {$ENDIF};
 
 {*
@@ -3990,7 +3990,7 @@ function SDL_WaitForGPUFences(device: PSDL_GPUDevice; wait_all: cbool; fences: P
  *
  * \sa SDL_SubmitGPUCommandBufferAndAcquireFence
   }
-function SDL_QueryGPUFence(device: PSDL_GPUDevice; fence: PSDL_GPUFence): cbool; cdecl;
+function SDL_QueryGPUFence(device: PSDL_GPUDevice; fence: PSDL_GPUFence): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_QueryGPUFence' {$ENDIF} {$ENDIF};
 
 {*
@@ -4033,7 +4033,7 @@ function SDL_GPUTextureFormatTexelBlockSize(format: TSDL_GPUTextureFormat): cuin
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_GPUTextureSupportsFormat(device: PSDL_GPUDevice; format: TSDL_GPUTextureFormat; type_: TSDL_GPUTextureType; usage: TSDL_GPUTextureUsageFlags): cbool; cdecl;
+function SDL_GPUTextureSupportsFormat(device: PSDL_GPUDevice; format: TSDL_GPUTextureFormat; type_: TSDL_GPUTextureType; usage: TSDL_GPUTextureUsageFlags): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GPUTextureSupportsFormat' {$ENDIF} {$ENDIF};
 
 {*
@@ -4046,7 +4046,7 @@ function SDL_GPUTextureSupportsFormat(device: PSDL_GPUDevice; format: TSDL_GPUTe
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_GPUTextureSupportsSampleCount(device: PSDL_GPUDevice; format: TSDL_GPUTextureFormat; sample_count: TSDL_GPUSampleCount): cbool; cdecl;
+function SDL_GPUTextureSupportsSampleCount(device: PSDL_GPUDevice; format: TSDL_GPUTextureFormat; sample_count: TSDL_GPUSampleCount): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GPUTextureSupportsSampleCount' {$ENDIF} {$ENDIF};
 
 {*

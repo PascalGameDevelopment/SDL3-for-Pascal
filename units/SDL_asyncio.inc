@@ -260,7 +260,7 @@ function SDL_GetAsyncIOSize(asyncio: PSDL_AsyncIO): cint64; cdecl;
  * \sa SDL_WriteAsyncIO
  * \sa SDL_CreateAsyncIOQueue
   }
-function SDL_ReadAsyncIO(asyncio: PSDL_AsyncIO; ptr: Pointer; offset: cuint64; size: cuint64; queue: PSDL_AsyncIOQueue; userdata: Pointer): cbool; cdecl;
+function SDL_ReadAsyncIO(asyncio: PSDL_AsyncIO; ptr: Pointer; offset: cuint64; size: cuint64; queue: PSDL_AsyncIOQueue; userdata: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadAsyncIO' {$ENDIF} {$ENDIF};
 
 {*
@@ -298,7 +298,7 @@ function SDL_ReadAsyncIO(asyncio: PSDL_AsyncIO; ptr: Pointer; offset: cuint64; s
  * \sa SDL_ReadAsyncIO
  * \sa SDL_CreateAsyncIOQueue
   }
-function SDL_WriteAsyncIO(asyncio: PSDL_AsyncIO; ptr: Pointer; offset: cuint64; size: cuint64; queue: PSDL_AsyncIOQueue; userdata: Pointer): cbool; cdecl;
+function SDL_WriteAsyncIO(asyncio: PSDL_AsyncIO; ptr: Pointer; offset: cuint64; size: cuint64; queue: PSDL_AsyncIOQueue; userdata: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteAsyncIO' {$ENDIF} {$ENDIF};
 
 {*
@@ -348,7 +348,7 @@ function SDL_WriteAsyncIO(asyncio: PSDL_AsyncIO; ptr: Pointer; offset: cuint64; 
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_CloseAsyncIO(asyncio: PSDL_AsyncIO; flush: cbool; queue: PSDL_AsyncIOQueue; userdata: Pointer): cbool; cdecl;
+function SDL_CloseAsyncIO(asyncio: PSDL_AsyncIO; flush: Boolean; queue: PSDL_AsyncIOQueue; userdata: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CloseAsyncIO' {$ENDIF} {$ENDIF};
 
 {*
@@ -426,7 +426,7 @@ procedure SDL_DestroyAsyncIOQueue(queue: PSDL_AsyncIOQueue); cdecl;
  *
  * \sa SDL_WaitAsyncIOResult
   }
-function SDL_GetAsyncIOResult(queue: PSDL_AsyncIOQueue; outcome: PSDL_AsyncIOOutcome): cbool; cdecl;
+function SDL_GetAsyncIOResult(queue: PSDL_AsyncIOQueue; outcome: PSDL_AsyncIOOutcome): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAsyncIOResult' {$ENDIF} {$ENDIF};
 
 {*
@@ -471,7 +471,7 @@ function SDL_GetAsyncIOResult(queue: PSDL_AsyncIOQueue; outcome: PSDL_AsyncIOOut
  *
  * \sa SDL_SignalAsyncIOQueue
   }
-function SDL_WaitAsyncIOResult(queue: PSDL_AsyncIOQueue; outcome: PSDL_AsyncIOOutcome; timeoutMS: cint32): cbool; cdecl;
+function SDL_WaitAsyncIOResult(queue: PSDL_AsyncIOQueue; outcome: PSDL_AsyncIOOutcome; timeoutMS: cint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitAsyncIOResult' {$ENDIF} {$ENDIF};
 
 {*
@@ -529,6 +529,6 @@ procedure SDL_SignalAsyncIOQueue(queue: PSDL_AsyncIOQueue); cdecl;
  *
  * \sa SDL_LoadFile_IO
   }
-function SDL_LoadFileAsync(file_: PAnsiChar; queue: PSDL_AsyncIOQueue; userdata: Pointer): cbool; cdecl;
+function SDL_LoadFileAsync(file_: PAnsiChar; queue: PSDL_AsyncIOQueue; userdata: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LoadFileAsync' {$ENDIF} {$ENDIF};
 

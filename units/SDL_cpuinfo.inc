@@ -75,7 +75,7 @@ function SDL_GetCPUCacheLineSize: cint; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_HasAltiVec: cbool; cdecl;
+function SDL_HasAltiVec: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasAltiVec' {$ENDIF} {$ENDIF};
 
 {*
@@ -89,7 +89,7 @@ function SDL_HasAltiVec: cbool; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_HasMMX: cbool; cdecl;
+function SDL_HasMMX: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasMMX' {$ENDIF} {$ENDIF};
 
 {*
@@ -108,7 +108,7 @@ function SDL_HasMMX: cbool; cdecl;
  * \sa SDL_HasSSE41
  * \sa SDL_HasSSE42
   }
-function SDL_HasSSE: cbool; cdecl;
+function SDL_HasSSE: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasSSE' {$ENDIF} {$ENDIF};
 
 {*
@@ -127,7 +127,7 @@ function SDL_HasSSE: cbool; cdecl;
  * \sa SDL_HasSSE41
  * \sa SDL_HasSSE42
   }
-function SDL_HasSSE2: cbool; cdecl;
+function SDL_HasSSE2: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasSSE2' {$ENDIF} {$ENDIF};
 
 {*
@@ -146,7 +146,7 @@ function SDL_HasSSE2: cbool; cdecl;
  * \sa SDL_HasSSE41
  * \sa SDL_HasSSE42
   }
-function SDL_HasSSE3: cbool; cdecl;
+function SDL_HasSSE3: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasSSE3' {$ENDIF} {$ENDIF};
 
 {*
@@ -165,7 +165,7 @@ function SDL_HasSSE3: cbool; cdecl;
  * \sa SDL_HasSSE3
  * \sa SDL_HasSSE42
   }
-function SDL_HasSSE41: cbool; cdecl;
+function SDL_HasSSE41: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasSSE41' {$ENDIF} {$ENDIF};
 
 {*
@@ -184,7 +184,7 @@ function SDL_HasSSE41: cbool; cdecl;
  * \sa SDL_HasSSE3
  * \sa SDL_HasSSE41
   }
-function SDL_HasSSE42: cbool; cdecl;
+function SDL_HasSSE42: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasSSE42' {$ENDIF} {$ENDIF};
 
 {*
@@ -201,7 +201,7 @@ function SDL_HasSSE42: cbool; cdecl;
  * \sa SDL_HasAVX2
  * \sa SDL_HasAVX512F
   }
-function SDL_HasAVX: cbool; cdecl;
+function SDL_HasAVX: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasAVX' {$ENDIF} {$ENDIF};
 
 {*
@@ -218,7 +218,7 @@ function SDL_HasAVX: cbool; cdecl;
  * \sa SDL_HasAVX
  * \sa SDL_HasAVX512F
   }
-function SDL_HasAVX2: cbool; cdecl;
+function SDL_HasAVX2: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasAVX2' {$ENDIF} {$ENDIF};
 
 {*
@@ -235,7 +235,7 @@ function SDL_HasAVX2: cbool; cdecl;
  * \sa SDL_HasAVX
  * \sa SDL_HasAVX2
   }
-function SDL_HasAVX512F: cbool; cdecl;
+function SDL_HasAVX512F: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasAVX512F' {$ENDIF} {$ENDIF};
 
 {*
@@ -253,7 +253,7 @@ function SDL_HasAVX512F: cbool; cdecl;
  *
  * \sa SDL_HasNEON
   }
-function SDL_HasARMSIMD: cbool; cdecl;
+function SDL_HasARMSIMD: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasARMSIMD' {$ENDIF} {$ENDIF};
 
 {*
@@ -267,7 +267,7 @@ function SDL_HasARMSIMD: cbool; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_HasNEON: cbool; cdecl;
+function SDL_HasNEON: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasNEON' {$ENDIF} {$ENDIF};
 
 {*
@@ -282,7 +282,7 @@ function SDL_HasNEON: cbool; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_HasLSX: cbool; cdecl;
+function SDL_HasLSX: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasLSX' {$ENDIF} {$ENDIF};
 
 {*
@@ -297,7 +297,7 @@ function SDL_HasLSX: cbool; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_HasLASX: cbool; cdecl;
+function SDL_HasLASX: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasLASX' {$ENDIF} {$ENDIF};
 
 {*

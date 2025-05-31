@@ -303,8 +303,8 @@ type
       key: TSDL_Keycode;            {*< SDL virtual key code  }
       mod_: TSDL_Keymod;            {*< current key modifiers  }
       raw: cuint16;                 {*< The platform dependent scancode for this event  }
-      down: cbool;                  {*< true if the key is pressed  }
-      repeat_: cbool;               {*< true if this is a key repeat  }
+      down: Boolean;                {*< true if the key is pressed  }
+      repeat_: Boolean;             {*< true if this is a key repeat  }
     end;
 
 {*
@@ -343,7 +343,7 @@ type
       candidates: ^PAnsiChar;         {*< The list of candidates, or nil if there are no candidates available  }
       num_candidates: cint32;         {*< The number of strings in `candidates`  }
       selected_candidate: cint32;     {*< The index of the selected candidate, or -1 if no candidate is selected  }
-      horizontal: cbool;              {*< true if the list is horizontal, false if it's vertical  }
+      horizontal: Boolean;            {*< true if the list is horizontal, false if it's vertical  }
       padding1: cuint8;
       padding2: cuint8;
       padding3: cuint8;
@@ -418,7 +418,7 @@ type
       windowID: TSDL_WindowID;       {*< The window with mouse focus, if any  }
       which: TSDL_MouseID;           {*< The mouse instance id, SDL_TOUCH_MOUSEID  }
       button: cuint8;                {*< The mouse button index  }
-      down: cbool;                   {*< true if the button is pressed  }
+      down: Boolean;                 {*< true if the button is pressed  }
       clicks: cuint8;                {*< 1 for single-click, 2 for double-click, etc.  }
       padding: cuint8;
       x: cfloat;                     {*< X coordinate, relative to window  }
@@ -521,7 +521,7 @@ type
       timestamp: cuint64;        {*< In nanoseconds, populated using SDL_GetTicksNS()  }
       which: TSDL_JoystickID;    {*< The joystick instance id  }
       button: cuint8;            {*< The joystick button index  }
-      down: cbool;               {*< true if the button is pressed  }
+      down: Boolean;             {*< true if the button is pressed  }
       padding1: cuint8;
       padding2: cuint8;
     end;
@@ -594,7 +594,7 @@ type
       timestamp: cuint64;       {*< In nanoseconds, populated using SDL_GetTicksNS()  }
       which: TSDL_JoystickID;   {*< The joystick instance id  }
       button: cuint8;           {*< The gamepad button (SDL_GamepadButton)  }
-      down: cbool;              {*< true if the button is pressed  }
+      down: Boolean;            {*< true if the button is pressed  }
       padding1: cuint8;
       padding2: cuint8;
     end;
@@ -670,7 +670,7 @@ type
       reserved: cuint32;
       timestamp: cuint64;          {*< In nanoseconds, populated using SDL_GetTicksNS()  }
       which: TSDL_AudioDeviceID;   {*< SDL_AudioDeviceID for the device being added or removed or changing  }
-      recording: cbool;            {*< false if a playback device, true if a recording device.  }
+      recording: Boolean;          {*< false if a playback device, true if a recording device.  }
       padding1: cuint8;
       padding2: cuint8;
       padding3: cuint8;
@@ -793,8 +793,8 @@ type
       pen_state: TSDL_PenInputFlags;  {*< Complete pen input state at time of event  }
       x: cfloat;                      {*< X coordinate, relative to window  }
       y: cfloat;                      {*< Y coordinate, relative to window  }
-      eraser: cbool;                  {*< true if eraser end is used (not all pens support this).  }
-      down: cbool;                    {*< true if the pen is touching or false if the pen is lifted off  }
+      eraser: Boolean;                {*< true if eraser end is used (not all pens support this).  }
+      down: Boolean;                  {*< true if the pen is touching or false if the pen is lifted off  }
     end;
 
 {*
@@ -817,7 +817,7 @@ type
       x: cfloat;                      {*< X coordinate, relative to window  }
       y: cfloat;                      {*< Y coordinate, relative to window  }
       button: cuint8;                 {*< The pen button index (first button is 1).  }
-      down: cbool;                    {*< true if the button is pressed  }
+      down: Boolean;                  {*< true if the button is pressed  }
     end;
 
 {*
@@ -874,7 +874,7 @@ type
       type_: TSDL_EventType;  {*< SDL_EVENT_CLIPBOARD_UPDATE  }
       reserved: cuint32;
       timestamp: cuint64;     {*< In nanoseconds, populated using SDL_GetTicksNS()  }
-      owner: cbool;           {*< are we owning the clipboard (internal update)  }
+      owner: Boolean;         {*< are we owning the clipboard (internal update)  }
       n_mime_types: cint32;   {*< number of mime types  }
       mime_types: ^PAnsiChar; {*< current mime types  }
     end;
@@ -1104,7 +1104,7 @@ function SDL_PeepEvents(events: PSDL_Event; numevents: cint; action: TSDL_EventA
  *
  * \sa SDL_HasEvents
   }
-function SDL_HasEvent(type_: cuint32): cbool; cdecl;
+function SDL_HasEvent(type_: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasEvent' {$ENDIF} {$ENDIF};
 
 {*
@@ -1125,7 +1125,7 @@ function SDL_HasEvent(type_: cuint32): cbool; cdecl;
  *
  * \sa SDL_HasEvents
   }
-function SDL_HasEvents(minType: cuint32; maxType: cuint32): cbool; cdecl;
+function SDL_HasEvents(minType: cuint32; maxType: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasEvents' {$ENDIF} {$ENDIF};
 
 {*
@@ -1231,7 +1231,7 @@ procedure SDL_FlushEvents(minType: cuint32; maxType: cuint32); cdecl;
  * \sa SDL_WaitEvent
  * \sa SDL_WaitEventTimeout
   }
-function SDL_PollEvent(event: PSDL_Event): cbool; cdecl;
+function SDL_PollEvent(event: PSDL_Event): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PollEvent' {$ENDIF} {$ENDIF};
 
 {*
@@ -1258,7 +1258,7 @@ function SDL_PollEvent(event: PSDL_Event): cbool; cdecl;
  * \sa SDL_PushEvent
  * \sa SDL_WaitEventTimeout
   }
-function SDL_WaitEvent(event: PSDL_Event): cbool; cdecl;
+function SDL_WaitEvent(event: PSDL_Event): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitEvent' {$ENDIF} {$ENDIF};
 
 {*
@@ -1291,7 +1291,7 @@ function SDL_WaitEvent(event: PSDL_Event): cbool; cdecl;
  * \sa SDL_PushEvent
  * \sa SDL_WaitEvent
   }
-function SDL_WaitEventTimeout(event: PSDL_Event; timeoutMS: cint32): cbool; cdecl;
+function SDL_WaitEventTimeout(event: PSDL_Event; timeoutMS: cint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitEventTimeout' {$ENDIF} {$ENDIF};
 
 {*
@@ -1326,7 +1326,7 @@ function SDL_WaitEventTimeout(event: PSDL_Event; timeoutMS: cint32): cbool; cdec
  * \sa SDL_PollEvent
  * \sa SDL_RegisterEvents
   }
-function SDL_PushEvent(event: PSDL_Event): cbool; cdecl;
+function SDL_PushEvent(event: PSDL_Event): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_PushEvent' {$ENDIF} {$ENDIF};
 
 {*
@@ -1350,7 +1350,7 @@ function SDL_PushEvent(event: PSDL_Event): cbool; cdecl;
   }
 type
   PSDL_EventFilter = ^TSDL_EventFilter;
-  TSDL_EventFilter = function (userdata: Pointer; event: PSDL_Event): cbool; cdecl;
+  TSDL_EventFilter = function (userdata: Pointer; event: PSDL_Event): Boolean; cdecl;
 
 {*
  * Set up a filter to process all events before they change internal state and
@@ -1416,7 +1416,7 @@ procedure SDL_SetEventFilter(filter: TSDL_EventFilter; userdata: Pointer); cdecl
  *
  * \sa SDL_SetEventFilter
   }
-function SDL_GetEventFilter(filter: PSDL_EventFilter; userdata: PPointer): cbool; cdecl;
+function SDL_GetEventFilter(filter: PSDL_EventFilter; userdata: PPointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetEventFilter' {$ENDIF} {$ENDIF};
 
 {*
@@ -1449,7 +1449,7 @@ function SDL_GetEventFilter(filter: PSDL_EventFilter; userdata: PPointer): cbool
  * \sa SDL_RemoveEventWatch
  * \sa SDL_SetEventFilter
   }
-function SDL_AddEventWatch(filter: TSDL_EventFilter; userdata: Pointer): cbool; cdecl;
+function SDL_AddEventWatch(filter: TSDL_EventFilter; userdata: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AddEventWatch' {$ENDIF} {$ENDIF};
 
 {*
@@ -1503,7 +1503,7 @@ procedure SDL_FilterEvents(filter: TSDL_EventFilter; userdata: Pointer); cdecl;
  *
  * \sa SDL_EventEnabled
   }
-procedure SDL_SetEventEnabled(type_: cuint32; enabled: cbool); cdecl;
+procedure SDL_SetEventEnabled(type_: cuint32; enabled: Boolean); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetEventEnabled' {$ENDIF} {$ENDIF};
 
 {*
@@ -1518,7 +1518,7 @@ procedure SDL_SetEventEnabled(type_: cuint32; enabled: cbool); cdecl;
  *
  * \sa SDL_SetEventEnabled
   }
-function SDL_EventEnabled(type_: cuint32): cbool; cdecl;
+function SDL_EventEnabled(type_: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EventEnabled' {$ENDIF} {$ENDIF};
 
 {*

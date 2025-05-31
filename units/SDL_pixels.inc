@@ -740,7 +740,7 @@ function SDL_GetPixelFormatName(format: TSDL_PixelFormat): PAnsiChar; cdecl;
  *
  * \sa SDL_GetPixelFormatForMasks
   }
-function SDL_GetMasksForPixelFormat(format: TSDL_PixelFormat; bpp: pcint; Rmask: pcuint32; Gmask: pcuint32; Bmask: pcuint32; Amask: pcuint32): cbool; cdecl;
+function SDL_GetMasksForPixelFormat(format: TSDL_PixelFormat; bpp: pcint; Rmask: pcuint32; Gmask: pcuint32; Bmask: pcuint32; Amask: pcuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetMasksForPixelFormat' {$ENDIF} {$ENDIF};
 
 {*
@@ -819,7 +819,7 @@ function SDL_CreatePalette(ncolors: cint): PSDL_Palette; cdecl;
  *
  * \since This function is available since SDL 3.1.3.
   }
-function SDL_SetPaletteColors(palette: PSDL_Palette; colors: PSDL_Color; firstcolor: cint; ncolors: cint): cbool; cdecl;
+function SDL_SetPaletteColors(palette: PSDL_Palette; colors: PSDL_Color; firstcolor: cint; ncolors: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetPaletteColors' {$ENDIF} {$ENDIF};
 
 {*

@@ -120,7 +120,7 @@ type
        *
        *  \return true if successful or false on write error when flushing data.
         }
-      flush: function (userdata: Pointer; status: PSDL_IOStatus): cbool; cdecl;
+      flush: function (userdata: Pointer; status: PSDL_IOStatus): Boolean; cdecl;
 
       {*
        *  Close and free any allocated resources.
@@ -133,7 +133,7 @@ type
        *
        *  \return true if successful or false on write error when flushing data.
         }
-      close: function (userdata: Pointer): cbool; cdecl;
+      close: function (userdata: Pointer): Boolean; cdecl;
     end;
 
 { Check the size of SDL_IOStreamInterface
@@ -442,7 +442,7 @@ function SDL_OpenIO(iface: PSDL_IOStreamInterface; userdata: Pointer): PSDL_IOSt
  *
  * \sa SDL_OpenIO
   }
-function SDL_CloseIO(context: PSDL_IOStream): cbool; cdecl;
+function SDL_CloseIO(context: PSDL_IOStream): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CloseIO' {$ENDIF} {$ENDIF};
 
 {*
@@ -668,7 +668,7 @@ function SDL_IOprintf(context: PSDL_IOStream; fmt: PAnsiChar): csize_t; cdecl; o
  * \sa SDL_OpenIO
  * \sa SDL_WriteIO
   }
-function SDL_FlushIO(context: PSDL_IOStream): cbool; cdecl;
+function SDL_FlushIO(context: PSDL_IOStream): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_FlushIO' {$ENDIF} {$ENDIF};
 
 {*
@@ -695,7 +695,7 @@ function SDL_FlushIO(context: PSDL_IOStream): cbool; cdecl;
  * \sa SDL_LoadFile
  * \sa SDL_SaveFile_IO
   }
-function SDL_LoadFile_IO(src: PSDL_IOStream; datasize: pcsize_t; closeio: cbool): Pointer; cdecl;
+function SDL_LoadFile_IO(src: PSDL_IOStream; datasize: pcsize_t; closeio: Boolean): Pointer; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_LoadFile_IO' {$ENDIF} {$ENDIF};
 
 {*
@@ -741,7 +741,7 @@ function SDL_LoadFile(file_: PAnsiChar; datasize: pcsize_t): Pointer; cdecl;
  * \sa SDL_SaveFile
  * \sa SDL_LoadFile_IO
   }
-function SDL_SaveFile_IO(src: PSDL_IOStream; data: Pointer; datasize: csize_t; closeio: cbool): cbool; cdecl;
+function SDL_SaveFile_IO(src: PSDL_IOStream; data: Pointer; datasize: csize_t; closeio: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SaveFile_IO' {$ENDIF} {$ENDIF};
 
 {*
@@ -761,7 +761,7 @@ function SDL_SaveFile_IO(src: PSDL_IOStream; data: Pointer; datasize: csize_t; c
  * \sa SDL_SaveFile_IO
  * \sa SDL_LoadFile
   }
-function SDL_SaveFile(file_: PAnsiChar; data: Pointer; datasize: csize_t): cbool; cdecl;
+function SDL_SaveFile(file_: PAnsiChar; data: Pointer; datasize: csize_t): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SaveFile' {$ENDIF} {$ENDIF};
 
 {*
@@ -787,7 +787,7 @@ function SDL_SaveFile(file_: PAnsiChar; data: Pointer; datasize: csize_t): cbool
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_ReadU8(src: PSDL_IOStream; value: pcuint8): cbool; cdecl;
+function SDL_ReadU8(src: PSDL_IOStream; value: pcuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadU8' {$ENDIF} {$ENDIF};
 
 {*
@@ -807,7 +807,7 @@ function SDL_ReadU8(src: PSDL_IOStream; value: pcuint8): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_ReadS8(src: PSDL_IOStream; value: pcint8): cbool; cdecl;
+function SDL_ReadS8(src: PSDL_IOStream; value: pcint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadS8' {$ENDIF} {$ENDIF};
 
 {*
@@ -831,7 +831,7 @@ function SDL_ReadS8(src: PSDL_IOStream; value: pcint8): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_ReadU16LE(src: PSDL_IOStream; value: pcuint16): cbool; cdecl;
+function SDL_ReadU16LE(src: PSDL_IOStream; value: pcuint16): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadU16LE' {$ENDIF} {$ENDIF};
 
 {*
@@ -855,7 +855,7 @@ function SDL_ReadU16LE(src: PSDL_IOStream; value: pcuint16): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_ReadS16LE(src: PSDL_IOStream; value: pcint16): cbool; cdecl;
+function SDL_ReadS16LE(src: PSDL_IOStream; value: pcint16): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadS16LE' {$ENDIF} {$ENDIF};
 
 {*
@@ -879,7 +879,7 @@ function SDL_ReadS16LE(src: PSDL_IOStream; value: pcint16): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_ReadU16BE(src: PSDL_IOStream; value: pcuint16): cbool; cdecl;
+function SDL_ReadU16BE(src: PSDL_IOStream; value: pcuint16): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadU16BE' {$ENDIF} {$ENDIF};
 
 {*
@@ -903,7 +903,7 @@ function SDL_ReadU16BE(src: PSDL_IOStream; value: pcuint16): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_ReadS16BE(src: PSDL_IOStream; value: pcint16): cbool; cdecl;
+function SDL_ReadS16BE(src: PSDL_IOStream; value: pcint16): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadS16BE' {$ENDIF} {$ENDIF};
 
 {*
@@ -927,7 +927,7 @@ function SDL_ReadS16BE(src: PSDL_IOStream; value: pcint16): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_ReadU32LE(src: PSDL_IOStream; value: pcuint32): cbool; cdecl;
+function SDL_ReadU32LE(src: PSDL_IOStream; value: pcuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadU32LE' {$ENDIF} {$ENDIF};
 
 {*
@@ -951,7 +951,7 @@ function SDL_ReadU32LE(src: PSDL_IOStream; value: pcuint32): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_ReadS32LE(src: PSDL_IOStream; value: pcint32): cbool; cdecl;
+function SDL_ReadS32LE(src: PSDL_IOStream; value: pcint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadS32LE' {$ENDIF} {$ENDIF};
 
 {*
@@ -975,7 +975,7 @@ function SDL_ReadS32LE(src: PSDL_IOStream; value: pcint32): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_ReadU32BE(src: PSDL_IOStream; value: pcuint32): cbool; cdecl;
+function SDL_ReadU32BE(src: PSDL_IOStream; value: pcuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadU32BE' {$ENDIF} {$ENDIF};
 
 {*
@@ -999,7 +999,7 @@ function SDL_ReadU32BE(src: PSDL_IOStream; value: pcuint32): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_ReadS32BE(src: PSDL_IOStream; value: pcint32): cbool; cdecl;
+function SDL_ReadS32BE(src: PSDL_IOStream; value: pcint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadS32BE' {$ENDIF} {$ENDIF};
 
 {*
@@ -1023,7 +1023,7 @@ function SDL_ReadS32BE(src: PSDL_IOStream; value: pcint32): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_ReadU64LE(src: PSDL_IOStream; value: pcuint64): cbool; cdecl;
+function SDL_ReadU64LE(src: PSDL_IOStream; value: pcuint64): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadU64LE' {$ENDIF} {$ENDIF};
 
 {*
@@ -1047,7 +1047,7 @@ function SDL_ReadU64LE(src: PSDL_IOStream; value: pcuint64): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_ReadS64LE(src: PSDL_IOStream; value: pcint64): cbool; cdecl;
+function SDL_ReadS64LE(src: PSDL_IOStream; value: pcint64): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadS64LE' {$ENDIF} {$ENDIF};
 
 {*
@@ -1071,7 +1071,7 @@ function SDL_ReadS64LE(src: PSDL_IOStream; value: pcint64): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_ReadU64BE(src: PSDL_IOStream; value: pcuint64): cbool; cdecl;
+function SDL_ReadU64BE(src: PSDL_IOStream; value: pcuint64): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadU64BE' {$ENDIF} {$ENDIF};
 
 {*
@@ -1095,7 +1095,7 @@ function SDL_ReadU64BE(src: PSDL_IOStream; value: pcuint64): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_ReadS64BE(src: PSDL_IOStream; value: pcint64): cbool; cdecl;
+function SDL_ReadS64BE(src: PSDL_IOStream; value: pcint64): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReadS64BE' {$ENDIF} {$ENDIF};
 
 { Read endian functions  }
@@ -1118,7 +1118,7 @@ function SDL_ReadS64BE(src: PSDL_IOStream; value: pcint64): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_WriteU8(dst: PSDL_IOStream; value: cuint8): cbool; cdecl;
+function SDL_WriteU8(dst: PSDL_IOStream; value: cuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteU8' {$ENDIF} {$ENDIF};
 
 {*
@@ -1133,7 +1133,7 @@ function SDL_WriteU8(dst: PSDL_IOStream; value: cuint8): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_WriteS8(dst: PSDL_IOStream; value: cint8): cbool; cdecl;
+function SDL_WriteS8(dst: PSDL_IOStream; value: cint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteS8' {$ENDIF} {$ENDIF};
 
 {*
@@ -1153,7 +1153,7 @@ function SDL_WriteS8(dst: PSDL_IOStream; value: cint8): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_WriteU16LE(dst: PSDL_IOStream; value: cuint16): cbool; cdecl;
+function SDL_WriteU16LE(dst: PSDL_IOStream; value: cuint16): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteU16LE' {$ENDIF} {$ENDIF};
 
 {*
@@ -1173,7 +1173,7 @@ function SDL_WriteU16LE(dst: PSDL_IOStream; value: cuint16): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_WriteS16LE(dst: PSDL_IOStream; value: cint16): cbool; cdecl;
+function SDL_WriteS16LE(dst: PSDL_IOStream; value: cint16): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteS16LE' {$ENDIF} {$ENDIF};
 
 {*
@@ -1192,7 +1192,7 @@ function SDL_WriteS16LE(dst: PSDL_IOStream; value: cint16): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_WriteU16BE(dst: PSDL_IOStream; value: cuint16): cbool; cdecl;
+function SDL_WriteU16BE(dst: PSDL_IOStream; value: cuint16): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteU16BE' {$ENDIF} {$ENDIF};
 
 {*
@@ -1211,7 +1211,7 @@ function SDL_WriteU16BE(dst: PSDL_IOStream; value: cuint16): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_WriteS16BE(dst: PSDL_IOStream; value: cint16): cbool; cdecl;
+function SDL_WriteS16BE(dst: PSDL_IOStream; value: cint16): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteS16BE' {$ENDIF} {$ENDIF};
 
 {*
@@ -1231,7 +1231,7 @@ function SDL_WriteS16BE(dst: PSDL_IOStream; value: cint16): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_WriteU32LE(dst: PSDL_IOStream; value: cuint32): cbool; cdecl;
+function SDL_WriteU32LE(dst: PSDL_IOStream; value: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteU32LE' {$ENDIF} {$ENDIF};
 
 {*
@@ -1251,7 +1251,7 @@ function SDL_WriteU32LE(dst: PSDL_IOStream; value: cuint32): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_WriteS32LE(dst: PSDL_IOStream; value: cint32): cbool; cdecl;
+function SDL_WriteS32LE(dst: PSDL_IOStream; value: cint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteS32LE' {$ENDIF} {$ENDIF};
 
 {*
@@ -1270,7 +1270,7 @@ function SDL_WriteS32LE(dst: PSDL_IOStream; value: cint32): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_WriteU32BE(dst: PSDL_IOStream; value: cuint32): cbool; cdecl;
+function SDL_WriteU32BE(dst: PSDL_IOStream; value: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteU32BE' {$ENDIF} {$ENDIF};
 
 {*
@@ -1289,7 +1289,7 @@ function SDL_WriteU32BE(dst: PSDL_IOStream; value: cuint32): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_WriteS32BE(dst: PSDL_IOStream; value: cint32): cbool; cdecl;
+function SDL_WriteS32BE(dst: PSDL_IOStream; value: cint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteS32BE' {$ENDIF} {$ENDIF};
 
 {*
@@ -1309,7 +1309,7 @@ function SDL_WriteS32BE(dst: PSDL_IOStream; value: cint32): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_WriteU64LE(dst: PSDL_IOStream; value: cuint64): cbool; cdecl;
+function SDL_WriteU64LE(dst: PSDL_IOStream; value: cuint64): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteU64LE' {$ENDIF} {$ENDIF};
 
 {*
@@ -1329,7 +1329,7 @@ function SDL_WriteU64LE(dst: PSDL_IOStream; value: cuint64): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_WriteS64LE(dst: PSDL_IOStream; value: cint64): cbool; cdecl;
+function SDL_WriteS64LE(dst: PSDL_IOStream; value: cint64): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteS64LE' {$ENDIF} {$ENDIF};
 
 {*
@@ -1348,7 +1348,7 @@ function SDL_WriteS64LE(dst: PSDL_IOStream; value: cint64): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_WriteU64BE(dst: PSDL_IOStream; value: cuint64): cbool; cdecl;
+function SDL_WriteU64BE(dst: PSDL_IOStream; value: cuint64): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteU64BE' {$ENDIF} {$ENDIF};
 
 {*
@@ -1367,6 +1367,6 @@ function SDL_WriteU64BE(dst: PSDL_IOStream; value: cuint64): cbool; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_WriteS64BE(dst: PSDL_IOStream; value: cint64): cbool; cdecl;
+function SDL_WriteS64BE(dst: PSDL_IOStream; value: cint64): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WriteS64BE' {$ENDIF} {$ENDIF};
 

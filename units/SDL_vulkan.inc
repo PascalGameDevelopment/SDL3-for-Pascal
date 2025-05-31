@@ -125,7 +125,7 @@ type
  * \sa SDL_Vulkan_GetVkGetInstanceProcAddr
  * \sa SDL_Vulkan_UnloadLibrary
   }
-function SDL_Vulkan_LoadLibrary(path: PAnsiChar): cbool; cdecl;
+function SDL_Vulkan_LoadLibrary(path: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Vulkan_LoadLibrary' {$ENDIF} {$ENDIF};
 
 {*
@@ -222,7 +222,7 @@ function SDL_Vulkan_GetInstanceExtensions(count: pcuint32):PPAnsiChar; cdecl;
  * \sa SDL_Vulkan_GetInstanceExtensions
  * \sa SDL_Vulkan_DestroySurface
   }
-function SDL_Vulkan_CreateSurface(window: PSDL_Window; instance: TVkInstance; allocator: PVkAllocationCallbacks; surface: PVkSurfaceKHR): cbool; cdecl;
+function SDL_Vulkan_CreateSurface(window: PSDL_Window; instance: TVkInstance; allocator: PVkAllocationCallbacks; surface: PVkSurfaceKHR): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Vulkan_CreateSurface' {$ENDIF} {$ENDIF};
 
 {*
@@ -268,5 +268,5 @@ procedure SDL_Vulkan_DestroySurface(instance: TVkInstance; surface: TVkSurfaceKH
  *
  * \sa SDL_Vulkan_GetInstanceExtensions
   }
-function SDL_Vulkan_GetPresentationSupport(instance: TVkInstance; physicalDevice: TVkPhysicalDevice; queueFamilyIndex: cuint32): cbool; cdecl;
+function SDL_Vulkan_GetPresentationSupport(instance: TVkInstance; physicalDevice: TVkPhysicalDevice; queueFamilyIndex: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Vulkan_GetPresentationSupport' {$ENDIF} {$ENDIF};

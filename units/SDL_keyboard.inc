@@ -38,7 +38,7 @@ type
  *
  * \sa SDL_GetKeyboards
   }
-function SDL_HasKeyboard: cbool; cdecl;
+function SDL_HasKeyboard: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasKeyboard' {$ENDIF} {$ENDIF};
 
 {*
@@ -118,7 +118,7 @@ function SDL_GetKeyboardFocus: PSDL_Window; cdecl;
  * \sa SDL_PumpEvents
  * \sa SDL_ResetKeyboard
   }
-function SDL_GetKeyboardState(numkeys: pcint): pcbool; cdecl;
+function SDL_GetKeyboardState(numkeys: pcint): pBoolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyboardState' {$ENDIF} {$ENDIF};
 
 {*
@@ -187,7 +187,7 @@ procedure SDL_SetModState(modstate: TSDL_Keymod); cdecl;
  * \sa SDL_GetKeyName
  * \sa SDL_GetScancodeFromKey
   }
-function SDL_GetKeyFromScancode(scancode: TSDL_Scancode; modstate: TSDL_Keymod; key_event: cbool): TSDL_Keycode; cdecl;
+function SDL_GetKeyFromScancode(scancode: TSDL_Scancode; modstate: TSDL_Keymod; key_event: Boolean): TSDL_Keycode; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetKeyFromScancode' {$ENDIF} {$ENDIF};
 
 {*
@@ -224,7 +224,7 @@ function SDL_GetScancodeFromKey(key: TSDL_Keycode; modstate: PSDL_Keymod): TSDL_
  *
  * \sa SDL_GetScancodeName
   }
-function SDL_SetScancodeName(scancode: TSDL_Scancode; name: PAnsiChar): cbool; cdecl;
+function SDL_SetScancodeName(scancode: TSDL_Scancode; name: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetScancodeName' {$ENDIF} {$ENDIF};
 
 {*
@@ -325,7 +325,7 @@ function SDL_GetKeyFromName(name: PAnsiChar): TSDL_Keycode; cdecl;
  * \sa SDL_StopTextInput
  * \sa SDL_TextInputActive
   }
-function SDL_StartTextInput(window: PSDL_Window): cbool; cdecl;
+function SDL_StartTextInput(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_StartTextInput' {$ENDIF} {$ENDIF};
 
 {*
@@ -424,7 +424,7 @@ const
  * \sa SDL_StopTextInput
  * \sa SDL_TextInputActive
   }
-function SDL_StartTextInputWithProperties(window: PSDL_Window; props: TSDL_PropertiesID): cbool; cdecl;
+function SDL_StartTextInputWithProperties(window: PSDL_Window; props: TSDL_PropertiesID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_StartTextInputWithProperties' {$ENDIF} {$ENDIF};
 
   const
@@ -444,7 +444,7 @@ function SDL_StartTextInputWithProperties(window: PSDL_Window; props: TSDL_Prope
  *
  * \sa SDL_StartTextInput
   }
-function SDL_TextInputActive(window: PSDL_Window): cbool; cdecl;
+function SDL_TextInputActive(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_TextInputActive' {$ENDIF} {$ENDIF};
 
 {*
@@ -461,7 +461,7 @@ function SDL_TextInputActive(window: PSDL_Window): cbool; cdecl;
  *
  * \sa SDL_StartTextInput
   }
-function SDL_StopTextInput(window: PSDL_Window): cbool; cdecl;
+function SDL_StopTextInput(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_StopTextInput' {$ENDIF} {$ENDIF};
 
 {*
@@ -476,7 +476,7 @@ function SDL_StopTextInput(window: PSDL_Window): cbool; cdecl;
  * \sa SDL_StartTextInput
  * \sa SDL_StopTextInput
   }
-function SDL_ClearComposition(window: PSDL_Window): cbool; cdecl;
+function SDL_ClearComposition(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearComposition' {$ENDIF} {$ENDIF};
 
 {*
@@ -499,7 +499,7 @@ function SDL_ClearComposition(window: PSDL_Window): cbool; cdecl;
  * \sa SDL_StartTextInput
   }
 
-function SDL_SetTextInputArea(window: PSDL_Window; rect: PSDL_Rect; cursor: cint): cbool; cdecl;
+function SDL_SetTextInputArea(window: PSDL_Window; rect: PSDL_Rect; cursor: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetTextInputArea' {$ENDIF} {$ENDIF};
 
 {*
@@ -519,7 +519,7 @@ function SDL_SetTextInputArea(window: PSDL_Window; rect: PSDL_Rect; cursor: cint
  *
  * \sa SDL_SetTextInputArea
   }
-function SDL_GetTextInputArea(window: PSDL_Window; rect: PSDL_Rect; cursor: pcint): cbool; cdecl;
+function SDL_GetTextInputArea(window: PSDL_Window; rect: PSDL_Rect; cursor: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTextInputArea' {$ENDIF} {$ENDIF};
 
 {*
@@ -533,7 +533,7 @@ function SDL_GetTextInputArea(window: PSDL_Window; rect: PSDL_Rect; cursor: pcin
  * \sa SDL_StartTextInput
  * \sa SDL_ScreenKeyboardShown
   }
-function SDL_HasScreenKeyboardSupport: cbool; cdecl;
+function SDL_HasScreenKeyboardSupport: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasScreenKeyboardSupport' {$ENDIF} {$ENDIF};
 
 {*
@@ -546,6 +546,6 @@ function SDL_HasScreenKeyboardSupport: cbool; cdecl;
  *
  * \sa SDL_HasScreenKeyboardSupport
   }
-function SDL_ScreenKeyboardShown(window: PSDL_Window): cbool; cdecl;
+function SDL_ScreenKeyboardShown(window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ScreenKeyboardShown' {$ENDIF} {$ENDIF};
 

@@ -4298,7 +4298,7 @@ const
  * \sa SDL_ResetHint
  * \sa SDL_SetHint
   }
-function SDL_SetHintWithPriority(name: PAnsiChar; value: PAnsiChar; priority: TSDL_HintPriority): cbool; cdecl;
+function SDL_SetHintWithPriority(name: PAnsiChar; value: PAnsiChar; priority: TSDL_HintPriority): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetHintWithPriority' {$ENDIF} {$ENDIF};
 
 {*
@@ -4321,7 +4321,7 @@ function SDL_SetHintWithPriority(name: PAnsiChar; value: PAnsiChar; priority: TS
  * \sa SDL_ResetHint
  * \sa SDL_SetHintWithPriority
   }
-function SDL_SetHint(name: PAnsiChar; value: PAnsiChar): cbool; cdecl;
+function SDL_SetHint(name: PAnsiChar; value: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetHint' {$ENDIF} {$ENDIF};
 
 {*
@@ -4342,7 +4342,7 @@ function SDL_SetHint(name: PAnsiChar; value: PAnsiChar): cbool; cdecl;
  * \sa SDL_SetHint
  * \sa SDL_ResetHints
   }
-function SDL_ResetHint(name: PAnsiChar): cbool; cdecl;
+function SDL_ResetHint(name: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ResetHint' {$ENDIF} {$ENDIF};
 
 {*
@@ -4397,8 +4397,8 @@ function SDL_GetHint(name: PAnsiChar): PAnsiChar; cdecl;
  * \sa SDL_GetHint
  * \sa SDL_SetHint
   }
-function SDL_GetHincboolean(name: PAnsiChar; default_value: cbool): cbool; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetHincboolean' {$ENDIF} {$ENDIF};
+function SDL_GetHinBooleanean(name: PAnsiChar; default_value: Boolean): Boolean; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetHinBooleanean' {$ENDIF} {$ENDIF};
 
 {*
  * A callback used to send notifications of hint value changes.
@@ -4441,7 +4441,7 @@ type
  *
  * \sa SDL_RemoveHintCallback
   }
-function SDL_AddHintCallback(name: PAnsiChar; callback: TSDL_HintCallback; userdata: Pointer): cbool; cdecl;
+function SDL_AddHintCallback(name: PAnsiChar; callback: TSDL_HintCallback; userdata: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AddHintCallback' {$ENDIF} {$ENDIF};
 
 {*

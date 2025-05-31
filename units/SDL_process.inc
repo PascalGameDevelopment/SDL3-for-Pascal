@@ -78,7 +78,7 @@ type
  * \sa SDL_WaitProcess
  * \sa SDL_DestroyProcess
   }
-function SDL_CreateProcess(args: PPAnsiChar; pipe_stdio: cbool): PSDL_Process; cdecl;
+function SDL_CreateProcess(args: PPAnsiChar; pipe_stdio: Boolean): PSDL_Process; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateProcess' {$ENDIF} {$ENDIF};
 
 {*
@@ -352,7 +352,7 @@ function SDL_GetProcessOutput(process: PSDL_Process): PSDL_IOStream; cdecl;
  * \sa SDL_WaitProcess
  * \sa SDL_DestroyProcess
   }
-function SDL_KillProcess(process: PSDL_Process; force: cbool): cbool; cdecl;
+function SDL_KillProcess(process: PSDL_Process; force: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_KillProcess' {$ENDIF} {$ENDIF};
 
 {*
@@ -386,7 +386,7 @@ function SDL_KillProcess(process: PSDL_Process; force: cbool): cbool; cdecl;
  * \sa SDL_KillProcess
  * \sa SDL_DestroyProcess
   }
-function SDL_WaitProcess(process: PSDL_Process; block: cbool; exitcode: pcint): cbool; cdecl;
+function SDL_WaitProcess(process: PSDL_Process; block: Boolean; exitcode: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_WaitProcess' {$ENDIF} {$ENDIF};
 
 {*

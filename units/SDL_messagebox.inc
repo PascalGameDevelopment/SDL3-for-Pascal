@@ -164,7 +164,7 @@ type
  *
  * \sa SDL_ShowSimpleMessageBox
   }
-function SDL_ShowMessageBox(messageboxdata: PSDL_MessageBoxData; buttonid: pcint): cbool; cdecl;
+function SDL_ShowMessageBox(messageboxdata: PSDL_MessageBoxData; buttonid: pcint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowMessageBox' {$ENDIF} {$ENDIF};
 
 {*
@@ -207,6 +207,6 @@ function SDL_ShowMessageBox(messageboxdata: PSDL_MessageBoxData; buttonid: pcint
  *
  * \sa SDL_ShowMessageBox
   }
-function SDL_ShowSimpleMessageBox(flags: TSDL_MessageBoxFlags; title: PAnsiChar; message: PAnsiChar; window: PSDL_Window): cbool; cdecl;
+function SDL_ShowSimpleMessageBox(flags: TSDL_MessageBoxFlags; title: PAnsiChar; message: PAnsiChar; window: PSDL_Window): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ShowSimpleMessageBox' {$ENDIF} {$ENDIF};
 

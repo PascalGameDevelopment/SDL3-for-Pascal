@@ -350,7 +350,7 @@ function SDL_AddGamepadMapping(mapping: PAnsiChar): cint; cdecl;
  * \sa SDL_HINT_GAMECONTROLLERCONFIG_FILE
  * \sa SDL_EVENT_GAMEPAD_ADDED
   }
-function SDL_AddGamepadMappingsFromIO(src: PSDL_IOStream; closeio: cbool): cint; cdecl;
+function SDL_AddGamepadMappingsFromIO(src: PSDL_IOStream; closeio: Boolean): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AddGamepadMappingsFromIO' {$ENDIF} {$ENDIF};
 
 {*
@@ -398,7 +398,7 @@ function SDL_AddGamepadMappingsFromFile(file_: PAnsiChar): cint; cdecl;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_ReloadGamepadMappings: cbool; cdecl;
+function SDL_ReloadGamepadMappings: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ReloadGamepadMappings' {$ENDIF} {$ENDIF};
 
 {*
@@ -468,7 +468,7 @@ function SDL_GetGamepadMapping(gamepad: PSDL_Gamepad): PAnsiChar; cdecl;
  * \sa SDL_AddGamepadMapping
  * \sa SDL_GetGamepadMapping
   }
-function SDL_SetGamepadMapping(instance_id: TSDL_JoystickID; mapping: PAnsiChar): cbool; cdecl;
+function SDL_SetGamepadMapping(instance_id: TSDL_JoystickID; mapping: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetGamepadMapping' {$ENDIF} {$ENDIF};
 
 {*
@@ -480,7 +480,7 @@ function SDL_SetGamepadMapping(instance_id: TSDL_JoystickID; mapping: PAnsiChar)
  *
  * \sa SDL_GetGamepads
   }
-function SDL_HasGamepad: cbool; cdecl;
+function SDL_HasGamepad: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_HasGamepad' {$ENDIF} {$ENDIF};
 
 {*
@@ -512,7 +512,7 @@ function SDL_GetGamepads(count: pcint): PSDL_JoystickID; cdecl;
  * \sa SDL_GetJoysticks
  * \sa SDL_OpenGamepad
   }
-function SDL_IsGamepad(instance_id: TSDL_JoystickID): cbool; cdecl;
+function SDL_IsGamepad(instance_id: TSDL_JoystickID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_IsGamepad' {$ENDIF} {$ENDIF};
 
 {*
@@ -865,7 +865,7 @@ function SDL_GetGamepadPlayerIndex(gamepad: PSDL_Gamepad): cint; cdecl;
  *
  * \sa SDL_GetGamepadPlayerIndex
   }
-function SDL_SetGamepadPlayerIndex(gamepad: PSDL_Gamepad; player_index: cint): cbool; cdecl;
+function SDL_SetGamepadPlayerIndex(gamepad: PSDL_Gamepad; player_index: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetGamepadPlayerIndex' {$ENDIF} {$ENDIF};
 
 {*
@@ -997,7 +997,7 @@ function SDL_GetGamepadPowerInfo(gamepad: PSDL_Gamepad; percent: pcint): TSDL_Po
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_GamepadConnected(gamepad: PSDL_Gamepad): cbool; cdecl;
+function SDL_GamepadConnected(gamepad: PSDL_Gamepad): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GamepadConnected' {$ENDIF} {$ENDIF};
 
 {*
@@ -1034,7 +1034,7 @@ function SDL_GetGamepadJoystick(gamepad: PSDL_Gamepad): PSDL_Joystick; cdecl;
  * \sa SDL_GamepadEventsEnabled
  * \sa SDL_UpdateGamepads
   }
-procedure SDL_SetGamepadEventsEnabled(enabled: cbool); cdecl;
+procedure SDL_SetGamepadEventsEnabled(enabled: Boolean); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetGamepadEventsEnabled' {$ENDIF} {$ENDIF};
 
 {*
@@ -1049,7 +1049,7 @@ procedure SDL_SetGamepadEventsEnabled(enabled: cbool); cdecl;
  *
  * \sa SDL_SetGamepadEventsEnabled
   }
-function SDL_GamepadEventsEnabled: cbool; cdecl;
+function SDL_GamepadEventsEnabled: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GamepadEventsEnabled' {$ENDIF} {$ENDIF};
 
 {*
@@ -1166,7 +1166,7 @@ function SDL_GetGamepadStringForAxis(axis: TSDL_GamepadAxis): PAnsiChar; cdecl;
  * \sa SDL_GamepadHasButton
  * \sa SDL_GetGamepadAxis
   }
-function SDL_GamepadHasAxis(gamepad: PSDL_Gamepad; axis: TSDL_GamepadAxis): cbool; cdecl;
+function SDL_GamepadHasAxis(gamepad: PSDL_Gamepad; axis: TSDL_GamepadAxis): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GamepadHasAxis' {$ENDIF} {$ENDIF};
 
 {*
@@ -1242,7 +1242,7 @@ function SDL_GetGamepadStringForButton(button: TSDL_GamepadButton): PAnsiChar; c
  *
  * \sa SDL_GamepadHasAxis
   }
-function SDL_GamepadHasButton(gamepad: PSDL_Gamepad; button: TSDL_GamepadButton): cbool; cdecl;
+function SDL_GamepadHasButton(gamepad: PSDL_Gamepad; button: TSDL_GamepadButton): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GamepadHasButton' {$ENDIF} {$ENDIF};
 
 {*
@@ -1257,7 +1257,7 @@ function SDL_GamepadHasButton(gamepad: PSDL_Gamepad; button: TSDL_GamepadButton)
  * \sa SDL_GamepadHasButton
  * \sa SDL_GetGamepadAxis
   }
-function SDL_GetGamepadButton(gamepad: PSDL_Gamepad; button: TSDL_GamepadButton): cbool; cdecl;
+function SDL_GetGamepadButton(gamepad: PSDL_Gamepad; button: TSDL_GamepadButton): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetGamepadButton' {$ENDIF} {$ENDIF};
 
 {*
@@ -1337,7 +1337,7 @@ function SDL_GetNumGamepadTouchpadFingers(gamepad: PSDL_Gamepad; touchpad: cint)
  *
  * \sa SDL_GetNumGamepadTouchpadFingers
   }
-function SDL_GetGamepadTouchpadFinger(gamepad: PSDL_Gamepad; touchpad: cint; finger: cint; down: pcbool; x: pcfloat; y: pcfloat; pressure: pcfloat): cbool; cdecl;
+function SDL_GetGamepadTouchpadFinger(gamepad: PSDL_Gamepad; touchpad: cint; finger: cint; down: pBoolean; x: pcfloat; y: pcfloat; pressure: pcfloat): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetGamepadTouchpadFinger' {$ENDIF} {$ENDIF};
 
 {*
@@ -1353,7 +1353,7 @@ function SDL_GetGamepadTouchpadFinger(gamepad: PSDL_Gamepad; touchpad: cint; fin
  * \sa SDL_GetGamepadSensorDataRate
  * \sa SDL_SetGamepadSensorEnabled
   }
-function SDL_GamepadHasSensor(gamepad: PSDL_Gamepad; type_: TSDL_SensorType): cbool; cdecl;
+function SDL_GamepadHasSensor(gamepad: PSDL_Gamepad; type_: TSDL_SensorType): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GamepadHasSensor' {$ENDIF} {$ENDIF};
 
 {*
@@ -1370,7 +1370,7 @@ function SDL_GamepadHasSensor(gamepad: PSDL_Gamepad; type_: TSDL_SensorType): cb
  * \sa SDL_GamepadHasSensor
  * \sa SDL_GamepadSensorEnabled
   }
-function SDL_SetGamepadSensorEnabled(gamepad: PSDL_Gamepad; type_: TSDL_SensorType; enabled: cbool): cbool; cdecl;
+function SDL_SetGamepadSensorEnabled(gamepad: PSDL_Gamepad; type_: TSDL_SensorType; enabled: Boolean): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetGamepadSensorEnabled' {$ENDIF} {$ENDIF};
 
 {*
@@ -1384,7 +1384,7 @@ function SDL_SetGamepadSensorEnabled(gamepad: PSDL_Gamepad; type_: TSDL_SensorTy
  *
  * \sa SDL_SetGamepadSensorEnabled
   }
-function SDL_GamepadSensorEnabled(gamepad: PSDL_Gamepad; type_: TSDL_SensorType): cbool; cdecl;
+function SDL_GamepadSensorEnabled(gamepad: PSDL_Gamepad; type_: TSDL_SensorType): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GamepadSensorEnabled' {$ENDIF} {$ENDIF};
 
 {*
@@ -1414,7 +1414,7 @@ function SDL_GetGamepadSensorDataRate(gamepad: PSDL_Gamepad; type_: TSDL_SensorT
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_GetGamepadSensorData(gamepad: PSDL_Gamepad; type_: TSDL_SensorType; data: pcfloat; num_values: cint): cbool; cdecl;
+function SDL_GetGamepadSensorData(gamepad: PSDL_Gamepad; type_: TSDL_SensorType; data: pcfloat; num_values: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetGamepadSensorData' {$ENDIF} {$ENDIF};
 
 {*
@@ -1437,7 +1437,7 @@ function SDL_GetGamepadSensorData(gamepad: PSDL_Gamepad; type_: TSDL_SensorType;
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_RumbleGamepad(gamepad: PSDL_Gamepad; low_frequency_rumble: cuint16; high_frequency_rumble: cuint16; duration_ms: cuint32): cbool; cdecl;
+function SDL_RumbleGamepad(gamepad: PSDL_Gamepad; low_frequency_rumble: cuint16; high_frequency_rumble: cuint16; duration_ms: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RumbleGamepad' {$ENDIF} {$ENDIF};
 
 {*
@@ -1466,7 +1466,7 @@ function SDL_RumbleGamepad(gamepad: PSDL_Gamepad; low_frequency_rumble: cuint16;
  *
  * \sa SDL_RumbleGamepad
   }
-function SDL_RumbleGamepadTriggers(gamepad: PSDL_Gamepad; left_rumble: cuint16; right_rumble: cuint16; duration_ms: cuint32): cbool; cdecl;
+function SDL_RumbleGamepadTriggers(gamepad: PSDL_Gamepad; left_rumble: cuint16; right_rumble: cuint16; duration_ms: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RumbleGamepadTriggers' {$ENDIF} {$ENDIF};
 
 {*
@@ -1487,7 +1487,7 @@ function SDL_RumbleGamepadTriggers(gamepad: PSDL_Gamepad; left_rumble: cuint16; 
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_SetGamepadLED(gamepad: PSDL_Gamepad; red: cuint8; green: cuint8; blue: cuint8): cbool; cdecl;
+function SDL_SetGamepadLED(gamepad: PSDL_Gamepad; red: cuint8; green: cuint8; blue: cuint8): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetGamepadLED' {$ENDIF} {$ENDIF};
 
 {*
@@ -1501,7 +1501,7 @@ function SDL_SetGamepadLED(gamepad: PSDL_Gamepad; red: cuint8; green: cuint8; bl
  *
  * \since This function is available since SDL 3.2.0.
   }
-function SDL_SendGamepadEffect(gamepad: PSDL_Gamepad; data: Pointer; size: cint): cbool; cdecl;
+function SDL_SendGamepadEffect(gamepad: PSDL_Gamepad; data: Pointer; size: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SendGamepadEffect' {$ENDIF} {$ENDIF};
 
 {*

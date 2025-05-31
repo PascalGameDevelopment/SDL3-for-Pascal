@@ -155,7 +155,7 @@ type
  * \sa SDL_WasInit
   }
 
-function SDL_Init(flags: TSDL_InitFlags): cbool; cdecl;
+function SDL_Init(flags: TSDL_InitFlags): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_Init' {$ENDIF} {$ENDIF};
 
 {*
@@ -173,7 +173,7 @@ function SDL_Init(flags: TSDL_InitFlags): cbool; cdecl;
  * \sa SDL_Quit
  * \sa SDL_QuitSubSystem
   }
-function SDL_InitSubSystem(flags: TSDL_InitFlags): cbool; cdecl;
+function SDL_InitSubSystem(flags: TSDL_InitFlags): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_InitSubSystem' {$ENDIF} {$ENDIF};
 
 {*
@@ -262,7 +262,7 @@ procedure SDL_Quit; cdecl;
  *
  * \sa SDL_SetAppMetadataProperty
   }
-function SDL_SetAppMetadata(appname: PAnsiChar; appversion: PAnsiChar; appidentifier: PAnsiChar): cbool; cdecl;
+function SDL_SetAppMetadata(appname: PAnsiChar; appversion: PAnsiChar; appidentifier: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetAppMetadata' {$ENDIF} {$ENDIF};
 
 {*
@@ -326,7 +326,7 @@ function SDL_SetAppMetadata(appname: PAnsiChar; appversion: PAnsiChar; appidenti
  * \sa SDL_GetAppMetadataProperty
  * \sa SDL_SetAppMetadata
   }
-function SDL_SetAppMetadataProperty(name: PAnsiChar; value: PAnsiChar): cbool; cdecl;
+function SDL_SetAppMetadataProperty(name: PAnsiChar; value: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetAppMetadataProperty' {$ENDIF} {$ENDIF};
 
 const
