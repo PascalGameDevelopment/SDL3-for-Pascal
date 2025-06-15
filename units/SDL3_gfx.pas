@@ -45,6 +45,7 @@ const
   {$ENDIF}
 
 {$INCLUDE SDL3_imageFilter.inc}
+{$INCLUDE SDL3_rotozoom.inc}
 
 implementation
 
