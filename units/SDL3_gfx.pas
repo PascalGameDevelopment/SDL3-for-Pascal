@@ -46,6 +46,7 @@ const
 
 {$INCLUDE SDL3_framerate.inc}
 {$INCLUDE SDL3_gfxPrimitives.inc}
+{$INCLUDE SDL3_gfxPrimitives_font.inc}
 {$INCLUDE SDL3_imageFilter.inc}
 {$INCLUDE SDL3_rotozoom.inc}
 
