@@ -44,6 +44,7 @@ const
     {$ENDIF}
   {$ENDIF}
 
+{$INCLUDE SDL3_framerate.inc}
 {$INCLUDE SDL3_imageFilter.inc}
 {$INCLUDE SDL3_rotozoom.inc}
 
