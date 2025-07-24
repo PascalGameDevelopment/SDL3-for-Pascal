@@ -69,6 +69,7 @@ const
     {$ENDIF}
   {$ENDIF}
 
+{$DEFINE WANT_CWCHAR_T}                   // want wchar_t type in this unit
 {$I ctypes.inc}                           // C data types
 
 { The include file translates
