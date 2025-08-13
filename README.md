@@ -14,13 +14,13 @@ Simply add the units to your include path. You can achieve this by:
 Use the `SDL3` unit for the main SDL3 library (should be always needed). Units for the other SDL3 libraries are (or will be) also provided:
  - [`SDL3_image`](https://github.com/libsdl-org/SDL_image)
  - [`SDL3_ttf`](https://github.com/libsdl-org/SDL_ttf)
- - [`SDL3_mixer`](https://github.com/libsdl-org/SDL_mixer) (not published yet)
+ - [`SDL3_mixer`](https://github.com/libsdl-org/SDL_mixer)
  - [`SDL3_net`](https://github.com/libsdl-org/SDL_net) (not published yet)
- - [`SDL3_gfx`](https://github.com/sabdul-khabir/SDL3_gfx) (todo)
+ - [`SDL3_gfx`](https://github.com/sabdul-khabir/SDL3_gfx)
 
 ## Documentation
 
-- ToDo: Implement GitHub Pages
+- [`Tutorial for SDL3`](https://www.freepascal-meets-sdl.net/sdl-tutorials/)
 
 ## Bugs / Contributions / ToDos
 
@@ -30,7 +30,7 @@ Please use the GitHub [issue tracker](https://github.com/PascalGameDevelopment/S
 ### ToDos
 
 - implement GitHub Pages documentation via GitHub Actions
-- implement GitHub Actions CI for testing + adapt tests ([FPCUnit](https://wiki.freepascal.org/fpcunit)?)
+- add tests ([FPCUnit](https://wiki.freepascal.org/fpcunit)?)
 - improve units (search for "#todo" to find specific tasks)
 - adapt comments to [PasDoc format](https://pasdoc.github.io) (later)
 
@@ -49,7 +49,16 @@ The version number/tag (see [tags](https://github.com/PascalGameDevelopment/SDL3
 
 ### v0.x (work in progress)
 
+### v0.8 (13/08/2025)
+
 - adds SDL3_ttf unit
+- adds SDL3_mixer unit
+- adds SDL3_gfx unit
+- adds further include files for SDL3 unit
+- updates some includes files
+- adds basic CI feature (compilation tests)
+- adds type size test
+- bugfixes
 
 ### v0.4 (15/03/2025)
 
