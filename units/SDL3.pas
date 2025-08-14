@@ -93,7 +93,7 @@ const
 {$I SDL_iostream.inc}                     // 3.2.0
 {$I SDL_asyncio.inc}                      // 3.2.0
 {$I SDL_surface.inc}                      // 3.2.20
-{$I SDL_video.inc}                        // 3.1.6-prev
+{$I SDL_video.inc}                        // 3.2.20
 {$I SDL_timer.inc}                        // 3.1.6-prev
 {$I SDL_error.inc}                        // 3.1.6-prev
 {$I SDL_power.inc}                        // 3.1.6-prev
@@ -320,7 +320,7 @@ end;
 { Macros from SDL_video.h }
 function SDL_WINDOWPOS_UNDEFINED_DISPLAY(X: Integer): Integer;
 begin
-  Result := (SDL_WINDOWPOS_CENTERED_MASK or X);
+  Result := (SDL_WINDOWPOS_UNDEFINED_MASK or X);
 end;
 
 function SDL_WINDOWPOS_ISUNDEFINED(X: Integer): Boolean;
