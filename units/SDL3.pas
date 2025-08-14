@@ -92,7 +92,7 @@ const
 {$I SDL_blendmode.inc}                    // 3.1.6-prev
 {$I SDL_iostream.inc}                     // 3.2.0
 {$I SDL_asyncio.inc}                      // 3.2.0
-{$I SDL_surface.inc}                      // 3.1.6-prev
+{$I SDL_surface.inc}                      // 3.2.20
 {$I SDL_video.inc}                        // 3.1.6-prev
 {$I SDL_timer.inc}                        // 3.1.6-prev
 {$I SDL_error.inc}                        // 3.1.6-prev
@@ -309,6 +309,12 @@ end;
 function SDL_SCANCODE_TO_KEYCODE(X: TSDL_Scancode): TSDL_Keycode;
 begin
   Result:=X or SDLK_SCANCODE_MASK;
+end;
+
+{ Macros from SDL_surface.h }
+function SDL_MUSTLOCK(Const S: PSDL_Surface): Boolean;
+begin
+  Result:=(S^.flags and SDL_SURFACE_LOCK_NEEDED)=SDL_SURFACE_LOCK_NEEDED;
 end;
 
 { Macros from SDL_video.h }
