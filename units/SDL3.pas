@@ -76,7 +76,6 @@ const
   corresponding C header file.
                                           Inc file was updated against
   SDL_init.inc --> SDL_init.h             this version of the header file: }
-{$I SDL_init.inc}                         // 3.1.6-prev
 {$I SDL_log.inc}                          // 3.1.6-prev
 {$I SDL_version.inc}                      // 3.1.6-prev
 {$I SDL_revision.inc}                     // 3.1.6-prev
@@ -111,6 +110,7 @@ const
 {$I SDL_touch.inc}                        // 3.1.6-prev
 {$I SDL_camera.inc}                       // 3.1.6-prev
 {$I SDL_events.inc}                       // 3.1.6-prev
+{$I SDL_init.inc}                         // 3.2.20
 {$I SDL_render.inc}                       // 3.1.6-prev
 {$I SDL_gpu.inc}                          // 3.2.0
 {$I SDL_clipboard.inc}                    // 3.2.0
