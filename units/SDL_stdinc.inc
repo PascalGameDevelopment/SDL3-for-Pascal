@@ -153,6 +153,356 @@ const
 const
   SDL_FLT_EPSILON = cfloat(1.1920928955078125e-07);
 
+(* -- Memory management functions -- *)
+
+{*
+ * Allocate uninitialized memory.
+ *
+ * The allocated memory returned by this function must be freed with
+ * SDL_free().
+ *
+ * If `size` is 0, it will be set to 1.
+ *
+ * If the allocation is successful, the returned pointer is guaranteed to be
+ * aligned to either the *fundamental alignment* (`alignof(max_align_t)` in
+ * C11 and later) or `2 * sizeof(Pointer)`, whichever is smaller. Use
+ * SDL_aligned_alloc() if you need to allocate memory aligned to an alignment
+ * greater than this guarantee.
+ *
+ * \param size the size to allocate.
+ * \returns a pointer to the allocated memory, or NIL if allocation failed.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_free
+ * \sa SDL_calloc
+ * \sa SDL_realloc
+ * \sa SDL_aligned_alloc
+ *}
+function SDL_malloc(size: csize_t): Pointer; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_malloc' {$ENDIF} {$ENDIF};
+
+{*
+ * Allocate a zero-initialized array.
+ *
+ * The memory returned by this function must be freed with SDL_free().
+ *
+ * If either of `nmemb` or `size` is 0, they will both be set to 1.
+ *
+ * If the allocation is successful, the returned pointer is guaranteed to be
+ * aligned to either the *fundamental alignment* (`alignof(max_align_t)` in
+ * C11 and later) or `2 * sizeof(Pointer)`, whichever is smaller.
+ *
+ * \param nmemb the number of elements in the array.
+ * \param size the size of each element of the array.
+ * \returns a pointer to the allocated array, or NIL if allocation failed.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_free
+ * \sa SDL_malloc
+ * \sa SDL_realloc
+ *}
+function SDL_calloc(nmemb, size: csize_t): Pointer; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_calloc' {$ENDIF} {$ENDIF};
+
+{*
+ * Change the size of allocated memory.
+ *
+ * The memory returned by this function must be freed with SDL_free().
+ *
+ * If `size` is 0, it will be set to 1. Note that this is unlike some other C
+ * runtime `realloc` implementations, which may treat `realloc(mem, 0)` the
+ * same way as `free(mem)`.
+ *
+ * If `mem` is NIL, the behavior of this function is equivalent to
+ * SDL_malloc(). Otherwise, the function can have one of three possible
+ * outcomes:
+ *
+ * - If it returns the same pointer as `mem`, it means that `mem` was resized
+ *   in place without freeing.
+ * - If it returns a different non-NIL pointer, it means that `mem` was freed
+ *   and cannot be dereferenced anymore.
+ * - If it returns NIL (indicating failure), then `mem` will remain valid and
+ *   must still be freed with SDL_free().
+ *
+ * If the allocation is successfully resized, the returned pointer is
+ * guaranteed to be aligned to either the *fundamental alignment*
+ * (`alignof(max_align_t)` in C11 and later) or `2 * sizeof(Pointer)`,
+ * whichever is smaller.
+ *
+ * \param mem a pointer to allocated memory to reallocate, or NIL.
+ * \param size the new size of the memory.
+ * \returns a pointer to the newly allocated memory, or NIL if allocation
+ *          failed.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_free
+ * \sa SDL_malloc
+ * \sa SDL_calloc
+ *}
+function SDL_realloc(mem: Pointer; size: csize_t): Pointer; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_realloc' {$ENDIF} {$ENDIF};
+
+{*
+ * Free allocated memory.
+ *
+ * The pointer is no longer valid after this call and cannot be dereferenced
+ * anymore.
+ *
+ * If `mem` is NIL, this function does nothing.
+ *
+ * \param mem a pointer to allocated memory, or NIL.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_malloc
+ * \sa SDL_calloc
+ * \sa SDL_realloc
+ *}
+procedure SDL_free(mem: Pointer); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_free' {$ENDIF} {$ENDIF};
+
+type
+  PPSDL_malloc_func = ^PSDL_malloc_func;
+  PSDL_malloc_func = ^TSDL_malloc_func;
+  {*
+   * A callback used to implement SDL_malloc().
+   *
+   * SDL will always ensure that the passed `size` is greater than 0.
+   *
+   * \param size the size to allocate.
+   * \returns a pointer to the allocated memory, or NIL if allocation failed.
+   *
+   * \threadsafety It should be safe to call this callback from any thread.
+   *
+   * \since This datatype is available since SDL 3.2.0.
+   *
+   * \sa SDL_malloc
+   * \sa SDL_GetOriginalMemoryFunctions
+   * \sa SDL_GetMemoryFunctions
+   * \sa SDL_SetMemoryFunctions
+   *}
+  TSDL_malloc_func = function(size: csize_t): Pointer; cdecl;
+
+  PPSDL_calloc_func = ^PSDL_calloc_func;
+  PSDL_calloc_func = ^TSDL_calloc_func;
+  {*
+   * A callback used to implement SDL_calloc().
+   *
+   * SDL will always ensure that the passed `nmemb` and `size` are both greater
+   * than 0.
+   *
+   * \param nmemb the number of elements in the array.
+   * \param size the size of each element of the array.
+   * \returns a pointer to the allocated array, or NIL if allocation failed.
+   *
+   * \threadsafety It should be safe to call this callback from any thread.
+   *
+   * \since This datatype is available since SDL 3.2.0.
+   *
+   * \sa SDL_calloc
+   * \sa SDL_GetOriginalMemoryFunctions
+   * \sa SDL_GetMemoryFunctions
+   * \sa SDL_SetMemoryFunctions
+   *}
+  TSDL_calloc_func = function(nmemb, size: csize_t): Pointer; cdecl;
+
+  PPSDL_realloc_func = ^PSDL_realloc_func;
+  PSDL_realloc_func = ^TSDL_realloc_func;
+  {*
+   * A callback used to implement SDL_realloc().
+   *
+   * SDL will always ensure that the passed `size` is greater than 0.
+   *
+   * \param mem a pointer to allocated memory to reallocate, or NIL.
+   * \param size the new size of the memory.
+   * \returns a pointer to the newly allocated memory, or NIL if allocation
+   *          failed.
+   *
+   * \threadsafety It should be safe to call this callback from any thread.
+   *
+   * \since This datatype is available since SDL 3.2.0.
+   *
+   * \sa SDL_realloc
+   * \sa SDL_GetOriginalMemoryFunctions
+   * \sa SDL_GetMemoryFunctions
+   * \sa SDL_SetMemoryFunctions
+   *}
+  TSDL_realloc_func = function(mem: Pointer; size: csize_t): Pointer; cdecl;
+
+  PPSDL_free_func = ^PSDL_free_func;
+  PSDL_free_func = ^TSDL_free_func;
+  {*
+   * A callback used to implement SDL_free().
+   *
+   * SDL will always ensure that the passed `mem` is a non-NIL pointer.
+   *
+   * \param mem a pointer to allocated memory.
+   *
+   * \threadsafety It should be safe to call this callback from any thread.
+   *
+   * \since This datatype is available since SDL 3.2.0.
+   *
+   * \sa SDL_free
+   * \sa SDL_GetOriginalMemoryFunctions
+   * \sa SDL_GetMemoryFunctions
+   * \sa SDL_SetMemoryFunctions
+   *}
+  TSDL_free_func = procedure(mem: Pointer); cdecl;
+
+{*
+ * Get the original set of SDL memory functions.
+ *
+ * This is what SDL_malloc and friends will use by default, if there has been
+ * no call to SDL_SetMemoryFunctions. This is not necessarily using the C
+ * runtime's `malloc` functions behind the scenes! Different platforms and
+ * build configurations might do any number of unexpected things.
+ *
+ * \param malloc_func filled with malloc function.
+ * \param calloc_func filled with calloc function.
+ * \param realloc_func filled with realloc function.
+ * \param free_func filled with free function.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+procedure SDL_GetOriginalMemoryFunctions(
+  malloc_func: PSDL_malloc_func;
+  calloc_func: PSDL_calloc_func;
+  realloc_func: PSDL_realloc_func;
+  free_func: PSDL_free_func
+); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetOriginalMemoryFunctions' {$ENDIF} {$ENDIF};
+
+{*
+ * Get the current set of SDL memory functions.
+ *
+ * \param malloc_func filled with malloc function.
+ * \param calloc_func filled with calloc function.
+ * \param realloc_func filled with realloc function.
+ * \param free_func filled with free function.
+ *
+ * \threadsafety This does not hold a lock, so do not call this in the
+ *               unlikely event of a background thread calling
+ *               SDL_SetMemoryFunctions simultaneously.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_SetMemoryFunctions
+ * \sa SDL_GetOriginalMemoryFunctions
+ *}
+procedure SDL_GetMemoryFunctions(
+  malloc_func: PSDL_malloc_func;
+  calloc_func: PSDL_calloc_func;
+  realloc_func: PSDL_realloc_func;
+  free_func: PSDL_free_func
+); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetMemoryFunctions' {$ENDIF} {$ENDIF};
+
+{*
+ * Replace SDL's memory allocation functions with a custom set.
+ *
+ * It is not safe to call this function once any allocations have been made,
+ * as future calls to SDL_free will use the new allocator, even if they came
+ * from an SDL_malloc made with the old one!
+ *
+ * If used, usually this needs to be the first call made into the SDL library,
+ * if not the very first thing done at program startup time.
+ *
+ * \param malloc_func custom malloc function.
+ * \param calloc_func custom calloc function.
+ * \param realloc_func custom realloc function.
+ * \param free_func custom free function.
+ * \returns true on success or false on failure; call SDL_GetError() for more
+ *          information.
+ *
+ * \threadsafety It is safe to call this function from any thread, but one
+ *               should not replace the memory functions once any allocations
+ *               are made!
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_GetMemoryFunctions
+ * \sa SDL_GetOriginalMemoryFunctions
+ *}
+function SDL_SetMemoryFunctions(
+  malloc_func: TSDL_malloc_func;
+  calloc_func: TSDL_calloc_func;
+  realloc_func: TSDL_realloc_func;
+  free_func: TSDL_free_func
+): Boolean; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetMemoryFunctions' {$ENDIF} {$ENDIF};
+
+{*
+ * Allocate memory aligned to a specific alignment.
+ *
+ * The memory returned by this function must be freed with SDL_aligned_free(),
+ * _not_ SDL_free().
+ *
+ * If `alignment` is less than the size of `void *`, it will be increased to
+ * match that.
+ *
+ * The returned memory address will be a multiple of the alignment value, and
+ * the size of the memory allocated will be a multiple of the alignment value.
+ *
+ * \param alignment the alignment of the memory.
+ * \param size the size to allocate.
+ * \returns a pointer to the aligned memory, or NIL if allocation failed.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_aligned_free
+ *}
+function SDL_aligned_alloc(alignment, size: csize_t): Pointer; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_aligned_alloc' {$ENDIF} {$ENDIF};
+
+{*
+ * Free memory allocated by SDL_aligned_alloc().
+ *
+ * The pointer is no longer valid after this call and cannot be dereferenced
+ * anymore.
+ *
+ * If `mem` is NIL, this function does nothing.
+ *
+ * \param mem a pointer previously returned by SDL_aligned_alloc(), or NIL.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_aligned_alloc
+ *}
+procedure SDL_aligned_free(mem: Pointer); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_aligned_free' {$ENDIF} {$ENDIF};
+
+{*
+ * Get the number of outstanding (unfreed) allocations.
+ *
+ * \returns the number of allocations or -1 if allocation counting is
+ *          disabled.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_GetNumAllocations(): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetNumAllocations' {$ENDIF} {$ENDIF};
+
+(* -- Floating-point arithmetic functions -- *)
+
 {*
  * Compute the absolute value of `x`
  *
