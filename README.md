@@ -49,7 +49,7 @@ The version number/tag (see [tags](https://github.com/PascalGameDevelopment/SDL3
 
 ### v0.x (work in progress)
 
-### v0.8 (13/08/2025)
+### v0.5 (15/08/2025)
 
 - adds SDL3_ttf unit
 - adds SDL3_mixer unit
