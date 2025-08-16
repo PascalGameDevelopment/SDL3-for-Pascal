@@ -743,6 +743,220 @@ function SDL_setenv_unsafe(const name, value: PAnsiChar; overwrite: cint): cint;
 function SDL_unsetenv_unsafe(const name: PAnsiChar): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_unsetenv_unsafe' {$ENDIF} {$ENDIF};
 
+(* -- Character classification functions -- *)
+
+{*
+ * Query if a character is alphabetic (a letter).
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * for English 'a-z' and 'A-Z' as true.
+ *
+ * \param x character value to check.
+ * \returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_isalpha(x: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isalpha' {$ENDIF} {$ENDIF};
+
+{*
+ * Query if a character is alphabetic (a letter) or a number.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * for English 'a-z', 'A-Z', and '0-9' as true.
+ *
+ * \param x character value to check.
+ * \returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_isalnum(x: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isalnum' {$ENDIF} {$ENDIF};
+
+{*
+ * Report if a character is blank (a space or tab).
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * 0x20 (space) or 0x9 (tab) as true.
+ *
+ * \param x character value to check.
+ * \returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_isblank(x: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isblank' {$ENDIF} {$ENDIF};
+
+{*
+ * Report if a character is a control character.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * 0 through 0x1F, and 0x7F, as true.
+ *
+ * \param x character value to check.
+ * \returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_iscntrl(x: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_iscntrl' {$ENDIF} {$ENDIF};
+
+{*
+ * Report if a character is a numeric digit.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * '0' (0x30) through '9' (0x39), as true.
+ *
+ * \param x character value to check.
+ * \returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_isdigit(x: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isdigit' {$ENDIF} {$ENDIF};
+
+{*
+ * Report if a character is a hexadecimal digit.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * 'A' through 'F', 'a' through 'f', and '0' through '9', as true.
+ *
+ * \param x character value to check.
+ * \returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_isxdigit(x: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isxdigit' {$ENDIF} {$ENDIF};
+
+{*
+ * Report if a character is a punctuation mark.
+ *
+ * **WARNING**: Regardless of system locale, this is equivalent to
+ * `((SDL_isgraph(x)) && (!SDL_isalnum(x)))`.
+ *
+ * \param x character value to check.
+ * \returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_isgraph
+ * \sa SDL_isalnum
+ *}
+function SDL_ispunct(x: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ispunct' {$ENDIF} {$ENDIF};
+
+{*
+ * Report if a character is whitespace.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat the
+ * following ASCII values as true:
+ *
+ * - space (0x20)
+ * - tab (0x09)
+ * - newline (0x0A)
+ * - vertical tab (0x0B)
+ * - form feed (0x0C)
+ * - return (0x0D)
+ *
+ * \param x character value to check.
+ * \returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_isspace(x: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isspace' {$ENDIF} {$ENDIF};
+
+{*
+ * Report if a character is upper case.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * 'A' through 'Z' as true.
+ *
+ * \param x character value to check.
+ * \returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_isupper(x: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isupper' {$ENDIF} {$ENDIF};
+
+{*
+ * Report if a character is lower case.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * 'a' through 'z' as true.
+ *
+ * \param x character value to check.
+ * \returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_islower(x: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_islower' {$ENDIF} {$ENDIF};
+
+{*
+ * Report if a character is "printable".
+ *
+ * Be advised that "printable" has a definition that goes back to text
+ * terminals from the dawn of computing, making this a sort of special case
+ * function that is not suitable for Unicode (or most any) text management.
+ *
+ * **WARNING**: Regardless of system locale, this will only treat ASCII values
+ * ' ' (0x20) through '~' (0x7E) as true.
+ *
+ * \param x character value to check.
+ * \returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_isprint(x: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isprint' {$ENDIF} {$ENDIF};
+
+{*
+ * Report if a character is any "printable" except space.
+ *
+ * Be advised that "printable" has a definition that goes back to text
+ * terminals from the dawn of computing, making this a sort of special case
+ * function that is not suitable for Unicode (or most any) text management.
+ *
+ * **WARNING**: Regardless of system locale, this is equivalent to
+ * `(SDL_isprint(x)) && ((x) != ' ')`.
+ *
+ * \param x character value to check.
+ * \returns non-zero if x falls within the character class, zero otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_isprint
+ *}
+function SDL_isgraph(x: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isgraph' {$ENDIF} {$ENDIF};
+
 (* -- Floating-point arithmetic functions -- *)
 
 {*
