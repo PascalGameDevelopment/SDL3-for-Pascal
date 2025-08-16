@@ -501,6 +501,248 @@ procedure SDL_aligned_free(mem: Pointer); cdecl;
 function SDL_GetNumAllocations(): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetNumAllocations' {$ENDIF} {$ENDIF};
 
+(* -- Environment variables manipulation functions -- *)
+
+type
+  PPSDL_Environment = ^PSDL_Environment;
+  {*
+   * A thread-safe set of environment variables
+   *
+   * \since This struct is available since SDL 3.2.0.
+   *
+   * \sa SDL_GetEnvironment
+   * \sa SDL_CreateEnvironment
+   * \sa SDL_GetEnvironmentVariable
+   * \sa SDL_GetEnvironmentVariables
+   * \sa SDL_SetEnvironmentVariable
+   * \sa SDL_UnsetEnvironmentVariable
+   * \sa SDL_DestroyEnvironment
+   *}
+  PSDL_Environment = type Pointer;
+
+{*
+ * Get the process environment.
+ *
+ * This is initialized at application start and is not affected by setenv()
+ * and unsetenv() calls after that point. Use SDL_SetEnvironmentVariable() and
+ * SDL_UnsetEnvironmentVariable() if you want to modify this environment, or
+ * SDL_setenv_unsafe() or SDL_unsetenv_unsafe() if you want changes to persist
+ * in the C runtime environment after SDL_Quit().
+ *
+ * \returns a pointer to the environment for the process or NIL on failure;
+ *          call SDL_GetError() for more information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_GetEnvironmentVariable
+ * \sa SDL_GetEnvironmentVariables
+ * \sa SDL_SetEnvironmentVariable
+ * \sa SDL_UnsetEnvironmentVariable
+ *}
+function SDL_GetEnvironment(): PSDL_Environment; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetEnvironment' {$ENDIF} {$ENDIF};
+
+{**
+ * Create a set of environment variables
+ *
+ * \param populated true to initialize it from the C runtime environment,
+ *                  false to create an empty environment.
+ * \returns a pointer to the new environment or NIL on failure; call
+ *          SDL_GetError() for more information.
+ *
+ * \threadsafety If `populated` is false, it is safe to call this function
+ *               from any thread, otherwise it is safe if no other threads are
+ *               calling setenv() or unsetenv()
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_GetEnvironmentVariable
+ * \sa SDL_GetEnvironmentVariables
+ * \sa SDL_SetEnvironmentVariable
+ * \sa SDL_UnsetEnvironmentVariable
+ * \sa SDL_DestroyEnvironment
+ *}
+function SDL_CreateEnvironment(populated: Boolean): PSDL_Environment; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateEnvironment' {$ENDIF} {$ENDIF};
+
+{*
+ * Get the value of a variable in the environment.
+ *
+ * \param env the environment to query.
+ * \param name the name of the variable to get.
+ * \returns a pointer to the (read-only) value of the variable
+ *          or NIL if it can't be found.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_GetEnvironment
+ * \sa SDL_CreateEnvironment
+ * \sa SDL_GetEnvironmentVariables
+ * \sa SDL_SetEnvironmentVariable
+ * \sa SDL_UnsetEnvironmentVariable
+ *}
+function SDL_GetEnvironmentVariable(env: PSDL_Environment; const name: PAnsiChar): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetEnvironmentVariable' {$ENDIF} {$ENDIF};
+
+{*
+ * Get all variables in the environment.
+ *
+ * \param env the environment to query.
+ * \returns a NIL terminated array of pointers to environment variables in
+ *          the form "variable=value" or NIL on failure; call SDL_GetError()
+ *          for more information. This is a single allocation that should be
+ *          freed with SDL_free() when it is no longer needed.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_GetEnvironment
+ * \sa SDL_CreateEnvironment
+ * \sa SDL_GetEnvironmentVariables
+ * \sa SDL_SetEnvironmentVariable
+ * \sa SDL_UnsetEnvironmentVariable
+ *}
+function SDL_GetEnvironmentVariables(env: PSDL_Environment): PPAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetEnvironmentVariables' {$ENDIF} {$ENDIF};
+
+{**
+ * Set the value of a variable in the environment.
+ *
+ * \param env the environment to modify.
+ * \param name the name of the variable to set.
+ * \param value the value of the variable to set.
+ * \param overwrite true to overwrite the variable if it exists, false to
+ *                  return success without setting the variable if it already
+ *                  exists.
+ * \returns true on success or false on failure; call SDL_GetError() for more
+ *          information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_GetEnvironment
+ * \sa SDL_CreateEnvironment
+ * \sa SDL_GetEnvironmentVariable
+ * \sa SDL_GetEnvironmentVariables
+ * \sa SDL_UnsetEnvironmentVariable
+ *}
+function SDL_SetEnvironmentVariable(env: PSDL_Environment; const name, value: PAnsiChar; overwrite: Boolean): Boolean; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_SetEnvironmentVariable' {$ENDIF} {$ENDIF};
+
+{*
+ * Clear a variable from the environment.
+ *
+ * \param env the environment to modify.
+ * \param name the name of the variable to unset.
+ * \returns true on success or false on failure; call SDL_GetError() for more
+ *          information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_GetEnvironment
+ * \sa SDL_CreateEnvironment
+ * \sa SDL_GetEnvironmentVariable
+ * \sa SDL_GetEnvironmentVariables
+ * \sa SDL_SetEnvironmentVariable
+ * \sa SDL_UnsetEnvironmentVariable
+ *}
+function SDL_UnsetEnvironmentVariable(env: PSDL_Environment; const name: PAnsiChar): Boolean; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UnsetEnvironmentVariable' {$ENDIF} {$ENDIF};
+
+{*
+ * Destroy a set of environment variables.
+ *
+ * \param env the environment to destroy.
+ *
+ * \threadsafety It is safe to call this function from any thread, as long as
+ *               the environment is no longer in use.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_CreateEnvironment
+ *}
+procedure SDL_DestroyEnvironment(env: PSDL_Environment); cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DestroyEnvironment' {$ENDIF} {$ENDIF};
+
+{*
+ * Get the value of a variable in the environment.
+ *
+ * This function uses SDL's cached copy of the environment and is thread-safe.
+ *
+ * \param name the name of the variable to get.
+ * \returns a pointer to the (read-only) value of the variable
+ *          or NIL if it can't be found.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_getenv(const name: PAnsiChar): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_getenv' {$ENDIF} {$ENDIF};
+
+{*
+ * Get the value of a variable in the environment.
+ *
+ * This function bypasses SDL's cached copy of the environment and is not
+ * thread-safe.
+ *
+ * \param name the name of the variable to get.
+ * \returns a pointer to the (read-only) value of the variable
+ *          or NIL if it can't be found.
+ *
+ * \threadsafety This function is not thread safe, consider using SDL_getenv()
+ *               instead.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_getenv
+ *}
+function SDL_getenv_unsafe(const name: PAnsiChar): PAnsiChar; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_getenv_unsafe' {$ENDIF} {$ENDIF};
+
+{*
+ * Set the value of a variable in the environment.
+ *
+ * \param name the name of the variable to set.
+ * \param value the value of the variable to set.
+ * \param overwrite 1 to overwrite the variable if it exists, 0 to return
+ *                  success without setting the variable if it already exists.
+ * \returns 0 on success, -1 on error.
+ *
+ * \threadsafety This function is not thread safe, consider using
+ *               SDL_SetEnvironmentVariable() instead.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_SetEnvironmentVariable
+ *}
+function SDL_setenv_unsafe(const name, value: PAnsiChar; overwrite: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_setenv_unsafe' {$ENDIF} {$ENDIF};
+
+{*
+ * Clear a variable from the environment.
+ *
+ * \param name the name of the variable to unset.
+ * \returns 0 on success, -1 on error.
+ *
+ * \threadsafety This function is not thread safe, consider using
+ *               SDL_UnsetEnvironmentVariable() instead.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_UnsetEnvironmentVariable
+ *}
+function SDL_unsetenv_unsafe(const name: PAnsiChar): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_unsetenv_unsafe' {$ENDIF} {$ENDIF};
+
 (* -- Floating-point arithmetic functions -- *)
 
 {*
