@@ -957,6 +957,46 @@ function SDL_isprint(x: cint): cint; cdecl;
 function SDL_isgraph(x: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isgraph' {$ENDIF} {$ENDIF};
 
+(* -- Character manipulation functions -- *)
+
+{*
+ * Convert low-ASCII English letters to uppercase.
+ *
+ * **WARNING**: Regardless of system locale, this will only convert ASCII
+ * values 'a' through 'z' to uppercase.
+ *
+ * This function returns the uppercase equivalent of `x`. If a character
+ * cannot be converted, or is already uppercase, this function returns `x`.
+ *
+ * \param x character value to check.
+ * \returns capitalized version of x, or x if no conversion available.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_toupper(x: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_toupper' {$ENDIF} {$ENDIF};
+
+{*
+ * Convert low-ASCII English letters to lowercase.
+ *
+ * **WARNING**: Regardless of system locale, this will only convert ASCII
+ * values 'A' through 'Z' to lowercase.
+ *
+ * This function returns the lowercase equivalent of `x`. If a character
+ * cannot be converted, or is already lowercase, this function returns `x`.
+ *
+ * \param x character value to check.
+ * \returns lowercase version of x, or x if no conversion available.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_tolower(x: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_tolower' {$ENDIF} {$ENDIF};
+
 (* -- Floating-point arithmetic functions -- *)
 
 {*
