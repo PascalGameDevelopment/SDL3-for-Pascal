@@ -997,6 +997,79 @@ function SDL_toupper(x: cint): cint; cdecl;
 function SDL_tolower(x: cint): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_tolower' {$ENDIF} {$ENDIF};
 
+(* -- Hash functions -- *)
+
+{*
+ * Calculate a CRC-16 value.
+ *
+ * https://en.wikipedia.org/wiki/Cyclic_redundancy_check
+ *
+ * This function can be called multiple times, to stream data to be
+ * checksummed in blocks. Each call must provide the previous CRC-16 return
+ * value to be updated with the next block. The first call to this function
+ * for a set of blocks should pass in a zero CRC value.
+ *
+ * \param crc the current checksum for this data set, or 0 for a new data set.
+ * \param data a new block of data to add to the checksum.
+ * \param len the size, in bytes, of the new block of data.
+ * \returns a CRC-16 checksum value of all blocks in the data set.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_crc16(crc: cuint16; const data: Pointer; len: csize_t): cuint16; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_crc16' {$ENDIF} {$ENDIF};
+
+{*
+ * Calculate a CRC-32 value.
+ *
+ * https://en.wikipedia.org/wiki/Cyclic_redundancy_check
+ *
+ * This function can be called multiple times, to stream data to be
+ * checksummed in blocks. Each call must provide the previous CRC-32 return
+ * value to be updated with the next block. The first call to this function
+ * for a set of blocks should pass in a zero CRC value.
+ *
+ * \param crc the current checksum for this data set, or 0 for a new data set.
+ * \param data a new block of data to add to the checksum.
+ * \param len the size, in bytes, of the new block of data.
+ * \returns a CRC-32 checksum value of all blocks in the data set.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_crc32(crc: cuint32; const data: Pointer; len: csize_t): cuint32; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_crc32' {$ENDIF} {$ENDIF};
+
+{*
+ * Calculate a 32-bit MurmurHash3 value for a block of data.
+ *
+ * https://en.wikipedia.org/wiki/MurmurHash
+ *
+ * A seed may be specified, which changes the final results consistently, but
+ * this does not work like SDL_crc16 and SDL_crc32: you can't feed a previous
+ * result from this function back into itself as the next seed value to
+ * calculate a hash in chunks; it won't produce the same hash as it would if
+ * the same data was provided in a single call.
+ *
+ * If you aren't sure what to provide for a seed, zero is fine. Murmur3 is not
+ * cryptographically secure, so it shouldn't be used for hashing top-secret
+ * data.
+ *
+ * \param data the data to be hashed.
+ * \param len the size of data, in bytes.
+ * \param seed a value that alters the final hash value.
+ * \returns a Murmur3 32-bit hash value.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *}
+function SDL_murmur3_32(const data: Pointer; len: csize_t; seed: cuint32): cuint32;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_murmur3_32' {$ENDIF} {$ENDIF};
+
 (* -- Floating-point arithmetic functions -- *)
 
 {*
