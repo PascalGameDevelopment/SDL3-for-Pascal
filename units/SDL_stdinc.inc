@@ -1725,7 +1725,7 @@ function SDL_cosf(x: cfloat): cfloat; cdecl;
  * Compute the exponential of `x`.
  *
  * The definition of `y = exp(x)` is `y = e^x`, where `e` is the base of the
- * natural logarithm. The inverse is the natural logarithm, SDL_log.
+ * natural logarithm. The inverse is the natural logarithm, SDL_logn.
  *
  * Domain: `-INF <= x <= INF`
  *
@@ -1749,7 +1749,7 @@ function SDL_cosf(x: cfloat): cfloat; cdecl;
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_expf
- * \sa SDL_log
+ * \sa SDL_logn
  *}
 function SDL_exp(x: cdouble): cdouble; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_exp' {$ENDIF} {$ENDIF};
@@ -1758,7 +1758,7 @@ function SDL_exp(x: cdouble): cdouble; cdecl;
  * Compute the exponential of `x`.
  *
  * The definition of `y = exp(x)` is `y = e^x`, where `e` is the base of the
- * natural logarithm. The inverse is the natural logarithm, SDL_logf.
+ * natural logarithm. The inverse is the natural logarithm, SDL_lognf.
  *
  * Domain: `-INF <= x <= INF`
  *
@@ -1782,7 +1782,7 @@ function SDL_exp(x: cdouble): cdouble; cdecl;
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_exp
- * \sa SDL_logf
+ * \sa SDL_lognf
  *}
 function SDL_expf(x: cfloat): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_expf' {$ENDIF} {$ENDIF};
@@ -2072,6 +2072,139 @@ function SDL_isnanf(x: cfloat): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isnanf' {$ENDIF} {$ENDIF};
 
 {*
+ * Compute the natural logarithm of `x`.
+ *
+ * Domain: `0 < x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * It is an error for `x` to be less than or equal to 0.
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_lognf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * (SDL3-for-Pascal) NOTE: In the original SDL3 API, this function is called
+ * `SDL_log`. Because function names are case-insensitive in Pascal, this
+ * causes a duplicate identifier conflict with `SDL_Log`, the logging function.
+ * Hence, this function has been renamed in the Pascal units.
+ *
+ * \param x floating point value. Must be greater than 0.
+ * \returns the natural logarithm of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_lognf
+ * \sa SDL_log10
+ * \sa SDL_exp
+ *}
+function SDL_logn(x: cdouble): cdouble; cdecl;
+  external SDL_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_SDL_log' {$ELSE} 'SDL_log' {$ENDIF};
+
+{*
+ * Compute the natural logarithm of `x`.
+ *
+ * Domain: `0 < x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * It is an error for `x` to be less than or equal to 0.
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_logn for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * (SDL3-for-Pascal) NOTE: In the original SDL3 API, this function is called
+ * `SDL_logf`. In the Pascal units, it has been renamed to match `SDL_logn`.
+ *
+ * \param x floating point value. Must be greater than 0.
+ * \returns the natural logarithm of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_logn
+ * \sa SDL_expf
+ *}
+function SDL_lognf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_SDL_logf' {$ELSE} 'SDL_logf' {$ENDIF};
+
+{*
+ * Compute the base-10 logarithm of `x`.
+ *
+ * Domain: `0 < x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * It is an error for `x` to be less than or equal to 0.
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_log10f for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value. Must be greater than 0.
+ * \returns the logarithm of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_log10f
+ * \sa SDL_logn
+ * \sa SDL_pow
+ *}
+function SDL_log10(x: cdouble): cdouble;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_log10' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the base-10 logarithm of `x`.
+ *
+ * Domain: `0 < x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * It is an error for `x` to be less than or equal to 0.
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_log10 for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value. Must be greater than 0.
+ * \returns the logarithm of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_log10
+ * \sa SDL_lognf
+ * \sa SDL_powf
+ *}
+function SDL_log10f(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_log10f' {$ENDIF} {$ENDIF};
+
+{*
  * Split `x` into integer and fractional parts
  *
  * This function operates on double-precision floating point values, use
@@ -2141,7 +2274,7 @@ function SDL_modff(x: cfloat; y: pcfloat): cfloat; cdecl;
  *
  * \sa SDL_powf
  * \sa SDL_exp
- * \sa SDL_log
+ * \sa SDL_logn
  *}
 function SDL_pow(x, y: cdouble): cdouble; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_pow' {$ENDIF} {$ENDIF};
@@ -2174,7 +2307,7 @@ function SDL_pow(x, y: cdouble): cdouble; cdecl;
  *
  * \sa SDL_pow
  * \sa SDL_expf
- * \sa SDL_logf
+ * \sa SDL_lognf
  *}
 function SDL_powf(x, y: cfloat): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_powf' {$ENDIF} {$ENDIF};
