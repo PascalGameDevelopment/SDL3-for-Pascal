@@ -163,6 +163,7 @@ for TYPENAME in \
 	SDL_QuitEvent \
 	SDL_Rect \
 	SDL_RendererLogicalPresentation \
+	SDL_RenderEvent \
 	SDL_ScaleMode \
 	SDL_Scancode \
 	SDL_SensorEvent \
