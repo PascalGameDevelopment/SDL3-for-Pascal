@@ -1268,6 +1268,525 @@ function SDL_rand_bits_r(state: pcuint64): cuint32; cdecl;
 
 (* -- Floating-point arithmetic functions -- *)
 
+const
+  {*
+   * The value of Pi, as a double-precision floating point literal.
+   *
+   * \since This const is available since SDL 3.2.0.
+   *
+   * \sa SDL_PI_F
+   *}
+  SDL_PI_D = cdouble(3.141592653589793238462643383279502884);
+
+  {*
+   * The value of Pi, as a single-precision floating point literal.
+   *
+   * \since This const is available since SDL 3.2.0.
+   *
+   * \sa SDL_PI_D
+   *}
+  SDL_PI_F = cfloat(3.141592653589793238462643383279502884);
+
+{*
+ * Compute the arc cosine of `x`.
+ *
+ * The definition of `y = acos(x)` is `x = cos(y)`.
+ *
+ * Domain: `-1 <= x <= 1`
+ *
+ * Range: `0 <= y <= Pi`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_acosf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value.
+ * \returns arc cosine of `x`, in radians.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_acosf
+ * \sa SDL_asin
+ * \sa SDL_cos
+ *}
+function SDL_acos(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_acos' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the arc cosine of `x`.
+ *
+ * The definition of `y = acos(x)` is `x = cos(y)`.
+ *
+ * Domain: `-1 <= x <= 1`
+ *
+ * Range: `0 <= y <= Pi`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_acos for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value.
+ * \returns arc cosine of `x`, in radians.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_acos
+ * \sa SDL_asinf
+ * \sa SDL_cosf
+ *}
+function SDL_acosf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_acosf' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the arc sine of `x`.
+ *
+ * The definition of `y = asin(x)` is `x = sin(y)`.
+ *
+ * Domain: `-1 <= x <= 1`
+ *
+ * Range: `-Pi/2 <= y <= Pi/2`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_asinf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value.
+ * \returns arc sine of `x`, in radians.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_asinf
+ * \sa SDL_acos
+ * \sa SDL_sin
+ *}
+function SDL_asin(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_asin' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the arc sine of `x`.
+ *
+ * The definition of `y = asin(x)` is `x = sin(y)`.
+ *
+ * Domain: `-1 <= x <= 1`
+ *
+ * Range: `-Pi/2 <= y <= Pi/2`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_asin for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value.
+ * \returns arc sine of `x`, in radians.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_asin
+ * \sa SDL_acosf
+ * \sa SDL_sinf
+ *}
+function SDL_asinf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_asinf' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the arc tangent of `x`.
+ *
+ * The definition of `y = atan(x)` is `x = tan(y)`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-Pi/2 <= y <= Pi/2`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_atanf for single-precision floats.
+ *
+ * To calculate the arc tangent of y / x, use SDL_atan2.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value.
+ * \returns arc tangent of of `x` in radians, or 0 if `x = 0`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_atanf
+ * \sa SDL_atan2
+ * \sa SDL_tan
+ *}
+function SDL_atan(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_atan' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the arc tangent of `x`.
+ *
+ * The definition of `y = atan(x)` is `x = tan(y)`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-Pi/2 <= y <= Pi/2`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_atan for dboule-precision floats.
+ *
+ * To calculate the arc tangent of y / x, use SDL_atan2f.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value.
+ * \returns arc tangent of of `x` in radians, or 0 if `x = 0`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_atan
+ * \sa SDL_atan2f
+ * \sa SDL_tanf
+ *}
+function SDL_atanf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_atanf' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the arc tangent of `y / x`, using the signs of x and y to adjust
+ * the result's quadrant.
+ *
+ * The definition of `z = atan2(x, y)` is `y = x tan(z)`, where the quadrant
+ * of z is determined based on the signs of x and y.
+ *
+ * Domain: `-INF <= x <= INF`, `-INF <= y <= INF`
+ *
+ * Range: `-Pi <= y <= Pi`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_atan2f for single-precision floats.
+ *
+ * To calculate the arc tangent of a single value, use SDL_atan.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param y floating point value of the numerator (y coordinate).
+ * \param x floating point value of the denominator (x coordinate).
+ * \returns arc tangent of of `y / x` in radians, or, if `x = 0`, either
+ *          `-Pi/2`, `0`, or `Pi/2`, depending on the value of `y`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_atan2f
+ * \sa SDL_atan
+ * \sa SDL_tan
+ *}
+function SDL_atan2(y, x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_atan2' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the arc tangent of `y / x`, using the signs of x and y to adjust
+ * the result's quadrant.
+ *
+ * The definition of `z = atan2(x, y)` is `y = x tan(z)`, where the quadrant
+ * of z is determined based on the signs of x and y.
+ *
+ * Domain: `-INF <= x <= INF`, `-INF <= y <= INF`
+ *
+ * Range: `-Pi <= y <= Pi`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_atan2 for double-precision floats.
+ *
+ * To calculate the arc tangent of a single value, use SDL_atanf.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param y floating point value of the numerator (y coordinate).
+ * \param x floating point value of the denominator (x coordinate).
+ * \returns arc tangent of of `y / x` in radians, or, if `x = 0`, either
+ *          `-Pi/2`, `0`, or `Pi/2`, depending on the value of `y`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_atan2
+ * \sa SDL_atan
+ * \sa SDL_tan
+ *}
+function SDL_atan2f(y, x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_atan2f' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the ceiling of `x`.
+ *
+ * The ceiling of `x` is the smallest integer `y` such that `y > x`, i.e `x`
+ * rounded up to the nearest integer.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_ceilf for single-precision floats.
+ *
+ * \param x floating point value.
+ * \returns the ceiling of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_ceilf
+ * \sa SDL_floor
+ * \sa SDL_trunc
+ * \sa SDL_round
+ * \sa SDL_lround
+ *}
+function SDL_ceil(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ceil' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the ceiling of `x`.
+ *
+ * The ceiling of `x` is the smallest integer `y` such that `y > x`, i.e `x`
+ * rounded up to the nearest integer.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_ceil for double-precision floats.
+ *
+ * \param x floating point value.
+ * \returns the ceiling of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_ceil
+ * \sa SDL_floorf
+ * \sa SDL_truncf
+ * \sa SDL_roundf
+ * \sa SDL_lroundf
+ *}
+function SDL_ceilf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ceilf' {$ENDIF} {$ENDIF};
+
+{*
+ * Copy the sign of one floating-point value to another.
+ *
+ * The definition of copysign is that ``copysign(x, y) = abs(x) * sign(y)``.
+ *
+ * Domain: `-INF <= x <= INF`, ``-INF <= y <= f``
+ *
+ * Range: `-INF <= z <= INF`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_copysignf for single-precision floats.
+ *
+ * \param x floating point value to use as the magnitude.
+ * \param y floating point value to use as the sign.
+ * \returns the floating point value with the sign of y and the magnitude of
+ *          x.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_copysignf
+ * \sa SDL_fabs
+ *}
+function SDL_copysign(x, y: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_copysign' {$ENDIF} {$ENDIF};
+
+{*
+ * Copy the sign of one floating-point value to another.
+ *
+ * The definition of copysign is that ``copysign(x, y) = abs(x) * sign(y)``.
+ *
+ * Domain: `-INF <= x <= INF`, ``-INF <= y <= f``
+ *
+ * Range: `-INF <= z <= INF`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_copysign for double-precision floats.
+ *
+ * \param x floating point value to use as the magnitude.
+ * \param y floating point value to use as the sign.
+ * \returns the floating point value with the sign of y and the magnitude of
+ *          x.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_copysign
+ * \sa SDL_fabsf
+ *}
+function SDL_copysignf(x, y: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_copysignf' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the cosine of `x`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-1 <= y <= 1`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_cosf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value, in radians.
+ * \returns cosine of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_cosf
+ * \sa SDL_acos
+ * \sa SDL_sin
+ *}
+function SDL_cos(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_cos' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the cosine of `x`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-1 <= y <= 1`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_cos for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value, in radians.
+ * \returns cosine of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_cos
+ * \sa SDL_acosf
+ * \sa SDL_sinf
+ *}
+function SDL_cosf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_cosf' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the exponential of `x`.
+ *
+ * The definition of `y = exp(x)` is `y = e^x`, where `e` is the base of the
+ * natural logarithm. The inverse is the natural logarithm, SDL_logn.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `0 <= y <= INF`
+ *
+ * The output will overflow if `exp(x)` is too large to be represented.
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_expf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value.
+ * \returns value of `e^x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_expf
+ * \sa SDL_logn
+ *}
+function SDL_exp(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_exp' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the exponential of `x`.
+ *
+ * The definition of `y = exp(x)` is `y = e^x`, where `e` is the base of the
+ * natural logarithm. The inverse is the natural logarithm, SDL_lognf.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `0 <= y <= INF`
+ *
+ * The output will overflow if `exp(x)` is too large to be represented.
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_exp for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value.
+ * \returns value of `e^x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_exp
+ * \sa SDL_lognf
+ *}
+function SDL_expf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_expf' {$ENDIF} {$ENDIF};
+
 {*
  * Compute the absolute value of `x`
  *
@@ -1276,14 +1795,14 @@ function SDL_rand_bits_r(state: pcuint64): cuint32; cdecl;
  * Range: `0 <= y <= INF`
  *
  * This function operates on double-precision floating point values, use
- * SDL_copysignf for single-precision floats.
+ * SDL_fabsf for single-precision floats.
  *
  * \param x floating point value to use as the magnitude.
  * \returns the absolute value of `x`.
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_fabsf
   }
@@ -1298,19 +1817,846 @@ function SDL_fabs(x: cdouble): cdouble; cdecl;
  * Range: `0 <= y <= INF`
  *
  * This function operates on single-precision floating point values, use
- * SDL_copysignf for double-precision floats.
+ * SDL_fabs for double-precision floats.
  *
  * \param x floating point value to use as the magnitude.
  * \returns the absolute value of `x`.
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_fabs
   }
 function SDL_fabsf(x: cfloat): cfloat; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_fabsf' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the floor of `x`.
+ *
+ * The floor of `x` is the largest integer `y` such that `y > x`, i.e `x`
+ * rounded down to the nearest integer.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_floorf for single-precision floats.
+ *
+ * \param x floating point value.
+ * \returns the floor of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_floorf
+ * \sa SDL_ceil
+ * \sa SDL_trunc
+ * \sa SDL_round
+ * \sa SDL_lround
+ *}
+function SDL_floor(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_floor' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the floor of `x`.
+ *
+ * The floor of `x` is the largest integer `y` such that `y > x`, i.e `x`
+ * rounded down to the nearest integer.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_floor for double-precision floats.
+ *
+ * \param x floating point value.
+ * \returns the floor of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_floor
+ * \sa SDL_ceilf
+ * \sa SDL_truncf
+ * \sa SDL_roundf
+ * \sa SDL_lroundf
+ *}
+function SDL_floorf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_floorf' {$ENDIF} {$ENDIF};
+
+{*
+ * Truncate `x` to an integer.
+ *
+ * Rounds `x` to the next closest integer to 0. This is equivalent to removing
+ * the fractional part of `x`, leaving only the integer part.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_truncf for single-precision floats.
+ *
+ * \param x floating point value.
+ * \returns `x` truncated to an integer.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_truncf
+ * \sa SDL_fmod
+ * \sa SDL_ceil
+ * \sa SDL_floor
+ * \sa SDL_round
+ * \sa SDL_lround
+ *}
+function SDL_trunc(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_trunc' {$ENDIF} {$ENDIF};
+
+{*
+ * Truncate `x` to an integer.
+ *
+ * Rounds `x` to the next closest integer to 0. This is equivalent to removing
+ * the fractional part of `x`, leaving only the integer part.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_trunc for double-precision floats.
+ *
+ * \param x floating point value.
+ * \returns `x` truncated to an integer.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_trunc
+ * \sa SDL_fmodf
+ * \sa SDL_ceilf
+ * \sa SDL_floorf
+ * \sa SDL_roundf
+ * \sa SDL_lroundf
+ *}
+function SDL_truncf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_truncf' {$ENDIF} {$ENDIF};
+
+{*
+ * Return the floating-point remainder of `x / y`
+ *
+ * Divides `x` by `y`, and returns the remainder.
+ *
+ * Domain: `-INF <= x <= INF`, `-INF <= y <= INF`, `y != 0`
+ *
+ * Range: `-y <= z <= y`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_fmodf for single-precision floats.
+ *
+ * \param x the numerator.
+ * \param y the denominator. Must not be 0.
+ * \returns the remainder of `x / y`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_fmodf
+ * \sa SDL_modf
+ * \sa SDL_trunc
+ * \sa SDL_ceil
+ * \sa SDL_floor
+ * \sa SDL_round
+ * \sa SDL_lround
+ *}
+function SDL_fmod(x, y: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_fmod' {$ENDIF} {$ENDIF};
+
+{*
+ * Return the floating-point remainder of `x / y`
+ *
+ * Divides `x` by `y`, and returns the remainder.
+ *
+ * Domain: `-INF <= x <= INF`, `-INF <= y <= INF`, `y != 0`
+ *
+ * Range: `-y <= z <= y`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_fmod for double-precision floats.
+ *
+ * \param x the numerator.
+ * \param y the denominator. Must not be 0.
+ * \returns the remainder of `x / y`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_fmod
+ * \sa SDL_truncf
+ * \sa SDL_modff
+ * \sa SDL_ceilf
+ * \sa SDL_floorf
+ * \sa SDL_roundf
+ * \sa SDL_lroundf
+ *}
+function SDL_fmodf(x, y: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_fmodf' {$ENDIF} {$ENDIF};
+
+{*
+ * Return whether the value is infinity.
+ *
+ * \param x double-precision floating point value.
+ * \returns non-zero if the value is infinity, 0 otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_isinff
+ *}
+function SDL_isinf(x: cdouble): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isinf' {$ENDIF} {$ENDIF};
+
+{*
+ * Return whether the value is infinity.
+ *
+ * \param x floating point value.
+ * \returns non-zero if the value is infinity, 0 otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_isinf
+ *}
+function SDL_isinff(x: cfloat): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isinff' {$ENDIF} {$ENDIF};
+
+{*
+ * Return whether the value is NaN.
+ *
+ * \param x double-precision floating point value.
+ * \returns non-zero if the value is NaN, 0 otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_isnanf
+ *}
+function SDL_isnan(x: cdouble): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isnan' {$ENDIF} {$ENDIF};
+
+{*
+ * Return whether the value is NaN.
+ *
+ * \param x floating point value.
+ * \returns non-zero if the value is NaN, 0 otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_isnan
+ *}
+function SDL_isnanf(x: cfloat): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_isnanf' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the natural logarithm of `x`.
+ *
+ * Domain: `0 < x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * It is an error for `x` to be less than or equal to 0.
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_lognf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * (SDL3-for-Pascal) NOTE: In the original SDL3 API, this function is called
+ * `SDL_log`. Because function names are case-insensitive in Pascal, this
+ * causes a duplicate identifier conflict with `SDL_Log`, the logging function.
+ * Hence, this function has been renamed in the Pascal units.
+ *
+ * \param x floating point value. Must be greater than 0.
+ * \returns the natural logarithm of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_lognf
+ * \sa SDL_log10
+ * \sa SDL_exp
+ *}
+function SDL_logn(x: cdouble): cdouble; cdecl;
+  external SDL_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_SDL_log' {$ELSE} 'SDL_log' {$ENDIF};
+
+{*
+ * Compute the natural logarithm of `x`.
+ *
+ * Domain: `0 < x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * It is an error for `x` to be less than or equal to 0.
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_logn for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * (SDL3-for-Pascal) NOTE: In the original SDL3 API, this function is called
+ * `SDL_logf`. In the Pascal units, it has been renamed to match `SDL_logn`.
+ *
+ * \param x floating point value. Must be greater than 0.
+ * \returns the natural logarithm of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_logn
+ * \sa SDL_expf
+ *}
+function SDL_lognf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName
+  name {$IF DEFINED(DELPHI) AND DEFINED(MACOS)} '_SDL_logf' {$ELSE} 'SDL_logf' {$ENDIF};
+
+{*
+ * Compute the base-10 logarithm of `x`.
+ *
+ * Domain: `0 < x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * It is an error for `x` to be less than or equal to 0.
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_log10f for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value. Must be greater than 0.
+ * \returns the logarithm of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_log10f
+ * \sa SDL_logn
+ * \sa SDL_pow
+ *}
+function SDL_log10(x: cdouble): cdouble;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_log10' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the base-10 logarithm of `x`.
+ *
+ * Domain: `0 < x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * It is an error for `x` to be less than or equal to 0.
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_log10 for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value. Must be greater than 0.
+ * \returns the logarithm of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_log10
+ * \sa SDL_lognf
+ * \sa SDL_powf
+ *}
+function SDL_log10f(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_log10f' {$ENDIF} {$ENDIF};
+
+{*
+ * Split `x` into integer and fractional parts
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_modff for single-precision floats.
+ *
+ * \param x floating point value.
+ * \param y output pointer to store the integer part of `x`.
+ * \returns the fractional part of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_modff
+ * \sa SDL_trunc
+ * \sa SDL_fmod
+ *}
+function SDL_modf(x: cdouble; y: pcdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_modf' {$ENDIF} {$ENDIF};
+
+{*
+ * Split `x` into integer and fractional parts
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_modf for double-precision floats.
+ *
+ * \param x floating point value.
+ * \param y output pointer to store the integer part of `x`.
+ * \returns the fractional part of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_modf
+ * \sa SDL_truncf
+ * \sa SDL_fmodf
+ *}
+function SDL_modff(x: cfloat; y: pcfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_modff' {$ENDIF} {$ENDIF};
+
+{*
+ * Raise `x` to the power `y`
+ *
+ * Domain: `-INF <= x <= INF`, `-INF <= y <= INF`
+ *
+ * Range: `-INF <= z <= INF`
+ *
+ * If `y` is the base of the natural logarithm (e), consider using SDL_exp
+ * instead.
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_powf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x the base.
+ * \param y the exponent.
+ * \returns `x` raised to the power `y`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_powf
+ * \sa SDL_exp
+ * \sa SDL_logn
+ *}
+function SDL_pow(x, y: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_pow' {$ENDIF} {$ENDIF};
+
+{*
+ * Raise `x` to the power `y`
+ *
+ * Domain: `-INF <= x <= INF`, `-INF <= y <= INF`
+ *
+ * Range: `-INF <= z <= INF`
+ *
+ * If `y` is the base of the natural logarithm (e), consider using SDL_exp
+ * instead.
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_pow for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x the base.
+ * \param y the exponent.
+ * \returns `x` raised to the power `y`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_pow
+ * \sa SDL_expf
+ * \sa SDL_lognf
+ *}
+function SDL_powf(x, y: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_powf' {$ENDIF} {$ENDIF};
+
+{*
+ * Round `x` to the nearest integer.
+ *
+ * Rounds `x` to the nearest integer. Values halfway between integers will be
+ * rounded away from zero.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_roundf for single-precision floats. To get the result as an integer
+ * type, use SDL_lround.
+ *
+ * \param x floating point value.
+ * \returns the nearest integer to `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_roundf
+ * \sa SDL_lround
+ * \sa SDL_floor
+ * \sa SDL_ceil
+ * \sa SDL_trunc
+ *}
+function SDL_round(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_round' {$ENDIF} {$ENDIF};
+
+{*
+ * Round `x` to the nearest integer.
+ *
+ * Rounds `x` to the nearest integer. Values halfway between integers will be
+ * rounded away from zero.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`, y integer
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_round for double-precision floats. To get the result as an integer
+ * type, use SDL_lroundf.
+ *
+ * \param x floating point value.
+ * \returns the nearest integer to `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_round
+ * \sa SDL_lroundf
+ * \sa SDL_floorf
+ * \sa SDL_ceilf
+ * \sa SDL_truncf
+ *}
+function SDL_roundf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_roundf' {$ENDIF} {$ENDIF};
+
+{*
+ * Round `x` to the nearest integer representable as a long
+ *
+ * Rounds `x` to the nearest integer. Values halfway between integers will be
+ * rounded away from zero.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `MIN_LONG <= y <= MAX_LONG`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_lroundf for single-precision floats. To get the result as a
+ * floating-point type, use SDL_round.
+ *
+ * \param x floating point value.
+ * \returns the nearest integer to `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_lroundf
+ * \sa SDL_round
+ * \sa SDL_floor
+ * \sa SDL_ceil
+ * \sa SDL_trunc
+ *}
+function SDL_lround(x: cdouble): clong; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_lround' {$ENDIF} {$ENDIF};
+
+{*
+ * Round `x` to the nearest integer representable as a long
+ *
+ * Rounds `x` to the nearest integer. Values halfway between integers will be
+ * rounded away from zero.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `MIN_LONG <= y <= MAX_LONG`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_lround for double-precision floats. To get the result as a
+ * floating-point type, use SDL_roundf.
+ *
+ * \param x floating point value.
+ * \returns the nearest integer to `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_lround
+ * \sa SDL_roundf
+ * \sa SDL_floorf
+ * \sa SDL_ceilf
+ * \sa SDL_truncf
+ *}
+function SDL_lroundf(x: cfloat): clong; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_lroundf' {$ENDIF} {$ENDIF};
+
+{*
+ * Scale `x` by an integer power of two.
+ *
+ * Multiplies `x` by the `n`th power of the floating point radix (always 2).
+ *
+ * Domain: `-INF <= x <= INF`, `n` integer
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_scalbnf for single-precision floats.
+ *
+ * \param x floating point value to be scaled.
+ * \param n integer exponent.
+ * \returns `x * 2^n`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_scalbnf
+ * \sa SDL_pow
+ *}
+function SDL_scalbn(x: cdouble; n: cint): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_scalbn' {$ENDIF} {$ENDIF};
+
+{*
+ * Scale `x` by an integer power of two.
+ *
+ * Multiplies `x` by the `n`th power of the floating point radix (always 2).
+ *
+ * Domain: `-INF <= x <= INF`, `n` integer
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_scalbn for double-precision floats.
+ *
+ * \param x floating point value to be scaled.
+ * \param n integer exponent.
+ * \returns `x * 2^n`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_scalbn
+ * \sa SDL_powf
+ *}
+function SDL_scalbnf(x: cfloat; n: cint): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_scalbnf' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the sine of `x`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-1 <= y <= 1`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_sinf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value, in radians.
+ * \returns sine of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_sinf
+ * \sa SDL_asin
+ * \sa SDL_cos
+ *}
+function SDL_sin(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_sin' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the sine of `x`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-1 <= y <= 1`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_sin for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value, in radians.
+ * \returns sine of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_sin
+ * \sa SDL_asinf
+ * \sa SDL_cosf
+ *}
+function SDL_sinf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_sinf' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the square root of `x`.
+ *
+ * Domain: `0 <= x <= INF`
+ *
+ * Range: `0 <= y <= INF`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_sqrtf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value. Must be greater than or equal to 0.
+ * \returns square root of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_sqrtf
+ *}
+function SDL_sqrt(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_sqrt' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the square root of `x`.
+ *
+ * Domain: `0 <= x <= INF`
+ *
+ * Range: `0 <= y <= INF`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_sqrt for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value. Must be greater than or equal to 0.
+ * \returns square root of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_sqrt
+ *}
+function SDL_sqrtf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_sqrtf' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the tangent of `x`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * This function operates on double-precision floating point values, use
+ * SDL_tanf for single-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value, in radians.
+ * \returns tangent of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_tanf
+ * \sa SDL_sin
+ * \sa SDL_cos
+ * \sa SDL_atan
+ * \sa SDL_atan2
+ *}
+function SDL_tan(x: cdouble): cdouble; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_tan' {$ENDIF} {$ENDIF};
+
+{*
+ * Compute the tangent of `x`.
+ *
+ * Domain: `-INF <= x <= INF`
+ *
+ * Range: `-INF <= y <= INF`
+ *
+ * This function operates on single-precision floating point values, use
+ * SDL_tan for double-precision floats.
+ *
+ * This function may use a different approximation across different versions,
+ * platforms and configurations. i.e, it can return a different value given
+ * the same input on different machines or operating systems, or if SDL is
+ * updated.
+ *
+ * \param x floating point value, in radians.
+ * \returns tangent of `x`.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_tan
+ * \sa SDL_sinf
+ * \sa SDL_cosf
+ * \sa SDL_atanf
+ * \sa SDL_atan2f
+ *}
+function SDL_tanf(x: cfloat): cfloat; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_tanf' {$ENDIF} {$ENDIF};
 
 {*
  * A generic function pointer.
