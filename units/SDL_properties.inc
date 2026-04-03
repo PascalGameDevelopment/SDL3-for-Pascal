@@ -33,9 +33,9 @@
   }
 
 {*
- * SDL properties ID
+ * An ID that represents a properties set.
  *
- * \since This datatype is available since SDL 3.1.3.
+ * \since This datatype is available since SDL 3.2.0.
   }
 type
   PPSDL_PropertiesID = ^PSDL_PropertiesID;
@@ -45,7 +45,7 @@ type
 {*
  * SDL property type
  *
- * \since This enum is available since SDL 3.1.3.
+ * \since This enum is available since SDL 3.2.0.
   }
 
 PPSDL_PropertyType = ^PSDL_PropertyType;
@@ -59,13 +59,41 @@ const
   SDL_PROPERTY_TYPE_FLOAT = TSDL_PropertyType(4);
   SDL_PROPERTY_TYPE_BOOLEAN = TSDL_PropertyType(5);
 
+{**
+ * A generic property for naming things.
+ *
+ * This property is intended to be added to any SDL_PropertiesID that needs a
+ * generic name associated with the property set. It is not guaranteed that
+ * any property set will include this key, but it is convenient to have a
+ * standard key that any piece of code could reasonably agree to use.
+ *
+ * For example, the properties associated with an SDL_Texture might have a
+ * name string of "player sprites", or an SDL_AudioStream might have
+ * "background music", etc. This might also be useful for an SDL_IOStream to
+ * list the path to its asset.
+ *
+ * There is no format for the value set with this key; it is expected to be
+ * human-readable and informational in nature, possibly for logging or
+ * debugging purposes.
+ *
+ * SDL does not currently set this property on any objects it creates, but
+ * this may change in later versions; it is currently expected that apps and
+ * external libraries will take advantage of it, when appropriate.
+ *
+ * \since This macro is available since SDL 3.4.0.
+   *}
+const
+  SDL_PROP_NAME_STRING = 'SDL.name';
+
 {*
  * Get the global SDL properties.
  *
  * \returns a valid property ID on success or 0 on failure; call
  *          SDL_GetError() for more information.
  *
- * \since This function is available since SDL 3.1.3.
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetGlobalProperties: TSDL_PropertiesID; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetGlobalProperties' {$ENDIF} {$ENDIF};
@@ -80,7 +108,7 @@ function SDL_GetGlobalProperties: TSDL_PropertiesID; cdecl;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_DestroyProperties
   }
@@ -100,9 +128,11 @@ function SDL_CreateProperties: TSDL_PropertiesID; cdecl;
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
- * \threadsafety It is safe to call this function from any thread.
+ * \threadsafety It is safe to call this function from any thread. This
+ *               function acquires simultaneous mutex locks on both the source
+ *               and destination property sets.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_CopyProperties(src: TSDL_PropertiesID; dst: TSDL_PropertiesID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CopyProperties' {$ENDIF} {$ENDIF};
@@ -125,7 +155,7 @@ function SDL_CopyProperties(src: TSDL_PropertiesID; dst: TSDL_PropertiesID): Boo
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_UnlockProperties
   }
@@ -139,7 +169,7 @@ function SDL_LockProperties(props: TSDL_PropertiesID): Boolean; cdecl;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_LockProperties
   }
@@ -164,7 +194,7 @@ procedure SDL_UnlockProperties(props: TSDL_PropertiesID); cdecl;
  * \threadsafety This callback may fire without any locks held; if this is a
  *               concern, the app should provide its own locking.
  *
- * \since This datatype is available since SDL 3.1.3.
+ * \since This datatype is available since SDL 3.2.0.
  *
  * \sa SDL_SetPointerPropertyWithCleanup
   }
@@ -194,7 +224,7 @@ type
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetPointerProperty
  * \sa SDL_SetPointerProperty
@@ -214,7 +244,7 @@ function SDL_SetPointerPropertyWithCleanup(props: TSDL_PropertiesID; name: PAnsi
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetPointerProperty
  * \sa SDL_HasProperty
@@ -241,7 +271,7 @@ function SDL_SetPointerProperty(props: TSDL_PropertiesID; name: PAnsiChar; value
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetStringProperty
   }
@@ -259,7 +289,7 @@ function SDL_SetStringProperty(props: TSDL_PropertiesID; name: PAnsiChar; value:
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetNumberProperty
   }
@@ -277,7 +307,7 @@ function SDL_SetNumberProperty(props: TSDL_PropertiesID; name: PAnsiChar; value:
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetFloatProperty
   }
@@ -295,7 +325,7 @@ function SDL_SetFloatProperty(props: TSDL_PropertiesID; name: PAnsiChar; value: 
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetBooleanProperty
   }
@@ -311,7 +341,7 @@ function SDL_SetBooleanProperty(props: TSDL_PropertiesID; name: PAnsiChar; value
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetPropertyType
   }
@@ -328,7 +358,7 @@ function SDL_HasProperty(props: TSDL_PropertiesID; name: PAnsiChar): Boolean; cd
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_HasProperty
   }
@@ -356,7 +386,7 @@ function SDL_GetPropertyType(props: TSDL_PropertiesID; name: PAnsiChar): TSDL_Pr
  *               If you need to avoid this, use SDL_LockProperties() and
  *               SDL_UnlockProperties().
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetBooleanProperty
  * \sa SDL_GetFloatProperty
@@ -385,7 +415,7 @@ function SDL_GetPointerProperty(props: TSDL_PropertiesID; name: PAnsiChar; defau
  *               If you need to avoid this, use SDL_LockProperties() and
  *               SDL_UnlockProperties().
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetPropertyType
  * \sa SDL_HasProperty
@@ -408,7 +438,7 @@ function SDL_GetStringProperty(props: TSDL_PropertiesID; name: PAnsiChar; defaul
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetPropertyType
  * \sa SDL_HasProperty
@@ -431,7 +461,7 @@ function SDL_GetNumberProperty(props: TSDL_PropertiesID; name: PAnsiChar; defaul
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetPropertyType
  * \sa SDL_HasProperty
@@ -454,7 +484,7 @@ function SDL_GetFloatProperty(props: TSDL_PropertiesID; name: PAnsiChar; default
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetPropertyType
  * \sa SDL_HasProperty
@@ -473,7 +503,7 @@ function SDL_GetBooleanProperty(props: TSDL_PropertiesID; name: PAnsiChar; defau
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_ClearProperty(props: TSDL_PropertiesID; name: PAnsiChar): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearProperty' {$ENDIF} {$ENDIF};
@@ -491,7 +521,7 @@ function SDL_ClearProperty(props: TSDL_PropertiesID; name: PAnsiChar): Boolean; 
  * \threadsafety SDL_EnumerateProperties holds a lock on `props` during this
  *               callback.
  *
- * \since This datatype is available since SDL 3.1.3.
+ * \since This datatype is available since SDL 3.2.0.
  *
  * \sa SDL_EnumerateProperties
   }
@@ -512,7 +542,7 @@ type
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_EnumerateProperties(props: TSDL_PropertiesID; callback: TSDL_EnumeratePropertiesCallback; userdata: Pointer): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_EnumerateProperties' {$ENDIF} {$ENDIF};
@@ -529,7 +559,7 @@ function SDL_EnumerateProperties(props: TSDL_PropertiesID; callback: TSDL_Enumer
  *               locked or other threads might be setting or getting values
  *               from these properties.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_CreateProperties
   }
