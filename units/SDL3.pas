@@ -89,7 +89,7 @@ const
 {$I SDL_rect.inc}                         // 3.4.2
 {$I SDL_properties.inc}                   // 3.4.2
 {$I SDL_pixels.inc}                       // 3.4.2
-{$I SDL_blendmode.inc}                    // 3.1.6-prev
+{$I SDL_blendmode.inc}                    // 3.4.2
 {$I SDL_iostream.inc}                     // 3.2.0
 {$I SDL_asyncio.inc}                      // 3.2.0
 {$I SDL_surface.inc}                      // 3.2.20
