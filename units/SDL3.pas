@@ -86,7 +86,7 @@ const
 {$I SDL_stdinc.inc}                       // 3.1.6-prev (unfinished)
 {$I SDL_platform.inc}                     // 3.2.0
 {$I SDL_loadso.inc}                       // 3.2.0
-{$I SDL_rect.inc}                         // 3.1.6-prev
+{$I SDL_rect.inc}                         // 3.4.2
 {$I SDL_properties.inc}                   // 3.1.6-prev
 {$I SDL_pixels.inc}                       // 3.1.6-prev
 {$I SDL_blendmode.inc}                    // 3.1.6-prev
@@ -207,7 +207,7 @@ begin
 end;
 
 function SDL_RectsEqualEpsilon(const a: PSDL_Frect; const b: PSDL_FRect;
-  const epsilon: cfloat): Boolean;
+  epsilon: cfloat): Boolean;
 begin
   Result :=
     (a <> nil) and (b <> nil) and ((a = b) or
