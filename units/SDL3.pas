@@ -78,7 +78,7 @@ const
   SDL_init.inc --> SDL_init.h             this version of the header file: }
 {$I SDL_log.inc}                          // 3.4.2
 {$I SDL_version.inc}                      // 3.4.2
-{$I SDL_revision.inc}                     // 3.1.6-prev
+{$I SDL_revision.inc}                     // 3.4.2
 {$I SDL_locale.inc}                       // 3.2.0
 {$I SDL_guid.inc}                         // 3.1.6-prev
 {$I SDL_hints.inc}                        // 3.2.12
