@@ -28,8 +28,8 @@
  * "system", "audio", "video", "render", "input", "test", or `*` for any
  * unspecified category.
  *
- * The level can be a numeric level, one of "verbose", "debug", "info",
- * "warn", "error", "critical", or "quiet" to disable that category.
+ * The level can be a numeric level, one of "trace", "verbose", "debug",
+ * "info", "warn", "error", "critical", or "quiet" to disable that category.
  *
  * You can omit the category if you want to set the logging level for all
  * categories.
@@ -43,6 +43,15 @@
  * - Windows: debug output stream
  * - Android: log output
  * - Others: standard error output (stderr)
+ *
+ * You don't need to have a newline (`\n`) on the end of messages, the
+ * functions will do that for you. For consistent behavior cross-platform, you
+ * shouldn't have any newlines in messages, such as to log multiple lines in
+ * one call; unusual platform-specific behavior can be observed in such usage.
+ * Do one log call per line instead, with no newlines in messages.
+ *
+ * Each log call is atomic, so you won't see log messages cut off one another
+ * when logging from multiple threads.
   }
 
 {*
@@ -52,7 +61,7 @@
  * level, the assert category is enabled at the WARN level, test is enabled at
  * the VERBOSE level and all other categories are enabled at the ERROR level.
  *
- * \since This enum is available since SDL 3.1.3.
+ * \since This enum is available since SDL 3.2.0.
   }
 type
   PPSDL_LogCategory = ^PSDL_LogCategory;
@@ -94,7 +103,7 @@ const
 {*
  * The predefined log priorities
  *
- * \since This enum is available since SDL 3.1.3.
+ * \since This enum is available since SDL 3.2.0.
   }
 type
   PPSDL_LogPriority = ^PSDL_LogPriority;
@@ -118,7 +127,7 @@ const
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This enum is available since SDL 3.2.0.
  *
  * \sa SDL_ResetLogPriorities
  * \sa SDL_SetLogPriority
@@ -134,7 +143,7 @@ procedure SDL_SetLogPriorities(priority: TSDL_LogPriority); cdecl;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetLogPriority
  * \sa SDL_ResetLogPriorities
@@ -151,7 +160,7 @@ procedure SDL_SetLogPriority(category: cint; priority: TSDL_LogPriority); cdecl;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_SetLogPriority
   }
@@ -165,7 +174,7 @@ function SDL_GetLogPriority(category: cint): TSDL_LogPriority; cdecl;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_SetLogPriorities
  * \sa SDL_SetLogPriority
@@ -180,6 +189,9 @@ procedure SDL_ResetLogPriorities; cdecl;
  * SDL_LOG_PRIORITY_WARN and higher have a prefix showing their priority, e.g.
  * "WARNING: ".
  *
+ * This function makes a copy of its string argument, **prefix**, so it is not
+ * necessary to keep the value of **prefix** alive after the call returns.
+ *
  * \param priority the SDL_LogPriority to modify.
  * \param prefix the prefix to use for that log priority, or nil to use no
  *               prefix.
@@ -188,7 +200,7 @@ procedure SDL_ResetLogPriorities; cdecl;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_SetLogPriorities
  * \sa SDL_SetLogPriority
@@ -205,7 +217,7 @@ function SDL_SetLogPriorityPrefix(priority: TSDL_LogPriority; prefix: PAnsiChar)
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_LogCritical
  * \sa SDL_LogDebug
@@ -213,7 +225,6 @@ function SDL_SetLogPriorityPrefix(priority: TSDL_LogPriority; prefix: PAnsiChar)
  * \sa SDL_LogInfo
  * \sa SDL_LogMessage
  * \sa SDL_LogMessageV
- * \sa SDL_LogTrace
  * \sa SDL_LogVerbose
  * \sa SDL_LogWarn
   }
@@ -232,7 +243,7 @@ procedure SDL_Log(fmt: PAnsiChar); cdecl; overload;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_Log
  * \sa SDL_LogCritical
@@ -260,7 +271,7 @@ procedure SDL_LogTrace(category: cint; fmt: PAnsiChar); cdecl; overload;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_Log
  * \sa SDL_LogCritical
@@ -286,7 +297,7 @@ procedure SDL_LogVerbose(category: cint; fmt: PAnsiChar); cdecl; overload;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_Log
  * \sa SDL_LogCritical
@@ -313,7 +324,7 @@ procedure SDL_LogDebug(category: cint; fmt: PAnsiChar); cdecl; overload;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_Log
  * \sa SDL_LogCritical
@@ -340,7 +351,7 @@ procedure SDL_LogInfo(category: cint; fmt: PAnsiChar); cdecl; overload;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_Log
  * \sa SDL_LogCritical
@@ -367,7 +378,7 @@ procedure SDL_LogWarn(category: cint; fmt: PAnsiChar); cdecl; overload;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_Log
  * \sa SDL_LogCritical
@@ -394,7 +405,7 @@ procedure SDL_LogError(category: cint; fmt: PAnsiChar); cdecl; overload;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_Log
  * \sa SDL_LogDebug
@@ -422,7 +433,7 @@ procedure SDL_LogCritical(category: cint; fmt: PAnsiChar); cdecl; overload;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_Log
  * \sa SDL_LogCritical
@@ -449,7 +460,7 @@ procedure SDL_LogMessage(category: cint; priority: TSDL_LogPriority; fmt: PAnsiC
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_Log
  * \sa SDL_LogCritical
@@ -478,7 +489,7 @@ procedure SDL_LogMessage(category: cint; priority: TSDL_LogPriority; fmt: PAnsiC
  * \param priority the priority of the message.
  * \param message the message being output.
  *
- * \since This datatype is available since SDL 3.1.3.
+ * \since This datatype is available since SDL 3.2.0.
   }
 type
   PPSDL_LogOutputFunction = ^PSDL_LogOutputFunction;
@@ -510,7 +521,7 @@ function SDL_GetDefaultLogOutputFunction: TSDL_LogOutputFunction; cdecl;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetDefaultLogOutputFunction
  * \sa SDL_SetLogOutputFunction
@@ -526,7 +537,7 @@ procedure SDL_GetLogOutputFunction(callback: PSDL_LogOutputFunction; userdata: P
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetDefaultLogOutputFunction
  * \sa SDL_GetLogOutputFunction
