@@ -53,7 +53,7 @@
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_ClearError
  * \sa SDL_GetError
@@ -94,7 +94,7 @@ function SDL_SetError(fmt: PAnsiChar): Boolean; cdecl; overload;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_OutOfMemory: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_OutOfMemory' {$ENDIF} {$ENDIF};
@@ -129,7 +129,7 @@ function SDL_OutOfMemory: Boolean; cdecl;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_ClearError
  * \sa SDL_SetError
@@ -144,7 +144,7 @@ function SDL_GetError: PAnsiChar; cdecl;
  *
  * \threadsafety It is safe to call this function from any thread.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetError
  * \sa SDL_SetError

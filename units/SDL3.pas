@@ -95,7 +95,7 @@ const
 {$I SDL_surface.inc}                      // 3.2.20
 {$I SDL_video.inc}                        // 3.4.2
 {$I SDL_timer.inc}                        // 3.2.20
-{$I SDL_error.inc}                        // 3.1.6-prev
+{$I SDL_error.inc}                        // 3.4.2
 {$I SDL_power.inc}                        // 3.1.6-prev
 {$I SDL_audio.inc}                        // 3.1.6-prev
 {$I SDL_sensor.inc}                       // 3.1.6-prev
