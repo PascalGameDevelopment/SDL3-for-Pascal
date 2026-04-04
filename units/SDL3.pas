@@ -108,7 +108,7 @@ const
 {$I SDL_haptic.inc}                       // 3.2.0
 {$I SDL_touch.inc}                        // 3.4.4
 {$I SDL_pen.inc}                          // 3.2.20
-{$I SDL_camera.inc}                       // 3.1.6-prev
+{$I SDL_camera.inc}                       // 3.4.4
 {$I SDL_events.inc}                       // 3.2.20
 {$I SDL_init.inc}                         // 3.2.20
 {$I SDL_render.inc}                       // 3.1.6-prev
