@@ -11,11 +11,18 @@
  *
  * SDL sensor management.
  *
+ * These APIs grant access to gyros and accelerometers on various platforms.
+ *
  * In order to use these functions, SDL_Init() must have been called with the
  * SDL_INIT_SENSOR flag. This causes SDL to scan the system for sensors, and
  * load appropriate drivers.
   }
 
+{
+* The opaque structure used to identify an opened SDL sensor.
+*
+* \since This struct is available since SDL 3.2.0.
+}
 type
   PPSDL_Sensor = ^PSDL_Sensor;
   PSDL_Sensor = type Pointer;
@@ -26,7 +33,7 @@ type
  *
  * The value 0 is an invalid ID.
  *
- * \since This datatype is available since SDL 3.1.3.
+ * \since This datatype is available since SDL 3.2.0.
   }
 type
   PPSDL_SensorID = ^PSDL_SensorID;
@@ -41,7 +48,7 @@ type
  * rest will have an value of SDL_STANDARD_GRAVITY away from the center of the
  * earth, which is a positive Y value.
  *
- * \since This macro is available since SDL 3.1.3.
+ * \since This macro is available since SDL 3.2.0.
   }
 const
   SDL_STANDARD_GRAVITY = cfloat(9.80665);
@@ -96,7 +103,7 @@ const
  *
  * The gyroscope axis data is not changed when the device is rotated.
  *
- * \since This enum is available since SDL 3.1.3.
+ * \since This enum is available since SDL 3.2.0.
  *
  * \sa SDL_GetCurrentDisplayOrientation
   }
@@ -113,6 +120,7 @@ const
   SDL_SENSOR_GYRO_L  = TSDL_SensorType(4);    {*< Gyroscope for left Joy-Con controller  }
   SDL_SENSOR_ACCEL_R  = TSDL_SensorType(5);   {*< Accelerometer for right Joy-Con controller  }
   SDL_SENSOR_GYRO_R  = TSDL_SensorType(6);    {*< Gyroscope for right Joy-Con controller  }
+  SDL_SENSOR_COUNT = TSDL_SensorType(7);
 
 { Function prototypes  }
 
@@ -125,7 +133,7 @@ const
  *          call SDL_GetError() for more information. This should be freed
  *          with SDL_free() when it is no longer needed.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetSensors(count: pcint): PSDL_SensorID; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSensors' {$ENDIF} {$ENDIF};
@@ -138,7 +146,7 @@ function SDL_GetSensors(count: pcint): PSDL_SensorID; cdecl;
  * \param instance_id the sensor instance ID.
  * \returns the sensor name, or nil if `instance_id` is not valid.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetSensorNameForID(instance_id: TSDL_SensorID): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSensorNameForID' {$ENDIF} {$ENDIF};
@@ -152,7 +160,7 @@ function SDL_GetSensorNameForID(instance_id: TSDL_SensorID): PAnsiChar; cdecl;
  * \returns the SDL_SensorType, or `SDL_SENSOR_INVALID` if `instance_id` is
  *          not valid.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetSensorTypeForID(instance_id: TSDL_SensorID): TSDL_SensorType; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSensorTypeForID' {$ENDIF} {$ENDIF};
@@ -166,7 +174,7 @@ function SDL_GetSensorTypeForID(instance_id: TSDL_SensorID): TSDL_SensorType; cd
  * \returns the sensor platform dependent type, or -1 if `instance_id` is not
  *          valid.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetSensorNonPortableTypeForID(instance_id: TSDL_SensorID): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSensorNonPortableTypeForID' {$ENDIF} {$ENDIF};
@@ -178,7 +186,7 @@ function SDL_GetSensorNonPortableTypeForID(instance_id: TSDL_SensorID): cint; cd
  * \returns an SDL_Sensor object or nil on failure; call SDL_GetError() for
  *          more information.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_OpenSensor(instance_id: TSDL_SensorID): PSDL_Sensor; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_OpenSensor' {$ENDIF} {$ENDIF};
@@ -190,7 +198,7 @@ function SDL_OpenSensor(instance_id: TSDL_SensorID): PSDL_Sensor; cdecl;
  * \returns an SDL_Sensor object or nil on failure; call SDL_GetError() for
  *          more information.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetSensorFromID(instance_id: TSDL_SensorID): PSDL_Sensor; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSensorFromID' {$ENDIF} {$ENDIF};
@@ -202,7 +210,7 @@ function SDL_GetSensorFromID(instance_id: TSDL_SensorID): PSDL_Sensor; cdecl;
  * \returns a valid property ID on success or 0 on failure; call
  *          SDL_GetError() for more information.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetSensorProperties(sensor: PSDL_Sensor): TSDL_PropertiesID; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSensorProperties' {$ENDIF} {$ENDIF};
@@ -214,7 +222,7 @@ function SDL_GetSensorProperties(sensor: PSDL_Sensor): TSDL_PropertiesID; cdecl;
  * \returns the sensor name or nil on failure; call SDL_GetError() for more
  *          information.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetSensorName(sensor: PSDL_Sensor): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSensorName' {$ENDIF} {$ENDIF};
@@ -226,7 +234,7 @@ function SDL_GetSensorName(sensor: PSDL_Sensor): PAnsiChar; cdecl;
  * \returns the SDL_SensorType type, or `SDL_SENSOR_INVALID` if `sensor` is
  *          nil.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetSensorType(sensor: PSDL_Sensor): TSDL_SensorType; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSensorType' {$ENDIF} {$ENDIF};
@@ -237,7 +245,7 @@ function SDL_GetSensorType(sensor: PSDL_Sensor): TSDL_SensorType; cdecl;
  * \param sensor the SDL_Sensor object to inspect.
  * \returns the sensor platform dependent type, or -1 if `sensor` is nil.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetSensorNonPortableType(sensor: PSDL_Sensor): cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSensorNonPortableType' {$ENDIF} {$ENDIF};
@@ -249,7 +257,7 @@ function SDL_GetSensorNonPortableType(sensor: PSDL_Sensor): cint; cdecl;
  * \returns the sensor instance ID, or 0 on failure; call SDL_GetError() for
  *          more information.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetSensorID(sensor: PSDL_Sensor): TSDL_SensorID; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSensorID' {$ENDIF} {$ENDIF};
@@ -265,7 +273,7 @@ function SDL_GetSensorID(sensor: PSDL_Sensor): TSDL_SensorID; cdecl;
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetSensorData(sensor: PSDL_Sensor; data: pcfloat; num_values: cint): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSensorData' {$ENDIF} {$ENDIF};
@@ -275,7 +283,7 @@ function SDL_GetSensorData(sensor: PSDL_Sensor; data: pcfloat; num_values: cint)
  *
  * \param sensor the SDL_Sensor object to close.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 procedure SDL_CloseSensor(sensor: PSDL_Sensor); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CloseSensor' {$ENDIF} {$ENDIF};
@@ -289,7 +297,7 @@ procedure SDL_CloseSensor(sensor: PSDL_Sensor); cdecl;
  * This needs to be called from the thread that initialized the sensor
  * subsystem.
  *
- * \since This function is available since SDL 3.1.3.
+ * \since This function is available since SDL 3.2.0.
   }
 procedure SDL_UpdateSensors; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateSensors' {$ENDIF} {$ENDIF};

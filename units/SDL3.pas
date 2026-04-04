@@ -98,7 +98,7 @@ const
 {$I SDL_error.inc}                        // 3.4.2
 {$I SDL_power.inc}                        // 3.4.2
 {$I SDL_audio.inc}                        // 3.4.2
-{$I SDL_sensor.inc}                       // 3.1.6-prev
+{$I SDL_sensor.inc}                       // 3.4.4
 {$I SDL_scancode.inc}                     // 3.1.6-prev
 {$I SDL_keycode.inc}                      // 3.2.20
 {$I SDL_mouse.inc}                        // 3.1.6-prev
