@@ -101,7 +101,7 @@ const
 {$I SDL_sensor.inc}                       // 3.4.4
 {$I SDL_scancode.inc}                     // 3.4.4
 {$I SDL_keycode.inc}                      // 3.2.20
-{$I SDL_mouse.inc}                        // 3.1.6-prev
+{$I SDL_mouse.inc}                        // 3.4.4
 {$I SDL_keyboard.inc}                     // 3.1.6-prev
 {$I SDL_joystick.inc}                     // 3.1.6-prev
 {$I SDL_gamepad.inc}                      // 3.2.0
