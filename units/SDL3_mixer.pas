@@ -275,7 +275,7 @@ function SDL_MIXER_VERSION_ATLEAST(major, minor, micro: Integer): Boolean;
 *
 * \sa SDL_MIXER_VERSION
  *}
-function Mix_Version(): cint; cdecl;
+function MIX_Version(): cint; cdecl;
   external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_Mix_Version' {$ENDIF} {$ENDIF};
 
 {*
@@ -297,7 +297,7 @@ function Mix_Version(): cint; cdecl;
  * \sa MIX_Quit
   }
 function MIX_Init: Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_Init' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_Init' {$ENDIF} {$ENDIF};
 
 {*
  * Deinitialize the SDL_mixer library.
@@ -334,7 +334,7 @@ function MIX_Init: Boolean; cdecl;
  * \sa MIX_Init
   }
 procedure MIX_Quit; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_Quit' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_Quit' {$ENDIF} {$ENDIF};
 
 {*
  * Report the number of audio decoders available for use.
@@ -357,7 +357,7 @@ procedure MIX_Quit; cdecl;
  * \sa MIX_GetAudioDecoder
   }
 function MIX_GetNumAudioDecoders: cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetNumAudioDecoders' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetNumAudioDecoders' {$ENDIF} {$ENDIF};
 
 {*
  * Report the name of a specific audio decoders.
@@ -389,7 +389,7 @@ function MIX_GetNumAudioDecoders: cint; cdecl;
  * \sa MIX_GetNumAudioDecoders
   }
 function MIX_GetAudioDecoder(index: cint): PAnsiChar; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetAudioDecoder' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetAudioDecoder' {$ENDIF} {$ENDIF};
 
 {*
  * Create a mixer that plays sound directly to an audio device.
@@ -437,7 +437,7 @@ function MIX_GetAudioDecoder(index: cint): PAnsiChar; cdecl;
  * \sa MIX_DestroyMixer
   }
 function MIX_CreateMixerDevice(devid: TSDL_AudioDeviceID; spec: PSDL_AudioSpec): PMIX_Mixer; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CreateMixerDevice' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CreateMixerDevice' {$ENDIF} {$ENDIF};
 
 {*
  * Create a mixer that generates audio to a memory buffer.
@@ -467,7 +467,7 @@ function MIX_CreateMixerDevice(devid: TSDL_AudioDeviceID; spec: PSDL_AudioSpec):
  * \sa MIX_DestroyMixer
   }
 function MIX_CreateMixer(spec: PSDL_AudioSpec): PMIX_Mixer; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CreateMixer' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CreateMixer' {$ENDIF} {$ENDIF};
 
 {*
  * Free a mixer.
@@ -493,7 +493,7 @@ function MIX_CreateMixer(spec: PSDL_AudioSpec): PMIX_Mixer; cdecl;
  * \sa MIX_CreateMixer
   }
 procedure MIX_DestroyMixer(mixer: PMIX_Mixer); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_DestroyMixer' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_DestroyMixer' {$ENDIF} {$ENDIF};
 
 {*
  * Get the properties associated with a mixer.
@@ -513,7 +513,7 @@ procedure MIX_DestroyMixer(mixer: PMIX_Mixer); cdecl;
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_GetMixerProperties(mixer: PMIX_Mixer): TSDL_PropertiesID; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMixerProperties' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMixerProperties' {$ENDIF} {$ENDIF};
 
 const
   MIX_PROP_MIXER_DEVICE_NUMBER = 'SDL_mixer.mixer.device';
@@ -548,7 +548,7 @@ const
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_GetMixerFormat(mixer: PMIX_Mixer; spec: PSDL_AudioSpec): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMixerFormat' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMixerFormat' {$ENDIF} {$ENDIF};
 
 {*
  * Lock a mixer by obtaining its internal mutex.
@@ -594,7 +594,7 @@ function MIX_GetMixerFormat(mixer: PMIX_Mixer; spec: PSDL_AudioSpec): Boolean; c
  * \sa MIX_UnlockMixer
   }
 procedure MIX_LockMixer(mixer: PMIX_Mixer); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LockMixer' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LockMixer' {$ENDIF} {$ENDIF};
 
 {*
  * Unlock a mixer previously locked by a call to MIX_LockMixer().
@@ -619,7 +619,7 @@ procedure MIX_LockMixer(mixer: PMIX_Mixer); cdecl;
  * \sa MIX_LockMixer
   }
 procedure MIX_UnlockMixer(mixer: PMIX_Mixer); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_UnlockMixer' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_UnlockMixer' {$ENDIF} {$ENDIF};
 
 {*
  * Load audio for playback from an SDL_IOStream.
@@ -679,7 +679,7 @@ procedure MIX_UnlockMixer(mixer: PMIX_Mixer); cdecl;
  * \sa MIX_LoadAudioWithProperties
   }
 function MIX_LoadAudio_IO(mixer: PMIX_Mixer; io: PSDL_IOStream; predecode: Boolean; closeio: Boolean): PMIX_Audio; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadAudio_IO' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadAudio_IO' {$ENDIF} {$ENDIF};
 
 {*
  * Load audio for playback from a file.
@@ -710,7 +710,7 @@ function MIX_LoadAudio_IO(mixer: PMIX_Mixer; io: PSDL_IOStream; predecode: Boole
  * \sa MIX_LoadAudioWithProperties
   }
 function MIX_LoadAudio(mixer: PMIX_Mixer; path: PAnsiChar; predecode: Boolean): PMIX_Audio; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadAudio' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadAudio' {$ENDIF} {$ENDIF};
 
 {*
  * Load audio for playback from a memory buffer without making a copy.
@@ -770,7 +770,7 @@ function MIX_LoadAudio(mixer: PMIX_Mixer; path: PAnsiChar; predecode: Boolean): 
  * \sa MIX_LoadAudio_IO
   }
 function MIX_LoadAudioNoCopy(mixer: PMIX_Mixer; data: Pointer; datalen: csize_t; free_when_done: Boolean): PMIX_Audio; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadAudioNoCopy' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadAudioNoCopy' {$ENDIF} {$ENDIF};
 
 {*
  * Load audio for playback through a collection of properties.
@@ -820,7 +820,7 @@ function MIX_LoadAudioNoCopy(mixer: PMIX_Mixer; data: Pointer; datalen: csize_t;
  * \sa MIX_LoadAudio_IO
   }
 function MIX_LoadAudioWithProperties(props: TSDL_PropertiesID): PMIX_Audio; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadAudioWithProperties' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadAudioWithProperties' {$ENDIF} {$ENDIF};
 
   const
   MIX_PROP_AUDIO_LOAD_IOSTREAM_POINTER = 'SDL_mixer.audio.load.iostream';
@@ -864,7 +864,7 @@ function MIX_LoadAudioWithProperties(props: TSDL_PropertiesID): PMIX_Audio; cdec
  * \sa MIX_LoadAudio_IO
   }
 function MIX_LoadRawAudio_IO(mixer: PMIX_Mixer; io: PSDL_IOStream; spec: PSDL_AudioSpec; closeio: Boolean): PMIX_Audio; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadRawAudio_IO' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadRawAudio_IO' {$ENDIF} {$ENDIF};
 
 {*
  * Load raw PCM data from a memory buffer.
@@ -901,7 +901,7 @@ function MIX_LoadRawAudio_IO(mixer: PMIX_Mixer; io: PSDL_IOStream; spec: PSDL_Au
  * \sa MIX_LoadAudio_IO
   }
 function MIX_LoadRawAudio(mixer: PMIX_Mixer; data: Pointer; datalen: csize_t; spec: PSDL_AudioSpec): PMIX_Audio; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadRawAudio' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadRawAudio' {$ENDIF} {$ENDIF};
 
 {*
  * Load raw PCM data from a memory buffer without making a copy.
@@ -944,7 +944,7 @@ function MIX_LoadRawAudio(mixer: PMIX_Mixer; data: Pointer; datalen: csize_t; sp
  * \sa MIX_LoadAudio_IO
   }
 function MIX_LoadRawAudioNoCopy(mixer: PMIX_Mixer; data: Pointer; datalen: csize_t; spec: PSDL_AudioSpec; free_when_done: Boolean): PMIX_Audio; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadRawAudioNoCopy' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_LoadRawAudioNoCopy' {$ENDIF} {$ENDIF};
 
 {*
  * Create a MIX_Audio that generates a sinewave.
@@ -982,7 +982,7 @@ function MIX_LoadRawAudioNoCopy(mixer: PMIX_Mixer; data: Pointer; datalen: csize
  * \sa MIX_LoadAudio_IO
   }
 function MIX_CreateSineWaveAudio(mixer: PMIX_Mixer; hz: cint; amplitude: cfloat; ms: cint64): PMIX_Audio; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CreateSineWaveAudio' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CreateSineWaveAudio' {$ENDIF} {$ENDIF};
 
 {*
  * Get the properties associated with a MIX_Audio.
@@ -1030,7 +1030,7 @@ function MIX_CreateSineWaveAudio(mixer: PMIX_Mixer; hz: cint; amplitude: cfloat;
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_GetAudioProperties(audio: PMIX_Audio): TSDL_PropertiesID; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetAudioProperties' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetAudioProperties' {$ENDIF} {$ENDIF};
 
 const
   MIX_PROP_METADATA_TITLE_STRING = 'SDL_mixer.metadata.title';
@@ -1076,7 +1076,7 @@ const
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_GetAudioDuration(audio: PMIX_Audio): cint64; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetAudioDuration' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetAudioDuration' {$ENDIF} {$ENDIF};
 
 const
   MIX_DURATION_UNKNOWN = -1;
@@ -1100,7 +1100,7 @@ const
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_GetAudioFormat(audio: PMIX_Audio; spec: PSDL_AudioSpec): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetAudioFormat' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetAudioFormat' {$ENDIF} {$ENDIF};
 
 {*
  * Destroy the specified audio.
@@ -1123,7 +1123,7 @@ function MIX_GetAudioFormat(audio: PMIX_Audio; spec: PSDL_AudioSpec): Boolean; c
  * \since This function is available since SDL_mixer 3.0.0.
   }
 procedure MIX_DestroyAudio(audio: PMIX_Audio); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_DestroyAudio' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_DestroyAudio' {$ENDIF} {$ENDIF};
 
 {*
  * Create a new track on a mixer.
@@ -1150,7 +1150,7 @@ procedure MIX_DestroyAudio(audio: PMIX_Audio); cdecl;
  * \sa MIX_DestroyTrack
   }
 function MIX_CreateTrack(mixer: PMIX_Mixer): PMIX_Track; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CreateTrack' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CreateTrack' {$ENDIF} {$ENDIF};
 
 {*
  * Destroy the specified track.
@@ -1171,7 +1171,7 @@ function MIX_CreateTrack(mixer: PMIX_Mixer): PMIX_Track; cdecl;
  * \since This function is available since SDL_mixer 3.0.0.
   }
 procedure MIX_DestroyTrack(track: PMIX_Track); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_DestroyTrack' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_DestroyTrack' {$ENDIF} {$ENDIF};
 
 {*
  * Get the properties associated with a track.
@@ -1191,7 +1191,7 @@ procedure MIX_DestroyTrack(track: PMIX_Track); cdecl;
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_GetTrackProperties(track: PMIX_Track): TSDL_PropertiesID; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackProperties' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackProperties' {$ENDIF} {$ENDIF};
 
 {*
  * Get the MIX_Mixer that owns a MIX_Track.
@@ -1207,7 +1207,7 @@ function MIX_GetTrackProperties(track: PMIX_Track): TSDL_PropertiesID; cdecl;
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_GetTrackMixer(track: PMIX_Track): PMIX_Mixer; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackMixer' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackMixer' {$ENDIF} {$ENDIF};
 
 {*
  * Set a MIX_Track's input to a MIX_Audio.
@@ -1241,7 +1241,7 @@ function MIX_GetTrackMixer(track: PMIX_Track): PMIX_Mixer; cdecl;
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_SetTrackAudio(track: PMIX_Track; audio: PMIX_Audio): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackAudio' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackAudio' {$ENDIF} {$ENDIF};
 
 {*
  * Set a MIX_Track's input to an SDL_AudioStream.
@@ -1284,7 +1284,7 @@ function MIX_SetTrackAudio(track: PMIX_Track; audio: PMIX_Audio): Boolean; cdecl
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_SetTrackAudioStream(track: PMIX_Track; stream: PSDL_AudioStream): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackAudioStream' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackAudioStream' {$ENDIF} {$ENDIF};
 
 {*
  * Set a MIX_Track's input to an SDL_IOStream.
@@ -1335,7 +1335,7 @@ function MIX_SetTrackAudioStream(track: PMIX_Track; stream: PSDL_AudioStream): B
  * \sa MIX_SetTrackRawIOStream
   }
 function MIX_SetTrackIOStream(track: PMIX_Track; io: PSDL_IOStream; closeio: Boolean): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackIOStream' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackIOStream' {$ENDIF} {$ENDIF};
 
 {*
  * Set a MIX_Track's input to an SDL_IOStream providing raw PCM data.
@@ -1386,7 +1386,7 @@ function MIX_SetTrackIOStream(track: PMIX_Track; io: PSDL_IOStream; closeio: Boo
  * \sa MIX_SetTrackIOStream
   }
 function MIX_SetTrackRawIOStream(track: PMIX_Track; io: PSDL_IOStream; spec: PSDL_AudioSpec; closeio: Boolean): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackRawIOStream' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackRawIOStream' {$ENDIF} {$ENDIF};
 
 {*
  * Assign an arbitrary tag to a track.
@@ -1416,7 +1416,7 @@ function MIX_SetTrackRawIOStream(track: PMIX_Track; io: PSDL_IOStream; spec: PSD
  * \sa MIX_UntagTrack
   }
 function MIX_TagTrack(track: PMIX_Track; tag: PAnsiChar): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_TagTrack' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_TagTrack' {$ENDIF} {$ENDIF};
 
 {*
  * Remove an arbitrary tag from a track.
@@ -1442,7 +1442,7 @@ function MIX_TagTrack(track: PMIX_Track; tag: PAnsiChar): Boolean; cdecl;
  * \sa MIX_TagTrack
   }
 procedure MIX_UntagTrack(track: PMIX_Track; tag: PAnsiChar); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_UntagTrack' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_UntagTrack' {$ENDIF} {$ENDIF};
 
 {*
  * Get the tags currently associated with a track.
@@ -1461,7 +1461,7 @@ procedure MIX_UntagTrack(track: PMIX_Track; tag: PAnsiChar); cdecl;
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_GetTrackTags(track: PMIX_Track; count: pcint):PPAnsiChar; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackTags' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackTags' {$ENDIF} {$ENDIF};
 
 {*
  * Get all tracks with a specific tag.
@@ -1481,7 +1481,7 @@ function MIX_GetTrackTags(track: PMIX_Track; count: pcint):PPAnsiChar; cdecl;
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_GetTaggedTracks(mixer: PMIX_Mixer; tag: PAnsiChar; count: pcint):PPMIX_Track; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTaggedTracks' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTaggedTracks' {$ENDIF} {$ENDIF};
 
 {*
  * Seek a playing track to a new position in its input.
@@ -1519,7 +1519,7 @@ function MIX_GetTaggedTracks(mixer: PMIX_Mixer; tag: PAnsiChar; count: pcint):PP
  * \sa MIX_GetTrackPlaybackPosition
   }
 function MIX_SetTrackPlaybackPosition(track: PMIX_Track; frames: cint64): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackPlaybackPosition' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackPlaybackPosition' {$ENDIF} {$ENDIF};
 
 {*
  * Get the current input position of a playing track.
@@ -1547,7 +1547,7 @@ function MIX_SetTrackPlaybackPosition(track: PMIX_Track; frames: cint64): Boolea
  * \sa MIX_SetTrackPlaybackPosition
   }
 function MIX_GetTrackPlaybackPosition(track: PMIX_Track): cint64; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackPlaybackPosition' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackPlaybackPosition' {$ENDIF} {$ENDIF};
 
 {*
  * Query whether a given track is fading.
@@ -1572,7 +1572,7 @@ function MIX_GetTrackPlaybackPosition(track: PMIX_Track): cint64; cdecl;
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_GetTrackFadeFrames(track: PMIX_Track): cint64; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackFadeFrames' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackFadeFrames' {$ENDIF} {$ENDIF};
 
 {*
  * Query how many loops remain for a given track.
@@ -1601,7 +1601,7 @@ function MIX_GetTrackFadeFrames(track: PMIX_Track): cint64; cdecl;
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_GetTrackLoops(track: PMIX_Track): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackLoops' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackLoops' {$ENDIF} {$ENDIF};
 
 {*
  * Change the number of times a currently-playing track will loop.
@@ -1633,7 +1633,7 @@ function MIX_GetTrackLoops(track: PMIX_Track): cint; cdecl;
  * \sa MIX_GetTrackLoops
   }
 function MIX_SetTrackLoops(track: PMIX_Track; num_loops: cint): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackLoops' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackLoops' {$ENDIF} {$ENDIF};
 
 {*
  * Query the MIX_Audio assigned to a track.
@@ -1657,7 +1657,7 @@ function MIX_SetTrackLoops(track: PMIX_Track; num_loops: cint): Boolean; cdecl;
  * \sa MIX_GetTrackAudioStream
   }
 function MIX_GetTrackAudio(track: PMIX_Track): PMIX_Audio; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackAudio' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackAudio' {$ENDIF} {$ENDIF};
 
 {*
  * Query the SDL_AudioStream assigned to a track.
@@ -1681,7 +1681,7 @@ function MIX_GetTrackAudio(track: PMIX_Track): PMIX_Audio; cdecl;
  * \sa MIX_GetTrackAudio
   }
 function MIX_GetTrackAudioStream(track: PMIX_Track): PSDL_AudioStream; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackAudioStream' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackAudioStream' {$ENDIF} {$ENDIF};
 
 {*
  * Return the number of sample frames remaining to be mixed in a track.
@@ -1709,7 +1709,7 @@ function MIX_GetTrackAudioStream(track: PMIX_Track): PSDL_AudioStream; cdecl;
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_GetTrackRemaining(track: PMIX_Track): cint64; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackRemaining' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackRemaining' {$ENDIF} {$ENDIF};
 
 {*
  * Convert milliseconds to sample frames for a track's current format.
@@ -1735,7 +1735,7 @@ function MIX_GetTrackRemaining(track: PMIX_Track): cint64; cdecl;
  * \sa MIX_TrackFramesToMS
   }
 function MIX_TrackMSToFrames(track: PMIX_Track; ms: cint64): cint64; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_TrackMSToFrames' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_TrackMSToFrames' {$ENDIF} {$ENDIF};
 
 {*
  * Convert sample frames for a track's current format to milliseconds.
@@ -1764,7 +1764,7 @@ function MIX_TrackMSToFrames(track: PMIX_Track; ms: cint64): cint64; cdecl;
  * \sa MIX_TrackMSToFrames
   }
 function MIX_TrackFramesToMS(track: PMIX_Track; frames: cint64): cint64; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_TrackFramesToMS' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_TrackFramesToMS' {$ENDIF} {$ENDIF};
 
 {*
  * Convert milliseconds to sample frames for a MIX_Audio's format.
@@ -1786,7 +1786,7 @@ function MIX_TrackFramesToMS(track: PMIX_Track; frames: cint64): cint64; cdecl;
  * \sa MIX_AudioFramesToMS
   }
 function MIX_AudioMSToFrames(audio: PMIX_Audio; ms: cint64): cint64; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_AudioMSToFrames' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_AudioMSToFrames' {$ENDIF} {$ENDIF};
 
 {*
  * Convert sample frames for a MIX_Audio's format to milliseconds.
@@ -1811,7 +1811,7 @@ function MIX_AudioMSToFrames(audio: PMIX_Audio; ms: cint64): cint64; cdecl;
  * \sa MIX_AudioMSToFrames
   }
 function MIX_AudioFramesToMS(audio: PMIX_Audio; frames: cint64): cint64; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_AudioFramesToMS' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_AudioFramesToMS' {$ENDIF} {$ENDIF};
 
 {*
  * Convert milliseconds to sample frames at a specific sample rate.
@@ -1830,7 +1830,7 @@ function MIX_AudioFramesToMS(audio: PMIX_Audio; frames: cint64): cint64; cdecl;
  * \sa MIX_FramesToMS
   }
 function MIX_MSToFrames(sample_rate: cint; ms: cint64): cint64; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_MSToFrames' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_MSToFrames' {$ENDIF} {$ENDIF};
 
 {*
  * Convert sample frames, at a specific sample rate, to milliseconds.
@@ -1853,7 +1853,7 @@ function MIX_MSToFrames(sample_rate: cint; ms: cint64): cint64; cdecl;
  * \sa MIX_MSToFrames
   }
 function MIX_FramesToMS(sample_rate: cint; frames: cint64): cint64; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_FramesToMS' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_FramesToMS' {$ENDIF} {$ENDIF};
 
 { operations that deal with actual mixing/playback...  }
 {*
@@ -1971,7 +1971,7 @@ function MIX_FramesToMS(sample_rate: cint; frames: cint64): cint64; cdecl;
  * \sa MIX_TrackPlaying
   }
 function MIX_PlayTrack(track: PMIX_Track; options: TSDL_PropertiesID): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_PlayTrack' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_PlayTrack' {$ENDIF} {$ENDIF};
 
 const
   MIX_PROP_PLAY_LOOPS_NUMBER = 'SDL_mixer.play.loops';
@@ -2024,7 +2024,7 @@ const
  * \sa MIX_TrackPlaying
   }
 function MIX_PlayTag(mixer: PMIX_Mixer; tag: PAnsiChar; options: TSDL_PropertiesID): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_PlayTag' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_PlayTag' {$ENDIF} {$ENDIF};
 
 {*
  * Play a MIX_Audio from start to finish without any management.
@@ -2057,7 +2057,7 @@ function MIX_PlayTag(mixer: PMIX_Mixer; tag: PAnsiChar; options: TSDL_Properties
  * \sa MIX_LoadAudio
   }
 function MIX_PlayAudio(mixer: PMIX_Mixer; audio: PMIX_Audio): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_PlayAudio' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_PlayAudio' {$ENDIF} {$ENDIF};
 
 {*
  * Halt a currently-playing track, possibly fading out over time.
@@ -2092,7 +2092,7 @@ function MIX_PlayAudio(mixer: PMIX_Mixer; audio: PMIX_Audio): Boolean; cdecl;
  * \sa MIX_PlayTrack
   }
 function MIX_StopTrack(track: PMIX_Track; fade_out_frames: cint64): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_StopTrack' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_StopTrack' {$ENDIF} {$ENDIF};
 
 {*
  * Halt all currently-playing tracks, possibly fading out over time.
@@ -2124,7 +2124,7 @@ function MIX_StopTrack(track: PMIX_Track; fade_out_frames: cint64): Boolean; cde
  * \sa MIX_StopTrack
   }
 function MIX_StopAllTracks(mixer: PMIX_Mixer; fade_out_ms: cint64): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_StopAllTracks' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_StopAllTracks' {$ENDIF} {$ENDIF};
 
 {*
  * Halt all tracks with a specific tag, possibly fading out over time.
@@ -2158,7 +2158,7 @@ function MIX_StopAllTracks(mixer: PMIX_Mixer; fade_out_ms: cint64): Boolean; cde
  * \sa MIX_TagTrack
   }
 function MIX_StopTag(mixer: PMIX_Mixer; tag: PAnsiChar; fade_out_ms: cint64): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_StopTag' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_StopTag' {$ENDIF} {$ENDIF};
 
 {*
  * Pause a currently-playing track.
@@ -2183,7 +2183,7 @@ function MIX_StopTag(mixer: PMIX_Mixer; tag: PAnsiChar; fade_out_ms: cint64): Bo
  * \sa MIX_ResumeTrack
   }
 function MIX_PauseTrack(track: PMIX_Track): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_PauseTrack' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_PauseTrack' {$ENDIF} {$ENDIF};
 
 {*
  * Pause all currently-playing tracks.
@@ -2206,7 +2206,7 @@ function MIX_PauseTrack(track: PMIX_Track): Boolean; cdecl;
  * \sa MIX_ResumeAllTracks
   }
 function MIX_PauseAllTracks(mixer: PMIX_Mixer): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_PauseAllTracks' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_PauseAllTracks' {$ENDIF} {$ENDIF};
 
 {*
  * Pause all tracks with a specific tag.
@@ -2235,7 +2235,7 @@ function MIX_PauseAllTracks(mixer: PMIX_Mixer): Boolean; cdecl;
  * \sa MIX_TagTrack
   }
 function MIX_PauseTag(mixer: PMIX_Mixer; tag: PAnsiChar): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_PauseTag' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_PauseTag' {$ENDIF} {$ENDIF};
 
 {*
  * Resume a currently-paused track.
@@ -2260,7 +2260,7 @@ function MIX_PauseTag(mixer: PMIX_Mixer; tag: PAnsiChar): Boolean; cdecl;
  * \sa MIX_PauseTrack
   }
 function MIX_ResumeTrack(track: PMIX_Track): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_ResumeTrack' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_ResumeTrack' {$ENDIF} {$ENDIF};
 
 {*
  * Resume all currently-paused tracks.
@@ -2283,7 +2283,7 @@ function MIX_ResumeTrack(track: PMIX_Track): Boolean; cdecl;
  * \sa MIX_PauseAllTracks
   }
 function MIX_ResumeAllTracks(mixer: PMIX_Mixer): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_ResumeAllTracks' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_ResumeAllTracks' {$ENDIF} {$ENDIF};
 
 {*
  * Resume all tracks with a specific tag.
@@ -2313,7 +2313,7 @@ function MIX_ResumeAllTracks(mixer: PMIX_Mixer): Boolean; cdecl;
   }
 
 function MIX_ResumeTag(mixer: PMIX_Mixer; tag: PAnsiChar): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_ResumeTag' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_ResumeTag' {$ENDIF} {$ENDIF};
 
 {*
  * Query if a track is currently playing.
@@ -2339,7 +2339,7 @@ function MIX_ResumeTag(mixer: PMIX_Mixer; tag: PAnsiChar): Boolean; cdecl;
  * \sa MIX_TrackPaused
   }
 function MIX_TrackPlaying(track: PMIX_Track): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_TrackPlaying' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_TrackPlaying' {$ENDIF} {$ENDIF};
 
 {*
  * Query if a track is currently paused.
@@ -2366,7 +2366,7 @@ function MIX_TrackPlaying(track: PMIX_Track): Boolean; cdecl;
  * \sa MIX_TrackPlaying
   }
 function MIX_TrackPaused(track: PMIX_Track): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_TrackPaused' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_TrackPaused' {$ENDIF} {$ENDIF};
 
 { volume control...  }
 {*
@@ -2396,7 +2396,7 @@ function MIX_TrackPaused(track: PMIX_Track): Boolean; cdecl;
  * \sa MIX_SetTrackGain
   }
 function MIX_SetMixerGain(mixer: PMIX_Mixer; gain: cfloat): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetMixerGain' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetMixerGain' {$ENDIF} {$ENDIF};
 
 {*
  * Get a mixer's master gain control.
@@ -2415,7 +2415,7 @@ function MIX_SetMixerGain(mixer: PMIX_Mixer; gain: cfloat): Boolean; cdecl;
  * \sa MIX_GetTrackGain
   }
 function MIX_GetMixerGain(mixer: PMIX_Mixer): cfloat; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMixerGain' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMixerGain' {$ENDIF} {$ENDIF};
 
 {*
  * Set a track's gain control.
@@ -2444,7 +2444,7 @@ function MIX_GetMixerGain(mixer: PMIX_Mixer): cfloat; cdecl;
  * \sa MIX_SetMixerGain
   }
 function MIX_SetTrackGain(track: PMIX_Track; gain: cfloat): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackGain' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackGain' {$ENDIF} {$ENDIF};
 
 {*
  * Get a track's gain control.
@@ -2463,7 +2463,7 @@ function MIX_SetTrackGain(track: PMIX_Track; gain: cfloat): Boolean; cdecl;
  * \sa MIX_GetMixerGain
   }
 function MIX_GetTrackGain(track: PMIX_Track): cfloat; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackGain' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackGain' {$ENDIF} {$ENDIF};
 
 {*
  * Set the gain control of all tracks with a specific tag.
@@ -2502,7 +2502,7 @@ function MIX_GetTrackGain(track: PMIX_Track): cfloat; cdecl;
   }
 
 function MIX_SetTagGain(mixer: PMIX_Mixer; tag: PAnsiChar; gain: cfloat): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTagGain' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTagGain' {$ENDIF} {$ENDIF};
 
 { frequency ratio ...  }
 {*
@@ -2535,7 +2535,7 @@ function MIX_SetTagGain(mixer: PMIX_Mixer; tag: PAnsiChar; gain: cfloat): Boolea
  * \sa MIX_SetTrackFrequencyRatio
   }
 function MIX_SetMixerFrequencyRatio(mixer: PMIX_Mixer; ratio: cfloat): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetMixerFrequencyRatio' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetMixerFrequencyRatio' {$ENDIF} {$ENDIF};
 
 {*
  * Get a mixer's master frequency ratio.
@@ -2554,7 +2554,7 @@ function MIX_SetMixerFrequencyRatio(mixer: PMIX_Mixer; ratio: cfloat): Boolean; 
  * \sa MIX_GetTrackFrequencyRatio
   }
 function MIX_GetMixerFrequencyRatio(mixer: PMIX_Mixer): cfloat; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMixerFrequencyRatio' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetMixerFrequencyRatio' {$ENDIF} {$ENDIF};
 
 {*
  * Change the frequency ratio of a track.
@@ -2581,7 +2581,7 @@ function MIX_GetMixerFrequencyRatio(mixer: PMIX_Mixer): cfloat; cdecl;
  * \sa MIX_GetTrackFrequencyRatio
   }
 function MIX_SetTrackFrequencyRatio(track: PMIX_Track; ratio: cfloat): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackFrequencyRatio' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackFrequencyRatio' {$ENDIF} {$ENDIF};
 
 {*
  * Query the frequency ratio of a track.
@@ -2609,7 +2609,7 @@ function MIX_SetTrackFrequencyRatio(track: PMIX_Track; ratio: cfloat): Boolean; 
  * \sa MIX_GetTrackFrequencyRatio
   }
 function MIX_GetTrackFrequencyRatio(track: PMIX_Track): cfloat; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackFrequencyRatio' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrackFrequencyRatio' {$ENDIF} {$ENDIF};
 
 { channel maps...  }
 {*
@@ -2651,7 +2651,7 @@ function MIX_GetTrackFrequencyRatio(track: PMIX_Track): cfloat; cdecl;
   }
 
 function MIX_SetTrackOutputChannelMap(track: PMIX_Track; chmap: pcint; count: cint): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackOutputChannelMap' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackOutputChannelMap' {$ENDIF} {$ENDIF};
 
 { positional audio...  }
 {*
@@ -2710,7 +2710,7 @@ type
  * \sa MIX_SetTrack3DPosition
   }
 function MIX_SetTrackStereo(track: PMIX_Track; gains: PMIX_StereoGains): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackStereo' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackStereo' {$ENDIF} {$ENDIF};
 
 {*
  * 3D coordinates for MIX_SetTrack3DPosition.
@@ -2776,7 +2776,7 @@ type
  * \sa MIX_SetTrackStereo
   }
 function MIX_SetTrack3DPosition(track: PMIX_Track; position: PMIX_Point3D): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrack3DPosition' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrack3DPosition' {$ENDIF} {$ENDIF};
 
 {*
  * Get a track's current position in 3D space.
@@ -2796,7 +2796,7 @@ function MIX_SetTrack3DPosition(track: PMIX_Track; position: PMIX_Point3D): Bool
  * \sa MIX_SetTrack3DPosition
   }
 function MIX_GetTrack3DPosition(track: PMIX_Track; position: PMIX_Point3D): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrack3DPosition' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetTrack3DPosition' {$ENDIF} {$ENDIF};
 
 { Mix groups...  }
 {*
@@ -2830,7 +2830,7 @@ function MIX_GetTrack3DPosition(track: PMIX_Track; position: PMIX_Point3D): Bool
  * \sa MIX_SetGroupPostMixCallback
   }
 function MIX_CreateGroup(mixer: PMIX_Mixer): PMIX_Group; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CreateGroup' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CreateGroup' {$ENDIF} {$ENDIF};
 
 {*
  * Destroy a mixing group.
@@ -2847,7 +2847,7 @@ function MIX_CreateGroup(mixer: PMIX_Mixer): PMIX_Group; cdecl;
  * \sa MIX_CreateGroup
   }
 procedure MIX_DestroyGroup(group: PMIX_Group); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_DestroyGroup' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_DestroyGroup' {$ENDIF} {$ENDIF};
 
 {*
  * Get the properties associated with a group.
@@ -2867,7 +2867,7 @@ procedure MIX_DestroyGroup(group: PMIX_Group); cdecl;
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_GetGroupProperties(group: PMIX_Group): TSDL_PropertiesID; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetGroupProperties' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetGroupProperties' {$ENDIF} {$ENDIF};
 
 {*
  * Get the MIX_Mixer that owns a MIX_Group.
@@ -2883,7 +2883,7 @@ function MIX_GetGroupProperties(group: PMIX_Group): TSDL_PropertiesID; cdecl;
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_GetGroupMixer(group: PMIX_Group): PMIX_Mixer; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetGroupMixer' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetGroupMixer' {$ENDIF} {$ENDIF};
 
 {*
  * Assign a track to a mixing group.
@@ -2910,7 +2910,7 @@ function MIX_GetGroupMixer(group: PMIX_Group): PMIX_Mixer; cdecl;
  * \sa MIX_SetGroupPostMixCallback
   }
 function MIX_SetTrackGroup(track: PMIX_Track; group: PMIX_Group): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackGroup' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackGroup' {$ENDIF} {$ENDIF};
 
 { Hooks...  }
 {*
@@ -2968,7 +2968,7 @@ type
  * \sa MIX_TrackStoppedCallback
   }
 function MIX_SetTrackStoppedCallback(track: PMIX_Track; cb: TMIX_TrackStoppedCallback; userdata: Pointer): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackStoppedCallback' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackStoppedCallback' {$ENDIF} {$ENDIF};
 
 {*
  * A callback that fires when a MIX_Track is mixing at various stages.
@@ -3040,7 +3040,7 @@ type
  * \sa MIX_SetTrackCookedCallback
   }
 function MIX_SetTrackRawCallback(track: PMIX_Track; cb: TMIX_TrackMixCallback; userdata: Pointer): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackRawCallback' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackRawCallback' {$ENDIF} {$ENDIF};
 
 {*
  * Set a callback that fires when the mixer has transformed a track's audio.
@@ -3076,7 +3076,7 @@ function MIX_SetTrackRawCallback(track: PMIX_Track; cb: TMIX_TrackMixCallback; u
  * \sa MIX_SetTrackRawCallback
   }
 function MIX_SetTrackCookedCallback(track: PMIX_Track; cb: TMIX_TrackMixCallback; userdata: Pointer): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackCookedCallback' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetTrackCookedCallback' {$ENDIF} {$ENDIF};
 
 {*
  * A callback that fires when a MIX_Group has completed mixing.
@@ -3141,7 +3141,7 @@ type
  * \sa MIX_GroupMixCallback
   }
 function MIX_SetGroupPostMixCallback(group: PMIX_Group; cb: TMIX_GroupMixCallback; userdata: Pointer): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetGroupPostMixCallback' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetGroupPostMixCallback' {$ENDIF} {$ENDIF};
 
 {*
  * A callback that fires when all mixing has completed.
@@ -3205,7 +3205,7 @@ type
  * \sa MIX_PostMixCallback
   }
 function MIX_SetPostMixCallback(mixer: PMIX_Mixer; cb: TMIX_PostMixCallback; userdata: Pointer): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetPostMixCallback' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_SetPostMixCallback' {$ENDIF} {$ENDIF};
 
 { Audio generation without an audio device...  }
 {*
@@ -3262,7 +3262,7 @@ function MIX_SetPostMixCallback(mixer: PMIX_Mixer; cb: TMIX_PostMixCallback; use
  * \sa MIX_CreateMixer
   }
 function MIX_Generate(mixer: PMIX_Mixer; buffer: Pointer; buflen: cint): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_Generate' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_Generate' {$ENDIF} {$ENDIF};
 
 { Decode audio files directly without a mixer ...  }
 {*
@@ -3318,7 +3318,7 @@ type
  * \sa MIX_DestroyAudioDecoder
   }
 function MIX_CreateAudioDecoder(path: PAnsiChar; props: TSDL_PropertiesID): PMIX_AudioDecoder; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CreateAudioDecoder' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CreateAudioDecoder' {$ENDIF} {$ENDIF};
 
 {*
  * Create a MIX_AudioDecoder from an SDL_IOStream.
@@ -3357,7 +3357,7 @@ function MIX_CreateAudioDecoder(path: PAnsiChar; props: TSDL_PropertiesID): PMIX
  * \sa MIX_DestroyAudioDecoder
   }
 function MIX_CreateAudioDecoder_IO(io: PSDL_IOStream; closeio: Boolean; props: TSDL_PropertiesID): PMIX_AudioDecoder; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CreateAudioDecoder_IO' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_CreateAudioDecoder_IO' {$ENDIF} {$ENDIF};
 
 {*
  * Destroy the specified audio decoder.
@@ -3371,7 +3371,7 @@ function MIX_CreateAudioDecoder_IO(io: PSDL_IOStream; closeio: Boolean; props: T
  * \since This function is available since SDL_mixer 3.0.0.
   }
 procedure MIX_DestroyAudioDecoder(audiodecoder: PMIX_AudioDecoder); cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_DestroyAudioDecoder' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_DestroyAudioDecoder' {$ENDIF} {$ENDIF};
 
 {*
  * Get the properties associated with a MIX_AudioDecoder.
@@ -3397,7 +3397,7 @@ procedure MIX_DestroyAudioDecoder(audiodecoder: PMIX_AudioDecoder); cdecl;
  * \sa MIX_GetAudioProperties
   }
 function MIX_GetAudioDecoderProperties(audiodecoder: PMIX_AudioDecoder): TSDL_PropertiesID; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetAudioDecoderProperties' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetAudioDecoderProperties' {$ENDIF} {$ENDIF};
 
 {*
  * Query the initial audio format of a MIX_AudioDecoder.
@@ -3417,7 +3417,7 @@ function MIX_GetAudioDecoderProperties(audiodecoder: PMIX_AudioDecoder): TSDL_Pr
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_GetAudioDecoderFormat(audiodecoder: PMIX_AudioDecoder; spec: PSDL_AudioSpec): Boolean; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetAudioDecoderFormat' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_GetAudioDecoderFormat' {$ENDIF} {$ENDIF};
 
 {*
  * Decode more audio from a MIX_AudioDecoder.
@@ -3442,7 +3442,7 @@ function MIX_GetAudioDecoderFormat(audiodecoder: PMIX_AudioDecoder; spec: PSDL_A
  * \since This function is available since SDL_mixer 3.0.0.
   }
 function MIX_DecodeAudio(audiodecoder: PMIX_AudioDecoder; buffer: Pointer; buflen: cint; spec: PSDL_AudioSpec): cint; cdecl;
-  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_DecodeAudio' {$ENDIF} {$ENDIF};
+  external MIX_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_MIX_DecodeAudio' {$ENDIF} {$ENDIF};
 
 implementation
 
