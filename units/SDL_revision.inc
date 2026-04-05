@@ -24,8 +24,11 @@
  * clue in debugging forensics and not something the app will parse in any
  * way.
  *
- * \since This macro is available since SDL 3.0.0.
+ * SDL_revision.h must be included in your program explicitly if you want
+ * access to the SDL_REVISION constant.
+ *
+ * \since This macro is available since SDL 3.2.0.
   }
 const
-  SDL_REVISION = 'preview-3.1.6-0-g78cc5c173';
+  SDL_REVISION = 'Some arbitrary string decided at SDL build time';
 
