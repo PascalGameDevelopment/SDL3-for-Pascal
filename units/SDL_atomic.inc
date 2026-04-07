@@ -383,7 +383,7 @@ function SDL_AddAtomicInt(a: PSDL_AtomicInt; v: cint): cint; cdecl;
  *
  * ***Note: If you don't know what this macro is for, you shouldn't use it!***
  *
- * \param a a Pointer to an SDL_AtomicInt to increment.
+ * \param a a Pointer to an SDL_AtomicInt to decrement.
  * \returns the previous value of the atomic variable.
  *
  * \threadsafety It is safe to call this macro from any thread.
@@ -503,6 +503,25 @@ function SDL_SetAtomicU32(a: PSDL_AtomicU32; v: cuint32): cuint32; cdecl;
   }
 function SDL_GetAtomicU32(a: PSDL_AtomicU32): cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetAtomicU32' {$ENDIF} {$ENDIF};
+
+{*
+ * Add to an atomic variable.
+ *
+ * This function also acts as a full memory barrier.
+ *
+ * ***Note: If you don't know what this function is for, you shouldn't use
+ * it!***
+ *
+ * \param a a Pointer to an SDL_AtomicU32 variable to be modified.
+ * \param v the desired value to add or subtract.
+ * \returns the previous value of the atomic variable.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.4.0.
+  }
+function SDL_AddAtomicU32(a: PSDL_AtomicU32; v: cint): cuint32; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_AddAtomicU32' {$ENDIF} {$ENDIF};
 
 {*
  * Set a Pointer to a new value if it is currently an old value.
