@@ -90,7 +90,7 @@ const
 {$I SDL_properties.inc}                   // 3.4.2
 {$I SDL_pixels.inc}                       // 3.4.2
 {$I SDL_blendmode.inc}                    // 3.4.2
-{$I SDL_iostream.inc}                     // 3.2.0
+{$I SDL_iostream.inc}                     // 3.4.4
 {$I SDL_asyncio.inc}                      // 3.2.0
 {$I SDL_surface.inc}                      // 3.2.20
 {$I SDL_video.inc}                        // 3.4.2
