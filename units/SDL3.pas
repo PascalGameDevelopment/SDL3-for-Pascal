@@ -76,58 +76,58 @@ const
   corresponding C header file.
                                           Inc file was updated against
   SDL_init.inc --> SDL_init.h             this version of the header file: }
-{$I SDL_log.inc}                          // 3.1.6-prev
-{$I SDL_version.inc}                      // 3.1.6-prev
-{$I SDL_revision.inc}                     // 3.1.6-prev
-{$I SDL_locale.inc}                       // 3.2.0
-{$I SDL_guid.inc}                         // 3.1.6-prev
-{$I SDL_hints.inc}                        // 3.2.12
-{$I SDL_misc.inc}                         // 3.2.0
+{$I SDL_log.inc}                          // 3.4.2
+{$I SDL_version.inc}                      // 3.4.2
+{$I SDL_revision.inc}                     // 3.4.2
+{$I SDL_locale.inc}                       // 3.4.4
+{$I SDL_guid.inc}                         // 3.4.2
+{$I SDL_hints.inc}                        // 3.4.4
+{$I SDL_misc.inc}                         // 3.4.4
 {$I SDL_stdinc.inc}                       // 3.1.6-prev (unfinished)
-{$I SDL_platform.inc}                     // 3.2.0
-{$I SDL_loadso.inc}                       // 3.2.0
-{$I SDL_rect.inc}                         // 3.1.6-prev
-{$I SDL_properties.inc}                   // 3.1.6-prev
-{$I SDL_pixels.inc}                       // 3.1.6-prev
-{$I SDL_blendmode.inc}                    // 3.1.6-prev
-{$I SDL_iostream.inc}                     // 3.2.0
-{$I SDL_asyncio.inc}                      // 3.2.0
-{$I SDL_surface.inc}                      // 3.2.20
-{$I SDL_video.inc}                        // 3.2.20
-{$I SDL_timer.inc}                        // 3.2.20
-{$I SDL_error.inc}                        // 3.1.6-prev
-{$I SDL_power.inc}                        // 3.1.6-prev
-{$I SDL_audio.inc}                        // 3.1.6-prev
-{$I SDL_sensor.inc}                       // 3.1.6-prev
-{$I SDL_scancode.inc}                     // 3.1.6-prev
-{$I SDL_keycode.inc}                      // 3.2.20
-{$I SDL_mouse.inc}                        // 3.1.6-prev
-{$I SDL_keyboard.inc}                     // 3.1.6-prev
-{$I SDL_joystick.inc}                     // 3.1.6-prev
-{$I SDL_gamepad.inc}                      // 3.2.0
-{$I SDL_haptic.inc}                       // 3.2.0
-{$I SDL_touch.inc}                        // 3.1.6-prev
-{$I SDL_pen.inc}                          // 3.2.20
-{$I SDL_camera.inc}                       // 3.1.6-prev
-{$I SDL_events.inc}                       // 3.2.20
-{$I SDL_init.inc}                         // 3.2.20
-{$I SDL_render.inc}                       // 3.1.6-prev
-{$I SDL_gpu.inc}                          // 3.2.0
-{$I SDL_clipboard.inc}                    // 3.2.0
-{$I SDL_cpuinfo.inc}                      // 3.2.0
-{$I SDL_dialog.inc}                       // 3.2.0
-{$I SDL_messagebox.inc}                   // 3.2.0
-{$I SDL_time.inc}                         // 3.2.0
-{$I SDL_filesystem.inc}                   // 3.2.0
-{$I SDL_atomic.inc}                       // 3.2.0
-{$I SDL_hidapi.inc}                       // 3.2.0
-{$I SDL_metal.inc}                        // 3.2.0
-{$I SDL_vulkan.inc}                       // 3.2.0
-{$I SDL_thread.inc}                       // 3.2.0
-{$I SDL_process.inc}                      // 3.2.0
-{$I SDL_storage.inc}                      // 3.2.0
-{$I SDL_tray.inc}                         // 3.2.12
-{$I SDL_mutex.inc}                        // 3.2.12
+{$I SDL_platform.inc}                     // 3.4.4
+{$I SDL_loadso.inc}                       // 3.4.4
+{$I SDL_rect.inc}                         // 3.4.2
+{$I SDL_properties.inc}                   // 3.4.2
+{$I SDL_pixels.inc}                       // 3.4.2
+{$I SDL_blendmode.inc}                    // 3.4.2
+{$I SDL_iostream.inc}                     // 3.4.4
+{$I SDL_asyncio.inc}                      // 3.4.4
+{$I SDL_surface.inc}                      // 3.4.4
+{$I SDL_video.inc}                        // 3.4.2
+{$I SDL_timer.inc}                        // 3.4.4
+{$I SDL_error.inc}                        // 3.4.2
+{$I SDL_power.inc}                        // 3.4.2
+{$I SDL_audio.inc}                        // 3.4.2
+{$I SDL_sensor.inc}                       // 3.4.4
+{$I SDL_scancode.inc}                     // 3.4.4
+{$I SDL_keycode.inc}                      // 3.4.4
+{$I SDL_mouse.inc}                        // 3.4.4
+{$I SDL_keyboard.inc}                     // 3.4.4
+{$I SDL_joystick.inc}                     // 3.4.4
+{$I SDL_gamepad.inc}                      // 3.4.4
+{$I SDL_haptic.inc}                       // 3.4.4
+{$I SDL_touch.inc}                        // 3.4.4
+{$I SDL_pen.inc}                          // 3.4.4
+{$I SDL_camera.inc}                       // 3.4.4
+{$I SDL_events.inc}                       // 3.4.4
+{$I SDL_init.inc}                         // 3.4.4
+{$I SDL_gpu.inc}                          // 3.4.4
+{$I SDL_render.inc}                       // 3.4.4
+{$I SDL_clipboard.inc}                    // 3.4.4
+{$I SDL_cpuinfo.inc}                      // 3.4.4
+{$I SDL_dialog.inc}                       // 3.4.4
+{$I SDL_messagebox.inc}                   // 3.4.4
+{$I SDL_time.inc}                         // 3.4.4
+{$I SDL_filesystem.inc}                   // 3.4.4
+{$I SDL_atomic.inc}                       // 3.4.4
+{$I SDL_hidapi.inc}                       // 3.4.4
+{$I SDL_metal.inc}                        // 3.4.4
+{$I SDL_vulkan.inc}                       // 3.4.4
+{$I SDL_thread.inc}                       // 3.4.4
+{$I SDL_process.inc}                      // 3.4.4
+{$I SDL_storage.inc}                      // 3.4.4
+{$I SDL_tray.inc}                         // 3.4.4
+{$I SDL_mutex.inc}                        // 3.4.4
 
 
 
@@ -207,7 +207,7 @@ begin
 end;
 
 function SDL_RectsEqualEpsilon(const a: PSDL_Frect; const b: PSDL_FRect;
-  const epsilon: cfloat): Boolean;
+  epsilon: cfloat): Boolean;
 begin
   Result :=
     (a <> nil) and (b <> nil) and ((a = b) or

@@ -54,6 +54,8 @@ function SDL_CreateMutex(): PSDL_Mutex; cdecl;
  *
  * \param mutex the mutex to lock.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_TryLockMutex
@@ -76,6 +78,8 @@ procedure SDL_LockMutex(mutex: PSDL_Mutex); cdecl;
  * \param mutex the mutex to try to lock.
  * \returns true on success, false if the mutex would block.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_LockMutex
@@ -96,6 +100,9 @@ function SDL_TryLockMutex(mutex: PSDL_Mutex): Boolean; cdecl;
  *
  * \param mutex the mutex to unlock.
  *
+ * \threadsafety This call must be paired with a previous locking call on the
+ *               same thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_LockMutex
@@ -114,6 +121,8 @@ procedure SDL_UnlockMutex(mutex: PSDL_Mutex); cdecl;
  * on the platform.
  *
  * \param mutex the mutex to destroy.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -175,6 +184,8 @@ type
  * \returns the initialized and unlocked read/write lock or NULL on failure;
  *          call SDL_GetError() for more information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_DestroyRWLock
@@ -216,6 +227,8 @@ function SDL_CreateRWLock(): PSDL_RWLock; cdecl;
  *
  * \param rwlock the read/write lock to lock.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_LockRWLockForWriting
@@ -248,6 +261,8 @@ procedure SDL_LockRWLockForReading(rwlock: PSDL_RWLock); cdecl;
  *
  * \param rwlock the read/write lock to lock.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_LockRWLockForReading
@@ -273,6 +288,8 @@ procedure SDL_LockRWLockForWriting(rwlock: PSDL_RWLock); cdecl;
  *
  * \param rwlock the rwlock to try to lock.
  * \returns true on success, false if the lock would block.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -305,6 +322,8 @@ function SDL_TryLockRWLockForReading(rwlock: PSDL_RWLock): Boolean; cdecl;
  * \param rwlock the rwlock to try to lock.
  * \returns true on success, false if the lock would block.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_LockRWLockForWriting
@@ -330,6 +349,9 @@ function SDL_TryLockRWLockForWriting(rwlock: PSDL_RWLock): Boolean; cdecl;
  *
  * \param rwlock the rwlock to unlock.
  *
+ * \threadsafety This call must be paired with a previous locking call on the
+ *               same thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_LockRWLockForReading
@@ -350,6 +372,8 @@ procedure SDL_UnlockRWLock(rwlock: PSDL_RWLock); cdecl;
  * undefined behavior depending on the platform.
  *
  * \param rwlock the rwlock to destroy.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -389,6 +413,8 @@ type
  * \returns a new semaphore or NULL on failure; call SDL_GetError() for more
  *          information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_DestroySemaphore
@@ -409,6 +435,8 @@ function SDL_CreateSemaphore(initial_value: cuint32): PSDL_Semaphore; cdecl;
  *
  * \param sem the semaphore to destroy.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_CreateSemaphore
@@ -427,6 +455,8 @@ procedure SDL_DestroySemaphore(sem: PSDL_Semaphore); cdecl;
  * a time length of -1.
  *
  * \param sem the semaphore wait on.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -447,6 +477,8 @@ procedure SDL_WaitSemaphore(sem: PSDL_Semaphore); cdecl;
  *
  * \param sem the semaphore to wait on.
  * \returns true if the wait succeeds, false if the wait would block.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -469,6 +501,8 @@ function SDL_TryWaitSemaphore(sem: PSDL_Semaphore): Boolean; cdecl;
  *                  indefinitely.
  * \returns true if the wait succeeds or false if the wait times out.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_SignalSemaphore
@@ -482,6 +516,8 @@ function SDL_WaitSemaphoreTimeout(sem: PSDL_Semaphore; timeoutMS: cint32): Boole
  * Atomically increment a semaphore's value and wake waiting threads.
  *
  * \param sem the semaphore to increment.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -498,10 +534,16 @@ procedure SDL_SignalSemaphore(sem: PSDL_Semaphore); cdecl;
  * \param sem the semaphore to query.
  * \returns the current value of the semaphore.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *}
 function SDL_GetSemaphoreValue(sem: PSDL_Semaphore): cuint32; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSemaphoreValue' {$ENDIF} {$ENDIF};
+
+{
+  *  \name Condition variable functions
+}
 
 {**
  * A means to block multiple threads until a condition is satisfied.
@@ -526,6 +568,8 @@ type
  * \returns a new condition variable or NULL on failure; call SDL_GetError()
  *          for more information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_BroadcastCondition
@@ -541,6 +585,8 @@ function SDL_CreateCondition(): PSDL_Condition; cdecl;
  * Destroy a condition variable.
  *
  * \param cond the condition variable to destroy.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -663,6 +709,52 @@ Const
 
 {**
  * A structure used for thread-safe initialization and shutdown.
+ *
+ * Here is an example of using this:
+ *
+ * ```c
+ *    static SDL_InitState init;
+ *
+ *    bool InitSystem(void)
+ *    (
+ *        if (!SDL_ShouldInit(&init)) (
+ *            // The system is initialized
+ *            return true;
+ *        )
+ *
+ *        // At this point, you should not leave this function without calling SDL_SetInitialized()
+ *
+ *        bool initialized = DoInitTasks();
+ *        SDL_SetInitialized(&init, initialized);
+ *        return initialized;
+ *    )
+ *
+ *    bool UseSubsystem(void)
+ *    (
+ *        if (SDL_ShouldInit(&init)) (
+ *            // Error, the subsystem isn't initialized
+ *            SDL_SetInitialized(&init, false);
+ *            return false;
+ *        )
+ *
+ *        // Do work using the initialized subsystem
+ *
+ *        return true;
+ *    )
+ *
+ *    void QuitSystem(void)
+ *    (
+ *        if (!SDL_ShouldQuit(&init)) (
+ *            // The system is not initialized
+ *            return;
+ *        )
+ *
+ *        // At this point, you should not leave this function without calling SDL_SetInitialized()
+ *
+ *        DoQuitTasks();
+ *        SDL_SetInitialized(&init, false);
+ *    )
+ * ```
  *
  * Note that this doesn't protect any resources created during initialization,
  * or guarantee that nobody is using those resources during cleanup. You

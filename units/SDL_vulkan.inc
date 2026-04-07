@@ -26,15 +26,15 @@
   }
 
 { #note : SDL3-for-Pascal: The following comment includes the original C code. }
-{ Avoid including vulkan.h, don't define VkInstance if it's already included }
+{ Avoid including vulkan_core.h, don't define VkInstance if it's already included }
 {
-  #ifdef VULKAN_H_
+  #ifdef VULKAN_CORE_H_
   #define NO_SDL_VULKAN_TYPEDEFS
   #endif
   #ifndef NO_SDL_VULKAN_TYPEDEFS
   #define VK_DEFINE_HANDLE(object) typedef struct object##_T* object;
 
-  #if defined(__LP64__) || defined(_WIN64) || defined(__x86_64__) || defined(_M_X64) || defined(__ia64) || defined (_M_IA64) || defined(__aarch64__) || defined(__powerpc64__)
+  #if defined(__LP64__) || defined(_WIN64) || (defined(__x86_64__) && !defined(__ILP32__)) || defined(_M_X64) || defined(__ia64) || defined (_M_IA64) || defined(__aarch64__) || defined(__powerpc64__) || (defined(__riscv) && __riscv_xlen == 64)
   #define VK_DEFINE_NON_DISPATCHABLE_HANDLE(object) typedef struct object##_T *object;
   #else
   #define VK_DEFINE_NON_DISPATCHABLE_HANDLE(object) typedef uint64_t object;
@@ -45,7 +45,8 @@
   VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkSurfaceKHR)
   struct VkAllocationCallbacks;
 }
-{ #todo : Is there a common compiler flag in the Vulkan bindings for Pascal? Couldn't find any common one. Examine. }
+{ #todo : Is there a common compiler flag in the Vulkan bindings for Pascal?
+          Couldn't find any common one. Examine. }
 {$IFDEF VULKAN}
   {$DEFINE NO_SDL_VULKAN_TYPEDEFS}
 {$ENDIF}
@@ -53,23 +54,18 @@
 type
   PVkInstance = ^TVkInstance;
   TVkInstance = ^TVkInstance_T;
-  TVkInstance_T = record
-  end;
+  TVkInstance_T = Pointer;
   PVkPhysicalDevice = ^TVkPhysicalDevice;
   TVkPhysicalDevice = ^TVkPhysicalDevice_T;
-  TVkPhysicalDevice_T = record
-  end;
+  TVkPhysicalDevice_T = Pointer;
   PVkSurfaceKHR = ^TVkSurfaceKHR;
   TVkSurfaceKHR = ^TVkSurfaceKHR_T;
-  TVkSurfaceKHR_T = record
-  end;
+  TVkSurfaceKHR_T = Pointer;
 {$ENDIF}
 type
   PPVkAllocationCallbacks = ^PVkAllocationCallbacks;
   PVkAllocationCallbacks = ^TVkAllocationCallbacks;
-  TVkAllocationCallbacks = record
-      {undefined structure}
-    end;
+  TVkAllocationCallbacks = Pointer;     {undefined structure}
 
 {*
  *  \name Vulkan support functions

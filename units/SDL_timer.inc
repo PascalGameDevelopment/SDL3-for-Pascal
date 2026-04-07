@@ -18,7 +18,7 @@
  * This category covers measuring time elapsed (SDL_GetTicks(),
  * SDL_GetPerformanceCounter()), putting a thread to sleep for a certain
  * amount of time (SDL_Delay(), SDL_DelayNS(), SDL_DelayPrecise()), and firing
- * a callback function after a certain amount of time has elasped
+ * a callback function after a certain amount of time has elapsed
  * (SDL_AddTimer(), etc).
  *
  * There are also useful macros to convert between time units, like
@@ -161,14 +161,18 @@ function SDL_US_TO_NS(US: Integer): Integer;
 function SDL_NS_TO_US(NS: Integer): Integer;
 
 {*
- * Get the number of milliseconds since SDL library initialization.
+ * Get the number of milliseconds that have elapsed since the SDL library
+ * initialization.
  *
- * \returns an unsigned 64-bit value representing the number of milliseconds
- *          since the SDL library initialized.
+ * \returns an unsigned 64‑bit integer that represents the number of
+ *          milliseconds that have elapsed since the SDL library was
+ *          initialized (typically via a call to SDL_Init).
  *
  * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
+ *
+ * \sa SDL_GetTicksNS
   }
 function SDL_GetTicks: cuint64; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetTicks' {$ENDIF} {$ENDIF};

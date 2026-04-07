@@ -11,6 +11,8 @@
  *
  * A GUID is a 128-bit value that represents something that is uniquely
  * identifiable by this value: "globally unique."
+ *
+ * SDL provides functions to convert a GUID to/from a string.
   }
 
 {*
@@ -28,7 +30,7 @@
  * GUIDs may be platform-dependent (i.e., the same device may report different
  * GUIDs on different operating systems).
  *
- * \since This struct is available since SDL 3.1.3.
+ * \since This struct is available since SDL 3.2.0.
   }
 type
   PPSDL_GUID = ^PSDL_GUID;
@@ -46,7 +48,9 @@ type
  * \param pszGUID buffer in which to write the ASCII string.
  * \param cbGUID the size of pszGUID, should be at least 33 bytes.
  *
- * \since This function is available since SDL 3.1.3.
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_StringToGUID
   }
@@ -63,7 +67,9 @@ procedure SDL_GUIDToString(guid: TSDL_GUID; pszGUID: PAnsiChar; cbGUID: cint); c
  * \param pchGUID string containing an ASCII representation of a GUID.
  * \returns a SDL_GUID structure.
  *
- * \since This function is available since SDL 3.1.3.
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GUIDToString
   }

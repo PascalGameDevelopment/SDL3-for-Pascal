@@ -51,6 +51,9 @@
  * - `parent`: the containing directory of the bundle. For example:
  *   `/Applications/SDLApp/`
  *
+ * **Android Specific Functionality**: This function returns "./", which
+ * allows filesystem operations to use internal storage and the asset system.
+ *
  * **Nintendo 3DS Specific Functionality**: This function returns "romfs"
  * directory of the application as it is uncommon to store resources outside
  * the executable. As such it is not a writable directory.
@@ -59,9 +62,11 @@
  * Windows, '/' on most other platforms).
  *
  * \returns an absolute path in UTF-8 encoding to the application data
- *          directory. nil will be returned on error or when the platform
+ *          directory. NULL will be returned on error or when the platform
  *          doesn't implement this functionality, call SDL_GetError() for more
  *          information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -109,6 +114,12 @@ function SDL_GetBasePath: PAnsiChar; cdecl;
  * - ...only use letters, numbers, and spaces. Avoid punctuation like "Game
  *   Name 2: Bad Guy's Revenge!" ... "Game Name 2" is sufficient.
  *
+ * Due to historical mistakes, `org` is allowed to be NULL or "". In such
+ * cases, SDL will omit the org subdirectory, including on platforms where it
+ * shouldn't, and including on platforms where this would make your app fail
+ * certification for an app store. New apps should definitely specify a real
+ * string for `org`.
+ *
  * The returned path is guaranteed to end with a path separator ('\\' on
  * Windows, '/' on most other platforms).
  *
@@ -118,6 +129,8 @@ function SDL_GetBasePath: PAnsiChar; cdecl;
  *          notation. nil if there's a problem (creating directory failed,
  *          etc.). This should be freed with SDL_free() when it is no longer
  *          needed.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -194,18 +207,20 @@ const
  * \returns either a null-terminated C string containing the full path to the
  *          folder, or nil if an error happened.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetUserFolder(folder: TSDL_Folder): PAnsiChar; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetUserFolder' {$ENDIF} {$ENDIF};
 
 { Abstract filesystem interface  }
+
 {*
  * Types of filesystem entries.
  *
- * Note that there may be other sorts of items on a filesystem: devices,
- * symlinks, named pipes, etc. They are currently reported as
- * SDL_PATHTYPE_OTHER.
+ * Note that there may be other sorts of items on a filesystem: devices, named
+ * pipes, etc. They are currently reported as SDL_PATHTYPE_OTHER.
  *
  * \since This enum is available since SDL 3.2.0.
  *
@@ -267,6 +282,8 @@ const
  * \param path the path of the directory to create.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
   }
@@ -335,6 +352,8 @@ type
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_EnumerateDirectory(path: PAnsiChar; callback: TSDL_EnumerateDirectoryCallback; userdata: Pointer): Boolean; cdecl;
@@ -350,6 +369,8 @@ function SDL_EnumerateDirectory(path: PAnsiChar; callback: TSDL_EnumerateDirecto
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_RemovePath(path: PAnsiChar): Boolean; cdecl;
@@ -358,7 +379,7 @@ function SDL_RemovePath(path: PAnsiChar): Boolean; cdecl;
 {*
  * Rename a file or directory.
  *
- * If the file at `newpath` already exists, it will replaced.
+ * If the file at `newpath` already exists, it will be replaced.
  *
  * Note that this will not copy files across filesystems/drives/volumes, as
  * that is a much more complicated (and possibly time-consuming) operation.
@@ -373,6 +394,8 @@ function SDL_RemovePath(path: PAnsiChar): Boolean; cdecl;
  * \param newpath the new path.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
   }
@@ -415,6 +438,10 @@ function SDL_RenamePath(oldpath: PAnsiChar; newpath: PAnsiChar): Boolean; cdecl;
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
+ * \threadsafety It is safe to call this function from any thread, but this
+ *               operation is not atomic, so the app might need to protect
+ *               access to specific paths from other threads if appropriate.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_CopyFile(oldpath: PAnsiChar; newpath: PAnsiChar): Boolean; cdecl;
@@ -423,11 +450,17 @@ function SDL_CopyFile(oldpath: PAnsiChar; newpath: PAnsiChar): Boolean; cdecl;
 {*
  * Get information about a filesystem path.
  *
+ * Symlinks, on filesystems that support them, are always followed, so you
+ * will always get information on what the symlink eventually points to, and
+ * not the symlink itself.
+ *
  * \param path the path to query.
- * \param info a Pointer filled in with information about the path, or nil to
+ * \param info a pointer filled in with information about the path, or NULL to
  *             check for the existence of a file.
  * \returns true on success or false if the file doesn't exist, or another
  *          failure; call SDL_GetError() for more information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
   }
@@ -438,10 +471,10 @@ function SDL_GetPathInfo(path: PAnsiChar; info: PSDL_PathInfo): Boolean; cdecl;
  * Enumerate a directory tree, filtered by pattern, and return a list.
  *
  * Files are filtered out if they don't match the string in `pattern`, which
- * may contain wildcard characters '\*' (match everything) and '?' (match one
- * character). If pattern is nil, no filtering is done and all results are
+ * may contain wildcard characters `*` (match everything) and `?` (match one
+ * character). If pattern is NULL, no filtering is done and all results are
  * returned. Subdirectories are permitted, and are specified with a path
- * separator of '/'. Wildcard characters '\*' and '?' never match a path
+ * separator of `/`. Wildcard characters `*` and `?` never match a path
  * separator.
  *
  * `flags` may be set to SDL_GLOB_CASEINSENSITIVE to make the pattern matching
@@ -484,6 +517,8 @@ function SDL_GlobDirectory(path: PAnsiChar; pattern: PAnsiChar; flags: TSDL_Glob
  * \returns a UTF-8 string of the current working directory in
  *          platform-dependent notation. nil if there's a problem. This
  *          should be freed with SDL_free() when it is no longer needed.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
   }
