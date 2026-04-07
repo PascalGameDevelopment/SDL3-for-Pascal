@@ -17,7 +17,7 @@
  * coming and going, the system changing in some way, etc.
  *
  * An app generally takes a moment, perhaps at the start of a new frame, to
- * examine any events that have occured since the last time and process or
+ * examine any events that have occurred since the last time and process or
  * ignore them. This is generally done by calling SDL_PollEvent() in a loop
  * until it returns false (or, if using the main callbacks, events are
  * provided one at a time in calls to SDL_AppEvent() before the next call to
@@ -92,15 +92,17 @@ const
   SDL_EVENT_DISPLAY_DESKTOP_MODE_CHANGED  = TSDL_EventType(341);                       {*< Display has changed desktop mode  }
   SDL_EVENT_DISPLAY_CURRENT_MODE_CHANGED  = TSDL_EventType(342);                       {*< Display has changed current mode  }
   SDL_EVENT_DISPLAY_CONTENT_SCALE_CHANGED  = TSDL_EventType(343);                      {*< Display has changed content scale  }
+  SDL_EVENT_DISPLAY_USABLE_BOUNDS_CHANGED  = TSDL_EventType(344);                      {*< Display has changed usable bounds  }
   SDL_EVENT_DISPLAY_FIRST  = TSDL_EventType(SDL_EVENT_DISPLAY_ORIENTATION);
-  SDL_EVENT_DISPLAY_LAST  = TSDL_EventType(SDL_EVENT_DISPLAY_CONTENT_SCALE_CHANGED);
+  SDL_EVENT_DISPLAY_LAST  = TSDL_EventType(SDL_EVENT_DISPLAY_USABLE_BOUNDS_CHANGED);
 
   { Window events  }
   { 0x200 was SDL_WINDOWEVENT, reserve the number for sdl2-compat  }
   { 0x201 was SDL_SYSWMEVENT, reserve the number for sdl2-compat  }
   SDL_EVENT_WINDOW_SHOWN  = TSDL_EventType($202);                                      {*< Window has been shown  }
   SDL_EVENT_WINDOW_HIDDEN  = TSDL_EventType(515);                                      {*< Window has been hidden  }
-  SDL_EVENT_WINDOW_EXPOSED  = TSDL_EventType(516);                                     {*< Window has been exposed and should be redrawn, and can be redrawn directly from event watchers for this event  }
+  SDL_EVENT_WINDOW_EXPOSED  = TSDL_EventType(516);                                     {*< Window has been exposed and should be redrawn, and can be redrawn directly from event watchers for this event.
+                                                                                           data1 is 1 for live-resize expose events, 0 otherwise.  }
   SDL_EVENT_WINDOW_MOVED  = TSDL_EventType(517);                                       {*< Window has been moved to data1, data2  }
   SDL_EVENT_WINDOW_RESIZED  = TSDL_EventType(518);                                     {*< Window has been resized to data1xdata2  }
   SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED  = TSDL_EventType(519);                          {*< The pixel size of the window has changed to data1xdata2  }
@@ -139,6 +141,8 @@ const
   SDL_EVENT_KEYBOARD_ADDED  = TSDL_EventType(773);                                     {*< A new keyboard has been inserted into the system  }
   SDL_EVENT_KEYBOARD_REMOVED  = TSDL_EventType(774);                                   {*< A keyboard has been removed  }
   SDL_EVENT_TEXT_EDITING_CANDIDATES  = TSDL_EventType(775);                            {*< Keyboard text editing candidates  }
+  SDL_EVENT_SCREEN_KEYBOARD_SHOWN  = TSDL_EventType(776);                              {*< The on-screen keyboard has been shown  }
+  SDL_EVENT_SCREEN_KEYBOARD_HIDDEN  = TSDL_EventType(777);                             {*< The on-screen keyboard has been hidden  }
 
   { Mouse events  }
   SDL_EVENT_MOUSE_MOTION  = TSDL_EventType($400);                                      {*< Mouse moved  }
@@ -179,10 +183,15 @@ const
   SDL_EVENT_FINGER_MOTION  = TSDL_EventType(1794);
   SDL_EVENT_FINGER_CANCELED  = TSDL_EventType(1795);
 
+  { Pinch events  }
+  SDL_EVENT_PINCH_BEGIN  = TSDL_EventType($710);     { Pinch gesture started }
+  SDL_EVENT_PINCH_UPDATE  = TSDL_EventType($711);    { Pinch gesture updated }
+  SDL_EVENT_PINCH_END  = TSDL_EventType($712);       { Pinch gesture ended }
+
   { 0x800, 0x801, and 0x802 were the Gesture events from SDL2. Do not reuse these values! sdl2-compat needs them!  }
 
   { Clipboard events  }
-  SDL_EVENT_CLIPBOARD_UPDATE  = TSDL_EventType($900);                                  {*< The clipboard or primary selection changed  }
+  SDL_EVENT_CLIPBOARD_UPDATE  = TSDL_EventType($900);                                  {*< The clipboard changed  }
 
   { Drag and drop events  }
   SDL_EVENT_DROP_FILE  = TSDL_EventType($1000);                                        {*< The system requests a file open  }
@@ -264,7 +273,7 @@ type
   PPSDL_DisplayEvent = ^PSDL_DisplayEvent;
   PSDL_DisplayEvent = ^TSDL_DisplayEvent;
   TSDL_DisplayEvent = record
-      type_: TSDL_EventType;          {*< SDL_DISPLAYEVENT_*  }
+      type_: TSDL_EventType;          {*< SDL_EVENT_DISPLAY_*  }
       reserved: cuint32;
       timestamp: cuint64;             {*< In nanoseconds, populated using SDL_GetTicksNS()  }
       displayID: TSDL_DisplayID;      {*< The associated display  }
@@ -688,6 +697,10 @@ type
 {*
  * Audio device event structure (event.adevice.*)
  *
+ * Note that SDL will send a SDL_EVENT_AUDIO_DEVICE_ADDED event for every
+ * device it discovers during initialization. After that, this event will only
+ * arrive when a device is hotplugged during the program's run.
+ *
  * \since This struct is available since SDL 3.2.0.
   }
   PPSDL_AudioDeviceEvent = ^PSDL_AudioDeviceEvent;
@@ -767,7 +780,20 @@ type
     end;
 
 {*
- * Pressure-sensitive pen proximity event structure (event.pmotion.*)
+ * Pinch event structure (event.pinch.*)
+  }
+  PPSDL_PinchFingerEvent = ^PSDL_PinchFingerEvent;
+  PSDL_PinchFingerEvent = ^TSDL_PinchFingerEvent;
+  TSDL_PinchFingerEvent = record
+      type_: TSDL_EventType;     {*<:: SDL_EVENT_PINCH_BEGIN or:: SDL_EVENT_PINCH_UPDATE or:: SDL_EVENT_PINCH_END  }
+      reserved: cuint32;
+      timestamp: cuint64;        {*< In nanoseconds, populated using SDL_GetTicksNS()  }
+      scale: cfloat;             {*< The scale change since the last SDL_EVENT_PINCH_UPDATE. Scale < 1 is "zoom out". Scale > 1 is "zoom in".  }
+      windowID: TSDL_WindowID;   {*< The window underneath the finger, if any  }
+    end;
+
+{*
+ * Pressure-sensitive pen proximity event structure (event.pproximity.*)
  *
  * When a pen becomes visible to the system (it is close enough to a tablet,
  * etc), SDL will send an SDL_EVENT_PEN_PROXIMITY_IN event with the new pen's
@@ -778,6 +804,9 @@ type
  * Note that "proximity" means "close enough for the tablet to know the tool
  * is there." The pen touching and lifting off from the tablet while not
  * leaving the area are handled by SDL_EVENT_PEN_DOWN and SDL_EVENT_PEN_UP.
+ *
+ * Not all platforms have a window associated with the pen during proximity
+ * events. Some wait until motion/button/etc events to offer this info.
  *
  * \since This struct is available since SDL 3.2.0.
   }
@@ -963,7 +992,7 @@ type
   PPSDL_UserEvent = ^PSDL_UserEvent;
   PSDL_UserEvent = ^TSDL_UserEvent;
   TSDL_UserEvent = record
-      type_: cuint32;           {*< SDL_EVENT_USER through SDL_EVENT_LAST-1, Uint32 because these are not in the SDL_EventType enumeration  }
+      type_: cuint32;           {*< SDL_EVENT_USER through SDL_EVENT_LAST, Uint32 because these are not in the SDL_EventType enumeration  }
       reserved: cuint32;
       timestamp: cuint64;       {*< In nanoseconds, populated using SDL_GetTicksNS()  }
       windowID: TSDL_WindowID;  {*< The associated window if any  }
@@ -1015,14 +1044,15 @@ type
         27: (quit: TSDL_QuitEvent);                              {*< Quit request event data  }
         28: (user: TSDL_UserEvent);                              {*< Custom event data  }
         29: (tfinger: TSDL_TouchFingerEvent);                    {*< Touch finger event data  }
-        30: (pproximity: TSDL_PenProximityEvent);                {*< Pen proximity event data  }
-        31: (ptouch: TSDL_PenTouchEvent);                        {*< Pen tip touching event data  }
-        32: (pmotion: TSDL_PenMotionEvent);                      {*< Pen motion event data  }
-        33: (pbutton: TSDL_PenButtonEvent);                      {*< Pen button event data  }
-        34: (paxis: TSDL_PenAxisEvent);                          {*< Pen axis event data  }
-        35: (render: TSDL_RenderEvent);                          {*< Render event data  }
-        36: (drop: TSDL_DropEvent);                              {*< Drag and drop event data  }
-        37: (clipboard: TSDL_ClipboardEvent);                    {*< Clipboard event data  }
+        30: (pinch: TSDL_PinchFingerEvent);                      {   Pinch event data }
+        31: (pproximity: TSDL_PenProximityEvent);                {*< Pen proximity event data  }
+        32: (ptouch: TSDL_PenTouchEvent);                        {*< Pen tip touching event data  }
+        33: (pmotion: TSDL_PenMotionEvent);                      {*< Pen motion event data  }
+        34: (pbutton: TSDL_PenButtonEvent);                      {*< Pen button event data  }
+        35: (paxis: TSDL_PenAxisEvent);                          {*< Pen axis event data  }
+        36: (render: TSDL_RenderEvent);                          {*< Render event data  }
+        37: (drop: TSDL_DropEvent);                              {*< Drag and drop event data  }
+        38: (clipboard: TSDL_ClipboardEvent);                    {*< Clipboard event data  }
 
         { This is necessary for ABI compatibility between Visual C++ and GCC.
                Visual C++ will respect the push pack pragma and use 52 bytes (size of
@@ -1037,7 +1067,7 @@ type
                the next multiple of 16, 64, and on architectures where pointers are
                even larger the size of SDL_UserEvent will dominate as being 3 pointers.
              }
-        37: (padding: array[0..127] of cuint8);
+        39: (padding: array[0..127] of cuint8);
       end;
 
 { #todo : SDL3-for-Pascal: Translation of SDL_COMPILE_TIME_ASSERT necessary? Looks like an internal test function. }
@@ -1228,16 +1258,14 @@ procedure SDL_FlushEvents(minType: cuint32; maxType: cuint32); cdecl;
 {*
  * Poll for currently pending events.
  *
- * If `event` is not nil, the next event is removed from the queue and stored
- * in the SDL_Event structure pointed to by `event`. The 1 returned refers to
- * this event, immediately stored in the SDL Event structure -- not an event
- * to follow.
+ * If `event` is not NULL, the next event is removed from the queue and stored
+ * in the SDL_Event structure pointed to by `event`.
  *
- * If `event` is nil, it simply returns 1 if there is an event in the queue,
- * but will not remove it from the queue.
+ * If `event` is NULL, it simply returns true if there is an event in the
+ * queue, but will not remove it from the queue.
  *
  * As this function may implicitly call SDL_PumpEvents(), you can only call
- * this function in the thread that set the video mode.
+ * this function in the thread that initialized the video subsystem.
  *
  * SDL_PollEvent() is the favored way of receiving system events since it can
  * be done from the main loop and does not suspend the main loop while waiting
@@ -1256,6 +1284,13 @@ procedure SDL_FlushEvents(minType: cuint32; maxType: cuint32); cdecl;
  *     // update game state, draw the current frame
  *
  * ```
+ *
+ * Note that Windows (and possibly other platforms) has a quirk about how it
+ * handles events while dragging/resizing a window, which can cause this
+ * function to block for significant amounts of time. Technical explanations
+ * and solutions are discussed on the wiki:
+ *
+ * https://wiki.libsdl.org/SDL3/AppFreezeDuringDrag
  *
  * \param event the SDL_Event structure to be filled with the next event from
  *              the queue, or nil.
@@ -1384,7 +1419,7 @@ function SDL_PushEvent(event: PSDL_Event): Boolean; cdecl;
   }
 type
   PSDL_EventFilter = ^TSDL_EventFilter;
-  TSDL_EventFilter = function (userdata: Pointer; event: PSDL_Event): Boolean; cdecl;
+  TSDL_EventFilter = function(userdata: Pointer; event: PSDL_Event): Boolean; cdecl;
 
 {*
  * Set up a filter to process all events before they are added to the internal
@@ -1399,7 +1434,10 @@ type
  * allows selective filtering of dynamically arriving events.
  *
  * **WARNING**: Be very careful of what you do in the event filter function,
- * as it may run in a different thread!
+ * as it may run in a different thread! The exception is handling of
+ * SDL_EVENT_WINDOW_EXPOSED, which is guaranteed to be sent from the OS on the
+ * main thread and you are expected to redraw your window in response to this
+ * event.
  *
  * On platforms that support it, if the quit event is generated by an
  * interrupt signal (e.g. pressing Ctrl-C), it will be delivered to the
@@ -1412,7 +1450,7 @@ type
  * the event filter, but events pushed onto the queue with SDL_PeepEvents() do
  * not.
  *
- * \param filter an SDL_EventFilter function to call when an event happens.
+ * \param filter a function to call when an event happens.
  * \param userdata a Pointer that is passed to `filter`.
  *
  * \threadsafety It is safe to call this function from any thread.
@@ -1583,3 +1621,37 @@ function SDL_RegisterEvents(numevents: cint): cuint32; cdecl;
   }
 function SDL_GetWindowFromEvent(event: PSDL_Event): PSDL_Window; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetWindowFromEvent' {$ENDIF} {$ENDIF};
+
+{*
+ * Generate an English description of an event.
+ *
+ * This will fill `buf` with a null-terminated string that might look
+ * something like this:
+ *
+ * ```
+ * SDL_EVENT_MOUSE_MOTION (timestamp=1140256324 windowid=2 which=0 state=0 x=492.99 y=139.09 xrel=52 yrel=6)
+ * ```
+ *
+ * The exact format of the string is not guaranteed; it is intended for
+ * logging purposes, to be read by a human, and not parsed by a computer.
+ *
+ * The returned value follows the same rules as SDL_snprintf(): `buf` will
+ * always be nil-terminated (unless `buflen` is zero), and will be truncated
+ * if `buflen` is too small. The return code is the number of bytes needed for
+ * the complete string, not counting the nil-terminator, whether the string
+ * was truncated or not. Unlike SDL_snprintf(), though, this function never
+ * returns -1.
+ *
+ * \param event an event to describe. May be nil.
+ * \param buf the buffer to fill with the description string. May be nil.
+ * \param buflen the maximum bytes that can be written to `buf`.
+ * \returns number of bytes needed for the full string, not counting the
+ *          null-terminator byte.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.4.0.
+  }
+function SDL_GetEventDescription(event: PSDL_Event; buf: PAnsiChar; buflen: cint): cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetEventDescription' {$ENDIF} {$ENDIF};
+
