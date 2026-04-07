@@ -79,7 +79,7 @@ const
 {$I SDL_log.inc}                          // 3.4.2
 {$I SDL_version.inc}                      // 3.4.2
 {$I SDL_revision.inc}                     // 3.4.2
-{$I SDL_locale.inc}                       // 3.2.0
+{$I SDL_locale.inc}                       // 3.4.4
 {$I SDL_guid.inc}                         // 3.4.2
 {$I SDL_hints.inc}                        // 3.2.12
 {$I SDL_misc.inc}                         // 3.2.0
