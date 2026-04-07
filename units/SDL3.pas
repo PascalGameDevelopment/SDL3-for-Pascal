@@ -125,7 +125,7 @@ const
 {$I SDL_vulkan.inc}                       // 3.4.4
 {$I SDL_thread.inc}                       // 3.4.4
 {$I SDL_process.inc}                      // 3.4.4
-{$I SDL_storage.inc}                      // 3.2.0
+{$I SDL_storage.inc}                      // 3.4.4
 {$I SDL_tray.inc}                         // 3.2.12
 {$I SDL_mutex.inc}                        // 3.2.12
 
