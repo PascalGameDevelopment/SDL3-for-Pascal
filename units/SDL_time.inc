@@ -86,6 +86,8 @@ const
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
+ * \threadsafety This function is not thread safe.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetDateTimeLocalePreferences(dateFormat: PSDL_DateFormat; timeFormat: PSDL_TimeFormat): Boolean; cdecl;
@@ -98,6 +100,8 @@ function SDL_GetDateTimeLocalePreferences(dateFormat: PSDL_DateFormat; timeForma
  * \param ticks the SDL_Time to hold the returned tick count.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
   }
@@ -116,6 +120,8 @@ function SDL_GetCurrentTime(ticks: PSDL_Time): Boolean; cdecl;
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_TimeToDateTime(ticks: TSDL_Time; dt: PSDL_DateTime; localTime: Boolean): Boolean; cdecl;
@@ -131,6 +137,8 @@ function SDL_TimeToDateTime(ticks: TSDL_Time; dt: PSDL_DateTime; localTime: Bool
  * \param ticks the resulting SDL_Time.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
   }
@@ -149,6 +157,8 @@ function SDL_DateTimeToTime(dt: PSDL_DateTime; ticks: PSDL_Time): Boolean; cdecl
  * \param dwHighDateTime a Pointer filled in with the high portion of the
  *                       Windows FILETIME value.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 procedure SDL_TimeToWindows(ticks: TSDL_Time; dwLowDateTime: pcuint32; dwHighDateTime: pcuint32); cdecl;
@@ -165,6 +175,8 @@ procedure SDL_TimeToWindows(ticks: TSDL_Time; dwLowDateTime: pcuint32; dwHighDat
  * \param dwHighDateTime the high portion of the Windows FILETIME value.
  * \returns the converted SDL time.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_TimeFromWindows(dwLowDateTime: cuint32; dwHighDateTime: cuint32): TSDL_Time; cdecl;
@@ -177,6 +189,8 @@ function SDL_TimeFromWindows(dwLowDateTime: cuint32; dwHighDateTime: cuint32): T
  * \param month the month [1-12].
  * \returns the number of days in the requested month or -1 on failure; call
  *          SDL_GetError() for more information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
   }
@@ -192,6 +206,8 @@ function SDL_GetDaysInMonth(year: cint; month: cint): cint; cdecl;
  * \returns the day of year [0-365] if the date is valid or -1 on failure;
  *          call SDL_GetError() for more information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetDayOfYear(year: cint; month: cint; day: cint): cint; cdecl;
@@ -205,6 +221,8 @@ function SDL_GetDayOfYear(year: cint; month: cint; day: cint): cint; cdecl;
  * \param day the day component of the date.
  * \returns a value between 0 and 6 (0 being Sunday) if the date is valid or
  *          -1 on failure; call SDL_GetError() for more information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
   }
