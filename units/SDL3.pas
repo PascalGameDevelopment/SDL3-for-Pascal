@@ -118,7 +118,7 @@ const
 {$I SDL_dialog.inc}                       // 3.4.4
 {$I SDL_messagebox.inc}                   // 3.4.4
 {$I SDL_time.inc}                         // 3.4.4
-{$I SDL_filesystem.inc}                   // 3.2.0
+{$I SDL_filesystem.inc}                   // 3.4.4
 {$I SDL_atomic.inc}                       // 3.2.0
 {$I SDL_hidapi.inc}                       // 3.2.0
 {$I SDL_metal.inc}                        // 3.2.0
