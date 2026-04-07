@@ -85,7 +85,7 @@ const
 {$I SDL_misc.inc}                         // 3.4.4
 {$I SDL_stdinc.inc}                       // 3.1.6-prev (unfinished)
 {$I SDL_platform.inc}                     // 3.4.4
-{$I SDL_loadso.inc}                       // 3.2.0
+{$I SDL_loadso.inc}                       // 3.4.4
 {$I SDL_rect.inc}                         // 3.4.2
 {$I SDL_properties.inc}                   // 3.4.2
 {$I SDL_pixels.inc}                       // 3.4.2
