@@ -105,7 +105,7 @@ const
 {$I SDL_keyboard.inc}                     // 3.4.4
 {$I SDL_joystick.inc}                     // 3.4.4
 {$I SDL_gamepad.inc}                      // 3.4.4
-{$I SDL_haptic.inc}                       // 3.2.0
+{$I SDL_haptic.inc}                       // 3.4.4
 {$I SDL_touch.inc}                        // 3.4.4
 {$I SDL_pen.inc}                          // 3.2.20
 {$I SDL_camera.inc}                       // 3.4.4

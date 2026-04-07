@@ -57,7 +57,7 @@
  *
  *    SDL_Haptic *haptic;
  *    SDL_HapticEffect effect;
- *    int effect_id;
+ *    SDL_HapticEffectID effect_id;
  *
  *    // Open the device
  *    haptic = SDL_OpenHapticFromJoystick(joystick);
@@ -124,17 +124,33 @@ type
   PPSDL_Haptic = ^PSDL_Haptic;
   PSDL_Haptic = type Pointer;
 
+{
+* Misc defines.
+}
+
+{
+ * Used to play a device an infinite number of times.
+ *
+ * \since This macro is available since SDL 3.2.0.
+ *
+ * \sa SDL_RunHapticEffect
+}
+const
+  SDL_HAPTIC_INFINITY = 4294967295;
+
 {*
  *  \name Haptic features
  *
  *  Different haptic features a device can have.
   }
-{ @  }
 
 {*
  *  \name Haptic effects
   }
-{ @  }
+type
+  PPSDL_HapticEffectType = ^PSDL_HapticEffectType;
+  PSDL_HapticEffectType = ^TSDL_HapticEffectType;
+  TSDL_HapticEffectType = type cuint16;
 
 {*
  * Constant effect supported.
@@ -356,6 +372,15 @@ const
   }
 
 {*
+ * Type of coordinates used for haptic direction.
+  }
+type
+  PPSDL_HapticDirectionType = ^PSDL_HapticDirectionType;
+  PSDL_HapticDirectionType = ^TSDL_HapticDirectionType;
+  TSDL_HapticDirectionType = type cuint8;
+
+const
+{*
  * Uses polar coordinates for the direction.
  *
  * \since This macro is available since SDL 3.2.0.
@@ -398,18 +423,17 @@ const
 
 { Haptic features  }
 
-{
- * Misc defines.
-  }
-
 {*
- * Used to play a device an infinite number of times.
+ * ID for haptic effects.
  *
- * \since This macro is available since SDL 3.2.0.
+ * This is -1 if the ID is invalid.
  *
- * \sa SDL_RunHapticEffect
+ * \sa SDL_CreateHapticEffect
   }
-  SDL_HAPTIC_INFINITY = 4294967295;
+type
+  PPSDL_HapticEffectID = ^PSDL_HapticEffectID;
+  PSDL_HapticEffectID = ^TSDL_HapticEffectID;
+  TSDL_HapticEffectID = cint;
 
 {*
  * Structure that represents a haptic direction.
@@ -518,8 +542,8 @@ type
   PPSDL_HapticDirection = ^PSDL_HapticDirection;
   PSDL_HapticDirection = ^TSDL_HapticDirection;
   TSDL_HapticDirection = record
-      type_: cuint8;              {*< The type of encoding.  }
-      dir: array[0..2] of cint32; {*< The encoded direction.  }
+      type_: TSDL_HapticDirectionType;  {*< The type of encoding.  }
+      dir: array[0..2] of cint32;       {*< The encoded direction.  }
     end;
 
 {*
@@ -540,7 +564,7 @@ type
   PSDL_HapticConstant = ^TSDL_HapticConstant;
   TSDL_HapticConstant = record
       { Header  }
-      type_: cuint16;                  {*< SDL_HAPTIC_CONSTANT  }
+      type_: TSDL_HapticEffectType;    {*< SDL_HAPTIC_CONSTANT  }
       direction: TSDL_HapticDirection; {*< Direction of the effect.  }
 
       { Replay  }
@@ -628,9 +652,9 @@ type
   PSDL_HapticPeriodic = ^TSDL_HapticPeriodic;
   TSDL_HapticPeriodic = record
       { Header  }
-      type_: cuint16;                  {*< SDL_HAPTIC_SINE, SDL_HAPTIC_SQUARE
-                                                                    SDL_HAPTIC_TRIANGLE, SDL_HAPTIC_SAWTOOTHUP or
-                                                                    SDL_HAPTIC_SAWTOOTHDOWN  }
+      type_: TSDL_HapticEffectType;    {*< SDL_HAPTIC_SINE, SDL_HAPTIC_SQUARE
+                                           SDL_HAPTIC_TRIANGLE, SDL_HAPTIC_SAWTOOTHUP or
+                                           SDL_HAPTIC_SAWTOOTHDOWN  }
       direction: TSDL_HapticDirection; {*< Direction of the effect.  }
 
       { Replay  }
@@ -686,8 +710,8 @@ type
   PSDL_HapticCondition = ^TSDL_HapticCondition;
   TSDL_HapticCondition = record
       { Header  }
-      type_: cuint16;                     {*< SDL_HAPTIC_SPRING, SDL_HAPTIC_DAMPER,
-                                                                           SDL_HAPTIC_INERTIA or SDL_HAPTIC_FRICTION  }
+      type_: TSDL_HapticEffectType;       {*< SDL_HAPTIC_SPRING, SDL_HAPTIC_DAMPER,
+                                              SDL_HAPTIC_INERTIA or SDL_HAPTIC_FRICTION  }
       direction: TSDL_HapticDirection;    {*< Direction of the effect.  }
 
       { Replay  }
@@ -727,7 +751,7 @@ type
   PSDL_HapticRamp = ^TSDL_HapticRamp;
   TSDL_HapticRamp = record
       { Header  }
-      type_: cuint16;                  {*< SDL_HAPTIC_RAMP  }
+      type_: TSDL_HapticEffectType;    {*< SDL_HAPTIC_RAMP  }
       direction: TSDL_HapticDirection; {*< Direction of the effect.  }
 
       { Replay  }
@@ -768,7 +792,7 @@ type
   PSDL_HapticLeftRight = ^TSDL_HapticLeftRight;
   TSDL_HapticLeftRight = record
       { Header  }
-      type_: cuint16;           {*< SDL_HAPTIC_LEFTRIGHT  }
+      type_: TSDL_HapticEffectType;  {*< SDL_HAPTIC_LEFTRIGHT  }
 
       { Replay  }
       length: cuint32;          {*< Duration of the effect in milliseconds.  }
@@ -800,7 +824,7 @@ type
   PSDL_HapticCustom = ^TSDL_HapticCustom;
   TSDL_HapticCustom = record
       { Header  }
-      type_: cuint16;                  {*< SDL_HAPTIC_CUSTOM  }
+      type_: TSDL_HapticEffectType;    {*< SDL_HAPTIC_CUSTOM  }
       direction: TSDL_HapticDirection; {*< Direction of the effect.  }
 
       { Replay  }
@@ -902,7 +926,7 @@ type
   TSDL_HapticEffect = record
       { Common for all force feedback effects  }
       case Integer of
-        0: (type_: cuint16);                  {*< Effect type.  }
+        0: (type_: TSDL_HapticEffectType);    {*< Effect type.  }
         1: (constant: TSDL_HapticConstant);   {*< Constant effect.  }
         2: (periodic: TSDL_HapticPeriodic);   {*< Periodic effect.  }
         3: (condition: TSDL_HapticCondition); {*< Condition effect.  }
@@ -1197,7 +1221,7 @@ function SDL_HapticEffectSupported(haptic: PSDL_Haptic; effect: PSDL_HapticEffec
  * \sa SDL_RunHapticEffect
  * \sa SDL_UpdateHapticEffect
   }
-function SDL_CreateHapticEffect(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): cint; cdecl;
+function SDL_CreateHapticEffect(haptic: PSDL_Haptic; effect: PSDL_HapticEffect): TSDL_HapticEffectID; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_CreateHapticEffect' {$ENDIF} {$ENDIF};
 
 {*
@@ -1220,7 +1244,7 @@ function SDL_CreateHapticEffect(haptic: PSDL_Haptic; effect: PSDL_HapticEffect):
  * \sa SDL_CreateHapticEffect
  * \sa SDL_RunHapticEffect
   }
-function SDL_UpdateHapticEffect(haptic: PSDL_Haptic; effect: cint; data: PSDL_HapticEffect): Boolean; cdecl;
+function SDL_UpdateHapticEffect(haptic: PSDL_Haptic; effect: TSDL_HapticEffectID; data: PSDL_HapticEffect): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_UpdateHapticEffect' {$ENDIF} {$ENDIF};
 
 {*
@@ -1245,7 +1269,7 @@ function SDL_UpdateHapticEffect(haptic: PSDL_Haptic; effect: cint; data: PSDL_Ha
  * \sa SDL_StopHapticEffect
  * \sa SDL_StopHapticEffects
   }
-function SDL_RunHapticEffect(haptic: PSDL_Haptic; effect: cint; iterations: cuint32): Boolean; cdecl;
+function SDL_RunHapticEffect(haptic: PSDL_Haptic; effect: TSDL_HapticEffectID; iterations: cuint32): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_RunHapticEffect' {$ENDIF} {$ENDIF};
 
 {*
@@ -1261,7 +1285,7 @@ function SDL_RunHapticEffect(haptic: PSDL_Haptic; effect: cint; iterations: cuin
  * \sa SDL_RunHapticEffect
  * \sa SDL_StopHapticEffects
   }
-function SDL_StopHapticEffect(haptic: PSDL_Haptic; effect: cint): Boolean; cdecl;
+function SDL_StopHapticEffect(haptic: PSDL_Haptic; effect: TSDL_HapticEffectID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_StopHapticEffect' {$ENDIF} {$ENDIF};
 
 {*
@@ -1277,7 +1301,7 @@ function SDL_StopHapticEffect(haptic: PSDL_Haptic; effect: cint): Boolean; cdecl
  *
  * \sa SDL_CreateHapticEffect
   }
-procedure SDL_DestroyHapticEffect(haptic: PSDL_Haptic; effect: cint); cdecl;
+procedure SDL_DestroyHapticEffect(haptic: PSDL_Haptic; effect: TSDL_HapticEffectID); cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_DestroyHapticEffect' {$ENDIF} {$ENDIF};
 
 {*
@@ -1294,7 +1318,7 @@ procedure SDL_DestroyHapticEffect(haptic: PSDL_Haptic; effect: cint); cdecl;
  *
  * \sa SDL_GetHapticFeatures
   }
-function SDL_GetHapticEffectStatus(haptic: PSDL_Haptic; effect: cint): Boolean; cdecl;
+function SDL_GetHapticEffectStatus(haptic: PSDL_Haptic; effect: TSDL_HapticEffectID): Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetHapticEffectStatus' {$ENDIF} {$ENDIF};
 
 {*
