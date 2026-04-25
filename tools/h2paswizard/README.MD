@@ -33,8 +33,43 @@ Otherwise the settings file is not recognized.
 
 *Important:* The results are not perfect, they must always be revised.
 
+## Tips and Tricks
 
+### Lazarus: Use block selection for comments
 
+Often in C there are comments after each of several lines of code. E. g. for
+every entry of an enum there is an explaining comment. If you use H2Paswizard it
+will copy all the comments above the actual translated enum entries.
+
+```
+typedef enum
+{
+   SDL_JOYSTICK_POWER_EMPTY,   /* <= 5% */
+   SDL_JOYSTICK_POWER_LOW,     /* <= 20% */
+   SDL_JOYSTICK_POWER_MEDIUM,  /* <= 70% */
+   SDL_JOYSTICK_POWER_FULL,    /* <= 100% */
+} SDL_JoystickPowerLevel;
+```
+
+will end up as something similar to
+
+```
+const
+  {* <= 5% *}
+  {* <= 20% *}
+  {* <= 70% *}
+  {* <= 100% *}
+  SDL_JOYSTICK_POWER_EMPTY = 0;
+  SDL_JOYSTICK_POWER_LOW = 1;
+  SDL_JOYSTICK_POWER_MEDIUM = 2;
+  SDL_JOYSTICK_POWER_FULL = 3;
+```
+
+A simple select, cut and paste of the comment block will not work here. If you
+paste it, it will shift all code lines below downwards. Use the block selection
+by selecting the comment block holding `Shift` + `Alt` + arrow keys and cut it.
+If you paste the comments now, they will not shift the code lines and all
+comments are right in place.
 
 
 
