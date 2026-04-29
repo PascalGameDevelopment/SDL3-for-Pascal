@@ -39,7 +39,7 @@ const
  *
  * \since This macro is available since SDL 3.2.0.
   }
-  SDL_MICRO_VERSION = 2;
+  SDL_MICRO_VERSION = 4;
 
 {*
  * This macro turns the version numbers into a numeric value.
