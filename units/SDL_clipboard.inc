@@ -82,7 +82,7 @@ function SDL_SetClipboardText(text: PAnsiChar): Boolean; cdecl;
 {*
  * Get UTF-8 text from the clipboard.
  *
- * This functions returns an empty string if there was not enough memory left
+ * This functions returns an empty string if there is not enough memory left
  * for a copy of the clipboard's content.
  *
  * \returns the clipboard text on success or an empty string on failure; call
@@ -134,7 +134,7 @@ function SDL_SetPrimarySelectionText(text: PAnsiChar): Boolean; cdecl;
 {*
  * Get UTF-8 text from the primary selection.
  *
- * This functions returns an empty string if there was not enough memory left
+ * This functions returns an empty string if there is not enough memory left
  * for a copy of the primary selection's content.
  *
  * \returns the primary selection text on success or an empty string on
@@ -175,15 +175,14 @@ function SDL_HasPrimarySelectionText: Boolean; cdecl;
  * clipboard is cleared or new data is set. The clipboard is automatically
  * cleared in SDL_Quit().
  *
- * \param userdata a Pointer to provided user data.
+ * \param userdata a pointer to the provided user data.
  * \param mime_type the requested mime-type.
- * \param size a Pointer filled in with the length of the returned data.
- * \returns a Pointer to the data for the provided mime-type. Returning nil
- *          or setting length to 0 will cause no data to be sent to the
- *          "receiver". It is up to the receiver to handle this. Essentially
- *          returning no data is more or less undefined behavior and may cause
- *          breakage in receiving applications. The returned data will not be
- *          freed so it needs to be retained and dealt with internally.
+ * \param size a pointer filled in with the length of the returned data.
+ * \returns a pointer to the data for the provided mime-type. Returning NULL
+ *          or setting the length to 0 will cause zero length data to be sent
+ *          to the "receiver", which should be able to handle this. The
+ *          returned data will not be freed, so it needs to be retained and
+ *          dealt with internally.
  *
  * \since This function is available since SDL 3.1.3.
  *
@@ -193,10 +192,10 @@ type
   TSDL_ClipboardDataCallback = function(userdata: Pointer; mime_type: PAnsiChar; size: pcsize_t): Pointer; cdecl;
 
 {*
- * Callback function that will be called when the clipboard is cleared, or new
- * data is set.
+ * Callback function that will be called when the clipboard is cleared, or
+ * when new data is set.
  *
- * \param userdata a Pointer to provided user data.
+ * \param userdata a pointer to the provided user data.
  *
  * \since This function is available since SDL 3.1.3.
  *
@@ -214,15 +213,16 @@ type
  * respond with the data for the requested mime-type.
  *
  * The size of text data does not include any terminator, and the text does
- * not need to be null terminated (e.g. you can directly copy a portion of a
- * document)
+ * not need to be null-terminated (e.g., you can directly copy a portion of a
+ * document).
  *
- * \param callback a function Pointer to the function that provides the
+ * \param callback a function pointer to the function that provides the
  *                 clipboard data.
- * \param cleanup a function Pointer to the function that cleans up the
+ * \param cleanup a function pointer to the function that cleans up the
  *                clipboard data.
- * \param userdata an opaque Pointer that will be forwarded to the callbacks.
- * \param mime_types a list of mime-types that are being offered.
+ * \param userdata an opaque pointer that will be forwarded to the callbacks.
+ * \param mime_types a list of mime-types that are being offered. SDL copies
+ *                   the given list.
  * \param num_mime_types the number of mime-types in the mime_types list.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
@@ -254,10 +254,10 @@ function SDL_ClearClipboardData: Boolean; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_ClearClipboardData' {$ENDIF} {$ENDIF};
 
 {*
- * Get the data from clipboard for a given mime type.
+ * Get the data from the clipboard for a given mime type.
  *
  * The size of text data does not include the terminator, but the text is
- * guaranteed to be null terminated.
+ * guaranteed to be null-terminated.
  *
  * \param mime_type the mime type to read from the clipboard.
  * \param size a Pointer filled in with the length of the returned data.
@@ -278,8 +278,8 @@ function SDL_GetClipboardData(mime_type: PAnsiChar; size: pcsize_t): Pointer; cd
 {*
  * Query whether there is data in the clipboard for the provided mime type.
  *
- * \param mime_type the mime type to check for data for.
- * \returns true if there exists data in clipboard for the provided mime type,
+ * \param mime_type the mime type to check for data.
+ * \returns true if data exists in the clipboard for the provided mime type,
  *          false if it does not.
  *
  * \threadsafety You may only call this function from the main thread.
@@ -297,7 +297,7 @@ function SDL_HasClipboardData(mime_type: PAnsiChar): Boolean; cdecl;
  *
  * \param num_mime_types a Pointer filled with the number of mime types, may
  *                       be nil.
- * \returns a null terminated array of strings with mime types, or nil on
+ * \returns a null-terminated array of strings with mime types, or NULL on
  *          failure; call SDL_GetError() for more information. This should be
  *          freed with SDL_free() when it is no longer needed.
  *

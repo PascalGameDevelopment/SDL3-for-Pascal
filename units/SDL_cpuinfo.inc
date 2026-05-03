@@ -337,3 +337,25 @@ function SDL_GetSystemRAM: cint; cdecl;
 function SDL_GetSIMDAlignment: csize_t; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSIMDAlignment' {$ENDIF} {$ENDIF};
 
+{*
+ * Report the size of a page of memory.
+ *
+ * Different platforms might have different memory page sizes. In current
+ * times, 4 kilobytes is not unusual, but newer systems are moving to larger
+ * page sizes, and esoteric platforms might have any unexpected size.
+ *
+ * Note that this function can return 0, which means SDL can't determine the
+ * page size on this platform. It will _not_ set an error string to be
+ * retrieved with SDL_GetError() in this case! In this case, defaulting to
+ * 4096 is often a reasonable option.
+ *
+ * \returns the size of a single page of memory, in bytes, or 0 if SDL can't
+ *          determine this information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.4.0.
+  }
+function SDL_GetSystemPageSize: cint; cdecl;
+  external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetSystemPageSize' {$ENDIF} {$ENDIF};
+

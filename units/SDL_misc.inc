@@ -40,6 +40,8 @@
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
+ * \threadsafety This function should only be called on the main thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_OpenURL(url: PAnsiChar): Boolean; cdecl;

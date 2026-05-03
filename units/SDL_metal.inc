@@ -43,6 +43,8 @@ type
  * \param window the window.
  * \returns handle NSView or UIView.
  *
+ * \threadsafety This function should only be called on the main thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_Metal_DestroyView
@@ -59,6 +61,8 @@ function SDL_Metal_CreateView(window: PSDL_Window): TSDL_MetalView; cdecl;
  *
  * \param view the SDL_MetalView object.
  *
+ * \threadsafety This function should only be called on the main thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_Metal_CreateView
@@ -71,6 +75,8 @@ procedure SDL_Metal_DestroyView(view: TSDL_MetalView); cdecl;
  *
  * \param view the SDL_MetalView object.
  * \returns a Pointer.
+ *
+ * \threadsafety This function should only be called on the main thread.
  *
  * \since This function is available since SDL 3.2.0.
   }

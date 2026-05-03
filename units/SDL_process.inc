@@ -139,27 +139,30 @@ const
  * These are the supported properties:
  *
  * - `SDL_PROP_PROCESS_CREATE_ARGS_POINTER`: an array of strings containing
- *   the program to run, any arguments, and a nil Pointer, e.g. const char
- *   *args* =  "myprogram", "argument", nil . This is a required property.
+ *   the program to run, any arguments, and a NULL pointer, e.g. const char
+ *   *args[] = ( "myprogram", "argument", NULL ). This is a required property.
  * - `SDL_PROP_PROCESS_CREATE_ENVIRONMENT_POINTER`: an SDL_Environment
- *   Pointer. If this property is set, it will be the entire environment for
+ *   pointer. If this property is set, it will be the entire environment for
  *   the process, otherwise the current environment is used.
+ * - `SDL_PROP_PROCESS_CREATE_WORKING_DIRECTORY_STRING`: a UTF-8 encoded
+ *   string representing the working directory for the process, defaults to
+ *   the current working directory.
  * - `SDL_PROP_PROCESS_CREATE_STDIN_NUMBER`: an SDL_ProcessIO value describing
  *   where standard input for the process comes from, defaults to
  *   `SDL_PROCESS_STDIO_NULL`.
- * - `SDL_PROP_PROCESS_CREATE_STDIN_POINTER`: an SDL_IOStream Pointer used for
+ * - `SDL_PROP_PROCESS_CREATE_STDIN_POINTER`: an SDL_IOStream pointer used for
  *   standard input when `SDL_PROP_PROCESS_CREATE_STDIN_NUMBER` is set to
  *   `SDL_PROCESS_STDIO_REDIRECT`.
  * - `SDL_PROP_PROCESS_CREATE_STDOUT_NUMBER`: an SDL_ProcessIO value
- *   describing where standard output for the process goes go, defaults to
+ *   describing where standard output for the process goes to, defaults to
  *   `SDL_PROCESS_STDIO_INHERITED`.
- * - `SDL_PROP_PROCESS_CREATE_STDOUT_POINTER`: an SDL_IOStream Pointer used
+ * - `SDL_PROP_PROCESS_CREATE_STDOUT_POINTER`: an SDL_IOStream pointer used
  *   for standard output when `SDL_PROP_PROCESS_CREATE_STDOUT_NUMBER` is set
  *   to `SDL_PROCESS_STDIO_REDIRECT`.
  * - `SDL_PROP_PROCESS_CREATE_STDERR_NUMBER`: an SDL_ProcessIO value
- *   describing where standard error for the process goes go, defaults to
+ *   describing where standard error for the process goes to, defaults to
  *   `SDL_PROCESS_STDIO_INHERITED`.
- * - `SDL_PROP_PROCESS_CREATE_STDERR_POINTER`: an SDL_IOStream Pointer used
+ * - `SDL_PROP_PROCESS_CREATE_STDERR_POINTER`: an SDL_IOStream pointer used
  *   for standard error when `SDL_PROP_PROCESS_CREATE_STDERR_NUMBER` is set to
  *   `SDL_PROCESS_STDIO_REDIRECT`.
  * - `SDL_PROP_PROCESS_CREATE_STDERR_TO_STDOUT_BOOLEAN`: true if the error
@@ -170,6 +173,12 @@ const
  *   run in the background. In this case the default input and output is
  *   `SDL_PROCESS_STDIO_NULL` and the exitcode of the process is not
  *   available, and will always be 0.
+ * - `SDL_PROP_PROCESS_CREATE_CMDLINE_STRING`: a string containing the program
+ *   to run and any parameters. This string is passed directly to
+ *   `CreateProcess` on Windows, and does nothing on other platforms. This
+ *   property is only important if you want to start programs that does
+ *   non-standard command-line processing, and in most cases using
+ *   `SDL_PROP_PROCESS_CREATE_ARGS_POINTER` is sufficient.
  *
  * On POSIX platforms, wait() and waitpid(-1, ...) should not be called, and
  * SIGCHLD should not be ignored or handled because those would prevent SDL
@@ -199,6 +208,7 @@ function SDL_CreateProcessWithProperties(props: TSDL_PropertiesID): PSDL_Process
 const
   SDL_PROP_PROCESS_CREATE_ARGS_POINTER = 'SDL.process.create.args';
   SDL_PROP_PROCESS_CREATE_ENVIRONMENT_POINTER = 'SDL.process.create.environment';
+  SDL_PROP_PROCESS_CREATE_WORKING_DIRECTORY_STRING = 'SDL.process.create.working_directory';
   SDL_PROP_PROCESS_CREATE_STDIN_NUMBER = 'SDL.process.create.stdin_option';
   SDL_PROP_PROCESS_CREATE_STDIN_POINTER = 'SDL.process.create.stdin_source';
   SDL_PROP_PROCESS_CREATE_STDOUT_NUMBER = 'SDL.process.create.stdout_option';
@@ -207,6 +217,7 @@ const
   SDL_PROP_PROCESS_CREATE_STDERR_POINTER = 'SDL.process.create.stderr_source';
   SDL_PROP_PROCESS_CREATE_STDERR_TO_STDOUT_BOOLEAN = 'SDL.process.create.stderr_to_stdout';
   SDL_PROP_PROCESS_CREATE_BACKGROUND_BOOLEAN = 'SDL.process.create.background';
+  SDL_PROP_PROCESS_CREATE_CMDLINE_STRING = 'SDL.process.create.cmdline';
 
 {*
  * Get the properties associated with a process.

@@ -35,6 +35,9 @@
  * SDL_INIT_GAMEPAD flag. This causes SDL to scan the system for gamepads, and
  * load appropriate drivers.
  *
+ * If you're using SDL gamepad support in a Steam game, you must call
+ * SteamAPI_InitEx() before calling SDL_Init().
+ *
  * If you would like to receive gamepad updates while the application is in
  * the background, you should set the following hint before calling
  * SDL_Init(): SDL_HINT_JOYSTICK_ALLOW_BACKGROUND_EVENTS
@@ -92,7 +95,8 @@ const
   SDL_GAMEPAD_TYPE_NINTENDO_SWITCH_JOYCON_LEFT  = TSDL_GamepadType(8);
   SDL_GAMEPAD_TYPE_NINTENDO_SWITCH_JOYCON_RIGHT  = TSDL_GamepadType(9);
   SDL_GAMEPAD_TYPE_NINTENDO_SWITCH_JOYCON_PAIR  = TSDL_GamepadType(10);
-  SDL_GAMEPAD_TYPE_COUNT  = TSDL_GamepadType(11);
+  SDL_GAMEPAD_TYPE_GAMECUBE = TSDL_GamepadType(11);
+  SDL_GAMEPAD_TYPE_COUNT  = TSDL_GamepadType(12);
 
 {*
  * The list of buttons available on a gamepad
@@ -100,8 +104,9 @@ const
  * For controllers that use a diamond pattern for the face buttons, the
  * south/east/west/north buttons below correspond to the locations in the
  * diamond pattern. For Xbox controllers, this would be A/B/X/Y, for Nintendo
- * Switch controllers, this would be B/A/Y/X, for PlayStation controllers this
- * would be Cross/Circle/Square/Triangle.
+ * Switch controllers, this would be B/A/Y/X, for GameCube controllers this
+ * would be A/X/B/Y, for PlayStation controllers this would be
+ * Cross/Circle/Square/Triangle.
  *
  * For controllers that don't use a diamond pattern for the face buttons, the
  * south/east/west/north buttons indicate the buttons labeled A, B, C, D, or
@@ -139,14 +144,14 @@ const
   SDL_GAMEPAD_BUTTON_DPAD_LEFT  = TSDL_GamepadButton(13);
   SDL_GAMEPAD_BUTTON_DPAD_RIGHT  = TSDL_GamepadButton(14);
   SDL_GAMEPAD_BUTTON_MISC1  = TSDL_GamepadButton(15);           {*< Additional button (e.g. Xbox Series X share button, PS5 microphone button, Nintendo Switch Pro capture button, Amazon Luna microphone button, Google Stadia capture button)  }
-  SDL_GAMEPAD_BUTTON_RIGHT_PADDLE1  = TSDL_GamepadButton(16);   {*< Upper or primary paddle, under your right hand (e.g. Xbox Elite paddle P1)  }
-  SDL_GAMEPAD_BUTTON_LEFT_PADDLE1  = TSDL_GamepadButton(17);    {*< Upper or primary paddle, under your left hand (e.g. Xbox Elite paddle P3)  }
-  SDL_GAMEPAD_BUTTON_RIGHT_PADDLE2  = TSDL_GamepadButton(18);   {*< Lower or secondary paddle, under your right hand (e.g. Xbox Elite paddle P2)  }
-  SDL_GAMEPAD_BUTTON_LEFT_PADDLE2  = TSDL_GamepadButton(19);    {*< Lower or secondary paddle, under your left hand (e.g. Xbox Elite paddle P4)  }
+  SDL_GAMEPAD_BUTTON_RIGHT_PADDLE1  = TSDL_GamepadButton(16);   {*< Upper or primary paddle, under your right hand (e.g. Xbox Elite paddle P1, DualSense Edge RB button, Right Joy-Con SR button)  }
+  SDL_GAMEPAD_BUTTON_LEFT_PADDLE1  = TSDL_GamepadButton(17);    {*< Upper or primary paddle, under your left hand (e.g. Xbox Elite paddle P3, DualSense Edge LB button, Left Joy-Con SL button)  }
+  SDL_GAMEPAD_BUTTON_RIGHT_PADDLE2  = TSDL_GamepadButton(18);   {*< Lower or secondary paddle, under your right hand (e.g. Xbox Elite paddle P2, DualSense Edge right Fn button, Right Joy-Con SL button)  }
+  SDL_GAMEPAD_BUTTON_LEFT_PADDLE2  = TSDL_GamepadButton(19);    {*< Lower or secondary paddle, under your left hand (e.g. Xbox Elite paddle P4, DualSense Edge left Fn button, Left Joy-Con SR button)  }
   SDL_GAMEPAD_BUTTON_TOUCHPAD  = TSDL_GamepadButton(20);        {*< PS4/PS5 touchpad button  }
   SDL_GAMEPAD_BUTTON_MISC2  = TSDL_GamepadButton(21);           {*< Additional button  }
-  SDL_GAMEPAD_BUTTON_MISC3  = TSDL_GamepadButton(22);           {*< Additional button  }
-  SDL_GAMEPAD_BUTTON_MISC4  = TSDL_GamepadButton(23);           {*< Additional button  }
+  SDL_GAMEPAD_BUTTON_MISC3  = TSDL_GamepadButton(22);           {*< Additional button (e.g. Nintendo GameCube left trigger click)  }
+  SDL_GAMEPAD_BUTTON_MISC4  = TSDL_GamepadButton(23);           {*< Additional button (e.g. Nintendo GameCube right trigger click)  }
   SDL_GAMEPAD_BUTTON_MISC5  = TSDL_GamepadButton(24);           {*< Additional button  }
   SDL_GAMEPAD_BUTTON_MISC6  = TSDL_GamepadButton(25);           {*< Additional button  }
   SDL_GAMEPAD_BUTTON_COUNT  = TSDL_GamepadButton(26);
@@ -396,6 +401,8 @@ function SDL_AddGamepadMappingsFromFile(file_: PAnsiChar): cint; cdecl;
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_ReloadGamepadMappings: Boolean; cdecl;
@@ -411,6 +418,8 @@ function SDL_ReloadGamepadMappings: Boolean; cdecl;
  *          single allocation that should be freed with SDL_free() when it is
  *          no longer needed.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetGamepadMappings(count: pcint):PPAnsiChar; cdecl;
@@ -423,6 +432,8 @@ function SDL_GetGamepadMappings(count: pcint):PPAnsiChar; cdecl;
  * \returns a mapping string or nil on failure; call SDL_GetError() for more
  *          information. This should be freed with SDL_free() when it is no
  *          longer needed.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -441,6 +452,8 @@ function SDL_GetGamepadMappingForGUID(guid: TSDL_GUID): PAnsiChar; cdecl;
  * \returns a string that has the gamepad's mapping or nil if no mapping is
  *          available; call SDL_GetError() for more information. This should
  *          be freed with SDL_free() when it is no longer needed.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -463,6 +476,8 @@ function SDL_GetGamepadMapping(gamepad: PSDL_Gamepad): PAnsiChar; cdecl;
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_AddGamepadMapping
@@ -475,6 +490,8 @@ function SDL_SetGamepadMapping(instance_id: TSDL_JoystickID; mapping: PAnsiChar)
  * Return whether a gamepad is currently connected.
  *
  * \returns true if a gamepad is connected, false otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -492,6 +509,8 @@ function SDL_HasGamepad: Boolean; cdecl;
  *          call SDL_GetError() for more information. This should be freed
  *          with SDL_free() when it is no longer needed.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_HasGamepad
@@ -506,6 +525,8 @@ function SDL_GetGamepads(count: pcint): PSDL_JoystickID; cdecl;
  * \param instance_id the joystick instance ID.
  * \returns true if the given joystick is supported by the gamepad interface,
  *          false if it isn't or it's an invalid index.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -524,6 +545,8 @@ function SDL_IsGamepad(instance_id: TSDL_JoystickID): Boolean; cdecl;
  * \returns the name of the selected gamepad. If no name can be found, this
  *          function returns nil; call SDL_GetError() for more information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetGamepadName
@@ -541,6 +564,8 @@ function SDL_GetGamepadNameForID(instance_id: TSDL_JoystickID): PAnsiChar; cdecl
  * \returns the path of the selected gamepad. If no path can be found, this
  *          function returns nil; call SDL_GetError() for more information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetGamepadPath
@@ -556,6 +581,8 @@ function SDL_GetGamepadPathForID(instance_id: TSDL_JoystickID): PAnsiChar; cdecl
  *
  * \param instance_id the joystick instance ID.
  * \returns the player index of a gamepad, or -1 if it's not available.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -573,6 +600,8 @@ function SDL_GetGamepadPlayerIndexForID(instance_id: TSDL_JoystickID): cint; cde
  * \param instance_id the joystick instance ID.
  * \returns the GUID of the selected gamepad. If called on an invalid index,
  *          this function returns a zero GUID.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -592,6 +621,8 @@ function SDL_GetGamepadGUIDForID(instance_id: TSDL_JoystickID): TSDL_GUID; cdecl
  * \returns the USB vendor ID of the selected gamepad. If called on an invalid
  *          index, this function returns zero.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetGamepadVendor
@@ -609,6 +640,8 @@ function SDL_GetGamepadVendorForID(instance_id: TSDL_JoystickID): cuint16; cdecl
  * \param instance_id the joystick instance ID.
  * \returns the USB product ID of the selected gamepad. If called on an
  *          invalid index, this function returns zero.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -628,6 +661,8 @@ function SDL_GetGamepadProductForID(instance_id: TSDL_JoystickID): cuint16; cdec
  * \returns the product version of the selected gamepad. If called on an
  *          invalid index, this function returns zero.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetGamepadProductVersion
@@ -643,6 +678,8 @@ function SDL_GetGamepadProductVersionForID(instance_id: TSDL_JoystickID): cuint1
  *
  * \param instance_id the joystick instance ID.
  * \returns the gamepad type.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -660,6 +697,8 @@ function SDL_GetGamepadTypeForID(instance_id: TSDL_JoystickID): TSDL_GamepadType
  *
  * \param instance_id the joystick instance ID.
  * \returns the gamepad type.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -679,6 +718,8 @@ function SDL_GetRealGamepadTypeForID(instance_id: TSDL_JoystickID): TSDL_Gamepad
  * \returns the mapping string. Returns nil if no mapping is available. This
  *          should be freed with SDL_free() when it is no longer needed.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetGamepads
@@ -693,6 +734,8 @@ function SDL_GetGamepadMappingForID(instance_id: TSDL_JoystickID): PAnsiChar; cd
  * \param instance_id the joystick instance ID.
  * \returns a gamepad identifier or nil if an error occurred; call
  *          SDL_GetError() for more information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -710,6 +753,8 @@ function SDL_OpenGamepad(instance_id: TSDL_JoystickID): PSDL_Gamepad; cdecl;
  * \returns an SDL_Gamepad on success or nil on failure or if it hasn't been
  *          opened yet; call SDL_GetError() for more information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetGamepadFromID(instance_id: TSDL_JoystickID): PSDL_Gamepad; cdecl;
@@ -720,6 +765,8 @@ function SDL_GetGamepadFromID(instance_id: TSDL_JoystickID): PSDL_Gamepad; cdecl
  *
  * \param player_index the player index, which different from the instance ID.
  * \returns the SDL_Gamepad associated with a player index.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -752,6 +799,8 @@ function SDL_GetGamepadFromPlayerIndex(player_index: cint): PSDL_Gamepad; cdecl;
  * \returns a valid property ID on success or 0 on failure; call
  *          SDL_GetError() for more information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetGamepadProperties(gamepad: PSDL_Gamepad): TSDL_PropertiesID; cdecl;
@@ -772,6 +821,8 @@ const
  * \returns the instance ID of the specified gamepad on success or 0 on
  *          failure; call SDL_GetError() for more information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetGamepadID(gamepad: PSDL_Gamepad): TSDL_JoystickID; cdecl;
@@ -784,6 +835,8 @@ function SDL_GetGamepadID(gamepad: PSDL_Gamepad): TSDL_JoystickID; cdecl;
  *                SDL_OpenGamepad().
  * \returns the implementation dependent name for the gamepad, or nil if
  *          there is no name or the identifier passed is invalid.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -801,6 +854,8 @@ function SDL_GetGamepadName(gamepad: PSDL_Gamepad): PAnsiChar; cdecl;
  * \returns the implementation dependent path for the gamepad, or nil if
  *          there is no path or the identifier passed is invalid.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetGamepadPathForID
@@ -816,6 +871,8 @@ function SDL_GetGamepadPath(gamepad: PSDL_Gamepad): PAnsiChar; cdecl;
  * \returns the gamepad type, or SDL_GAMEPAD_TYPE_UNKNOWN if it's not
  *          available.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetGamepadTypeForID
@@ -829,6 +886,8 @@ function SDL_GetGamepadType(gamepad: PSDL_Gamepad): TSDL_GamepadType; cdecl;
  * \param gamepad the gamepad object to query.
  * \returns the gamepad type, or SDL_GAMEPAD_TYPE_UNKNOWN if it's not
  *          available.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -844,6 +903,8 @@ function SDL_GetRealGamepadType(gamepad: PSDL_Gamepad): TSDL_GamepadType; cdecl;
  *
  * \param gamepad the gamepad object to query.
  * \returns the player index for gamepad, or -1 if it's not available.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -861,6 +922,8 @@ function SDL_GetGamepadPlayerIndex(gamepad: PSDL_Gamepad): cint; cdecl;
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetGamepadPlayerIndex
@@ -875,6 +938,8 @@ function SDL_SetGamepadPlayerIndex(gamepad: PSDL_Gamepad; player_index: cint): B
  *
  * \param gamepad the gamepad object to query.
  * \returns the USB vendor ID, or zero if unavailable.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -891,6 +956,8 @@ function SDL_GetGamepadVendor(gamepad: PSDL_Gamepad): cuint16; cdecl;
  * \param gamepad the gamepad object to query.
  * \returns the USB product ID, or zero if unavailable.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetGamepadProductForID
@@ -905,6 +972,8 @@ function SDL_GetGamepadProduct(gamepad: PSDL_Gamepad): cuint16; cdecl;
  *
  * \param gamepad the gamepad object to query.
  * \returns the USB product version, or zero if unavailable.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -921,6 +990,8 @@ function SDL_GetGamepadProductVersion(gamepad: PSDL_Gamepad): cuint16; cdecl;
  * \param gamepad the gamepad object to query.
  * \returns the gamepad firmware version, or zero if unavailable.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetGamepadFirmwareVersion(gamepad: PSDL_Gamepad): cuint16; cdecl;
@@ -933,6 +1004,8 @@ function SDL_GetGamepadFirmwareVersion(gamepad: PSDL_Gamepad): cuint16; cdecl;
  *
  * \param gamepad the gamepad object to query.
  * \returns the serial number, or nil if unavailable.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
   }
@@ -948,6 +1021,8 @@ function SDL_GetGamepadSerial(gamepad: PSDL_Gamepad): PAnsiChar; cdecl;
  * \param gamepad the gamepad object to query.
  * \returns the gamepad handle, or 0 if unavailable.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetGamepadSteamHandle(gamepad: PSDL_Gamepad): cuint64; cdecl;
@@ -960,6 +1035,8 @@ function SDL_GetGamepadSteamHandle(gamepad: PSDL_Gamepad): cuint64; cdecl;
  * \returns the connection state on success or
  *          `SDL_JOYSTICK_CONNECTION_INVALID` on failure; call SDL_GetError()
  *          for more information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
   }
@@ -982,6 +1059,8 @@ function SDL_GetGamepadConnectionState(gamepad: PSDL_Gamepad): TSDL_JoystickConn
  *                battery.
  * \returns the current battery state.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetGamepadPowerInfo(gamepad: PSDL_Gamepad; percent: pcint): TSDL_PowerState; cdecl;
@@ -994,6 +1073,8 @@ function SDL_GetGamepadPowerInfo(gamepad: PSDL_Gamepad; percent: pcint): TSDL_Po
  *                SDL_OpenGamepad().
  * \returns true if the gamepad has been opened and is currently connected, or
  *          false if not.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
   }
@@ -1016,6 +1097,8 @@ function SDL_GamepadConnected(gamepad: PSDL_Gamepad): Boolean; cdecl;
  * \returns an SDL_Joystick object, or nil on failure; call SDL_GetError()
  *          for more information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetGamepadJoystick(gamepad: PSDL_Gamepad): PSDL_Joystick; cdecl;
@@ -1028,6 +1111,8 @@ function SDL_GetGamepadJoystick(gamepad: PSDL_Gamepad): PSDL_Joystick; cdecl;
  * and check the state of the gamepad when you want gamepad information.
  *
  * \param enabled whether to process gamepad events or not.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -1044,6 +1129,8 @@ procedure SDL_SetGamepadEventsEnabled(enabled: Boolean); cdecl;
  * and check the state of the gamepad when you want gamepad information.
  *
  * \returns true if gamepad events are being processed, false otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -1062,6 +1149,8 @@ function SDL_GamepadEventsEnabled: Boolean; cdecl;
  *          single allocation that should be freed with SDL_free() when it is
  *          no longer needed.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetGamepadBindings(gamepad: PSDL_Gamepad; count: pcint):PPSDL_GamepadBinding; cdecl;
@@ -1073,6 +1162,8 @@ function SDL_GetGamepadBindings(gamepad: PSDL_Gamepad; count: pcint):PPSDL_Gamep
  * This function is called automatically by the event loop if events are
  * enabled. Under such circumstances, it will not be necessary to call this
  * function.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
   }
@@ -1091,6 +1182,8 @@ procedure SDL_UpdateGamepads; cdecl;
  * \returns the SDL_GamepadType enum corresponding to the input string, or
  *          `SDL_GAMEPAD_TYPE_UNKNOWN` if no match was found.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetGamepadStringForType
@@ -1105,6 +1198,8 @@ function SDL_GetGamepadTypeFromString(str: PAnsiChar): TSDL_GamepadType; cdecl;
  * \returns a string for the given type, or nil if an invalid type is
  *          specified. The string returned is of the format used by
  *          SDL_Gamepad mapping strings.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -1129,6 +1224,8 @@ function SDL_GetGamepadStringForType(type_: TSDL_GamepadType): PAnsiChar; cdecl;
  * \returns the SDL_GamepadAxis enum corresponding to the input string, or
  *          `SDL_GAMEPAD_AXIS_INVALID` if no match was found.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetGamepadStringForAxis
@@ -1143,6 +1240,8 @@ function SDL_GetGamepadAxisFromString(str: PAnsiChar): TSDL_GamepadAxis; cdecl;
  * \returns a string for the given axis, or nil if an invalid axis is
  *          specified. The string returned is of the format used by
  *          SDL_Gamepad mapping strings.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -1160,6 +1259,8 @@ function SDL_GetGamepadStringForAxis(axis: TSDL_GamepadAxis): PAnsiChar; cdecl;
  * \param gamepad a gamepad.
  * \param axis an axis enum value (an SDL_GamepadAxis value).
  * \returns true if the gamepad has this axis, false otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -1181,10 +1282,14 @@ function SDL_GamepadHasAxis(gamepad: PSDL_Gamepad; axis: TSDL_GamepadAxis): Bool
  * return a negative value. Note that this differs from the value reported by
  * the lower-level SDL_GetJoystickAxis(), which normally uses the full range.
  *
+ * Note that for invalid gamepads or axes, this will return 0. Zero is also a
+ * valid value in normal operation; usually it means a centered axis.
+ *
  * \param gamepad a gamepad.
  * \param axis an axis index (one of the SDL_GamepadAxis values).
- * \returns axis state (including 0) on success or 0 (also) on failure; call
- *          SDL_GetError() for more information.
+ * \returns axis state.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -1202,9 +1307,11 @@ function SDL_GetGamepadAxis(gamepad: PSDL_Gamepad; axis: TSDL_GamepadAxis): cint
  * You do not normally need to call this function unless you are parsing
  * SDL_Gamepad mappings in your own code.
  *
- * \param str string representing a SDL_Gamepad axis.
+ * \param str string representing a SDL_Gamepad button.
  * \returns the SDL_GamepadButton enum corresponding to the input string, or
  *          `SDL_GAMEPAD_BUTTON_INVALID` if no match was found.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -1220,6 +1327,8 @@ function SDL_GetGamepadButtonFromString(str: PAnsiChar): TSDL_GamepadButton; cde
  * \returns a string for the given button, or nil if an invalid button is
  *          specified. The string returned is of the format used by
  *          SDL_Gamepad mapping strings.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -1238,6 +1347,8 @@ function SDL_GetGamepadStringForButton(button: TSDL_GamepadButton): PAnsiChar; c
  * \param button a button enum value (an SDL_GamepadButton value).
  * \returns true if the gamepad has this button, false otherwise.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GamepadHasAxis
@@ -1251,6 +1362,8 @@ function SDL_GamepadHasButton(gamepad: PSDL_Gamepad; button: TSDL_GamepadButton)
  * \param gamepad a gamepad.
  * \param button a button index (one of the SDL_GamepadButton values).
  * \returns true if the button is pressed, false otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -1267,6 +1380,8 @@ function SDL_GetGamepadButton(gamepad: PSDL_Gamepad; button: TSDL_GamepadButton)
  * \param button a button index (one of the SDL_GamepadButton values).
  * \returns the SDL_GamepadButtonLabel enum corresponding to the button label.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetGamepadButtonLabel
@@ -1281,6 +1396,8 @@ function SDL_GetGamepadButtonLabelForType(type_: TSDL_GamepadType; button: TSDL_
  * \param button a button index (one of the SDL_GamepadButton values).
  * \returns the SDL_GamepadButtonLabel enum corresponding to the button label.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetGamepadButtonLabelForType
@@ -1293,6 +1410,8 @@ function SDL_GetGamepadButtonLabel(gamepad: PSDL_Gamepad; button: TSDL_GamepadBu
  *
  * \param gamepad a gamepad.
  * \returns number of touchpads.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -1308,6 +1427,8 @@ function SDL_GetNumGamepadTouchpads(gamepad: PSDL_Gamepad): cint; cdecl;
  * \param gamepad a gamepad.
  * \param touchpad a touchpad.
  * \returns number of supported simultaneous fingers.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -1333,6 +1454,8 @@ function SDL_GetNumGamepadTouchpadFingers(gamepad: PSDL_Gamepad; touchpad: cint)
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetNumGamepadTouchpadFingers
@@ -1346,6 +1469,8 @@ function SDL_GetGamepadTouchpadFinger(gamepad: PSDL_Gamepad; touchpad: cint; fin
  * \param gamepad the gamepad to query.
  * \param type the type of sensor to query.
  * \returns true if the sensor exists, false otherwise.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -1365,6 +1490,8 @@ function SDL_GamepadHasSensor(gamepad: PSDL_Gamepad; type_: TSDL_SensorType): Bo
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GamepadHasSensor
@@ -1380,6 +1507,8 @@ function SDL_SetGamepadSensorEnabled(gamepad: PSDL_Gamepad; type_: TSDL_SensorTy
  * \param type the type of sensor to query.
  * \returns true if the sensor is enabled, false otherwise.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_SetGamepadSensorEnabled
@@ -1394,6 +1523,8 @@ function SDL_GamepadSensorEnabled(gamepad: PSDL_Gamepad; type_: TSDL_SensorType)
  * \param type the type of sensor to query.
  * \returns the data rate, or 0.0f if the data rate is not available.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_GetGamepadSensorDataRate(gamepad: PSDL_Gamepad; type_: TSDL_SensorType): cfloat; cdecl;
@@ -1403,7 +1534,7 @@ function SDL_GetGamepadSensorDataRate(gamepad: PSDL_Gamepad; type_: TSDL_SensorT
  * Get the current state of a gamepad sensor.
  *
  * The number of values and interpretation of the data is sensor dependent.
- * See SDL_sensor.h for the details for each type of sensor.
+ * See the remarks in SDL_SensorType for details for each type of sensor.
  *
  * \param gamepad the gamepad to query.
  * \param type the type of sensor to query.
@@ -1411,6 +1542,8 @@ function SDL_GetGamepadSensorDataRate(gamepad: PSDL_Gamepad; type_: TSDL_SensorT
  * \param num_values the number of values to write to data.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
   }
@@ -1434,6 +1567,8 @@ function SDL_GetGamepadSensorData(gamepad: PSDL_Gamepad; type_: TSDL_SensorType;
  * \param duration_ms the duration of the rumble effect, in milliseconds.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
   }
@@ -1462,6 +1597,8 @@ function SDL_RumbleGamepad(gamepad: PSDL_Gamepad; low_frequency_rumble: cuint16;
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_RumbleGamepad
@@ -1485,6 +1622,8 @@ function SDL_RumbleGamepadTriggers(gamepad: PSDL_Gamepad; left_rumble: cuint16; 
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_SetGamepadLED(gamepad: PSDL_Gamepad; red: cuint8; green: cuint8; blue: cuint8): Boolean; cdecl;
@@ -1499,6 +1638,8 @@ function SDL_SetGamepadLED(gamepad: PSDL_Gamepad; red: cuint8; green: cuint8; bl
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
   }
 function SDL_SendGamepadEffect(gamepad: PSDL_Gamepad; data: Pointer; size: cint): Boolean; cdecl;
@@ -1509,6 +1650,8 @@ function SDL_SendGamepadEffect(gamepad: PSDL_Gamepad; data: Pointer; size: cint)
  *
  * \param gamepad a gamepad identifier previously returned by
  *                SDL_OpenGamepad().
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *
@@ -1525,6 +1668,8 @@ procedure SDL_CloseGamepad(gamepad: PSDL_Gamepad); cdecl;
  * \param button a button on the gamepad.
  * \returns the sfSymbolsName or nil if the name can't be found.
  *
+ * \threadsafety It is safe to call this function from any thread.
+ *
  * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetGamepadAppleSFSymbolsNameForAxis
@@ -1538,6 +1683,8 @@ function SDL_GetGamepadAppleSFSymbolsNameForButton(gamepad: PSDL_Gamepad; button
  * \param gamepad the gamepad to query.
  * \param axis an axis on the gamepad.
  * \returns the sfSymbolsName or nil if the name can't be found.
+ *
+ * \threadsafety It is safe to call this function from any thread.
  *
  * \since This function is available since SDL 3.2.0.
  *

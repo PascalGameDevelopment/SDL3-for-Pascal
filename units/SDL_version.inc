@@ -18,7 +18,7 @@
  *
  * If this were SDL version 3.2.1, this value would be 3.
  *
- * \since This macro is available since SDL 3.1.3.
+ * \since This macro is available since SDL 3.2.0.
   }
 const
   SDL_MAJOR_VERSION = 3;
@@ -28,18 +28,18 @@ const
  *
  * If this were SDL version 3.2.1, this value would be 2.
  *
- * \since This macro is available since SDL 3.1.3.
+ * \since This macro is available since SDL 3.2.0.
   }
-  SDL_MINOR_VERSION = 1;
+  SDL_MINOR_VERSION = 4;
 
 {*
  * The current micro (or patchlevel) version of the SDL headers.
  *
  * If this were SDL version 3.2.1, this value would be 1.
  *
- * \since This macro is available since SDL 3.1.3.
+ * \since This macro is available since SDL 3.2.0.
   }
-  SDL_MICRO_VERSION = 6;
+  SDL_MICRO_VERSION = 4;
 
 {*
  * This macro turns the version numbers into a numeric value.
@@ -50,7 +50,7 @@ const
  * \param minor the minorversion number.
  * \param patch the patch version number.
  *
- * \since This macro is available since SDL 3.1.3.
+ * \since This macro is available since SDL 3.2.0.
   }
 function SDL_VERSIONNUM(major,minor,patch: Integer): Integer;
 
@@ -61,7 +61,9 @@ function SDL_VERSIONNUM(major,minor,patch: Integer): Integer;
  *
  * \param version the version number.
  *
- * \since This macro is available since SDL 3.1.3.
+ * \threadsafety It is safe to call this macro from any thread.
+ *
+ * \since This macro is available since SDL 3.2.0.
   }
 function SDL_VERSIONNUM_MAJOR(version: Integer): Integer;
 
@@ -72,7 +74,9 @@ function SDL_VERSIONNUM_MAJOR(version: Integer): Integer;
  *
  * \param version the version number.
  *
- * \since This macro is available since SDL 3.1.3.
+ * \threadsafety It is safe to call this macro from any thread.
+ *
+ * \since This macro is available since SDL 3.2.0.
   }
 function SDL_VERSIONNUM_MINOR(version: Integer): Integer;
 
@@ -83,14 +87,18 @@ function SDL_VERSIONNUM_MINOR(version: Integer): Integer;
  *
  * \param version the version number.
  *
- * \since This macro is available since SDL 3.1.3.
+ * \threadsafety It is safe to call this macro from any thread.
+ *
+ * \since This macro is available since SDL 3.2.0.
   }
 function SDL_VERSIONNUM_MICRO(version: Integer): Integer;
 
 {*
  * This is the version number macro for the current SDL version.
  *
- * \since This macro is available since SDL 3.1.3.
+ * \since This macro is available since SDL 3.2.0.
+ *
+ * \threadsafety It is safe to call this macro from any thread.
  *
  * \sa SDL_GetVersion
   }
@@ -99,7 +107,9 @@ function SDL_VERSION: Integer;
 {*
  * This macro will evaluate to true if compiled with SDL at least X.Y.Z.
  *
- * \since This macro is available since SDL 3.1.3.
+ * \threadsafety It is safe to call this macro from any thread.
+ *
+ * \since This macro is available since SDL 3.2.0.
   }
 function SDL_VERSION_ATLEAST(X, Y, Z: Integer): Boolean;
 
@@ -115,7 +125,9 @@ function SDL_VERSION_ATLEAST(X, Y, Z: Integer): Boolean;
  *
  * \returns the version of the linked library.
  *
- * \since This function is available since SDL 3.1.3.
+ * \threadsafety It is safe to call this macro from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetRevision
   }
@@ -123,13 +135,14 @@ function SDL_GetVersion: cint; cdecl;
   external SDL_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_SDL_GetVersion' {$ENDIF} {$ENDIF};
 
 {*
- * Get the code revision of SDL that is linked against your program.
+ * Get the code revision of the SDL library that is linked against your
+ * program.
  *
- * This value is the revision of the code you are linked with and may be
+ * This value is the revision of the code you are linking against and may be
  * different from the code you are compiling with, which is found in the
- * constant SDL_REVISION.
+ * constant SDL_REVISION if you explicitly include SDL_revision.h
  *
- * The revision is arbitrary string (a hash value) uniquely identifying the
+ * The revision is an arbitrary string (a hash value) uniquely identifying the
  * exact revision of the SDL library in use, and is only useful in comparing
  * against other revisions. It is NOT an incrementing number.
  *
@@ -142,7 +155,9 @@ function SDL_GetVersion: cint; cdecl;
  * \returns an arbitrary string, uniquely identifying the exact revision of
  *          the SDL library in use.
  *
- * \since This function is available since SDL 3.1.3.
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.2.0.
  *
  * \sa SDL_GetVersion
   }
