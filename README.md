@@ -49,7 +49,12 @@ The version number/tag (see [tags](https://github.com/PascalGameDevelopment/SDL3
 
 ### v0.x (work in progress)
 
+### v0.6 (04/05/2026)
+
+- updates SDL3 to version 3.4.4 (partially 3.4.2)
 - updates SDL3_mixer to version 3.2.0
+- extends SDL_stdinc.inc by many functions
+- some minor updates
 
 ### v0.5 (15/08/2025)
 
