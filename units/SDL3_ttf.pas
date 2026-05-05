@@ -17,8 +17,6 @@ unit SDL3_ttf;
  * available at: https://www.freetype.org/
   }
 
-{ #note: SDL3-for-Pascal: Based on file SDL_textengine.h version 3.1.0 (preview). }
-
 {$DEFINE SDL_TTF}
 
 {$I sdl.inc}
@@ -89,8 +87,8 @@ const
   }
 const
   SDL_TTF_MAJOR_VERSION = 3;
-  SDL_TTF_MINOR_VERSION = 1;
-  SDL_TTF_MICRO_VERSION = 0;
+  SDL_TTF_MINOR_VERSION = 2;
+  SDL_TTF_MICRO_VERSION = 2;
 
 {*
  * This is the version number macro for the current SDL_ttf version.
@@ -507,7 +505,7 @@ function TTF_GetFontDPI(font: PTTF_Font; hdpi: pcint; vdpi: pcint): Boolean; cde
  * SDL_ttf. A combination of these flags can be used with functions that set
  * or query font style, such as TTF_SetFontStyle or TTF_GetFontStyle.
  *
- * \since This function is available since SDL_ttf 3.0.0.
+ * \since This datatype is available since SDL_ttf 3.0.0.
  *
  * \sa TTF_SetFontStyle
  * \sa TTF_GetFontStyle
@@ -629,8 +627,9 @@ function TTF_GetFontOutline(font: PTTF_Font): cint; cdecl;
 type
   PPTTF_HintingFlags = ^PTTF_HintingFlags;
   PTTF_HintingFlags = ^TTTF_HintingFlags;
-  TTTF_HintingFlags =  Integer;
+  TTTF_HintingFlags = type Integer;
 const
+  TTF_HINTING_INVALID = TTTF_HintingFlags(-1);
   TTF_HINTING_NORMAL  = TTTF_HintingFlags(0);         {*< Normal hinting applies standard grid-fitting.  }
   TTF_HINTING_LIGHT  = TTTF_HintingFlags(1);          {*< Light hinting applies subtle adjustments to improve rendering.  }
   TTF_HINTING_MONO  = TTTF_HintingFlags(2);           {*< Monochrome hinting adjusts the font for better rendering at lower resolutions.  }
@@ -689,7 +688,8 @@ function TTF_GetNumFontFaces(font: PTTF_Font): cint; cdecl;
  * - `TTF_HINTING_LIGHT_SUBPIXEL` (available in SDL_ttf 3.0.0 and later)
  *
  * \param font the font to query.
- * \returns the font's current hinter value.
+ * \returns the font's current hinter value, or TTF_HINTING_INVALID if the
+ *          font is invalid.
  *
  * \threadsafety It is safe to call this function from any thread.
  *
@@ -703,18 +703,22 @@ function TTF_GetFontHinting(font: PTTF_Font): TTTF_HintingFlags; cdecl;
 {*
  * Enable Signed Distance Field rendering for a font.
  *
- * SDF is a technique that helps fonts look sharp even when scaling and rotating, and requires special shader support for display.
+ * SDF is a technique that helps fonts look sharp even when scaling and
+ * rotating, and requires special shader support for display.
  *
- * This works with Blended APIs, and generates the raw signed distance values in the alpha channel of the resulting texture.
+ * This works with Blended APIs, and generates the raw signed distance values
+ * in the alpha channel of the resulting texture.
  *
- * This updates any TTF_Text objects using this font, and clears already-generated glyphs, if any, from the cache.
+ * This updates any TTF_Text objects using this font, and clears
+ * already-generated glyphs, if any, from the cache.
  *
  * \param font the font to set SDF support on.
  * \param enabled true to enable SDF, false to disable.
  * \returns true on success or false on failure; call SDL_GetError()
  *          for more information.
  *
- * \threadsafety This function should be called on the thread that created the font.
+ * \threadsafety This function should be called on the thread that created the
+ *               font.
  *
  * \since This function is available since SDL_ttf 3.0.0.
  *
@@ -726,7 +730,7 @@ function TTF_SetFontSDF(font: PTTF_Font; enabled: Boolean): Boolean; cdecl;
 {*
  * Query whether Signed Distance Field rendering is enabled for a font.
  *
- * \param font the font to query
+ * \param font the font to query.
  *
  * \returns true if enabled, false otherwise.
  *
@@ -738,6 +742,32 @@ function TTF_SetFontSDF(font: PTTF_Font; enabled: Boolean): Boolean; cdecl;
   }
 function TTF_GetFontSDF(font: PTTF_Font): Boolean; cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontSDF' {$ENDIF} {$ENDIF};
+
+{*
+ * Query a font's weight, in terms of the lightness/heaviness of the strokes.
+ *
+ * \param font the font to query.
+ * \returns the font's current weight.
+ *
+ * \threadsafety This function should be called on the thread that created the
+ *               font.
+ *
+ * \since This function is available since SDL_ttf 3.2.2.
+ *}
+function TTF_GetFontWeight(font: PTTF_Font): cint; cdecl;
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontWeight' {$ENDIF} {$ENDIF};
+
+const
+  TTF_FONT_WEIGHT_THIN =        100; {*< Thin (100) named font weight value *}
+  TTF_FONT_WEIGHT_EXTRA_LIGHT = 200; {*< ExtraLight (200) named font weight value *}
+  TTF_FONT_WEIGHT_LIGHT =       300; {*< Light (300) named font weight value *}
+  TTF_FONT_WEIGHT_NORMAL =      400; {*< Normal (400) named font weight value *}
+  TTF_FONT_WEIGHT_MEDIUM =      500; {*< Medium (500) named font weight value *}
+  TTF_FONT_WEIGHT_SEMI_BOLD =   600; {*< SemiBold (600) named font weight value *}
+  TTF_FONT_WEIGHT_BOLD =        700; {*< Bold (700) named font weight value *}
+  TTF_FONT_WEIGHT_EXTRA_BOLD =  800; {*< ExtraBold (800) named font weight value *}
+  TTF_FONT_WEIGHT_BLACK =       900; {*< Black (900) named font weight value *}
+
 
 {*
  * The horizontal alignment used when rendering wrapped text.
@@ -1038,14 +1068,47 @@ function TTF_GetFontDirection(font: PTTF_Font): TTTF_Direction; cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontDirection' {$ENDIF} {$ENDIF};
 
 {*
+ * Convert from a 4 character string to a 32-bit tag.
+ *
+ * \param string the 4 character string to convert.
+ * \returns the 32-bit representation of the string.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL_ttf 3.0.0.
+ *
+ * \sa TTF_TagToString
+ *}
+function TTF_StringToTag(const string_: PAnsiChar): cuint32; cdecl;
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_StringToTag' {$ENDIF} {$ENDIF};
+
+{*
+ * Convert from a 32-bit tag to a 4 character string.
+ *
+ * \param tag the 32-bit tag to convert.
+ * \param string a pointer filled in with the 4 character representation of
+ *               the tag.
+ * \param size the size of the buffer pointed at by string, should be at least
+ *             4.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL_ttf 3.0.0.
+ *
+ * \sa TTF_TagToString
+ *}
+procedure TTF_TagToString(tag: cuint32; string_: PAnsiChar; size: csize_t); cdecl;
+  external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_TagToString' {$ENDIF} {$ENDIF};
+
+{*
  * Set the script to be used for text shaping by a font.
  *
- * This returns false if SDL_ttf isn't build with HarfBuzz support.
+ * This returns false if SDL_ttf isn't built with HarfBuzz support.
  *
  * This updates any TTF_Text objects using this font.
  *
  * \param font the font to modify.
- * \param script a script tag in the format used by HarfBuzz.
+ * \param script an ISO 15924 code.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
@@ -1053,6 +1116,8 @@ function TTF_GetFontDirection(font: PTTF_Font): TTTF_Direction; cdecl;
  *               font.
  *
  * \since This function is available since SDL_ttf 3.0.0.
+ *
+ * \sa TTF_StringToTag
   }
 function TTF_SetFontScript(font: PTTF_Font; script: cuint32): Boolean; cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetFontScript' {$ENDIF} {$ENDIF};
@@ -1061,12 +1126,14 @@ function TTF_SetFontScript(font: PTTF_Font; script: cuint32): Boolean; cdecl;
  * Get the script used for text shaping a font.
  *
  * \param font the font to query.
- * \returns a script tag in the format used by HarfBuzz.
+ * \returns an ISO 15924 code or 0 if a script hasn't been set.
  *
  * \threadsafety This function should be called on the thread that created the
  *               font.
  *
  * \since This function is available since SDL_ttf 3.0.0.
+ *
+ * \sa TTF_TagToString
   }
 function TTF_GetFontScript(font: PTTF_Font): cuint32; cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetFontScript' {$ENDIF} {$ENDIF};
@@ -1075,12 +1142,14 @@ function TTF_GetFontScript(font: PTTF_Font): cuint32; cdecl;
  * Get the script used by a 32-bit codepoint.
  *
  * \param ch the character code to check.
- * \returns a script tag in the format used by HarfBuzz on success, or 0 on
- *          failure; call SDL_GetError() for more information.
+ * \returns an ISO 15924 code on success, or 0 on failure;
+ *          call SDL_GetError() for more information.
  *
  * \threadsafety This function is thread-safe.
  *
  * \since This function is available since SDL_ttf 3.0.0.
+ *
+ * \sa TTF_TagToString
   }
 function TTF_GetGlyphScript(ch: cuint32): cuint32; cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetGlyphScript' {$ENDIF} {$ENDIF};
@@ -1093,7 +1162,8 @@ function TTF_GetGlyphScript(ch: cuint32): cuint32; cdecl;
  * This updates any TTF_Text objects using this font.
  *
  * \param font the font to specify a language for.
- * \param language_bcp47 a null-terminated string containing the desired language's BCP47 code. Or null to reset the value.
+ * \param language_bcp47 a null-terminated string containing the desired
+                         language's BCP47 code. Or null to reset the value.
  * \returns true on success or false on failure; call SDL_GetError()
  *          for more information.
  *
@@ -1211,7 +1281,8 @@ function TTF_GetGlyphMetrics(font: PTTF_Font; ch: cuint32; minx: pcint; maxx: pc
  * \param font the font to query.
  * \param previous_ch the previous codepoint.
  * \param ch the current codepoint.
- * \param kerning a Pointer filled in with the kerning size between the two glyphs, in pixels, may be nil.
+ * \param kerning a Pointer filled in with the kerning size between the two
+ *                glyphs, in pixels, may be nil.
  * \returns true on success or false on failure; call SDL_GetError()
  *          for more information.
  *
@@ -1853,6 +1924,8 @@ procedure TTF_DestroySurfaceTextEngine(engine: PTTF_TextEngine); cdecl;
  * \since This function is available since SDL_ttf 3.0.0.
  *
  * \sa TTF_DestroyRendererTextEngine
+ * \sa TTF_DrawRendererText
+ * \sa TTF_CreateRendererTextEngineWithProperties
   }
 function TTF_CreateRendererTextEngine(renderer: PSDL_Renderer): PTTF_TextEngine; cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_CreateRendererTextEngine' {$ENDIF} {$ENDIF};
@@ -1877,7 +1950,9 @@ function TTF_CreateRendererTextEngine(renderer: PSDL_Renderer): PTTF_TextEngine;
  *
  * \since This function is available since SDL_ttf 3.0.0.
  *
+ * \sa TTF_CreateRendererTextEngine
  * \sa TTF_DestroyRendererTextEngine
+ * \sa TTF_DrawRendererText
   }
 function TTF_CreateRendererTextEngineWithProperties(props: TSDL_PropertiesID): PTTF_TextEngine; cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_CreateRendererTextEngineWithProperties' {$ENDIF} {$ENDIF};
@@ -1944,7 +2019,9 @@ procedure TTF_DestroyRendererTextEngine(engine: PTTF_TextEngine); cdecl;
  *
  * \since This function is available since SDL_ttf 3.0.0.
  *
+ * \sa TTF_CreateGPUTextEngineWithProperties
  * \sa TTF_DestroyGPUTextEngine
+ * \sa TTF_GetGPUTextDrawData
   }
 function TTF_CreateGPUTextEngine(device: PSDL_GPUDevice): PTTF_TextEngine; cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_CreateGPUTextEngine' {$ENDIF} {$ENDIF};
@@ -1969,7 +2046,9 @@ function TTF_CreateGPUTextEngine(device: PSDL_GPUDevice): PTTF_TextEngine; cdecl
  *
  * \since This function is available since SDL_ttf 3.0.0.
  *
+ * \sa TTF_CreateGPUTextEngine
  * \sa TTF_DestroyGPUTextEngine
+ * \sa TTF_GetGPUTextDrawData
   }
 function TTF_CreateGPUTextEngineWithProperties(props: TSDL_PropertiesID): PTTF_TextEngine; cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_CreateGPUTextEngineWithProperties' {$ENDIF} {$ENDIF};
@@ -2253,10 +2332,10 @@ function TTF_GetTextDirection(text: PTTF_Text): TTTF_Direction; cdecl;
 {*
  * Set the script to be used for text shaping a text object.
  *
- * This returns false if SDL_ttf isn't build with HarfBuzz support.
+ * This returns false if SDL_ttf isn't built with HarfBuzz support.
  *
  * \param text the text to modify.
- * \param script a script tag in the format used by HarfBuzz.
+ * \param script an ISO 15924 code.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
@@ -2264,6 +2343,8 @@ function TTF_GetTextDirection(text: PTTF_Text): TTTF_Direction; cdecl;
  *               text.
  *
  * \since This function is available since SDL_ttf 3.0.0.
+ *
+ * \sa TTF_StringToTag
   }
 function TTF_SetTextScript(text: PTTF_Text; script: cuint32): Boolean; cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_SetTextScript' {$ENDIF} {$ENDIF};
@@ -2274,12 +2355,15 @@ function TTF_SetTextScript(text: PTTF_Text; script: cuint32): Boolean; cdecl;
  * This defaults to the script of the font used by the text object.
  *
  * \param text the text to query.
- * \returns a script tag in the format used by HarfBuzz.
+ * \returns an ISO 15924 code or 0 if a script hasn't been set on either
+ *          the text object or the font.
  *
  * \threadsafety This function should be called on the thread that created the
  *               text.
  *
  * \since This function is available since SDL_ttf 3.0.0.
+ *
+ * \sa TTF_TagToString
   }
 function TTF_GetTextScript(text: PTTF_Text): cuint32; cdecl;
   external TTF_LibName {$IFDEF DELPHI} {$IFDEF MACOS} name '_TTF_GetTextScript' {$ENDIF} {$ENDIF};
