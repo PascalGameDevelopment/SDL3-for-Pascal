@@ -49,6 +49,8 @@ The version number/tag (see [tags](https://github.com/PascalGameDevelopment/SDL3
 
 ### v0.x (work in progress)
 
+- updates SDL3_ttf to v3.2.2
+
 ### v0.6 (04/05/2026)
 
 - updates SDL3 to version 3.4.4 (partially 3.4.2)
