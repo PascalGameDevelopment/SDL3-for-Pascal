@@ -17,27 +17,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Compile SDL3 unit
-        uses: suve/GHActions-FPC@v0.4.0
+        uses: suve/GHActions-FPC@v0.4.1
         with:
           source: units/SDL3.pas
           verbosity: ewnh
       - name: Compile SDL3_image unit
-        uses: suve/GHActions-FPC@v0.4.0
+        uses: suve/GHActions-FPC@v0.4.1
         with:
           source: units/SDL3_image.pas
           verbosity: ewnh
       - name: Compile SDL3_mixer unit
-        uses: suve/GHActions-FPC@v0.4.0
+        uses: suve/GHActions-FPC@v0.4.1
         with:
           source: units/SDL3_mixer.pas
           verbosity: ewnh
       - name: Compile SDL3_ttf unit
-        uses: suve/GHActions-FPC@v0.4.0
+        uses: suve/GHActions-FPC@v0.4.1
         with:
           source: units/SDL3_ttf.pas
           verbosity: ewnh
       - name: Compile SDL3_textengine unit
-        uses: suve/GHActions-FPC@v0.4.0
+        uses: suve/GHActions-FPC@v0.4.1
         with:
           source: units/SDL3_textengine.pas
           verbosity: ewnh
@@ -56,27 +56,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Compile SDL3 unit
-        uses: suve/GHActions-FPC@v0.4.0
+        uses: suve/GHActions-FPC@v0.4.1
         with:
           source: units/SDL3.pas
           verbosity: ewnh
       - name: Compile SDL3_image unit
-        uses: suve/GHActions-FPC@v0.4.0
+        uses: suve/GHActions-FPC@v0.4.1
         with:
           source: units/SDL3_image.pas
           verbosity: ewnh
       - name: Compile SDL3_mixer unit
-        uses: suve/GHActions-FPC@v0.4.0
+        uses: suve/GHActions-FPC@v0.4.1
         with:
           source: units/SDL3_mixer.pas
           verbosity: ewnh
       - name: Compile SDL3_ttf unit
-        uses: suve/GHActions-FPC@v0.4.0
+        uses: suve/GHActions-FPC@v0.4.1
         with:
           source: units/SDL3_ttf.pas
           verbosity: ewnh
       - name: Compile SDL3_textengine unit
-        uses: suve/GHActions-FPC@v0.4.0
+        uses: suve/GHActions-FPC@v0.4.1
         with:
           source: units/SDL3_textengine.pas
           verbosity: ewnh
@@ -92,27 +92,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Compile SDL3 unit
-        uses: suve/GHActions-FPC@v0.4.0
+        uses: suve/GHActions-FPC@v0.4.1
         with:
           source: units/SDL3.pas
           verbosity: ewnh
       - name: Compile SDL3_image unit
-        uses: suve/GHActions-FPC@v0.4.0
+        uses: suve/GHActions-FPC@v0.4.1
         with:
           source: units/SDL3_image.pas
           verbosity: ewnh
       - name: Compile SDL3_mixer unit
-        uses: suve/GHActions-FPC@v0.4.0
+        uses: suve/GHActions-FPC@v0.4.1
         with:
           source: units/SDL3_mixer.pas
           verbosity: ewnh
       - name: Compile SDL3_ttf unit
-        uses: suve/GHActions-FPC@v0.4.0
+        uses: suve/GHActions-FPC@v0.4.1
         with:
           source: units/SDL3_ttf.pas
           verbosity: ewnh
       - name: Compile SDL3_textengine unit
-        uses: suve/GHActions-FPC@v0.4.0
+        uses: suve/GHActions-FPC@v0.4.1
         with:
           source: units/SDL3_textengine.pas
           verbosity: ewnh
