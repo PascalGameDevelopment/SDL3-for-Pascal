@@ -27,21 +27,17 @@ Use the `SDL3` unit for the main SDL3 library (should be always needed). Units f
 If you have any contributions or bugfixes, feel free to drop a pull request or send in a patch.
 Please use the GitHub [issue tracker](https://github.com/PascalGameDevelopment/SDL3-for-Pascal/issues).
 
+### Contributions
+
+The main principle is to stay as tight as possible at the structure and names in
+the C headers. For details please look into the [tools folder](https://github.com/PascalGameDevelopment/SDL3-for-Pascal/tools).
+
 ### ToDos
 
 - implement GitHub Pages documentation via GitHub Actions
 - add tests ([FPCUnit](https://wiki.freepascal.org/fpcunit)?)
 - improve units (search for "#todo" to find specific tasks)
 - adapt comments to [PasDoc format](https://pasdoc.github.io) (later)
-
-### Code style guidelines
-
-The main principle is to stay as tight as possible at the names in the C headers.
-These guidelines aim to have better consistency in this community project and make
-it easier to find certain code parts in the C headers/Pascal includes. Feel free
-to discuss or extend these guidelines, use the issue tracker.
-
-For details please refer to our [Translation Code Style Sheet](STYLESHEET.md).
 
 ## Versions
 
