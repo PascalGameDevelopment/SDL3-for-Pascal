@@ -145,6 +145,8 @@ type
   PSDL_MouseButtonFlags = ^TSDL_MouseButtonFlags;
   TSDL_MouseButtonFlags = type cuint32;
 
+function SDL_BUTTON_MASK(X: TSDL_MouseButtonFlags): TSDL_MouseButtonFlags;
+
 const
   SDL_BUTTON_LEFT  = TSDL_MouseButtonFlags(1);
   SDL_BUTTON_MIDDLE  = TSDL_MouseButtonFlags(2);
@@ -152,9 +154,8 @@ const
   SDL_BUTTON_X1  = TSDL_MouseButtonFlags(4);
   SDL_BUTTON_X2  = TSDL_MouseButtonFlags(5);
 
-  {SDL3-for-Pascal: The C macro SDL_BUTTON_MASK is not implemented but the mask
-                    defines are directly translated. }
-  {#define SDL_BUTTON_MASK(X)   (1u << ((X)-1))  }
+  {SDL3-for-Pascal: FPC does not allow assigning function results to consts,
+                    so these values are calculated manually. }
   SDL_BUTTON_LMASK  = TSDL_MouseButtonFlags(1 shl SDL_BUTTON_LEFT-1);    { SDL_BUTTON_MASK(SDL_BUTTON_LEFT)  }
   SDL_BUTTON_MMASK  = TSDL_MouseButtonFlags(1 shl SDL_BUTTON_MIDDLE-1);  { SDL_BUTTON_MASK(SDL_BUTTON_MIDDLE)  }
   SDL_BUTTON_RMASK  = TSDL_MouseButtonFlags(1 shl SDL_BUTTON_RIGHT-1);   { SDL_BUTTON_MASK(SDL_BUTTON_RIGHT)  }

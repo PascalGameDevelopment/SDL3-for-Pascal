@@ -7,6 +7,22 @@
 }
 
 {*
+ * Define a four character code as a Uint32.
+ *
+ * \param A the first ASCII character.
+ * \param B the second ASCII character.
+ * \param C the third ASCII character.
+ * \param D the fourth ASCII character.
+ * \returns the four characters converted into a Uint32, one character
+ *          per-byte.
+ *
+ * \threadsafety It is safe to call this macro from any thread.
+ *
+ * \since This macro is available since SDL 3.2.0.
+ *}
+function SDL_FOURCC(A, B, C, D: AnsiChar): cuint32;
+
+{*
  * A signed 8-bit integer type.
  *
  * \since This macro is available since SDL 3.2.0.
